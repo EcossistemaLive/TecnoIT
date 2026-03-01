@@ -1,0 +1,30 @@
+# Regras de Propriedade (CODEOWNERS) - Tecno IT
+# Este arquivo define quais times/usuários precisam revisar alterações em caminhos específicos.
+
+# Regra Geral (Propriedades Globais)
+* @EcossistemaLive
+
+# --- Departamentos ---
+# Diretoria (Acesso Restríto)
+/diretoria/ @EcossistemaLive 
+
+# Financeiro e RH
+/financeiro/ @EcossistemaLive
+/rh/ @EcossistemaLive
+
+# Tecnologia e Desenvolvimento
+/ti/ @EcossistemaLive
+/desenvolvimento/ @EcossistemaLive
+
+# Comercial e Marketing
+/comercial/ @EcossistemaLive
+/marketing/ @EcossistemaLive
+/growth/ @EcossistemaLive
+
+# Administrativo
+/administrativo/ @EcossistemaLive
+
+# --- Configurações Sensíveis ---
+# Qualquer alteração em fluxos do GitHub Actions, configurações do AIOS etc. exige aprovação.
+/.github/workflows/ @EcossistemaLive
+/.antigravity/ @EcossistemaLive
