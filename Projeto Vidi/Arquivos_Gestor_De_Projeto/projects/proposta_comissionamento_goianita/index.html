@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposta de Comissionamento Estratégico — Casa Goianita</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary-bg: #06192a;
+            --card-bg: #0A243D;
+            --accent-color: #00e800;
+            /* Neon Green - Live Consultoria/Goianita */
+            --accent-glow: rgba(0, 232, 0, 0.4);
+            --text-primary: #ffffff;
+            --text-muted: #cccccc;
+            --font-primary: 'Poppins', sans-serif;
+            --font-secondary: 'Merriweather', serif;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --space-md: 2rem;
+            --ease-fluid: cubic-bezier(0.4, 0.0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--primary-bg);
+            background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
+            background-attachment: fixed;
+            color: var(--text-primary);
+            font-family: var(--font-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        header {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(0, 232, 0, 0.08) 0%, transparent 70%);
+            position: relative;
+            padding: 4rem 2rem;
+        }
+
+        .logo {
+            height: 60px;
+            margin-bottom: 2rem;
+            animation: fadeInDown 1s var(--ease-fluid);
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, #fff 0%, #00e800 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInUp 1s var(--ease-fluid);
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            animation: fadeInUp 1s var(--ease-fluid) 0.2s backwards;
+        }
+
+        section {
+            padding: 6rem 0;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s var(--ease-fluid);
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: var(--space-md);
+            margin-bottom: 2rem;
+            transition: transform 0.3s var(--ease-fluid), border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .manifesto-text {
+            font-family: var(--font-secondary);
+            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--text-muted);
+            border-left: 4px solid var(--accent-color);
+            padding-left: 2rem;
+            margin: 2rem 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Tiers de Comissão */
+        .tier-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tier-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+        }
+
+        .tier-ouro::before {
+            background: linear-gradient(90deg, #FFD700, #FDB931);
+        }
+
+        .tier-prata::before {
+            background: linear-gradient(90deg, #C0C0C0, #E8E8E8);
+        }
+
+        .tier-bronze::before {
+            background: linear-gradient(90deg, #CD7F32, #A0522D);
+        }
+
+        .tier-percentage {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1;
+            margin: 1.5rem 0;
+        }
+
+        .tier-ouro .tier-percentage {
+            color: #FFD700;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .tier-prata .tier-percentage {
+            color: #C0C0C0;
+            text-shadow: 0 0 15px rgba(192, 192, 192, 0.3);
+        }
+
+        .tier-bronze .tier-percentage {
+            color: #CD7F32;
+            text-shadow: 0 0 15px rgba(205, 127, 50, 0.3);
+        }
+
+        /* Aceleradores */
+        .bonus-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 2px solid var(--accent-color);
+        }
+
+        .bonus-badge {
+            background: var(--accent-color);
+            color: var(--primary-bg);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            white-space: nowrap;
+        }
+
+        footer {
+            padding: 4rem 0;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.8rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <img src="https://raw.githubusercontent.com/Clebito2/ConsultoriaLive/main/Logo%20live%20oficial-21.png"
+                alt="Live Consultoria" class="logo">
+            <h1>Comissionamento Estratégico</h1>
+            <p class="subtitle">Nova proposta para a equipe de vendas da Casa Goianita. Protegendo a nossa margem,
+                recompensando a sua performance.</p>
+        </div>
+    </header>
+
+    <main>
+        <section class="container">
+            <h2>01. O Propósito</h2>
+            <div class="card">
+                <p>O mercado mudou e o nosso posicionamento também. O vendedor da Casa Goianita é agora um
+                    <strong>Consultor de Luxo</strong> e um curador de escolhas para o lar.</p>
+                <div class="manifesto-text">
+                    "O nosso papel é vender valor, não preçar. O desconto é a última ferramenta de fechamento, não o
+                    primeiro argumento."
+                </div>
+                <p>Nosso novo modelo de comissionamento foi desenhado para proteger a saúde financeira da empresa
+                    (Margem Líquida) ao mesmo tempo que recompensa agressivamente os consultores que trazem o dinheiro
+                    mais rápido para o caixa da loja.</p>
+            </div>
+        </section>
+
+        <section class="container" style="background: rgba(0,0,0,0.2);">
+            <div class="container">
+                <h2>02. As 3 Faixas de Comissão</h2>
+                <p style="margin-bottom: 2rem; color: var(--text-muted); font-size: 1.1rem;">A comissão base é calculada
+                    sobre a venda líquida (descontados impostos e devoluções), dividida pela modalidade de pagamento
+                    escolhida pelo cliente.</p>
+
+                <div class="grid">
+                    <!-- Ouro -->
+                    <div class="card tier-card tier-ouro">
+                        <h3>Comissão Ouro</h3>
+                        <div class="tier-percentage">3.5%</div>
+                        <p style="color: var(--text-muted);">Vendas à vista</p>
+                        <p style="margin-top: 1rem; font-size: 0.9rem; font-weight: 600;">(PIX ou Cartão de Débito)</p>
+                    </div>
+
+                    <!-- Prata -->
+                    <div class="card tier-card tier-prata">
+                        <h3>Comissão Prata</h3>
+                        <div class="tier-percentage">2.5%</div>
+                        <p style="color: var(--text-muted);">Vendas parceladas curtas</p>
+                        <p style="margin-top: 1rem; font-size: 0.9rem; font-weight: 600;">(Cartão de Crédito até 6x)</p>
+                    </div>
+
+                    <!-- Bronze -->
+                    <div class="card tier-card tier-bronze">
+                        <h3>Comissão Bronze</h3>
+                        <div class="tier-percentage">1.5%</div>
+                        <p style="color: var(--text-muted);">Vendas parceladas longas</p>
+                        <p style="margin-top: 1rem; font-size: 0.9rem; font-weight: 600;">(Cartão de Crédito de 7x a
+                            10x)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="container">
+            <h2>03. Aceleradores e Bônus</h2>
+            <p style="margin-bottom: 2rem; color: var(--text-muted); font-size: 1.1rem;">Nós queremos que você supere
+                limites. Por isso, criamos multiplicadores para quem entrega além do esperado.</p>
+
+            <div class="card">
+                <div class="bonus-item">
+                    <div class="bonus-badge">+0.5%</div>
+                    <div>
+                        <h3>Bater a Meta da Loja</h3>
+                        <p style="color: var(--text-muted);">Se a loja atingir 100% da meta mensal, todos os consultores
+                            ganham um adicional de 0.5% sobre as suas próprias vendas do período.</p>
+                    </div>
+                </div>
+
+                <div class="bonus-item">
+                    <div class="bonus-badge">x2 (Dobro)</div>
+                    <div>
+                        <h3>Produtos Foco (Ex: Marca Própria)</h3>
+                        <p style="color: var(--text-muted);">A venda de produtos estratégicos definidos pela diretoria
+                            no mês terá o seu percentual de comissão multiplicado por dois.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="container" style="background: rgba(0,0,0,0.1);">
+            <div class="container">
+                <h2>04. Regras Importantes e Estornos</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>Política de Estornos</h3>
+                        <p style="margin-top: 1rem; color: var(--text-muted);">
+                            Em caso de devolução ou cancelamento da venda por parte do cliente, a comissão referente
+                            àquela transação será estornada do consultor no fechamento do mês seguinte.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h3>Uso do Desconto</h3>
+                        <p style="margin-top: 1rem; color: var(--text-muted);">
+                            O consultor possui **0% de alçada** para dar descontos no balcão sem autorização. Ofereça
+                            parcelamento e experiência. Descontos de até 5% e 10% dependem da atuação exclusiva do
+                            Gerente ou da Diretoria.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <img src="https://raw.githubusercontent.com/Clebito2/ConsultoriaLive/main/Logo%20live%20oficial-21.png"
+                alt="Live Consultoria" style="height: 30px; margin-bottom: 1rem; opacity: 0.5;">
+            <p>© 2026 Live Consultoria. Documento Estratégico Goianita.</p>
+            <p style="font-size: 0.8rem; margin-top: 0.5rem; opacity: 0.5;">Aprovado pelo Comitê Gestor.</p>
+        </div>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+
+</html>

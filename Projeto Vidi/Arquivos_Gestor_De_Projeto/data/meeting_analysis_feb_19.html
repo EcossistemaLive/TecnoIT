@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apresentação Estratégica: Reunião 19/02 - Goianita</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Reset CSS */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Guia de Estilo (Baseado no modelo da Squad da Live) */
+        :root {
+            --primary-bg: #030a12;
+            --card-bg: #071524;
+            --accent-color: #00e800;
+            /* Verde Goianita */
+            --secondary-accent: #fcd535;
+            /* Ouro VIDI */
+            --text-primary: #ffffff;
+            --text-muted: #abb8c3;
+            --font-primary: 'Poppins', sans-serif;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --space-sm: 1rem;
+            --space-md: 2rem;
+            --space-lg: 4rem;
+        }
+
+        body {
+            background-color: var(--primary-bg);
+            background-image: radial-gradient(circle at 50% 50%, #0a1f33 0%, #030a12 100%);
+            color: var(--text-primary);
+            font-family: var(--font-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: var(--space-md);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(3, 10, 18, 0.8), rgba(3, 10, 18, 0.8)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2070');
+            background-size: cover;
+            background-position: center;
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            letter-spacing: -2px;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #fff, var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            max-width: 800px;
+        }
+
+        /* Sections */
+        section {
+            padding: var(--space-lg) 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: var(--space-md);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        h2::before {
+            content: '';
+            width: 40px;
+            height: 4px;
+            background: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: var(--space-md);
+            margin-bottom: var(--space-md);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.4s ease;
+        }
+
+        .card:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-10px) scale(1.02);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--secondary-accent);
+        }
+
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--space-md);
+        }
+
+        /* Bullet Points */
+        ul {
+            list-style: none;
+        }
+
+        li {
+            margin-bottom: 12px;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        li::before {
+            content: '⚡';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+        }
+
+        /* Highlight Section */
+        .highlight {
+            background: rgba(0, 232, 0, 0.05);
+            border-left: 5px solid var(--accent-color);
+            padding: var(--space-md);
+            border-radius: 0 15px 15px 0;
+            margin: var(--space-md) 0;
+        }
+
+        /* Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="hero">
+        <div class="container">
+            <h1>Relatório Estratégico Reunião 19/02</h1>
+            <p>Decisões Direcionais, Transição Digital e Reposicionamento de Marca para o Conselho Gestor da Casa
+                Goianita.</p>
+            <div style="margin-top: 40px; color: var(--accent-color); font-weight: 600;">CONSULTORIA LIVE | SQUAD DE
+                ESTRATÉGIA</div>
+        </div>
+    </div>
+
+    <main class="container">
+
+        <!-- Seção 1: Gestão & ERP -->
+        <section class="reveal">
+            <h2>Transformação Digital (Olist ERP)</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Dores da Implantação</h3>
+                    <ul>
+                        <li>Tensão na virada Pmenu -> Olist: Dificuldades no XML e Fretes.</li>
+                        <li><strong>Desafios Culturais:</strong> Resistência ao novo método de custeio.</li>
+                        <li><strong>Regras Rígidas:</strong> Proibido reaproveitamento de códigos antigos de produtos
+                            para preservar a integridade do histórico (DRE/DFC).</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Gestão Fiscal & Custos</h3>
+                    <ul>
+                        <li>Necessidade de lançar 100% dos fretes manuais (Conhecimento de Frete).</li>
+                        <li>Parametrização do frete médio (ex: 2%) como custo de mercadoria vendida.</li>
+                        <li>Eduardo (Suporte) assume o controle central da mudança de regras sistêmicas.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção 2: Estratégia de Varejo -->
+        <section class="reveal">
+            <h2>Reposicionamento de Lojas Físicas</h2>
+            <div class="card highlight">
+                <h3>Narrativa de Saída: "Ponto Vendido"</h3>
+                <p>Estratégia para desativação da unidade Bueno: Informar que o ponto foi vendido e que a Goianita está
+                    buscando um novo espaço premium na região.</p>
+            </div>
+            <div class="grid">
+                <div class="card">
+                    <h3>Engajamento QR Code</h3>
+                    <ul>
+                        <li>Banners informativos com Link/Vídeo explicando a mudança.</li>
+                        <li>Campanha: "Onde você quer ver uma nova Goianita?".</li>
+                        <li>Transformar a saída em um buzz de expansão, não de fechamento.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Foco nas Unidades 135 & 85</h3>
+                    <ul>
+                        <li>Concentração total de recursos e equipe nas unidades sobreviventes.</li>
+                        <li>Preparar a unidade 85 para ser o novo "Flagship" da região.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção 3: Marca & Curadoria -->
+        <section class="reveal">
+            <h2>"A Nova Goianita": Curadoria de Luxo</h2>
+            <div class="card">
+                <h3>Fim das "Badulaqueiras"</h3>
+                <p>Debate intenso sobre a eliminação de produtos de baixa qualidade que depõe contra a confiança da
+                    marca.</p>
+                <ul style="margin-top:20px;">
+                    <li>Foco em produtos que transmitem confiança (Ex: Lixeiras Inox vs Plástico).</li>
+                    <li>Critério de Unanimidade para novas compras: Votação entre os sócios (Mínimo de 3 para 4).</li>
+                    <li><strong>Princípio de Vô:</strong> "Nunca dê notícias ruins ao cliente. Troque por um melhor se
+                        necessário."</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Seção 4: Projetos Especiais -->
+        <section class="reveal">
+            <h2>Listas de Casamento (iCasei Competition)</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Modelo Híbrido Nacional</h3>
+                    <ul>
+                        <li>Expansão nacional via Google Ads (Foco em RO, RS, MT).</li>
+                        <li>Opções de recebimento: Produto Físico ou Crédito em Dinheiro (Taxa 3.5%).</li>
+                        <li>Inclusão de serviços: Pacotes de viagem, Dia da Noiva e Estética.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Estratégia Digital</h3>
+                    <ul>
+                        <li>Vendas no WhatsApp com comissão para vendedores de loja física.</li>
+                        <li>Integração total "Casa dos Enxovais" para ampliar o mix de produtos.</li>
+                        <li>Uso das embaixadoras locais para recomendação direta.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção 5: Próximos Passos -->
+        <section class="reveal" style="border:none;">
+            <h2>Agenda Imediata (Next Steps)</h2>
+            <div class="highlight">
+                <ul>
+                    <li><strong>20/02:</strong> Reunião com Eduardo para treinamento de vendas e custos no ERP.</li>
+                    <li><strong>24/02:</strong> Definição da lista final de desligamentos e realocações de equipe.</li>
+                    <li><strong>26/02:</strong> Apresentação da Nova Identidade Visual (VIDI/Cúpula) às 08:30 no
+                        Escritório.</li>
+                    <li><strong>Imediato:</strong> Lançamento do primeiro lote de produtos "Mimo" e "Motos" no Mercado
+                        Livre.</li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+
+    <footer
+        style="text-align: center; padding: 40px; color: var(--text-muted); border-top: 1px solid var(--border-color);">
+        <p>© 2026 LIVE CONSULTORIA | GESTOR DE PROJETOS CDB</p>
+    </footer>
+
+    <script>
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); // Initial check
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório de Naming - Live Consultoria</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Poppins:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* 1. THE SETUP & LIVE CONSULTORIA V6.0 VARIABLES */
+        :root {
+            /* Atmosfera (Backgrounds) */
+            --live-deep: #06192a;
+            --live-dark: #030d17;
+            /* Superfícies (Refractive Glass) */
+            --live-glass: rgba(10, 36, 61, 0.70);
+            --live-glass-hover: rgba(15, 45, 75, 0.85);
+            /* Distorção simulada para refração */
+            --glass-blur: blur(16px) saturate(180%);
+            /* Luz & Ação */
+            --live-accent: #00e800;
+            --live-accent-dim: rgba(0, 232, 0, 0.15);
+            /* Gradiente Cinético para Títulos */
+            --kinetic-gradient: linear-gradient(90deg, #ffffff 0%, #cccccc 40%, #00e800 100%);
+            /* Física de Animação (Micro-Springs) */
+            --spring-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+            --ease-fluid: cubic-bezier(0.4, 0.0, 0.2, 1);
+            /* Bordas Inteligentes */
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --border-active: rgba(0, 232, 0, 0.4);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--live-dark);
+            background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
+            background-attachment: fixed;
+            color: #cbd5e1;
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* 2. CONSISTENT TYPOGRAPHY */
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            margin: 0;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+        }
+
+        p,
+        li,
+        .subtitle,
+        th,
+        td {
+            font-family: 'Merriweather', serif;
+            color: #cbd5e1;
+            line-height: 1.7;
+            font-size: 18px;
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+
+        strong {
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        /* Comportamento Cinético: Gradiente Animado */
+        .kinetic-text {
+            background: var(--kinetic-gradient);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: kineticFlow 6s linear infinite;
+        }
+
+        @keyframes kineticFlow {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        /* 3. SCROLLING SECTIONS LAYOUT */
+        .page-section {
+            position: relative;
+            padding: 100px 20px;
+            border-bottom: 1px solid var(--border-subtle);
+            display: flex;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .page-section:nth-child(even) {
+            background-color: rgba(6, 25, 42, 0.4);
+            /* Leve variação de fundo para alternância */
+        }
+
+        /* Luz Dinâmica de Fundo */
+        .page-section::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            max-width: 1200px;
+            background: radial-gradient(circle at center, var(--live-accent-dim), transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.5;
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 44px;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        /* 4. COMPONENTS AND MICRO-INTERACTIONS */
+        .glass-panel {
+            background: var(--live-glass);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 40px;
+            transition: transform 0.4s var(--spring-bounce), border-color 0.4s var(--ease-fluid), background 0.4s var(--ease-fluid);
+        }
+
+        .glass-panel:hover {
+            transform: translateY(-6px) scale(1.01);
+            border-color: var(--border-active);
+            background: var(--live-glass-hover);
+        }
+
+        /* LAYOUT DEFINITIONS */
+        .hero-layout {
+            text-align: center;
+            padding: 150px 20px;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-layout .logo-hero {
+            width: 280px;
+            margin-bottom: 40px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .hero-layout h1 {
+            font-size: 64px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero-layout .subtitle {
+            font-size: 24px;
+            color: #94a3b8;
+            font-family: 'Poppins', sans-serif;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .two-column ul {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .two-column li {
+            position: relative;
+            margin-bottom: 16px;
+        }
+
+        .two-column li::before {
+            content: '>';
+            color: var(--live-accent);
+            position: absolute;
+            left: -20px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+
+        .image-wrapper {
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-subtle);
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .image-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 232, 0, 0.1), transparent);
+            pointer-events: none;
+        }
+
+        .image-wrapper img {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-height: 500px;
+            object-fit: cover;
+            filter: grayscale(20%) contrast(110%);
+            transition: filter 0.5s ease, transform 0.5s ease;
+        }
+
+        .image-wrapper:hover img {
+            filter: grayscale(0%) contrast(100%);
+            transform: scale(1.03);
+        }
+
+        .tiled-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .tiled-content .glass-panel {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tile-icon {
+            font-size: 36px;
+            color: var(--live-accent);
+            margin-bottom: 20px;
+        }
+
+        .tiled-content h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--live-accent);
+        }
+
+        .rounded-image-layout .image-wrapper {
+            border-radius: 50%;
+            aspect-ratio: 1 / 1;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            border: 2px solid var(--live-accent);
+            box-shadow: 0 0 30px rgba(0, 232, 0, 0.2);
+        }
+
+        /* Table Layout */
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--live-glass);
+            backdrop-filter: var(--glass-blur);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-subtle);
+        }
+
+        th,
+        td {
+            padding: 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        th {
+            background: rgba(0, 0, 0, 0.3);
+            color: var(--live-accent);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        /* Highlight Numbers Layout */
+        .highlight-numbers-layout {
+            display: flex;
+            gap: 40px;
+        }
+
+        .highlight-card {
+            flex: 1;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .highlight-card .number {
+            font-size: 80px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .highlight-card .number-label {
+            font-size: 24px;
+            color: var(--live-accent);
+            font-family: 'Poppins', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Q&A / Closure Layout */
+        .closure-layout {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 80px 0;
+        }
+
+        .closure-layout h2 {
+            font-size: 72px;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .closure-layout p {
+            font-size: 28px;
+            margin-top: 30px;
+        }
+
+        .signature {
+            margin-top: 60px;
+            color: var(--live-accent);
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            letter-spacing: 1px;
+        }
+
+        /* Global Footer */
+        .global-footer {
+            background-color: #020810;
+            border-top: 1px solid var(--border-subtle);
+            padding: 40px 20px;
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        .global-footer .footer-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .global-footer a {
+            color: var(--live-accent);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .global-footer a:hover {
+            color: #ffffff;
+        }
+
+        .footer-logo {
+            height: 30px;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-logo:hover {
+            opacity: 1;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 992px) {
+            .hero-layout h1 {
+                font-size: 48px;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .tiled-content {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+
+            .highlight-numbers-layout {
+                flex-direction: column;
+            }
+
+            .closure-layout h2 {
+                font-size: 50px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-section {
+                padding: 60px 20px;
+            }
+
+            .hero-layout {
+                padding: 100px 20px 60px;
+                min-height: auto;
+            }
+
+            .hero-layout h1 {
+                font-size: 38px;
+            }
+
+            .hero-layout .subtitle {
+                font-size: 18px;
+            }
+
+            .section-title {
+                font-size: 32px;
+                margin-bottom: 30px;
+            }
+
+            .global-footer .footer-content {
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Hero Section -->
+    <header class="page-section" style="border-bottom: none;">
+        <div class="content-wrapper hero-layout">
+            <img class="logo-hero"
+                src="https://raw.githubusercontent.com/Clebito2/ConsultoriaLive/main/Logo%20live%20oficial-21.png"
+                alt="Live Consultoria Logo">
+            <h1 class="kinetic-text">Relatório Oficial de Naming e Estratégia de Marca</h1>
+            <p class="subtitle">Análise Semântica, Viabilidade de Registro (INPI) e Definição de Posicionamento</p>
+        </div>
+    </header>
+
+    <!-- Section 1: O Conceito Mitra -->
+    <section class="page-section">
+        <div class="content-wrapper">
+            <h2 class="section-title kinetic-text">O Conceito "Mitra"</h2>
+            <div class="two-column">
+                <div>
+                    <p>Durante as rodadas iniciais de brainstorm, o nome <strong>Mitra</strong> foi isolado e explorado
+                        como uma representação absoluta de <strong>Autoridade e Governo</strong>. A etimologia da
+                        palavra nos remete à cobertura de cabeça cerimonial usada historicamente por bispos e altas
+                        lideranças institucionais, simbolizando o "chapéu" do líder e o peso da sabedoria acumulada.</p>
+                    <p>No contexto do nosso ecossistema de Conselhos e Mentores, "Mitra" oferecia um simbolismo direto
+                        de reconhecimento hierárquico e respeito. A essência do termo expressava a sobriedade necessária
+                        para uma marca voltada à governança corporativa e ao direcionamento de CEOs.</p>
+                    <div class="glass-panel"
+                        style="padding: 20px; margin-top: 20px; border-color: #ef4444; background: rgba(239, 68, 68, 0.05);">
+                        <strong style="color: #ef4444; font-size: 20px;">Parecer Técnico (INPI): Inviável.</strong>
+                        <p style="margin-top: 10px; margin-bottom: 0; font-size: 16px;">A pesquisa profunda no Instituto
+                            Nacional da Propriedade Industrial (INPI) revelou a impossibilidade de registro seguro e
+                            exclusivo do nome nas classes estratégicas para o negócio: Classe 35 (Gestão de Negócios e
+                            Consultoria) e Classe 41 (Educação, Treinamento e Eventos). O risco de colidência com marcas
+                            já estabelecidas descartou o uso direto do termo.</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="image-wrapper">
+                        <!-- IMAGEM ATUALIZADA (MITRA) -->
+                        <img src="./assets/mitra_statue.png" alt="Estátua Clássica Romana representando Autoridade">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Variações Mitra -->
+    <section class="page-section">
+        <div class="content-wrapper">
+            <h2 class="section-title kinetic-text">Desdobramentos e Variações de "Mitra"</h2>
+            <div class="tiled-content">
+                <div class="glass-panel">
+                    <div class="tile-icon"><i class="fa-solid fa-dna"></i></div>
+                    <h3>Derivações Fonéticas</h3>
+                    <p>Buscando contornar a barreira de registro, exploramos derivações diretas.
+                        <strong>Mitrium</strong> foi cogitado por adicionar um tom institucional, quase químico e
+                        técnico, sugerindo um elemento fundamental. <strong>Mitrax</strong> e <strong>Mitrona</strong>
+                        trouxeram uma sonoridade mais ríspida e moderna, sugerindo uma fundação robusta com apelo
+                        tecnológico, mas perderam um pouco da sobriedade clássica exigida pelo público-alvo (CEOs).</p>
+                </div>
+                <div class="glass-panel">
+                    <div class="tile-icon"><i class="fa-solid fa-link"></i></div>
+                    <h3>Composições Estruturais</h3>
+                    <p>A união de radicais foi testada para criar neologismos registráveis. <strong>Mitracore</strong>
+                        surgiu como uma representação do "núcleo" da autoridade e do governo estratégico das empresas.
+                        <strong>MitraNexus</strong> foi desenhado para posicionar o produto como o ponto central de
+                        conexão estrutural, a ponte vital entre os líderes de mercado e a alta estratégia de execução.
+                    </p>
+                </div>
+                <div class="glass-panel">
+                    <div class="tile-icon"><i class="fa-solid fa-chess-king"></i></div>
+                    <h3>Metáforas Alternativas</h3>
+                    <p>Ao abandonar o radical "Mitra", buscamos metáforas que entregassem o mesmo significado. Palavras
+                        como <strong>Tiara</strong> e <strong>Diadema</strong> (simbolizando soberania e coroa de
+                        destaque) foram analisadas, assim como <strong>Regimen</strong> e <strong>Apex</strong>, que
+                        representam o ponto mais alto de uma estrutura, o cume da liderança e a direção absoluta de um
+                        sistema empresarial complexo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: O Conceito VIDI -->
+    <section class="page-section">
+        <div class="content-wrapper">
+            <h2 class="section-title kinetic-text">O Conceito "VIDI"</h2>
+            <div class="two-column">
+                <div style="order: 2;">
+                    <p>A transição conceitual nos levou à palavra <strong>VIDI</strong>, que carrega uma carga semântica
+                        inegável de objetividade, clareza e revelação. Derivado do verbo latino <em>Vider</em>,
+                        significa literalmente <strong>"Eu vi"</strong>. O termo foi imortalizado como o elo central da
+                        célebre frase do general e estadista romano Júlio César: <em>"Veni, Vidi, Vici"</em> (Vim, Vi,
+                        Venci).</p>
+                    <p>No contexto de um programa de mentoria e consultoria de elite, o "Ver" é a etapa mais crítica. O
+                        diagnóstico antecede a prescrição. <strong>VIDI</strong> representa o momento de clareza
+                        cirúrgica, a habilidade de enxergar a realidade nua e crua da operação do cliente antes de
+                        qualquer tomada de ação. É o ato de levar o empresário a desenvolver a "Consciência Ativa",
+                        permitindo que ele veja as falhas e oportunidades que antes estavam ocultas na sua própria
+                        empresa.</p>
+                    <p style="color: var(--live-accent); font-weight: 600;">Status INPI: Após buscas preliminares, o
+                        termo demonstrou forte potencial de viabilidade nas classes estratégicas, destacando-se como um
+                        ativo marcário forte, curto e memorável.</p>
+                </div>
+                <div style="order: 1;">
+                    <div class="image-wrapper">
+                        <!-- IMAGEM ATUALIZADA (VIDI) -->
+                        <img src="./assets/vidi_vision.png" alt="Arquitetura Clássica e Visão Estratégica">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Léxico Expandido -->
+    <section class="page-section">
+        <div class="content-wrapper">
+            <h2 class="section-title kinetic-text">Léxico Expandido: Governança Romana</h2>
+            <div class="two-column">
+                <div class="glass-panel" style="height: 100%;">
+                    <h3 style="color: var(--live-accent); margin-bottom: 20px; font-size: 28px;">Estruturas de Poder
+                    </h3>
+                    <p>A governança romana oferece o framework perfeito para a criação de hubs e conselhos corporativos
+                        de alto nível. Analisamos três pilares de inspiração:</p>
+                    <ul>
+                        <li><strong>Cúria (Curia):</strong> Originalmente a assembleia onde se discutiam os assuntos do
+                            Estado. É a origem semântica do conceito de "Cúpula do Governo" e o local de decisões
+                            definitivas.</li>
+                        <li><strong>Consilium:</strong> O conselho restrito de assessores íntimos ou o corpo
+                            deliberativo de especialistas que guiam o líder.</li>
+                        <li><strong>Senatus:</strong> Representa o órgão de maior autoridade e senioridade, o conselho
+                            dos anciãos que transmite estabilidade e visão de longo prazo ao império (ou corporação).
+                        </li>
+                    </ul>
+                </div>
+                <div class="glass-panel" style="height: 100%;">
+                    <h3 style="color: var(--live-accent); margin-bottom: 20px; font-size: 28px;">Atributos de Liderança
+                    </h3>
+                    <p>Para definir a postura dos mentores e o impacto esperado nos mentorados, exploramos os códigos de
+                        conduta e poder da antiguidade:</p>
+                    <ul>
+                        <li><strong>Auctoritas:</strong> Muito além do poder imposto, é o prestígio intrínseco, o peso
+                            social e a autoridade moral que faz com que os outros sigam um líder de forma orgânica e
+                            natural.</li>
+                        <li><strong>Imperium:</strong> O poder de fato. O comando supremo, o controle absoluto sobre as
+                            tropas e a capacidade de executar planos com disciplina militar.</li>
+                        <li><strong>Rubicon:</strong> Representa a coragem estratégica para tomar a decisão decisiva, o
+                            "ponto sem volta" na escalada de um negócio.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: O Conceito Pantheon -->
+    <section class="page-section">
+        <div class="content-wrapper">
+            <h2 class="section-title kinetic-text">O Arquétipo do "Pantheon"</h2>
+            <div class="two-column">
+                <div>
+                    <p>O conceito do Pantheon (do grego <em>Pan</em>, que significa "todos", e <em>Theos</em>, que
+                        significa "deuses") surge como a conexão arquitetônica e filosófica definitiva para o nosso
+                        projeto. Ele materializa a interseção entre a Visão, a Autoridade e a formação de um Conselho de
+                        elite.</p>
+                    <p><strong>A Cúpula (A Estrutura):</strong> O Panteão de Roma abriga até hoje a maior cúpula de
+                        concreto não armado do mundo. É o símbolo material máximo do poder duradouro, do legado e da
+                        engenharia perfeita, servindo de metáfora para a "Cúpula" de empresários que estamos reunindo.
+                    </p>
+                    <p><strong>O Óculo (A Visão / O Vidi):</strong> No ápice da cúpula encontra-se o óculo (o olho). É a
+                        única fonte de luz natural que adentra o edifício, simbolizando o Olho do Céu, o foco absoluto e
+                        a clareza total — criando uma ligação conceitual direta e indissolúvel com o programa
+                        <strong>VIDI</strong>.</p>
+                </div>
+                <div>
+                    <div class="image-wrapper">
+                        <!-- IMAGEM ATUALIZADA (PANTHEON) -->
+                        <img src="./assets/pantheon_oculus.png"
+                            alt="Interior do Pantheon em Roma mostrando a Cúpula e o Óculo">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Etimologia Cúpula -->
+    <section class="page-section">
+        <div class="content-wrapper">
+            <h2 class="section-title kinetic-text">O Significado Profundo de "Cúpula"</h2>
+            <div class="two-column rounded-image-layout">
+                <div style="order: 2;">
+                    <div class="glass-panel">
+                        <h3 style="color: var(--live-accent); margin-bottom: 20px; font-size: 28px;">Simbolismo
+                            Arquitetônico e Social</h3>
+                        <p>A palavra deriva do latim tardio <em>cupula</em> (pequena taça ou abóbada invertida). Na
+                            arquitetura clássica e na psique humana, a cúpula não é apenas um teto; ela é a
+                            representação da Abóbada Celeste, uma tentativa ambiciosa de replicar o cosmo, a ordem e o
+                            infinito sob uma estrutura humana.</p>
+                        <p>Trazendo para o posicionamento corporativo, "Cúpula" atende a três necessidades primordiais
+                            da nossa comunicação:</p>
+                        <ul>
+                            <li><strong>Proteção e Pertencimento:</strong> A forma côncava sugere um ecossistema seguro
+                                e abrangente, abrigando e protegendo os membros que estão abaixo dela.</li>
+                            <li><strong>Convergência Absoluta:</strong> Geometricamente, todas as linhas estruturais de
+                                uma cúpula convergem para um único ponto no topo (o óculo/foco), representando o
+                                alinhamento de múltiplos negócios rumo a um único objetivo.</li>
+                            <li><strong>Supremacia:</strong> A cúpula define o horizonte de uma cidade. Uma marca que se
+                                apropria deste termo posiciona-se automaticamente no topo da cadeia alimentar
+                                corporativa, sobrepondo-se à concorrência.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="order: 1; text-align: center;">
+                    <div class="image-wrapper">
+                        <!-- IMAGEM ATUALIZADA (CÚPULA) -->
+                        <img src="./assets/cupula_architecture.png" alt="Estrutura de Cúpula Arquitetônica Simétrica"
+                            style="height: 100%;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 7: Tabela de Candidatos -->
+    <section class="page-section">
+        <div class="content-wrapper">
+            <h2 class="section-title kinetic-text">Quadro Resumo de Avaliação INPI</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Candidato Avaliado</th>
+                            <th>Status Regulatório (INPI)</th>
+                            <th>Parecer Semântico e Comercial</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Tótem</strong></td>
+                            <td style="color: var(--live-accent); font-weight: 600;">Viável (Classe 41)</td>
+                            <td>Forte candidato reserva. Remete a ancestralidade, ponto de encontro e ao "pilar
+                                intocável" da tribo. Possui excelente impacto visual e fonético.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sédia / Sedes</strong></td>
+                            <td style="color: #f59e0b; font-weight: 600;">Parcialmente Avaliado</td>
+                            <td>Refere-se ao "assento" de poder (como a Santa Sé) ou a "base". Embora forte
+                                simbolicamente, apresenta desafios práticos de sonoridade e aceitação comercial
+                                imediata.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sursum Corda</strong></td>
+                            <td style="color: var(--live-accent); font-weight: 600;">Registrável (Classe 41)</td>
+                            <td>Tradução: "Corações ao Alto". Apesar da belíssima mensagem de elevação moral e
+                                estratégica, a forte e indissociável ligação litúrgica restringe severamente sua
+                                aplicação como branding estritamente corporativo.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Invictos / Dux</strong></td>
+                            <td style="color: #ef4444; font-weight: 600;">Inviável</td>
+                            <td>Termos desgastados no mercado. Apresentam conflitos diretos de marcas ou excesso de
+                                registros diluídos no segmento de consultorias e agências, inviabilizando uma construção
+                                de marca única.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 8: Decisão Final -->
+    <section class="page-section">
+        <div class="content-wrapper">
+            <h2 class="section-title kinetic-text">Resolução Estratégica: Naming Definitivo</h2>
+            <p
+                style="text-align: center; font-size: 22px; margin-bottom: 60px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                Após o cruzamento de dados semânticos, viabilidade jurídica para proteção da propriedade intelectual e
+                impacto sonoro, definimos a arquitetura de marcas do projeto:</p>
+            <div class="highlight-numbers-layout">
+                <div class="highlight-card glass-panel">
+                    <div class="number kinetic-text">VIDI</div>
+                    <div class="number-label">O Produto: Programa de Mentoria</div>
+                    <p style="margin-top: 20px; font-size: 16px;">O nome do serviço core. Representa o diagnóstico
+                        profundo, a entrega da clareza estratégica e o momento em que a venda corporativa ganha visão. O
+                        mentorado passa pelo VIDI para enxergar o que deve ser feito.</p>
+                </div>
+                <div class="highlight-card glass-panel">
+                    <div class="number kinetic-text">CÚPULA</div>
+                    <div class="number-label">O Hub: Evento e Ecossistema</div>
+                    <p style="margin-top: 20px; font-size: 16px;">O nome do espaço de convergência. Representa a
+                        assembleia dos líderes, o ápice da autoridade do mercado e a montagem presencial da estrutura de
+                        poder. É sob a Cúpula que as mentes que passaram pelo VIDI se reúnem.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 9: Closure -->
+    <section class="page-section" style="border-bottom: none;">
+        <div class="content-wrapper closure-layout">
+            <h2 class="kinetic-text">"Veni, Vidi, Vici"</h2>
+            <p>O diagnóstico correto (Vidi) é o único caminho para a conquista comercial (Vici).</p>
+            <div class="signature">
+                A perfeição está nos detalhes invisíveis.
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Footer -->
+    <footer class="global-footer">
+        <div class="footer-content">
+            <div>
+                <img class="footer-logo"
+                    src="https://raw.githubusercontent.com/Clebito2/ConsultoriaLive/main/Logo%20live%20oficial-21.png"
+                    alt="Live Consultoria Logo">
+            </div>
+            <div>
+                Sistema de Design V6.0 (Elite & AI-Driven)
+            </div>
+            <div>
+                &copy; Powered by <a href="mailto:cleberdonato@ecossistemalive.com.br">Cléber Donato</a>. Todos os
+                direitos reservados.
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estratégia: Projeto Cúpula — Tradição em Movimento</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0a0c;
+            --accent-gold: #c5a059;
+            --accent-gold-glow: rgba(197, 160, 89, 0.4);
+            --text-main: #f0f0f2;
+            --text-muted: #a0a0a8;
+            --card-glass: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+            --ease-in-out: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(197, 160, 89, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(197, 160, 89, 0.05) 0%, transparent 40%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .logo-box {
+            position: absolute;
+            top: 2rem;
+            animation: fadeIn 1s var(--ease-in-out);
+        }
+
+        .logo-box img {
+            height: 40px;
+            filter: brightness(0) invert(1);
+            opacity: 0.7;
+        }
+
+        h1 {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 10vw, 7rem);
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #fff 0%, var(--accent-gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: slideUpFade 1.2s var(--ease-in-out);
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            margin-bottom: 3rem;
+            animation: slideUpFade 1.2s var(--ease-in-out) 0.2s backwards;
+        }
+
+        .hero-info {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            animation: slideUpFade 1.2s var(--ease-in-out) 0.4s backwards;
+        }
+
+        section {
+            padding: 8rem 0;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s var(--ease-in-out);
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-tag {
+            color: var(--accent-gold);
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        h2 {
+            font-family: var(--font-display);
+            font-size: 3.5rem;
+            margin-bottom: 3rem;
+            line-height: 1.1;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--card-glass);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 3rem;
+            backdrop-filter: blur(10px);
+            transition: transform 0.4s var(--ease-in-out), border-color 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-gold);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top left, var(--accent-gold-glow), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .card:hover::before {
+            opacity: 0.2;
+        }
+
+        .card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-gold);
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .highlight-number {
+            font-family: var(--font-display);
+            font-size: 5rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            opacity: 0.3;
+            position: absolute;
+            top: 1rem;
+            right: 2rem;
+        }
+
+        .date-reveal {
+            text-align: center;
+            background: linear-gradient(rgba(197, 160, 89, 0.1), transparent);
+            padding: 6rem 2rem;
+            border-radius: 40px;
+            margin: 4rem 0;
+        }
+
+        .big-date {
+            font-family: var(--font-display);
+            font-size: 5rem;
+            display: block;
+            margin: 1rem 0;
+            color: #fff;
+        }
+
+        footer {
+            padding: 4rem 0;
+            text-align: center;
+            border-top: 1px solid var(--card-border);
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+        }
+
+        @keyframes slideUpFade {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 4rem;
+            }
+
+            h2 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo-box">
+            <img src="https://raw.githubusercontent.com/Clebito2/ConsultoriaLive/main/Logo%20live%20oficial-21.png"
+                alt="Live Consultoria">
+        </div>
+        <div class="container">
+            <span class="subtitle">Projeto Cúpula</span>
+            <h1>A TRADIÇÃO EM MOVIMENTO</h1>
+            <p class="hero-info">Estratégia de Alto Impacto e Rebranding Catalyst para o Mercado Premium de Goiás.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section>
+            <span class="section-tag">Decisão Estratégica</span>
+            <h2>O Novo Horizonte</h2>
+            <div class="date-reveal">
+                <span class="section-tag">Data Oficial de Lançamento</span>
+                <span class="big-date">24.SET.2026</span>
+                <p>Urgência substituída por excelência. 4 meses focados na qualificação de público.</p>
+            </div>
+            <div class="grid">
+                <div class="card">
+                    <span class="highlight-number">01</span>
+                    <h3>High Ticket Focus</h3>
+                    <p>Qualificação cirúrgica de 250 pessoas com real poder de compra (R$ 300k+ de ticket médio).</p>
+                </div>
+                <div class="card">
+                    <span class="highlight-number">02</span>
+                    <h3>Relevância Real</h3>
+                    <p>Substituindo produtos de entrada (R$ 47) por conteúdo de autoridade e soluções master.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <span class="section-tag">Os Ícones</span>
+            <h2>Curadoria de Autoridade</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Emmanuele Louza</h3>
+                    <p>CEO Grupo Flamboyant. A essência da sucessão de sucesso e o maior nome local.</p>
+                </div>
+                <div class="card">
+                    <h3>Sérgio Sampaio</h3>
+                    <p>O Boticário. Credibilidade e escala nacional para o palco da Cúpula.</p>
+                </div>
+                <div class="card">
+                    <h3>Marcos Buaiz</h3>
+                    <p>BTG. A conexão visceral entre entretenimento, negócios e redes sociais.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <span class="section-tag">Marketing de Influência</span>
+            <h2>Fingir Costume: A Nova Moeda</h2>
+            <div class="card" style="width: 100%;">
+                <div class="grid" style="grid-template-columns: 1fr 1fr; align-items: center;">
+                    <div>
+                        <h3>Storymaking Estratégico</h3>
+                        <p>Transição da ostentação fútil para a rotina de exclusividade. Não é mostrar o que você tem,
+                            mas onde você acessa e como você vive.</p>
+                    </div>
+                    <div
+                        style="background: rgba(197, 160, 89, 0.1); padding: 2rem; border-radius: 20px; text-align: center;">
+                        <p style="color: var(--accent-gold); font-weight: 700;">"Menos futilidade, mais conexão de
+                            elite."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <span class="section-tag">Operacional</span>
+            <h2>Próximos Passos</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>ClickUp S.O.P</h3>
+                    <p>Toda a execução mapeada. Prazos, responsáveis e transparência total de tempo.</p>
+                </div>
+                <div class="card">
+                    <h3>Expansão de Rede</h3>
+                    <p>Abordagem direta aos CEOs e Embaixadores (Mabel, Brasal, Coca-Cola).</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 PROJETO CÚPULA — ANALISADO POR @SECRETARY VIA LIVE CONSULTORIA</p>
+        </div>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+
+</html>

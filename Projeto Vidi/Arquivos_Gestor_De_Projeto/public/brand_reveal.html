@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brand Reveal | VIDI & Cúpula CEO</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #05070a;
+            --accent-gold: #c5a059;
+            --accent-blue: #0f1c2e;
+            --text-main: #e0e0e0;
+            --text-secondary: #a0a0a0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle at center, var(--accent-blue) 0%, var(--bg-color) 70%);
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            margin: 0;
+            letter-spacing: -2px;
+            background: linear-gradient(to right, #fff, var(--accent-gold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-top: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        .section {
+            padding: 100px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .brand-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .brand-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .brand-content {
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        .concept-placeholder {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: linear-gradient(135deg, rgba(15, 28, 46, 0.8) 0%, rgba(5, 7, 10, 1) 100%);
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px dashed var(--accent-gold);
+            color: var(--accent-gold);
+            text-align: center;
+            padding: 20px;
+            font-style: italic;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .concept-placeholder::before {
+            content: "Visual Concept Pending Generation";
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .brand-image {
+            display: none;
+            /* Hidden until service is back */
+        }
+
+        .brand-image:hover {
+            transform: scale(1.03) translateY(-10px);
+            filter: grayscale(0%);
+            box-shadow: 0 40px 80px rgba(197, 160, 89, 0.2);
+            border-color: var(--accent-gold);
+        }
+
+        .tagline {
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            display: block;
+        }
+
+        .reverse {
+            grid-template-columns: 1fr 1fr;
+            direction: rtl;
+        }
+
+        .reverse .brand-content {
+            direction: ltr;
+        }
+
+        footer {
+            padding: 50px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .badge {
+            background: linear-gradient(45deg, var(--accent-gold), #fff);
+            color: #000;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            margin-bottom: 20px;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(197, 160, 89, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .brand-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="subtitle">A Nova Era da Estratégia Corporativa</div>
+        <h1>VIDI & Cúpula CEO</h1>
+        <div class="subtitle">VENI · VIDI · VICI</div>
+    </header>
+
+    <div class="section">
+        <div class="brand-grid">
+            <div class="brand-content">
+                <div class="badge">PROGRAMA DE MENTORIA</div>
+                <h2>VIDI</h2>
+                <span class="tagline">"Diagnóstico preciso. Decisões que vencem."</span>
+                <p>
+                    O VIDI é um programa de mentoria de elite focado na análise fria e objetiva dos negócios.
+                    Utilizando os pilares da estratégia romana, guiamos CEOs à clareza absoluta necessária para dominar
+                    o mercado.
+                </p>
+            </div>
+            <div>
+                <div class="concept-placeholder">
+                    [ LOGO VIDI ]<br>
+                    Emblema "V" Geométrico em Ouro<br>
+                    Inscrição Circular: VENI · VIDI · VICI
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" style="text-align: center;">
+        <h2 style="font-family: 'Playfair Display', serif; color: var(--accent-gold); font-size: 2.5rem;">Pilares
+            Estratégicos</h2>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 50px;">
+            <div
+                style="background: rgba(255,255,255,0.03); padding: 30px; border-radius: 15px; border: 1px solid rgba(197, 160, 89, 0.1);">
+                <div style="font-size: 2rem; margin-bottom: 15px;">🔍</div>
+                <h3 style="color: var(--accent-gold);">Diagnóstico</h3>
+                <p style="font-size: 0.9rem; color: var(--text-secondary);">Enxergar o invisível. Identificar o núcleo
+                    do problema antes da ação.</p>
+            </div>
+            <div
+                style="background: rgba(255,255,255,0.03); padding: 30px; border-radius: 15px; border: 1px solid rgba(197, 160, 89, 0.1);">
+                <div style="font-size: 2rem; margin-bottom: 15px;">🏛️</div>
+                <h3 style="color: var(--accent-gold);">Autoridade</h3>
+                <p style="font-size: 0.9rem; color: var(--text-secondary);">Governar com sabedoria. Estabelecer a ordem
+                    e a cúpula do poder corporativo.</p>
+            </div>
+            <div
+                style="background: rgba(255,255,255,0.03); padding: 30px; border-radius: 15px; border: 1px solid rgba(197, 160, 89, 0.1);">
+                <div style="font-size: 2rem; margin-bottom: 15px;">🏆</div>
+                <h3 style="color: var(--accent-gold);">Vitória</h3>
+                <p style="font-size: 0.9rem; color: var(--text-secondary);">Veni, Vidi, Vici. O resultado inevitável de
+                    uma liderança preparada.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="brand-grid">
+            <div class="brand-content">
+                <div class="badge">EVENTO EXECUTIVO</div>
+                <h2>Cúpula CEO</h2>
+                <span class="tagline">"Onde a cúpula do poder se encontra."</span>
+                <p>
+                    A Cúpula CEO é o epicentro das grandes decisões. Um ambiente hermético e exclusivo sob a abóbada da
+                    excelência corporativa,
+                    onde a frase "Veni, vidi, vici" deixa de ser história para se tornar o presente da sua empresa.
+                </p>
+            </div>
+            <div>
+                <div class="concept-placeholder">
+                    [ KEY VISUAL CÚPULA CEO ]<br>
+                    Domo Moderno (Vidro/Aço)<br>
+                    Aura de Ouro e Inscrição Circular
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 Ibrahim Mentoria Estratégica. Todos os direitos reservados.
+    </footer>
+
+</body>
+
+</html>

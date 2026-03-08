@@ -1,0 +1,53 @@
+graph TD
+    %% Estilos Gerais Miro
+    classDef main fill:#0A243D,stroke:#fff,stroke-width:2px,color:#fff;
+    classDef dep fill:#c5a059,stroke:#333,stroke-width:2px,color:#fff;
+    classDef task fill:#f9f9f9,stroke:#666,stroke-width:1px,color:#333;
+    classDef milestone fill:#00e800,stroke:#333,stroke-width:2px,color:#06192a,font-weight:bold;
+
+    A[Épico: Cúpula CEO - Maio 2026]:::main
+
+    %% Departamentos
+    A --> D1[1. Estratégia, Branding & Relacionamento<br>PO: Luís/Ibrahim]:::dep
+    A --> D2[2. Tecnologia & UX/UI<br>PO: Cléber]:::dep
+    A --> D3[3. Operações & Logística<br>PO: João Victor]:::dep
+    A --> D4[4. Admin & Financeiro<br>PO: Ana Dias]:::dep
+    A --> D5[5. Marketing, Tráfego & RP<br>PO: Equipe/Luiz/João]:::dep
+
+    %% Tarefas: D1
+    D1 --> T1_1[Registrar Nome 'ViDi' e INPI]:::task
+    D1 --> T1_2[Desenhar Jornada Completa do Cliente]:::task
+    D1 --> T1_3[Fechar Patrocínios - Ótica San Pietro, etc.]:::task
+    D1 --> T1_4[Roteiros Oficiais - Tráfego/Aulas]:::task
+
+    %% Tarefas: D2
+    D2 --> T2_1[Bot 'Alex' CS com IA]:::task
+    D2 --> T2_2[Homologar Plataforma de Conteúdo]:::task
+    D2 --> T2_3[Integrar CRM/ERP às Landing Pages]:::task
+    D2 --> T2_4[App/Solução de Interação ao Vivo VIP]:::task
+
+    %% Tarefas: D3
+    D3 --> T3_1[Auditar e Assinar Contrato do Local]:::task
+    D3 --> T3_2[Serviços de A&B - Alimentação]:::task
+    D3 --> T3_3[Materiais - Kits, Brindes, Credenciamento]:::task
+    D3 --> T3_4[Recrutar e Treinar Staff/Recepcionistas]:::task
+
+    %% Tarefas: D4
+    D4 --> T4_1[Abertura Contas Bancárias C6/Safra]:::task
+    D4 --> T4_2[Parametrizar Emissão Asaas]:::task
+    D4 --> T4_3[Cartões Corporativos CNPJ Cúpula CEO]:::task
+    D4 --> T4_4[Revisão Jurídica Contratos Equipe/Fornecedores]:::task
+
+    %% Tarefas: D5
+    D5 --> T5_1[Assinar Contrato Agência Tráfego Pago]:::task
+    D5 --> T5_2[Infra de Anúncios e Captação de Leads]:::task
+    D5 --> T5_3[Lives de Aquecimento Semanais]:::task
+    D5 --> T5_4[Assessoria de Imprensa na Mídia Local]:::task
+
+    %% Marcos (Milestones)
+    T1_1 -.-> M1[Marca INPI Protocolada]:::milestone
+    T3_1 -.-> M2[Local Confirmado - Fev/26]:::milestone
+    T4_2 -.-> M3[Vendas Asaas Liberadas]:::milestone
+    T5_2 -.-> M4[Leads Entrando no CRM]:::milestone
+
+    M1 & M2 & M3 & M4 --> EV[Evento Cúpula CEO<br>28-29/05/2026]:::main

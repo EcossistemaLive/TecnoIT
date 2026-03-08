@@ -75,6 +75,9 @@ docs/
 
 - Use conventional commits: `feat:`, `fix:`, `docs:`, etc.
 - Reference story ID in commits: `feat: implement IDE detection [Story 2.1]`
+- **Mandatory GitHub Protocol:**
+    1. Sempre publicar no login da organização **EcossistemaLive**.
+    2. Toda atualização/publicação deve obrigatoriamente incluir `git commit` e `git push`.
 - Ensure GitHub CLI is configured: `gh auth status`
 - Push regularly to avoid conflicts
 
