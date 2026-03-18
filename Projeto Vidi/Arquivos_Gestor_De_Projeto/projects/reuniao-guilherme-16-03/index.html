@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FollowForward Tráfego | ViDi</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            /* Sistema de Design Unificado V3 */
+            --vida-bg: #0f172a; /* Slate 900 */
+            --vida-surface: #1e293b; /* Slate 800 */
+            --vida-surface-hover: #334155; /* Slate 700 */
+            --vida-primary: #10b981; /* Emerald 500 */
+            --vida-primary-hover: #059669; /* Emerald 600 */
+            --vida-text-main: #f8fafc; /* Slate 50 */
+            --vida-text-muted: #94a3b8; /* Slate 400 */
+            --vida-border: #334155;
+            
+            --font-headings: 'Merriweather', serif;
+            --font-body: 'Poppins', sans-serif;
+            
+            --radius-md: 0.5rem;
+            --radius-lg: 1rem;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--vida-bg);
+            color: var(--vida-text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-headings);
+            font-weight: 700;
+            color: var(--vida-text-main);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            padding: 4rem 0;
+            border-bottom: 2px solid var(--vida-border);
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background-color: var(--vida-primary);
+            border-radius: 4px;
+        }
+
+        .tag {
+            display: inline-block;
+            background-color: rgba(16, 185, 129, 0.1);
+            color: var(--vida-primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin: 0 0 1rem 0;
+            line-height: 1.2;
+        }
+
+        header p {
+            color: var(--vida-text-muted);
+            font-size: 1.125rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background-color: var(--vida-surface);
+            border: 1px solid var(--vida-border);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--vida-primary);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .card h3 span {
+            background-color: var(--vida-primary);
+            color: var(--vida-bg);
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 1rem;
+            font-family: var(--font-body);
+            font-weight: 700;
+        }
+
+        .card p {
+            color: var(--vida-text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight-box {
+            background-color: rgba(16, 185, 129, 0.05);
+            border-left: 4px solid var(--vida-primary);
+            padding: 1.5rem;
+            margin: 3rem 0;
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+        }
+        
+        .highlight-box h2 {
+            margin-top: 0;
+            font-size: 1.5rem;
+            color: var(--vida-primary);
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        ul li {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 1rem;
+            color: var(--vida-text-muted);
+        }
+
+        ul li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--vida-primary);
+            font-weight: bold;
+        }
+        
+        .stats-container {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: space-between;
+            margin-top: 2rem;
+            border-top: 1px solid var(--vida-border);
+            padding-top: 2rem;
+        }
+        
+        .stat {
+            text-align: center;
+            flex: 1;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            font-family: var(--font-headings);
+            color: var(--vida-text-main);
+            margin-bottom: 0.25rem;
+        }
+        
+        .stat-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--vida-text-muted);
+        }
+        
+        .checklist {
+            background-color: var(--vida-surface);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            margin-top: 3rem;
+            border: 1px solid var(--vida-border);
+        }
+
+        .checklist h2 {
+            margin-top: 0;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.25rem;
+            background-color: var(--vida-bg);
+            border-radius: var(--radius-md);
+            margin-bottom: 1rem;
+            border: 1px solid var(--vida-border);
+            transition: border-color 0.2s;
+        }
+
+        .checklist-item:hover {
+            border-color: var(--vida-primary);
+        }
+
+        .checkbox-custom {
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--vida-primary);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 0.25rem;
+            position: relative;
+        }
+
+        .checkbox-custom::after {
+            content: '';
+            width: 12px;
+            height: 12px;
+            background-color: var(--vida-primary);
+            border-radius: 3px;
+            opacity: 0.3; /* Representing pending task */
+        }
+        
+        .checklist-content h4 {
+            margin: 0 0 0.5rem 0;
+            font-family: var(--font-body);
+            color: var(--vida-text-main);
+        }
+        
+        .checklist-content p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--vida-text-muted);
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 4rem;
+            border-top: 1px solid var(--vida-border);
+            color: var(--vida-text-muted);
+            font-size: 0.875rem;
+        }
+        
+        /* Utility */
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--vida-text-main);
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            header h1 {
+                font-size: 2rem;
+            }
+            .stats-container {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <header>
+            <span class="tag">FollowForward</span>
+            <h1>Alinhamento de Tráfego e Lançamento</h1>
+            <p>16 de Março de 2026 • Análise Estratégica</p>
+            
+            <div class="stats-container">
+                <div class="stat">
+                    <div class="stat-value">5</div>
+                    <div class="stat-label">Tópicos Debatidos</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">3</div>
+                    <div class="stat-label">Insights PM</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">High</div>
+                    <div class="stat-label">Prioridade</div>
+                </div>
+            </div>
+        </header>
+
+        <h2 style="margin-bottom: 2rem; text-align: center; color: var(--vida-primary);">Temas Abordados e Contexto</h2>
+
+        <div class="grid">
+            <!-- Card 1 -->
+            <div class="card">
+                <h3><span>1</span> Estratégia das VSLs</h3>
+                <p>A equipe achou as VSLs de 20-30 minutos longas. Foi explicado que para público "frio", vídeos longos são necessários para elevar a consciência. A ViDi aceitou estrategicamente o material rico.</p>
+                <ul>
+                    <li>Público frio exige VSLs mais ricas (maior retenção do interesse)</li>
+                    <li>Melhor ter muito material para cortar do que faltar.</li>
+                </ul>
+                <div class="badge">Estratégia</div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="card">
+                <h3><span>2</span> Gestão de Funis e Caixa</h3>
+                <p>Podemos rodar múltiplos funis simultaneamente já que o time comercial (Mariana/Jorge) está ávido por meta de vendas. O foco é faturar nas esteiras de repasse (LTV) pós-evento (Cúpula CEO).</p>
+                <ul>
+                    <li>Teste multicanal e de escalabilidade gradual.</li>
+                    <li>Custo de Aquisição (CPA) alto via Meta Ads.</li>
+                </ul>
+                <div class="badge">Operações</div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card">
+                <h3><span>3</span> Atribuição e Gestão de Canais</h3>
+                <p>O investimento será fragmentado por perfis: o de cada mentor + o do produto. A agência criará um Dashboard de BI focado em rastreamento exato da origem da venda (UTM/Canal).</p>
+                <ul>
+                    <li>Teste de Performance entre os perfis dos mentores vs produto.</li>
+                    <li>Dashboard para direcionar 80/20 do ROI diário.</li>
+                </ul>
+                <div class="badge">Growth</div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="card">
+                <h3><span>4</span> Alinhamento Editorial</h3>
+                <p>Incongruência na copy do Ibra corrigida. Foi definido SLA (Service Level Agreement) de aprovação de 2 dias de antecedência para as próximas Copies (assegurando que a Promessa não contamine sua Liderança Antifrágil).</p>
+                <ul>
+                    <li>Brand Voice rigidamente Antifrágil.</li>
+                    <li>Roteiros precisam de aprovação prévia.</li>
+                </ul>
+                <div class="badge">Branding</div>
+            </div>
+        </div>
+
+        <!-- Insights Destaque -->
+        <div class="highlight-box">
+            <h2>🧠 Insights Estratégicos (PM Morgan)</h2>
+            <br>
+            <ul>
+                <li><strong>Margem Focada no LTV (Lifetime Value):</strong> O CPA encareceu drasticamente no mercado. Empatar na aquisição do evento Cúpula CEO é lucro se aproveitarmos essa base hiper-qualificada nas vendas <em>high ticket</em> contíguas.</li>
+                <br>
+                <li><strong>Dashboard de Atribuição:</strong> A multiplicidade de canais vai moer verba se as UTMs não estiverem perfeitas. O Dashboard construído pela agência será nosso juiz diário e termômetro do ROI.</li>
+                <br>
+                <li><strong>"Biópsia" não "Autópsia":</strong> Vamos refinar na trincheira. O comercial quer leads "agora"; segurar material não é uma opção, lança para pivotar rápido.</li>
+            </ul>
+        </div>
+
+        <!-- Plano de Ação -->
+        <div class="checklist">
+            <h2>Plano de Ação e Sugestões</h2>
+            
+            <div class="checklist-item">
+                <div class="checkbox-custom"></div>
+                <div class="checklist-content">
+                    <h4>Fornecimento de Acessos Tecnológicos</h4>
+                    <p><strong>[Cléber]</strong> Disponibilizar acessos ao WordPress, BM MetaAds e DNS (Domínios) para o Guilherme até esta sexta-feira.</p>
+                </div>
+            </div>
+
+            <div class="checklist-item">
+                <div class="checkbox-custom"></div>
+                <div class="checklist-content">
+                    <h4>Decisão sobre "ViDi" Brand</h4>
+                    <p><strong>[Luiz/João]</strong> Decidir se subiremos as campanhas sob uma "Landing Genérica" provisória na Segunda, ou se vamos aguardar as 48h finais para estampar e rodar com a marca ViDi nova finalizada.</p>
+                </div>
+            </div>
+
+            <div class="checklist-item">
+                <div class="checkbox-custom"></div>
+                <div class="checklist-content">
+                    <h4>Review de Roteiros</h4>
+                    <p><strong>[João]</strong> Acionar o estúdio para programar gravuras após a aprovação restrita das Copies (que precisam garantir o tom hardcore do Ibra - eliminando menções a "ganhar tempo" etc).</p>
+                </div>
+            </div>
+
+            <div class="checklist-item">
+                <div class="checkbox-custom"></div>
+                <div class="checklist-content">
+                    <h4>Demo Comercial (WhatsApp CRM)</h4>
+                    <p><strong>[Rodolfo]</strong> Acompanhar no lugar do Cléber a demonstração agendada (amanhã, 11h) com a Data Crazy para adoção comercial de automação nível enterprise.</p>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Gerado automaticamente pelo Core de IA (Aios-Core)<br>Apresentação renderizada sob o Sistema de Design Unificado V3 da ViDi.</p>
+        </footer>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+{
+    "students": [
+        {
+            "id": "std_001",
+            "name": "Carlos Silva",
+            "company": "Metalúrgica Silva",
+            "role": "Dono de Empresa",
+            "pain_points": "Equipe desmotivada, margem de lucro caindo, noites sem dormir.",
+            "level": "Fragile"
+        },
+        {
+            "id": "std_002",
+            "name": "Paula Mendes",
+            "company": "Agência Mendes MKT",
+            "role": "CEO",
+            "pain_points": "Escalabilidade travada, processos manuais, medo de perder o maior cliente.",
+            "level": "Resilient"
+        },
+        {
+            "id": "std_003",
+            "name": "Roberto Costa",
+            "company": "BioLogistics S.A.",
+            "role": "Diretor Operacional",
+            "pain_points": "Operação complexa, buscando novas tecnologias para otimizar custos.",
+            "level": "Anti-fragile (Target)"
+        }
+    ],
+    "diagnostics": [
+        {
+            "student_id": "std_001",
+            "responses": {
+                "q1_pergunta_caixa": "Tenho caixa para apenas 15 dias.",
+                "q2_equipe_feedback": "Ninguém assume responsabilidade; se eu não estiver lá, nada acontece.",
+                "q3_maior_medo": "Quebrar e não conseguir sustentar minha família.",
+                "q4_tempo_dedicado": "Trabalho 14 horas por dia, 7 dias por semana."
+            }
+        }
+    ]
+}

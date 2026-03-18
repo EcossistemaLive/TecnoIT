@@ -1,0 +1,19 @@
+{
+    "lessons": [
+        {
+            "id": "les_001",
+            "title": "A Ciência da Antifragilidade",
+            "content": "A antifragilidade é o conceito de que sistemas e organizações podem se beneficiar de choques, volatilidade e estresse. Enquanto o frágil quebra e o resiliente resiste, o antifrágil cresce no caos. Para aplicar isso na sua empresa, você precisa primeiro identificar os pontos de ruptura e criar redundâncias estratégicas."
+        },
+        {
+            "id": "les_002",
+            "title": "Gestão de Crise de Elite",
+            "content": "Em uma crise, a primeira regra é o estancamento de danos. Proteja o caixa a todo custo. Depois, identifique a fonte do sangramento e remova as fragilidades. A crise é o melhor momento para reestruturar processos obsoletos que você não tinha coragem de mudar no período de bonança."
+        },
+        {
+            "id": "les_003",
+            "title": "A Mente do Líder Antifrágil",
+            "content": "Líderes antifrágeis não tentam prever o futuro; eles criam opções. Quanto mais opções você tem, menos dependente você é de um único cenário. O líder deve ser o porto seguro da equipe, provendo clareza e direção firme, especialmente quando o mercado está em turbulência."
+        }
+    ]
+}

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parceria Estratégica: Zap Business | Live Consultoria</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-bg: #06192a;
+            --card-bg: #0A243D;
+            --accent-color: #00e800;
+            --text-primary: #ffffff;
+            --text-muted: #cccccc;
+            --font-primary: 'Poppins', sans-serif;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --space-md: 2rem;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--primary-bg);
+            background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
+            background-attachment: fixed;
+            color: var(--text-primary);
+            font-family: var(--font-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        header {
+            padding: 1.5rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(6, 25, 42, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .logo {
+            height: 40px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        main {
+            padding-top: 100px;
+            padding-bottom: 4rem;
+        }
+
+        section {
+            padding: 3rem 0;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transition);
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            color: var(--text-primary);
+        }
+
+        .highlight-text {
+            color: var(--accent-color);
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: var(--space-md);
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-5px);
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--accent-color);
+        }
+
+        p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            h1 { font-size: 2rem; }
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+        }
+
+        .tag {
+            background: rgba(0, 232, 0, 0.1);
+            color: var(--accent-color);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .comparison-table th {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .status-dot {
+            height: 10px;
+            width: 100px;
+            background: #333;
+            border-radius: 5px;
+            overflow: hidden;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+
+        .status-fill {
+            height: 100%;
+            background: var(--accent-color);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--accent-color);
+            color: #000;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 700;
+            text-decoration: none;
+            margin-top: 1rem;
+            transition: var(--transition);
+        }
+
+        .cta-button:hover {
+            opacity: 0.9;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <img src="https://raw.githubusercontent.com/Clebito2/ConsultoriaLive/main/Logo%20live%20oficial-21.png" alt="Live Consultoria" class="logo">
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="fade-in">
+            <span class="tag">PARCERIA ESTRATÉGICA 2026</span>
+            <h1>Soluções de Pagamento: <span class="highlight-text">Zap Business</span></h1>
+            <p style="text-align: center; max-width: 700px; margin: 0 auto 2rem;">Análise técnica sobre a implementação de infraestrutura White Label e otimização tributária para operações de alto volume.</p>
+        </section>
+
+        <section class="fade-in">
+            <div class="card">
+                <h2>🎯 Objetivo da Parceria</h2>
+                <p>Avaliar a substituição ou integração da Zap Business como gateway principal de pagamentos da <strong>Vid (Avid)</strong>, visando eficiência tributária e redução de taxas operacionais diante do alto faturamento previsto para os próximos 60 dias.</p>
+            </div>
+        </section>
+
+        <section class="fade-in">
+            <div class="grid-2">
+                <div class="card">
+                    <h2>🏢 Sobre a Empresa</h2>
+                    <ul>
+                        <li><strong>Representante:</strong> Alexandre Mendes (VP Club)</li>
+                        <li><strong>Modelo:</strong> Fintech subadquirente em transição para banco</li>
+                        <li><strong>Core Business:</strong> Soluções de pagamento sob medida</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h2>💡 Diferenciais Estratégicos</h2>
+                    <ul>
+                        <li><strong>White Label:</strong> Capacidade de operar como banco próprio da Vid</li>
+                        <li><strong>Ganho Tributário:</strong> Estrutura otimizada para faturamento</li>
+                        <li><strong>Escalabilidade:</strong> Foco em movimentações substanciais</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="fade-in">
+            <div class="card">
+                <h2>📊 Cenário Atual vs. Proposta Zap</h2>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Recurso</th>
+                            <th>Atual (ASAS/Safra)</th>
+                            <th>Proposta (Zap Business)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Eficiência Tributária</td>
+                            <td>Padrão de Mercado</td>
+                            <td><span class="highlight-text">Otimização Direta</span></td>
+                        </tr>
+                        <tr>
+                            <td>Taxas Operacionais</td>
+                            <td>Convencional</td>
+                            <td>Competitivas (Volume)</td>
+                        </tr>
+                        <tr>
+                            <td>Customização</td>
+                            <td>Limitada (Third Party)</td>
+                            <td>Altíssima (White Label)</td>
+                        </tr>
+                        <tr>
+                            <td>Implementação</td>
+                            <td>Ativa</td>
+                            <td>Proven (Em teste na Vox)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="fade-in">
+            <div class="card">
+                <h2>✅ Próximos Passos (To-Do)</h2>
+                <ul>
+                    <li><strong>Reunião Híbrida:</strong> Agendar encontro presencial no escritório com transmissão virtual.</li>
+                    <li><strong>Validação Financeira:</strong> Convocação obrigatória da <strong>Ana</strong> para análise de viabilidade técnica.</li>
+                    <li><strong>Prova de Conceito:</strong> Apresentação detalhada da implementação em curso na <strong>Vox</strong>.</li>
+                </ul>
+                <a href="#" class="cta-button">Solicitar Agendamento</a>
+            </div>
+        </section>
+
+        <section class="fade-in">
+            <div class="card" style="border-style: dashed;">
+                <h2>📝 Notas do Estrategista</h2>
+                <p>"Alexandre Mendes já possui validação no ecossistema através da Vox. O momento de transição da Vid exige ferramentas que suportem o faturamento agressivo planejado, tornando a Zap Business uma peça chave para a rentabilidade da operação."</p>
+                <div style="margin-top: 1rem;">
+                    <span style="font-size: 0.8rem; color: var(--text-muted);">Confiança na Transição:</span>
+                    <div class="status-dot"><div class="status-fill" style="width: 85%;"></div></div>
+                    <span style="font-size: 0.8rem; color: var(--accent-color);">85% (Alta)</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 Live Consultoria. Todos os direitos reservados. | <span class="highlight-text">Accountability is Key</span></p>
+        </div>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>

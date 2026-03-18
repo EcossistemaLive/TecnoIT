@@ -16,7 +16,7 @@ Este épico abrange toda a preparação, planejamento e execução do evento "C�
 - **Story 1.4:** Estruturar e aprovar roteiros oficiais (postagens, vídeos de tráfego e aulas da plataforma).
 
 ### 2. Tecnologia, Ecossistema e UX/UI (PO responsável: Cléber)
-- **Story 2.1:** Implementar o Agente de CS com IA (Bot "Alex") para acompanhamento do mentorado.
+- **Story 2.1:** Implementar o Agente de CS com IA (Bot "Júlio") para acompanhamento do mentorado.
 - **Story 2.2:** Selecionar e homologar a plataforma de vídeos/conteúdo para as aulas.
 - **Story 2.3:** Integrar CRM corporativo e ERP às Landing Pages do evento para automação e captação de leads.
 - **Story 2.4:** Desenvolver ou parametrizar App/Solução de interação ao vivo para os participantes do evento VIP (Sorteios, Q&A).

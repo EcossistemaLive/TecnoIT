@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ata de Reunião e Insights Estratégicos | ViDi</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            /* Sistema de Design Unificado V3 */
+            --vida-bg: #0f172a; /* Slate 900 */
+            --vida-surface: #1e293b; /* Slate 800 */
+            --vida-surface-hover: #334155; /* Slate 700 */
+            --vida-primary: #10b981; /* Emerald 500 */
+            --vida-primary-hover: #059669; /* Emerald 600 */
+            --vida-text-main: #f8fafc; /* Slate 50 */
+            --vida-text-muted: #94a3b8; /* Slate 400 */
+            --vida-border: #334155;
+            
+            --font-headings: 'Merriweather', serif;
+            --font-body: 'Poppins', sans-serif;
+            
+            --radius-md: 0.5rem;
+            --radius-lg: 1rem;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--vida-bg);
+            color: var(--vida-text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-headings);
+            font-weight: 700;
+            color: var(--vida-text-main);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            padding: 4rem 0;
+            border-bottom: 2px solid var(--vida-border);
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background-color: var(--vida-primary);
+            border-radius: 4px;
+        }
+
+        .tag {
+            display: inline-block;
+            background-color: rgba(16, 185, 129, 0.1);
+            color: var(--vida-primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin: 0 0 1rem 0;
+            line-height: 1.2;
+        }
+
+        header p {
+            color: var(--vida-text-muted);
+            font-size: 1.125rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background-color: var(--vida-surface);
+            border: 1px solid var(--vida-border);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--vida-primary);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .card h3 span {
+            background-color: var(--vida-primary);
+            color: var(--vida-bg);
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 1rem;
+            font-family: var(--font-body);
+            font-weight: 700;
+        }
+
+        .card p {
+            color: var(--vida-text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight-box {
+            background-color: rgba(16, 185, 129, 0.05);
+            border-left: 4px solid var(--vida-primary);
+            padding: 1.5rem;
+            margin: 3rem 0;
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+        }
+        
+        .highlight-box h2 {
+            margin-top: 0;
+            font-size: 1.5rem;
+            color: var(--vida-primary);
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        ul li {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 1rem;
+            color: var(--vida-text-muted);
+        }
+
+        ul li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--vida-primary);
+            font-weight: bold;
+        }
+        
+        .stats-container {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: space-between;
+            margin-top: 2rem;
+            border-top: 1px solid var(--vida-border);
+            padding-top: 2rem;
+        }
+        
+        .stat {
+            text-align: center;
+            flex: 1;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            font-family: var(--font-headings);
+            color: var(--vida-text-main);
+            margin-bottom: 0.25rem;
+        }
+        
+        .stat-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--vida-text-muted);
+        }
+        
+        .checklist {
+            background-color: var(--vida-surface);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            margin-top: 3rem;
+            border: 1px solid var(--vida-border);
+        }
+
+        .checklist h2 {
+            margin-top: 0;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.25rem;
+            background-color: var(--vida-bg);
+            border-radius: var(--radius-md);
+            margin-bottom: 1rem;
+            border: 1px solid var(--vida-border);
+            transition: border-color 0.2s;
+        }
+
+        .checklist-item:hover {
+            border-color: var(--vida-primary);
+        }
+
+        .checkbox-custom {
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--vida-primary);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 0.25rem;
+            position: relative;
+        }
+
+        .checkbox-custom::after {
+            content: '';
+            width: 12px;
+            height: 12px;
+            background-color: var(--vida-primary);
+            border-radius: 3px;
+            opacity: 0.3; /* Representing pending task */
+        }
+        
+        .checklist-content h4 {
+            margin: 0 0 0.5rem 0;
+            font-family: var(--font-body);
+            color: var(--vida-text-main);
+        }
+        
+        .checklist-content p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--vida-text-muted);
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 4rem;
+            border-top: 1px solid var(--vida-border);
+            color: var(--vida-text-muted);
+            font-size: 0.875rem;
+        }
+        
+        /* Utility */
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--vida-text-main);
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            header h1 {
+                font-size: 2rem;
+            }
+            .stats-container {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <header>
+            <span class="tag">Executive Brief</span>
+            <h1>Ata de Reunião & Insights Estratégicos</h1>
+            <p>16 de Março de 2026 • Análise Estratégica</p>
+            
+            <div class="stats-container">
+                <div class="stat">
+                    <div class="stat-value">4</div>
+                    <div class="stat-label">Tópicos Debatidos</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">3</div>
+                    <div class="stat-label">Insights PM</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">High</div>
+                    <div class="stat-label">Prioridade</div>
+                </div>
+            </div>
+        </header>
+
+        <h2 style="margin-bottom: 2rem; text-align: center; color: var(--vida-primary);">Temas Abordados e Contexto</h2>
+
+        <div class="grid">
+            <!-- Card 1 -->
+            <div class="card">
+                <h3><span>1</span> Gargalo de Produção (Design)</h3>
+                <p>A equipe atual não conseguirá absorver a demanda gráfica orgânica sem perder o foco estratégico. Decidiu-se buscar um Estagiário ou Analista Júnior de Design Gráfico (foco em *senso estético* ao invés de apenas domínio de ferramenta), possivelmente da FAV - UFG.</p>
+                <ul>
+                    <li>Priorizar estética sobre ferramenta</li>
+                    <li>Modelos de freelancer descartados pelo custo de tempo</li>
+                    <li>Renovações profundas de marca apenas anualmente</li>
+                </ul>
+                <div class="badge">Operações</div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="card">
+                <h3><span>2</span> Almoços Estratégicos (Warm-up)</h3>
+                <p>Encontros menores e temáticos com CEOs para gerar relacionamento e atuar como "tráfego pago" orgânico (boca-a-boca) para o evento principal. Críticas fortes a locais como "República da Saúde"; foco deve ser em locais premium como Sax e Reserva 35.</p>
+                <ul>
+                    <li>O convidado é o principal difusor do Cúpula CEO</li>
+                    <li>Experiência impecável (CX) é essencial</li>
+                    <li>Nomes: João (Néctar) e Grupo Famboran (Sucessão)</li>
+                </ul>
+                <div class="badge">CX & Comercial</div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="card">
+                <h3><span>3</span> Imersão & Logística</h3>
+                <p>Sugestão de transferir a imersão de 2 dias e meio para São Paulo para maior variedade de opções. Foi mencionada a reativação do contato com a Patrícia (agência de viagens) para pacotes "all-inclusive", viabilizando monetização da facilidade logística.</p>
+                <ul>
+                    <li>São Paulo como hub logístico</li>
+                    <li>Pacotes All-Inclusive para participantes</li>
+                </ul>
+                <div class="badge">Experiência</div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="card">
+                <h3><span>4</span> Tópico "Quente": Mover para o Paraguai</h3>
+                <p>Empresas brasileiras transferindo operações industriais para o Paraguai devido a pesados incentivos fiscais. O foco é criar um painel com um empresário brasileiro que fez o movimento e possivelmente um representante político diplomático do Paraguai.</p>
+                <ul>
+                    <li>Isca focada em problemas C-Level de alto impacto</li>
+                    <li>Risco político federal nulo (público 100% privado)</li>
+                </ul>
+                <div class="badge">Conteúdo/Palco</div>
+            </div>
+        </div>
+
+        <!-- Insights Destaque -->
+        <div class="highlight-box">
+            <h2>🧠 Insights Estratégicos (PM Morgan)</h2>
+            <br>
+            <ul>
+                <li><strong>A Estética como Diferencial Competitivo:</strong> A decisão de priorizar o <em>senso estético</em> sobre a <em>ferramenta</em> está correta para marcas premium. Ferramentas são comoditizadas; o olhar estético preserva o "brand equity" perante o C-Level.</li>
+                <br>
+                <li><strong>O Convidado é o LTV:</strong> A tração nos almoços vem de "status e networking". Locais como o Sax representam o <em>Minimum Viable Brand (MVB)</em> para ancorar o evento principal Cúpula CEO.</li>
+                <br>
+                <li><strong>Pauta "Paraguai" como Isca de Elite:</strong> Tópico high-ticket que atrai CEOs de faturamento alto fugindo do lugar-comum corporativo.</li>
+            </ul>
+        </div>
+
+        <!-- Plano de Ação -->
+        <div class="checklist">
+            <h2>Plano de Ação e Sugestões</h2>
+            
+            <div class="checklist-item">
+                <div class="checkbox-custom"></div>
+                <div class="checklist-content">
+                    <h4>Recrutamento de Design Gráfico</h4>
+                    <p>Desenhar escopo da vaga do Estagiário/Júnior focado em estética e acionar a rede (FAV / portais) nesta semana. O gargalo se tornará fatal se não for preenchido antes da tração do Cúpula CEO.</p>
+                </div>
+            </div>
+
+            <div class="checklist-item">
+                <div class="checkbox-custom"></div>
+                <div class="checklist-content">
+                    <h4>Alinhamento de Temas (Almoços)</h4>
+                    <p>Fechar os 3 primeiros painéis dos almoços com o Marcelo para envio de convites formalmente, evitando conflitos na agenda apertada dos CEOs convidados.</p>
+                </div>
+            </div>
+
+            <div class="checklist-item">
+                <div class="checkbox-custom"></div>
+                <div class="checklist-content">
+                    <h4>Operação Paraguai</h4>
+                    <p>Sondar contatos de empresários locais que possuem operação no Paraguai (p.ex. via grupos LIDE) para liderar o painel, antes de buscar as autoridades consulares/diplomáticas paraguaias.</p>
+                </div>
+            </div>
+
+            <div class="checklist-item">
+                <div class="checkbox-custom"></div>
+                <div class="checklist-content">
+                    <h4>Integração do Bot Júlio (Concierge)</h4>
+                    <p>Conectar a nova skill (Event Concierge) do Agente Júlio aos participantes destes pequenos almoços preparatórios para coletar dados preliminares e validar a interação antes de expô-lo no Cúpula CEO.</p>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Gerado automaticamente pelo Core de IA (Aios-Core)<br>Apresentação renderizada sob o Sistema de Design Unificado V3 da ViDi.</p>
+        </footer>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+# Squad: Live Operations
+name: live-operations
+version: 1.0.0
+description: >
+  Squad operacional central da Live Consultoria. Gerencia o bot Telegram com
+  capacidades de consultoria estratégica (C.R.A.F.T.), recrutamento, geração
+  de propostas comerciais e integração com Google Drive e Calendar.
+author: Cleber
+created: 2026-02-16
+updated: 2026-02-16
+
+## Agents
+
+| ID | Name | Role | Platform |
+|----|------|------|----------|
+| consultant-support | Consultant Support | AI Assistant (Live Consultoria) | Telegram Bot |
+
+## Prompts
+
+| ID | File | Description |
+|----|------|-------------|
+| live-craft | `.aios-core/prompts/live-craft.md` | Consultoria estratégica C.R.A.F.T. |
+| live-recruiter | `.aios-core/prompts/live-recruiter.md` | Recrutamento e análise de perfis (STAR) |
+| live-proposals | `.aios-core/prompts/live-proposals.md` | Geração de propostas M.A.P.C.A |
+| live-status | `.aios-core/prompts/live-status.md` | Status do projeto e operações |
+| router | `.aios-core/prompts/router.md` | Roteamento inteligente entre modos |
+
+## Tasks
+
+| ID | Description | Trigger |
+|----|-------------|---------|
+| consulting | Consultoria estratégica + busca no Drive | `/consultor [query]` |
+| recruiting | Análise de candidatos e vagas + busca de CVs | `/rh [candidato/vaga]` |
+| proposals | Gerar propostas comerciais M.A.P.C.A | `/proposta [dados]` |
+| doc-search | Busca direta no Google Drive | `/doc [query]` |
+| agenda | Consultar agenda e disponibilidade | `/agenda` |
+
+## Dependencies
+- `node-telegram-bot-api`
+- `googleapis`
+- `@google/generative-ai`
+- `dotenv`
+
+## Config
+- **Script:** `.aios-core/scripts/telegram-bot.js`
+- **Env Variables:**
+  - `TELEGRAM_BOT_TOKEN` (obrigatório)
+  - `GEMINI_API_KEY` (obrigatório)
+  - `GOOGLE_APPLICATION_CREDENTIALS` (path para JSON de credenciais)
+
+## Integrations
+- **Google Drive:** Busca e RAG (Retrieval Augmented Generation)
+- **Google Calendar:** Consulta de agenda e disponibilidade
+- **Telegram:** Interface principal do bot
+- **Gemini API:** Motor de IA (gemini-2.5-flash)

@@ -18,7 +18,7 @@ gantt
 
     section Tecnologia (Cléber)
     Comparativo Plataformas de Conteúdo  :tech1, 2026-02-16, 2026-02-25
-    Bot "Alex" CS com IA                 :tech2, 2026-02-20, 2026-03-20
+    Bot "Júlio" CS com IA                 :tech2, 2026-02-20, 2026-03-20
     Landing Pages e Automação de Leads   :tech3, after strat1, 25d
     App de Interação VIP / Evento        :tech4, 2026-04-01, 30d
 
@@ -57,7 +57,7 @@ gantt
 **Responsável Principal:** Cléber Donato
 *   **Prioridade 0:** Seleção de plataforma de conteúdo e estabilização de automações (AIOS/ClickUp).
 *   **Tarefas:**
-    *   Desenvolver o Agente de CS com IA (Bot "Alex") para acompanhar o mentorado em sua jornada.
+    *   Desenvolver o Agente de CS com IA (Bot "Júlio") para acompanhar o mentorado em sua jornada.
     *   Instalar CRM, ERP e conectar com landing pages para captação de leads.
     *   Plataforma de interação no evento (sorteios, Q&A dinâmico).
 
