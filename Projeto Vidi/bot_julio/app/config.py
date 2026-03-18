@@ -23,7 +23,8 @@ class Config:
 
     # Telegram
     TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
-    TELEGRAM_ADMIN_USER_ID = int(os.getenv("TELEGRAM_ADMIN_USER_ID", "0"))
+    _admin_raw = os.getenv("TELEGRAM_ADMIN_USER_ID", "0")
+    TELEGRAM_ADMIN_USER_ID = int(_admin_raw) if _admin_raw and _admin_raw.strip().lstrip('-').isdigit() else 0
 
     # Bancos de dados
     DATABASE_URL = os.getenv("DATABASE_URL", "postgresql+asyncpg://postgres:senha@localhost:5432/botjulio_test")

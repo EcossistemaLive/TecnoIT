@@ -1,0 +1,63 @@
+version: "3.9"
+
+services:
+  # ============================================
+  # PostgreSQL com extensão pgvector (RAG)
+  # ============================================
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: botjulio_postgres
+    environment:
+      POSTGRES_DB: botjulio_test
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: senha
+    ports:
+      - "5432:5432"
+    volumes:
+      - botjulio_pg_data:/var/lib/postgresql/data
+      - ./app/db/migrations/001_initial.sql:/docker-entrypoint-initdb.d/001_initial.sql:ro
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d botjulio_test"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ============================================
+  # MongoDB (histórico de conversas)
+  # ============================================
+  mongodb:
+    image: mongo:7
+    container_name: botjulio_mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - botjulio_mongo_data:/data/db
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ============================================
+  # Redis (cache, rate-limit, sessões)
+  # ============================================
+  redis:
+    image: redis:7-alpine
+    container_name: botjulio_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - botjulio_redis_data:/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  botjulio_pg_data:
+  botjulio_mongo_data:
+  botjulio_redis_data:
