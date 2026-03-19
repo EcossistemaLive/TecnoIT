@@ -98,10 +98,10 @@ async def seed():
                 diag["succession_urgency"], diag["financial_stress"], diag["work_hours_per_day"], json.dumps(diag)
             )
 
-            print(f"✅ Inserido: {p['full_name']} (CPF: {p['cpf']})")
+            print(f"[OK] Inserido: {p['full_name']} (CPF: {p['cpf']})")
             
         except Exception as e:
-            print(f"❌ Erro ao inserir {p['full_name']}: {e}")
+            print(f"[ERRO] Erro ao inserir {p['full_name']}: {e}")
 
     await db.disconnect()
     print("Seed concluído.")

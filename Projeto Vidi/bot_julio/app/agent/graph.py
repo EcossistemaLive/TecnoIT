@@ -4,7 +4,6 @@ from app.agent.nodes import (
     validate_user,
     classify_intent,
     retrieve_context,
-    build_prompt,
     call_llm,
     evaluate_upsell,
     notify_team,
@@ -19,7 +18,6 @@ def create_agent_graph():
     workflow.add_node("validate_user", validate_user)
     workflow.add_node("classify_intent", classify_intent)
     workflow.add_node("retrieve_context", retrieve_context)
-    workflow.add_node("build_prompt", build_prompt)
     workflow.add_node("call_llm", call_llm)
     workflow.add_node("evaluate_upsell", evaluate_upsell)
     workflow.add_node("notify_team", notify_team)
@@ -46,8 +44,7 @@ def create_agent_graph():
 
     # De classificar, todos vão puxar contexto RAG do evento
     workflow.add_edge("classify_intent", "retrieve_context")
-    workflow.add_edge("retrieve_context", "build_prompt")
-    workflow.add_edge("build_prompt", "call_llm")
+    workflow.add_edge("retrieve_context", "call_llm")
     
     # Apos LLM responder, avaliamos upsell em paralelo com persistencia
     workflow.add_edge("call_llm", "evaluate_upsell")

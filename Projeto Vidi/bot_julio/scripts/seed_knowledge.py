@@ -52,10 +52,10 @@ async def seed():
 
     # Limpa tabela para evitar duplicatas em re-run
     await db.execute("TRUNCATE TABLE knowledge_chunks RESTART IDENTITY;")
-    print("🧹 Tabela knowledge_chunks limpa.")
+    print("[INFO] Tabela knowledge_chunks limpa.")
 
     for doc in MOCK_KNOWLEDGE:
-        print(f"📥 Indexando: {doc['source']}")
+        print(f"[INFO] Indexando: {doc['source']}")
         await indexer.index_text(
             text=doc["content"],
             source=doc["source"],
@@ -64,7 +64,7 @@ async def seed():
         )
 
     await db.disconnect()
-    print("✅ Indexação RAG concluída.")
+    print("[OK] Indexacao RAG concluida.")
 
 if __name__ == "__main__":
     asyncio.run(seed())

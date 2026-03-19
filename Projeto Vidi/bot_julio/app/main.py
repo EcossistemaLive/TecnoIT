@@ -2,15 +2,16 @@ import asyncio
 import logging
 from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters
+
 from app.config import config
 from app.db.postgres import db
 from app.db.mongo import mongo_db
 from app.db.redis_client import redis_client
 from app.scheduler.scheduler import start_scheduler, stop_scheduler
 
-from app.telegram.commands import cmd_totem, cmd_status
+from app.telegram_bot_handlers.commands import cmd_totem, cmd_status
 from app.admin.commands import admin_list, admin_add, admin_fire, admin_reset
-from app.telegram.handlers import handle_start, handle_text_message, handle_media
+from app.telegram_bot_handlers.handlers import handle_start, handle_text_message, handle_media
 
 # Logging config
 logging.basicConfig(
@@ -51,15 +52,18 @@ def main():
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_text_message))
     application.add_handler(MessageHandler(filters.ATTACHMENT | filters.PHOTO | filters.Document.ALL | filters.VOICE, handle_media))
 
-    # Inicia o loop para os DBs e o Scheduler antes de rodar o polling
+    # Inicia o loop para os DBs antes de rodar o polling
     loop = asyncio.get_event_loop()
     loop.run_until_complete(start_databases())
     
-    # Inicia os jobs cron (Upsell / Proativos)
-    start_scheduler()
+    # Async init: startup hook
+    async def post_init(app):
+        start_scheduler()
+        logger.info("Bot Julio v3 iniciado com sucesso (Polling ativo)...")
 
+    application.post_init = post_init
+    
     try:
-        logger.info("Bot Júlio v3 iniciado com sucesso (Polling ativo)...")
         application.run_polling(allowed_updates=Update.ALL_TYPES)
     finally:
         stop_scheduler()

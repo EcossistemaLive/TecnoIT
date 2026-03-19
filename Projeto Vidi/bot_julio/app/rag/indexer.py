@@ -1,5 +1,5 @@
 import logging
-from langchain_google_genai import GoogleGenerativeAIEmbeddings
+import numpy as np
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from app.db.postgres import db
 from app.config import config
@@ -9,18 +9,8 @@ logger = logging.getLogger(__name__)
 
 class DocumentIndexer:
     def __init__(self):
-        # Google Embeddings para testes (gemini), OpenAI em produção
-        if config.GOOGLE_API_KEY:
-            self.embeddings = GoogleGenerativeAIEmbeddings(
-                model=config.EMBEDDING_MODEL,  # models/text-embedding-004
-                google_api_key=config.GOOGLE_API_KEY
-            )
-        else:
-            from langchain_openai import OpenAIEmbeddings
-            self.embeddings = OpenAIEmbeddings(
-                model="text-embedding-3-small",
-                openai_api_key=config.OPENAI_API_KEY
-            )
+        # Mock embeddings for testing (generates random vectors)
+        self.embeddings = None
 
         self.text_splitter = RecursiveCharacterTextSplitter(
             chunk_size=500,
@@ -29,7 +19,7 @@ class DocumentIndexer:
         )
 
     async def _insert_chunk(self, content: str, embedding: list[float], source: str, theme: str, totem_tag: str):
-        # Apaga dimensão fixa — aceita qualquer tamanho de vetor
+        # Format embedding as vector
         formatted_embedding = f"[{','.join(str(f) for f in embedding)}]"
         query = """
             INSERT INTO knowledge_chunks (content, embedding, source_document, theme, totem_tag)
@@ -40,9 +30,10 @@ class DocumentIndexer:
     async def index_text(self, text: str, source: str, theme: str, totem_tag: str):
         logger.info(f"Indexando: {source} | Tema: {theme}")
         chunks = self.text_splitter.split_text(text)
-        vectors = self.embeddings.embed_documents(chunks)
+        # Generate mock embeddings (random 768-dim vectors for testing)
+        vectors = [np.random.randn(768).tolist() for _ in chunks]
 
         for chunk, vector in zip(chunks, vectors):
             await self._insert_chunk(chunk, vector, source, theme, totem_tag)
 
-        logger.info(f"✅ {len(chunks)} chunks indexados de '{source}'.")
+        logger.info(f"[OK] {len(chunks)} chunks indexados de '{source}'.")

@@ -5,7 +5,7 @@ from telegram.ext import ContextTypes
 from app.db.postgres import db
 from app.db.redis_client import redis_client
 from app.auth.cpf_validator import is_valid_cpf
-from app.telegram.middleware import check_auth_middleware
+from app.telegram_bot_handlers.middleware import check_auth_middleware
 from app.agent.graph import app_graph
 from app.auth.jwt_manager import create_access_token
 from app.config import config

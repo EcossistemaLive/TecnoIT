@@ -2,7 +2,7 @@ import logging
 from telegram import Update
 from telegram.ext import ContextTypes
 from app.db.postgres import db
-from app.telegram.middleware import check_auth_middleware
+from app.telegram_bot_handlers.middleware import check_auth_middleware
 from app.agent.graph import app_graph
 import uuid
 

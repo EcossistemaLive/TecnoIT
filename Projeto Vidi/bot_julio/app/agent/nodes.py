@@ -1,6 +1,5 @@
-import json
 import logging
-from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_anthropic import ChatAnthropic
 from app.agent.state import AgentState
 from app.db.postgres import db
 from app.db.mongo import mongo_db
@@ -11,26 +10,21 @@ from app.agent.prompts import build_full_system_prompt
 logger = logging.getLogger(__name__)
 
 # ============================================================
-# LLM — Gemini (testes Telegram) | Claude em produção WPP
+# LLM — Claude (Anthropic) com fallback para Mock
 # ============================================================
-def get_llm():
-    if config.GOOGLE_API_KEY:
-        return ChatGoogleGenerativeAI(
-            model=config.GEMINI_MODEL,
-            temperature=config.LLM_TEMPERATURE,
-            max_output_tokens=config.LLM_MAX_TOKENS,
-            google_api_key=config.GOOGLE_API_KEY
-        )
-    else:
-        from langchain_anthropic import ChatAnthropic
-        return ChatAnthropic(
-            model=config.LLM_MODEL,
-            temperature=config.LLM_TEMPERATURE,
-            max_tokens=config.LLM_MAX_TOKENS,
-            anthropic_api_key=config.ANTHROPIC_API_KEY
-        )
-
-llm = get_llm()
+try:
+    llm = ChatAnthropic(
+        model=config.LLM_MODEL,
+        temperature=config.LLM_TEMPERATURE,
+        max_tokens=config.LLM_MAX_TOKENS,
+        anthropic_api_key=config.ANTHROPIC_API_KEY
+    )
+    _use_mock = False
+except Exception as e:
+    import logging as _log
+    _log.getLogger(__name__).warning(f"Claude indisponivel, usando Mock: {e}")
+    llm = None
+    _use_mock = True
 
 
 async def validate_user(state: AgentState) -> dict:
@@ -112,7 +106,7 @@ async def retrieve_context(state: AgentState) -> dict:
 
 
 async def call_llm(state: AgentState) -> dict:
-    """Compõe o prompt completo e chama o LLM (Gemini ou Claude)"""
+    """Compõe o prompt completo e chama o LLM (Mock)"""
     sys_prompt = build_full_system_prompt(state)
 
     messages = [("system", sys_prompt)]
@@ -126,8 +120,30 @@ async def call_llm(state: AgentState) -> dict:
 
     messages.append(("user", state["user_input"]))
 
-    response = await llm.ainvoke(messages)
-    return {"final_response": response.content}
+    if _use_mock or llm is None:
+        user_lower = state["user_input"].lower()
+        if any(w in user_lower for w in ["quando", "evento", "data", "horário"]):
+            resp = "A Cúpula CEO 2026 será um evento transformador. Os detalhes finais de agenda estão sendo definidos. Quer saber mais sobre os temas?"
+        elif any(w in user_lower for w in ["mentor", "ibrahim", "luiz", "cleber"]):
+            resp = "Os mentores da Cúpula são referências nacionais em escala empresarial. Vou sinalizar seu interesse para a equipe."
+        elif any(w in user_lower for w in ["fazer", "ajudar", "dor", "desafio", "problema"]):
+            resp = "Entendo seu desafio. Na Cúpula conectamos você com especialistas que já passaram por isso. Qual é seu principal gargalo?"
+        elif any(w in user_lower for w in ["sucessão", "governança", "gestão"]):
+            resp = "Sucessão e governança são pilares da Cúpula CEO. Temos cases reais de empresas que escalaram com essa estrutura."
+        elif any(w in user_lower for w in ["financeiro", "caixa", "crédito", "fidc"]):
+            resp = "Arsenal Financeiro é um dos temas centrais. Discutimos FIDC e alternativas ao crédito bancário tradicional."
+        elif any(w in user_lower for w in ["internacional", "exportação", "zona franca"]):
+            resp = "Internacionalização via Zonas Francas reduz carga tributária significativamente. Posso detalhar mais?"
+        else:
+            resp = "Ótima pergunta! Esse é exatamente o tipo de tema que abordamos na Cúpula CEO 2026. Qual é seu principal interesse?"
+        return {"final_response": resp}
+
+    try:
+        response = await llm.ainvoke(messages)
+        return {"final_response": response.content}
+    except Exception as e:
+        logger.error(f"[call_llm] ERRO LLM — {type(e).__name__}: {e}")
+        return {"final_response": "Um momento, estou verificando as informações. Pode repetir?"}
 
 
 async def evaluate_upsell(state: AgentState) -> dict:
@@ -153,7 +169,7 @@ async def notify_team(state: AgentState) -> dict:
     """Alerta a equipe ViDi via log (em produção: mensagem no grupo do Telegram)"""
     name = state.get("participant_profile", {}).get("full_name", "Participante")
     reason = state.get("alert_reason", "")
-    logger.info(f"🚨 UPSELL ALERT — {name}: {reason}")
+    logger.info(f"[UPSELL ALERT] {name}: {reason}")
     # Em produção: bot.send_message(chat_id=config.UPSELL_ALERT_TELEGRAM_CHAT_ID, text=...)
     return {}
 
