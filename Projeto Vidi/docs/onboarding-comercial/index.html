@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Playbook Comercial · ViDi</title>
+  <meta name="description" content="Onboarding do Time Comercial — ViDi / Ecossistema Live. Guia completo para novos membros do time de vendas." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── TOKENS ─── */
+    :root {
+      --bg:           #05070a;
+      --bg-card:      rgba(10, 20, 35, 0.9);
+      --bg-card-2:    rgba(15, 28, 46, 0.7);
+      --gold:         #c5a059;
+      --gold-light:   #e2c882;
+      --gold-dim:     rgba(197,160,89,0.12);
+      --gold-border:  rgba(197,160,89,0.30);
+      --green:        #00e800;
+      --green-dim:    rgba(0,232,0,0.08);
+      --red-dim:      rgba(229,72,77,0.12);
+      --red:          #e5484d;
+      --blue:         #0f1c2e;
+      --text:         #e8e8e8;
+      --muted:        #9a9faa;
+      --border:       rgba(197,160,89,0.10);
+      --ease:         cubic-bezier(.4,0,.2,1);
+      --spring:       cubic-bezier(.34,1.56,.64,1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 120% 80% at 50% 0%, rgba(15,28,46,0.8) 0%, transparent 60%),
+        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c5a059' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px; height: 64px;
+      background: rgba(5,7,10,0.9);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem; font-weight: 700;
+      color: var(--gold-light); letter-spacing: 1px;
+    }
+    .nav-links {
+      display: flex; gap: 4px; list-style: none;
+    }
+    .nav-links a {
+      color: var(--muted); text-decoration: none;
+      font-size: 0.68rem; text-transform: uppercase;
+      letter-spacing: 2px; font-weight: 600;
+      padding: 6px 14px; border-radius: 30px;
+      transition: all 0.25s var(--ease);
+      border: 1px solid transparent;
+    }
+    .nav-links a:hover { color: var(--gold); border-color: var(--gold-border); background: var(--gold-dim); }
+    .nav-badge {
+      font-size: 0.65rem; color: var(--gold); letter-spacing: 3px;
+      text-transform: uppercase; font-weight: 700;
+      border: 1px solid var(--gold-border);
+      padding: 4px 14px; border-radius: 30px;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      text-align: center; padding: 100px 20px 60px;
+      position: relative;
+      background: radial-gradient(ellipse 80% 70% at 50% 40%, rgba(15,28,46,0.95) 0%, transparent 70%);
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 200px;
+      background: linear-gradient(to bottom, transparent, var(--bg));
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 6px 20px; border-radius: 50px;
+      background: var(--gold-dim); border: 1px solid var(--gold-border);
+      font-size: 0.65rem; letter-spacing: 4px;
+      text-transform: uppercase; font-weight: 700; color: var(--gold);
+      margin-bottom: 32px;
+      animation: fadeUp .8s var(--ease) both;
+    }
+    .hero-eyebrow-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 8px var(--green);
+      animation: pulse 2s infinite;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      font-weight: 900; line-height: 1.05; letter-spacing: -2px;
+      background: linear-gradient(135deg, #fff 0%, var(--gold) 55%, var(--gold-light) 100%);
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 24px;
+      animation: fadeUp .8s .15s var(--ease) both;
+    }
+    .hero-sub {
+      font-size: clamp(.9rem, 1.5vw, 1.1rem);
+      color: var(--muted); max-width: 620px;
+      letter-spacing: .5px; line-height: 1.8;
+      animation: fadeUp .8s .3s var(--ease) both;
+    }
+    .hero-meta {
+      display: flex; gap: 40px; margin-top: 48px; flex-wrap: wrap; justify-content: center;
+      animation: fadeUp .8s .45s var(--ease) both;
+    }
+    .hero-meta-item { text-align: center; }
+    .hero-meta-label { font-size: .6rem; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+    .hero-meta-value { font-size: 1rem; font-weight: 700; color: var(--gold-light); }
+    .hero-scroll {
+      position: absolute; bottom: 60px;
+      width: 24px; height: 40px;
+      border: 2px solid var(--gold-border); border-radius: 12px;
+      animation: fadeUp .8s .6s var(--ease) both;
+    }
+    .hero-scroll::after {
+      content: ''; width: 4px; height: 8px;
+      background: var(--gold); border-radius: 2px;
+      position: absolute; top: 6px; left: 50%; transform: translateX(-50%);
+      animation: scrollDot 2s infinite;
+    }
+
+    /* ─── SIDEBAR + LAYOUT ─── */
+    .page-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      max-width: 1300px; margin: 0 auto;
+      padding: 0 40px 100px;
+      gap: 60px; align-items: start;
+    }
+    .sidebar {
+      position: sticky; top: 84px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px; padding: 28px;
+    }
+    .sidebar-title {
+      font-size: .6rem; letter-spacing: 4px; text-transform: uppercase;
+      color: var(--gold); font-weight: 700; margin-bottom: 20px;
+    }
+    .sidebar-nav { list-style: none; }
+    .sidebar-nav li { margin-bottom: 2px; }
+    .sidebar-nav a {
+      display: flex; align-items: center; gap: 10px;
+      padding: 8px 12px; border-radius: 10px;
+      text-decoration: none; color: var(--muted);
+      font-size: .8rem; font-weight: 500;
+      transition: all .2s var(--ease);
+    }
+    .sidebar-nav a:hover, .sidebar-nav a.active {
+      background: var(--gold-dim); color: var(--gold-light);
+    }
+    .sidebar-num {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: var(--gold-dim); border: 1px solid var(--gold-border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .6rem; font-weight: 700; color: var(--gold); flex-shrink: 0;
+    }
+    .sidebar-progress {
+      margin-top: 28px; padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+    .progress-label {
+      font-size: .6rem; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 10px;
+    }
+    .progress-bar {
+      height: 4px; border-radius: 4px;
+      background: rgba(255,255,255,.06);
+    }
+    .progress-fill {
+      height: 100%; border-radius: 4px;
+      background: linear-gradient(90deg, var(--gold), var(--green));
+      width: 0%; transition: width .6s var(--ease);
+    }
+    .progress-text {
+      font-size: .7rem; color: var(--gold); font-weight: 600; margin-top: 6px;
+    }
+
+    /* ─── CONTENT ─── */
+    .content { padding-top: 80px; }
+    .chapter {
+      margin-bottom: 100px; scroll-margin-top: 84px;
+    }
+    .chapter-eyebrow {
+      font-size: .6rem; letter-spacing: 4px; text-transform: uppercase;
+      color: var(--gold); font-weight: 700; margin-bottom: 10px;
+    }
+    .chapter-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      color: #fff; line-height: 1.15; margin-bottom: 16px;
+    }
+    .chapter-desc {
+      color: var(--muted); font-size: 1rem;
+      max-width: 680px; line-height: 1.8;
+      margin-bottom: 40px;
+    }
+    .divider {
+      width: 50px; height: 2px; margin: 60px 0;
+      background: linear-gradient(90deg, var(--gold), transparent);
+    }
+
+    /* ─── CARDS ─── */
+    .card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 32px;
+      transition: all .3s var(--ease); position: relative; overflow: hidden;
+    }
+    .card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      opacity: 0; transition: opacity .3s;
+    }
+    .card:hover { border-color: var(--gold-border); transform: translateY(-2px); }
+    .card:hover::before { opacity: 1; }
+    .card-icon {
+      font-size: 1.8rem; margin-bottom: 16px; display: block;
+    }
+    .card-title {
+      font-weight: 700; color: var(--gold-light);
+      font-size: .95rem; margin-bottom: 8px;
+    }
+    .card-text { color: var(--muted); font-size: .88rem; line-height: 1.7; }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+
+    /* ─── TABLE ─── */
+    .table-wrap { overflow-x: auto; border-radius: 14px; border: 1px solid var(--border); }
+    table { width: 100%; border-collapse: collapse; }
+    thead tr { background: var(--gold-dim); }
+    thead th {
+      padding: 14px 18px; text-align: left;
+      font-size: .65rem; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--gold); font-weight: 700;
+    }
+    tbody tr { border-top: 1px solid var(--border); transition: background .2s; }
+    tbody tr:hover { background: rgba(197,160,89,.04); }
+    tbody td { padding: 14px 18px; font-size: .88rem; color: var(--text); }
+    tbody td:first-child { color: var(--gold-light); font-weight: 600; }
+
+    /* ─── BADGE ─── */
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 12px; border-radius: 20px; font-size: .7rem; font-weight: 700;
+    }
+    .badge-gold { background: var(--gold-dim); color: var(--gold); border: 1px solid var(--gold-border); }
+    .badge-green { background: var(--green-dim); color: var(--green); border: 1px solid rgba(0,232,0,.25); }
+    .badge-red { background: var(--red-dim); color: var(--red); border: 1px solid rgba(229,72,77,.25); }
+
+    /* ─── CALLOUT ─── */
+    .callout {
+      border-radius: 14px; padding: 24px 28px;
+      border-left: 3px solid; margin: 28px 0;
+      display: flex; gap: 16px; align-items: flex-start;
+    }
+    .callout-warn {
+      background: rgba(229,72,77,.07); border-color: var(--red);
+    }
+    .callout-info {
+      background: var(--gold-dim); border-color: var(--gold);
+    }
+    .callout-green {
+      background: var(--green-dim); border-color: var(--green);
+    }
+    .callout-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
+    .callout-body { font-size: .9rem; color: var(--text); line-height: 1.7; }
+    .callout-body strong { color: var(--gold-light); }
+
+    /* ─── CHECKLIST ─── */
+    .checklist { list-style: none; }
+    .checklist li {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 12px 0; border-bottom: 1px solid var(--border);
+      font-size: .9rem; color: var(--text);
+    }
+    .checklist li:last-child { border-bottom: none; }
+    .check-box {
+      width: 22px; height: 22px; border-radius: 6px;
+      border: 2px solid var(--gold-border);
+      background: var(--gold-dim); flex-shrink: 0; margin-top: 1px;
+      cursor: pointer; transition: all .2s var(--ease);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .75rem; color: var(--gold);
+    }
+    .check-box:hover { border-color: var(--gold); background: rgba(197,160,89,.2); }
+    .check-box.checked { background: var(--gold); border-color: var(--gold); color: #000; }
+
+    /* ─── TIMELINE ─── */
+    .timeline { position: relative; padding-left: 36px; }
+    .timeline::before {
+      content: '';
+      position: absolute; left: 10px; top: 6px; bottom: 6px; width: 2px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+    }
+    .timeline-item {
+      position: relative; margin-bottom: 32px;
+    }
+    .timeline-dot {
+      position: absolute; left: -30px; top: 4px;
+      width: 14px; height: 14px; border-radius: 50%;
+      background: var(--gold); border: 2px solid var(--bg);
+      box-shadow: 0 0 12px rgba(197,160,89,.4);
+    }
+    .timeline-label {
+      font-size: .65rem; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--gold); font-weight: 700; margin-bottom: 4px;
+    }
+    .timeline-title { font-weight: 700; color: var(--gold-light); margin-bottom: 6px; }
+    .timeline-body { color: var(--muted); font-size: .88rem; line-height: 1.7; }
+
+    /* ─── SCRIPT BOX ─── */
+    .script-box {
+      background: rgba(0,0,0,.4); border: 1px solid var(--gold-border);
+      border-radius: 14px; padding: 28px; position: relative;
+    }
+    .script-box::before {
+      content: '"';
+      position: absolute; top: 10px; left: 22px;
+      font-size: 4rem; font-family: 'Playfair Display', serif;
+      color: rgba(197,160,89,.2); line-height: 1;
+    }
+    .script-box-label {
+      font-size: .6rem; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--gold); font-weight: 700; margin-bottom: 16px;
+    }
+    .script-box pre {
+      font-family: 'Inter', sans-serif; font-size: .88rem;
+      color: var(--text); white-space: pre-wrap; line-height: 1.8;
+    }
+
+    /* ─── OBJECTION CARD ─── */
+    .obj-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 14px; overflow: hidden; margin-bottom: 16px;
+    }
+    .obj-head {
+      padding: 16px 24px; background: var(--gold-dim);
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 700; color: var(--gold-light); font-size: .9rem;
+    }
+    .obj-body {
+      padding: 20px 24px; color: var(--muted); font-size: .88rem; line-height: 1.7;
+    }
+
+    /* ─── FUNNEL ─── */
+    .funnel { display: flex; flex-direction: column; gap: 0; }
+    .funnel-stage {
+      display: flex; align-items: center; gap: 20px;
+      padding: 18px 24px; position: relative;
+    }
+    .funnel-stage::after {
+      content: '';
+      position: absolute; bottom: -10px; left: 50%;
+      transform: translateX(-50%);
+      border-left: 14px solid transparent;
+      border-right: 14px solid transparent;
+      border-top: 10px solid; z-index: 1;
+    }
+    .funnel-topo { background: rgba(197,160,89,.08); border-radius: 14px 14px 0 0; }
+    .funnel-topo::after { border-top-color: rgba(197,160,89,.08); }
+    .funnel-meio { background: rgba(0,232,0,.06); margin: 0 16px; }
+    .funnel-meio::after { border-top-color: rgba(0,232,0,.06); }
+    .funnel-fundo { background: rgba(15,28,46,.9); margin: 0 32px; border-radius: 0 0 14px 14px; }
+    .funnel-fundo::after { display: none; }
+    .funnel-num {
+      width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: .8rem;
+    }
+    .funnel-topo .funnel-num { background: var(--gold-dim); color: var(--gold); }
+    .funnel-meio .funnel-num { background: var(--green-dim); color: var(--green); }
+    .funnel-fundo .funnel-num { background: rgba(15,28,46,1); color: var(--gold-light); border: 1px solid var(--gold-border); }
+    .funnel-info { flex: 1; }
+    .funnel-label {
+      font-size: .65rem; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--muted); font-weight: 600; margin-bottom: 2px;
+    }
+    .funnel-title { font-weight: 700; color: var(--text); font-size: .95rem; }
+    .funnel-desc { color: var(--muted); font-size: .8rem; }
+
+    /* ─── SLA ─── */
+    .sla-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
+    .sla-item {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 20px 22px;
+      display: flex; align-items: center; gap: 16px;
+    }
+    .sla-time {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem; font-weight: 900; color: var(--gold);
+      white-space: nowrap;
+    }
+    .sla-desc { color: var(--muted); font-size: .82rem; line-height: 1.5; }
+
+    /* ─── WEEK CARD ─── */
+    .week-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 16px; overflow: hidden; margin-bottom: 20px;
+    }
+    .week-head {
+      padding: 18px 24px; background: linear-gradient(135deg, rgba(197,160,89,.12), transparent);
+      display: flex; align-items: center; gap: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    .week-num {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--gold); color: #000; font-weight: 800;
+      display: flex; align-items: center; justify-content: center; font-size: .85rem;
+    }
+    .week-title { font-weight: 700; color: var(--gold-light); }
+    .week-subtitle { color: var(--muted); font-size: .8rem; }
+    .week-body { padding: 20px 24px; }
+    .week-row {
+      display: flex; align-items: flex-start; gap: 16px;
+      padding: 10px 0; border-bottom: 1px solid var(--border); font-size: .88rem;
+    }
+    .week-row:last-child { border-bottom: none; }
+    .week-day {
+      min-width: 50px; font-weight: 700; color: var(--gold); font-size: .75rem;
+      text-transform: uppercase; letter-spacing: 1px; padding-top: 2px;
+    }
+    .week-task { color: var(--text); flex: 1; }
+    .week-who {
+      color: var(--muted); font-size: .75rem;
+      white-space: nowrap; padding-top: 2px;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      text-align: center; padding: 60px 20px;
+      border-top: 1px solid var(--border);
+      color: var(--muted); font-size: .8rem;
+    }
+    .footer-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem; color: var(--gold); margin-bottom: 12px;
+    }
+    .footer-line { margin-top: 8px; }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(24px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+    @keyframes pulse {
+      0%,100% { opacity:1; box-shadow:0 0 8px var(--green); }
+      50%     { opacity:.5; box-shadow:0 0 16px var(--green); }
+    }
+    @keyframes scrollDot {
+      0%   { transform:translateX(-50%) translateY(0); opacity:1; }
+      100% { transform:translateX(-50%) translateY(14px); opacity:0; }
+    }
+
+    .reveal {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity .7s var(--ease), transform .7s var(--ease);
+    }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .page-layout { grid-template-columns: 1fr; padding: 0 20px 60px; }
+      .sidebar { display: none; }
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .sla-grid { grid-template-columns: 1fr; }
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav>
+  <span class="nav-brand">ViDi</span>
+  <ul class="nav-links">
+    <li><a href="#missao">Missão</a></li>
+    <li><a href="#produtos">Produtos</a></li>
+    <li><a href="#processo">Processo</a></li>
+    <li><a href="#scripts">Scripts</a></li>
+    <li><a href="#ferramentas">Ferramentas</a></li>
+    <li><a href="#treinamento">Treinamento</a></li>
+  </ul>
+  <span class="nav-badge">Confidencial</span>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="hero-eyebrow">
+    <span class="hero-eyebrow-dot"></span>
+    Documento Interno · Time Comercial
+  </div>
+  <h1>Playbook Comercial<br/>ViDi</h1>
+  <p class="hero-sub">
+    Guia completo de onboarding para novos membros do time de vendas.<br/>
+    Da missão ao primeiro fechamento — tudo que você precisa saber.
+  </p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <div class="hero-meta-label">Versão</div>
+      <div class="hero-meta-value">1.0</div>
+    </div>
+    <div class="hero-meta-item">
+      <div class="hero-meta-label">Atualizado</div>
+      <div class="hero-meta-value">Mar 2026</div>
+    </div>
+    <div class="hero-meta-item">
+      <div class="hero-meta-label">Responsável</div>
+      <div class="hero-meta-value">Luiz Portal</div>
+    </div>
+    <div class="hero-meta-item">
+      <div class="hero-meta-label">Seções</div>
+      <div class="hero-meta-value">11</div>
+    </div>
+  </div>
+  <div class="hero-scroll"></div>
+</section>
+
+<!-- ─── LAYOUT ─── -->
+<div class="page-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-title">Índice</div>
+    <ul class="sidebar-nav">
+      <li><a href="#bemvindo"><span class="sidebar-num">1</span> Bem-vindo</a></li>
+      <li><a href="#missao"><span class="sidebar-num">2</span> Missão e Cultura</a></li>
+      <li><a href="#produtos"><span class="sidebar-num">3</span> Produtos</a></li>
+      <li><a href="#time"><span class="sidebar-num">4</span> Time e Papéis</a></li>
+      <li><a href="#processo"><span class="sidebar-num">5</span> Processo Comercial</a></li>
+      <li><a href="#scripts"><span class="sidebar-num">6</span> Scripts</a></li>
+      <li><a href="#ferramentas"><span class="sidebar-num">7</span> Ferramentas</a></li>
+      <li><a href="#metas"><span class="sidebar-num">8</span> Metas</a></li>
+      <li><a href="#treinamento"><span class="sidebar-num">9</span> Treinamento 30 dias</a></li>
+      <li><a href="#checklist"><span class="sidebar-num">10</span> Checklist</a></li>
+      <li><a href="#contatos"><span class="sidebar-num">11</span> Contatos</a></li>
+    </ul>
+    <div class="sidebar-progress">
+      <div class="progress-label">Progresso de leitura</div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-text" id="progressText">0%</div>
+    </div>
+  </aside>
+
+  <!-- CONTENT -->
+  <main class="content">
+
+    <!-- 1. BEM-VINDO -->
+    <section class="chapter reveal" id="bemvindo">
+      <div class="chapter-eyebrow">01 · Introdução</div>
+      <h2 class="chapter-title">Bem-vindo<br/>à ViDi</h2>
+      <p class="chapter-desc">
+        Você acabou de entrar em um dos ecossistemas de mentoria e desenvolvimento de lideranças mais ousados do Brasil.
+      </p>
+      <div class="grid-3">
+        <div class="card">
+          <span class="card-icon">🎯</span>
+          <div class="card-title">Guia Estratégico</div>
+          <div class="card-text">Fornecer insights baseados na inteligência coletiva dos mentores. Você conecta o cliente ao conhecimento certo.</div>
+        </div>
+        <div class="card">
+          <span class="card-icon">🧠</span>
+          <div class="card-title">Analista de Sentimento</div>
+          <div class="card-text">Usar psicologia organizacional para rotular dores e sugerir o antídoto disponível nos produtos ViDi.</div>
+        </div>
+        <div class="card">
+          <span class="card-icon">💎</span>
+          <div class="card-title">Qualificador de Leads</div>
+          <div class="card-text">Identificar perfis para acompanhamento de alto ticket e direcioná-los para Cleber, Ibrahim ou Luiz Portal.</div>
+        </div>
+      </div>
+
+      <div class="callout callout-warn" style="margin-top:32px">
+        <span class="callout-icon">🚫</span>
+        <div class="callout-body">
+          <strong>Regra inegociável:</strong> NUNCA use o termo <strong>"mentoria"</strong> de forma vendedora. Use sempre <em>"acompanhamento mais próximo e exclusivo da ViDi"</em>.
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- 2. MISSÃO -->
+    <section class="chapter reveal" id="missao">
+      <div class="chapter-eyebrow">02 · Propósito</div>
+      <h2 class="chapter-title">Missão, Visão<br/>e Cultura</h2>
+      <p class="chapter-desc">
+        Transformar a gestão de empresas brasileiras, desenvolvendo líderes antifrágeis que constroem organizações capazes de prosperar mesmo sob pressão.
+      </p>
+      <div class="grid-2" style="margin-bottom:32px">
+        <div class="card">
+          <span class="card-icon">🌱</span>
+          <div class="card-title">Liderança Antifrágil</div>
+          <div class="card-text">O líder que fica mais forte com o caos, não paralisa com ele. Antifragilidade é o núcleo do método.</div>
+        </div>
+        <div class="card">
+          <span class="card-icon">🏗️</span>
+          <div class="card-title">Saída do Operacional</div>
+          <div class="card-text">O CEO que constrói uma empresa que funciona sem ele. O gargalo do fundador é o inimigo número 1.</div>
+        </div>
+        <div class="card">
+          <span class="card-icon">📐</span>
+          <div class="card-title">Governança e Escala</div>
+          <div class="card-text">Estruturas que permitem crescer sem perder qualidade. Governança é liberdade, não burocracia.</div>
+        </div>
+        <div class="card">
+          <span class="card-icon">💰</span>
+          <div class="card-title">Arsenal Financeiro</div>
+          <div class="card-text">Proteger e multiplicar o patrimônio enquanto escala. Sair da dependência dos bancos.</div>
+        </div>
+      </div>
+
+      <h3 style="color:var(--gold-light);font-size:1rem;font-weight:700;margin-bottom:20px">Cultura Interna</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Valor</th><th>O que significa na prática</th></tr></thead>
+          <tbody>
+            <tr><td>Accountability radical</td><td>Cada um é responsável pelo seu número. Sem desculpas.</td></tr>
+            <tr><td>Sem ruído</td><td>Problema identificado → solução proposta → executado.</td></tr>
+            <tr><td>Elegância no processo</td><td>Nossa abordagem é consultiva, nunca agressiva.</td></tr>
+            <tr><td>Feedback aberto</td><td>Qualquer membro do time pode levantar uma falha de processo.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- 3. PRODUTOS -->
+    <section class="chapter reveal" id="produtos">
+      <div class="chapter-eyebrow">03 · Portfólio</div>
+      <h2 class="chapter-title">Produtos e<br/>Precificação</h2>
+      <div class="callout callout-warn">
+        <span class="callout-icon">🔒</span>
+        <div class="callout-body">
+          <strong>Regra crítica:</strong> NUNCA mencione valores em comunicações públicas, redes sociais ou conversas que possam ser gravadas sem autorização. Valores são compartilhados apenas em reuniões comerciais privadas.
+        </div>
+      </div>
+
+      <h3 style="color:var(--gold-light);font-size:1rem;font-weight:700;margin:32px 0 16px">Produtos Principais</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Produto</th><th>Perfil Ideal</th><th>Canal de Entrada</th><th>Ticket</th></tr></thead>
+          <tbody>
+            <tr><td>Cúpula CEO (Evento)</td><td>CEO/Sócio, fat. R$1M–R$30M</td><td>Ads, Lives, Indicação</td><td><span class="badge badge-gold">Ingresso único</span></td></tr>
+            <tr><td>Mentoria Liderança Antifrágil</td><td>CEO que quer sair do operacional em 12 meses</td><td>Evento → Diagnóstico</td><td><span class="badge badge-green">Alto ticket / grupo</span></td></tr>
+            <tr><td>Mentoria The Catalyst</td><td>CEO de empresa acima de R$5M</td><td>Indicação / Funil quente</td><td><span class="badge badge-green">Alto ticket / individual</span></td></tr>
+            <tr><td>Consultoria + Mentoria</td><td>Empresa com necessidade de reestruturação</td><td>Indicação direta</td><td><span class="badge badge-gold">Projeto específico</span></td></tr>
+            <tr><td>Diagnóstico Catalyst</td><td>Empresário que quer entender onde está travado</td><td>Evento → Upsell</td><td><span class="badge badge-gold">Médio ticket</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid-2" style="margin-top:32px">
+        <div>
+          <h3 style="color:var(--gold-light);font-size:1rem;font-weight:700;margin-bottom:16px">⬆️ Upsells do Evento</h3>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Upsell</th><th>Quando oferecer</th></tr></thead>
+              <tbody>
+                <tr><td>VIP Pass</td><td>Na compra ou no check-in</td></tr>
+                <tr><td>Cúpula Dinner</td><td>Para Cat-A identificados</td></tr>
+                <tr><td>Pacote Sócio</td><td>Grupos de 2+ sócios</td></tr>
+                <tr><td>Diagnóstico Catalyst</td><td>Dor identificada no evento</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div>
+          <h3 style="color:var(--red);font-size:1rem;font-weight:700;margin-bottom:16px">⬇️ Downsells</h3>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Downsell</th><th>Quando usar</th></tr></thead>
+              <tbody>
+                <tr><td>Virtual Pass</td><td>Não pode comparecer presencialmente</td></tr>
+                <tr><td>CEO Toolkit</td><td>Não está pronto para o evento</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- 4. TIME -->
+    <section class="chapter reveal" id="time">
+      <div class="chapter-eyebrow">04 · Estrutura</div>
+      <h2 class="chapter-title">Time e<br/>Papéis</h2>
+      <div class="grid-2" style="margin-bottom:32px">
+        <div class="card"><span class="card-icon">👑</span><div class="card-title">Luiz Portal</div><div class="card-text">Fundador · Head de Produto e Vendas<br/><span style="color:var(--muted);font-size:.8rem">luizeduardoportal@gmail.com</span></div></div>
+        <div class="card"><span class="card-icon">🎙️</span><div class="card-title">Ibrahim Boufleur</div><div class="card-text">Fundador · Mentor Principal<br/><span style="color:var(--muted);font-size:.8rem">iboufleur@gmail.com</span></div></div>
+        <div class="card"><span class="card-icon">💻</span><div class="card-title">Cléber Donato</div><div class="card-text">Tech Lead · Gestor de Projeto<br/><span style="color:var(--muted);font-size:.8rem">cleber.ihs@gmail.com</span></div></div>
+        <div class="card"><span class="card-icon">📣</span><div class="card-title">João Victor Lopes Rosa</div><div class="card-text">Marketing e Conteúdo<br/><span style="color:var(--muted);font-size:.8rem">joaaovictorlr@gmail.com</span></div></div>
+      </div>
+
+      <div class="callout callout-info">
+        <span class="callout-icon">🗂️</span>
+        <div class="callout-body">
+          <strong>Regra de escalada:</strong> Lead frio → João Victor · Lead quente / high ticket → Luiz Portal · Contrato/pagamento → Ana Dias · Questão técnica → Cléber · Dúvida de método → Ibrahim ou Luiz
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- 5. PROCESSO -->
+    <section class="chapter reveal" id="processo">
+      <div class="chapter-eyebrow">05 · Funil</div>
+      <h2 class="chapter-title">Processo Comercial</h2>
+      <p class="chapter-desc">Do primeiro contato até o fechamento — entenda cada etapa do funil ViDi.</p>
+
+      <div class="funnel">
+        <div class="funnel-stage funnel-topo">
+          <div class="funnel-num">T</div>
+          <div class="funnel-info">
+            <div class="funnel-label">Topo do funil</div>
+            <div class="funnel-title">Atração</div>
+            <div class="funnel-desc">Google Ads Regional · Lives de Aquecimento · Conteúdo Orgânico · Indicações</div>
+          </div>
+          <span class="badge badge-gold">Alcance</span>
+        </div>
+        <div class="funnel-stage funnel-meio" style="margin-top:20px">
+          <div class="funnel-num">M</div>
+          <div class="funnel-info">
+            <div class="funnel-label">Meio do funil</div>
+            <div class="funnel-title">Qualificação</div>
+            <div class="funnel-desc">Formulário / DM · Bot Júlio / SDR · Categorização Cat-A/B/C · Agendamento de call</div>
+          </div>
+          <span class="badge badge-green">Pipeline</span>
+        </div>
+        <div class="funnel-stage funnel-fundo" style="margin-top:20px">
+          <div class="funnel-num">F</div>
+          <div class="funnel-info">
+            <div class="funnel-label">Fundo do funil</div>
+            <div class="funnel-title">Fechamento</div>
+            <div class="funnel-desc">Call de diagnóstico · Apresentação de solução · Proposta e negociação · Contrato</div>
+          </div>
+          <span class="badge" style="background:rgba(15,28,46,1);color:var(--gold-light);border-color:var(--gold-border)">Receita</span>
+        </div>
+      </div>
+
+      <h3 style="color:var(--gold-light);font-size:1rem;font-weight:700;margin:40px 0 16px">Classificação de Leads</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Categoria</th><th>Critério</th><th>SLA de Contato</th><th>Abordagem</th></tr></thead>
+          <tbody>
+            <tr><td><span class="badge badge-red">Cat-A</span></td><td>CEO, fat. &gt; R$5M, dor clara, urgência</td><td>⚡ Até 1 hora</td><td>Contato direto Luiz Portal</td></tr>
+            <tr><td><span class="badge badge-gold">Cat-B</span></td><td>Diretor/Sócio, fat. R$1M-5M</td><td>🕐 Até 24 horas</td><td>Nurturing ativo</td></tr>
+            <tr><td><span class="badge" style="background:rgba(255,255,255,.05);color:var(--muted);border:1px solid var(--border)">Cat-C</span></td><td>Demais perfis</td><td>📅 Nurturing</td><td>Conteúdo, sem abordagem direta</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="color:var(--gold-light);font-size:1rem;font-weight:700;margin:40px 0 16px">SLA de Resposta</h3>
+      <div class="sla-grid">
+        <div class="sla-item"><div class="sla-time">2h</div><div class="sla-desc">DM de interesse no produto</div></div>
+        <div class="sla-item"><div class="sla-time">1h</div><div class="sla-desc">Lead Cat-A do evento ou bot</div></div>
+        <div class="sla-item"><div class="sla-time">48h</div><div class="sla-desc">Follow-up de proposta enviada sem resposta</div></div>
+        <div class="sla-item"><div class="sla-time">24h</div><div class="sla-desc">Follow-up após reunião sem resposta</div></div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- 6. SCRIPTS -->
+    <section class="chapter reveal" id="scripts">
+      <div class="chapter-eyebrow">06 · Comunicação</div>
+      <h2 class="chapter-title">Scripts e<br/>Objeções</h2>
+
+      <h3 style="color:var(--gold-light);font-size:1rem;font-weight:700;margin-bottom:20px">Primeiro Contato — DM</h3>
+      <div class="script-box">
+        <div class="script-box-label">💬 Script — Primeiro contato via DM</div>
+        <pre>Olá, [Nome]! Aqui é [Seu Nome], do time da ViDi.
+
+Vi seu interesse e queria entender melhor o momento da sua empresa.
+Você está buscando resolver algum desafio específico agora, ou ainda está explorando?
+
+[Se responder positivamente:]
+Perfeito. Me conta rapidamente: qual é o principal travamento que você sente
+hoje na liderança ou operação da empresa?</pre>
+      </div>
+      <div class="callout callout-green" style="margin-top:16px">
+        <span class="callout-icon">✅</span>
+        <div class="callout-body">Nunca começar com pitch. Sempre começa com pergunta. Nunca mencionar valores nesse primeiro contato.</div>
+      </div>
+
+      <h3 style="color:var(--gold-light);font-size:1rem;font-weight:700;margin:40px 0 20px">Call de Diagnóstico (30–45 min)</h3>
+      <div class="timeline">
+        <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-label">0–5 min</div><div class="timeline-title">Rapport</div><div class="timeline-body">"Me conta um pouco sobre a empresa, quanto tempo de mercado, qual setor…"</div></div>
+        <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-label">5–15 min</div><div class="timeline-title">Diagnóstico da Dor</div><div class="timeline-body">"O que te trouxe até aqui hoje?" · "Se eu te perguntar: o que impede sua empresa de crescer 2x sem você trabalhar mais horas — o que vem à mente?"</div></div>
+        <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-label">15–25 min</div><div class="timeline-title">Amplificação</div><div class="timeline-body">"Isso já afetou alguma decisão estratégica? Você já tentou resolver isso antes? O que aconteceu?"</div></div>
+        <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-label">25–35 min</div><div class="timeline-title">Apresentação da Solução</div><div class="timeline-body">"O que você descreveu é exatamente o que chamamos de [Rótulo ViDi]. Existe um caminho para isso…"</div></div>
+        <div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-label">35–45 min</div><div class="timeline-title">Próximo Passo</div><div class="timeline-body">"Com base no que conversamos, acredito que o [Produto X] é o mais adequado. Posso te enviar mais detalhes?"</div></div>
+      </div>
+
+      <h3 style="color:var(--gold-light);font-size:1rem;font-weight:700;margin:40px 0 20px">Objeções Comuns</h3>
+      <div class="obj-card"><div class="obj-head">💬 "Não tenho tempo agora"</div><div class="obj-body">"Entendo. Justamente por isso que vale a pena conversar — o objetivo é você ter <em>mais</em> tempo, não menos. Me diz: se você continuasse assim por mais 12 meses, o que muda?"</div></div>
+      <div class="obj-card"><div class="obj-head">💬 "É muito caro"</div><div class="obj-body">"Faz sentido essa preocupação. Me ajuda a entender: o valor que você enxerga hoje está alinhado com o que espera como resultado? O que seria um resultado mínimo aceitável para você?"</div></div>
+      <div class="obj-card"><div class="obj-head">💬 "Já fiz mentoria antes e não funcionou"</div><div class="obj-body">"Entendo. Me conta o que aconteceu — porque o que a ViDi faz é diferente justamente por [diferencial específico]. O que funcionou na sua experiência anterior e o que faltou?"</div></div>
+      <div class="obj-card"><div class="obj-head">💬 "Preciso pensar"</div><div class="obj-body">"Claro. Para você tomar a melhor decisão, o que falta esclarecer? O que está pesando?"</div></div>
+      <div class="obj-card"><div class="obj-head">💬 "Vou falar com meu sócio"</div><div class="obj-body">"Ótimo. Quer que eu marque uma call com os dois juntos? Assim respondo as dúvidas de vocês ao mesmo tempo."</div></div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- 7. FERRAMENTAS -->
+    <section class="chapter reveal" id="ferramentas">
+      <div class="chapter-eyebrow">07 · Stack</div>
+      <h2 class="chapter-title">Ferramentas<br/>e Acessos</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Ferramenta</th><th>Para que serve</th><th>Solicitar acesso a</th></tr></thead>
+          <tbody>
+            <tr><td>ClickUp</td><td>Gestão de tarefas e projetos</td><td>Ana Dias</td></tr>
+            <tr><td>WhatsApp Business</td><td>Atendimento e follow-up</td><td>Cléber Donato</td></tr>
+            <tr><td>Google Workspace</td><td>E-mail, Drive, Calendar</td><td>Ana Dias</td></tr>
+            <tr><td>Bot Júlio (Telegram)</td><td>Diagnóstico de leads no evento</td><td>Cléber Donato</td></tr>
+            <tr><td>Instagram / LinkedIn</td><td>Geração de leads e conteúdo</td><td>João Victor</td></tr>
+            <tr><td>NotebookLM</td><td>Base de conhecimento dos mentores</td><td>Cléber Donato</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="color:var(--gold-light);font-size:1rem;font-weight:700;margin:32px 0 16px">Checklist de Acesso — Primeiro Dia</h3>
+      <ul class="checklist" id="accessChecklist">
+        <li><div class="check-box" onclick="toggleCheck(this)"></div> E-mail corporativo (@catalysteducacao ou @ecossistemalive)</li>
+        <li><div class="check-box" onclick="toggleCheck(this)"></div> Acesso ao ClickUp — workspace "Projeto Mentoria/Evento Ibrahim"</li>
+        <li><div class="check-box" onclick="toggleCheck(this)"></div> Grupo WhatsApp do time interno</li>
+        <li><div class="check-box" onclick="toggleCheck(this)"></div> Acesso ao Google Drive compartilhado</li>
+        <li><div class="check-box" onclick="toggleCheck(this)"></div> Acesso ao calendário compartilhado da ViDi</li>
+        <li><div class="check-box" onclick="toggleCheck(this)"></div> Leitura das restrições absolutas de negócio</li>
+        <li><div class="check-box" onclick="toggleCheck(this)"></div> Reunião de alinhamento com Luiz Portal (30 min)</li>
+      </ul>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- 8. METAS -->
+    <section class="chapter reveal" id="metas">
+      <div class="chapter-eyebrow">08 · Performance</div>
+      <h2 class="chapter-title">Metas e<br/>Incentivos</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Período</th><th>O que é medido</th></tr></thead>
+          <tbody>
+            <tr><td>Semanal</td><td>Número de leads qualificados, calls agendadas</td></tr>
+            <tr><td>Mensal</td><td>Fechamentos, receita gerada, churn de follow-ups</td></tr>
+            <tr><td>Trimestral</td><td>Revisão de metas e evolução do time</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="grid-3" style="margin-top:28px">
+        <div class="card"><span class="card-icon">🏆</span><div class="card-title">Bônus por Superação</div><div class="card-text">Acordado individualmente no contrato. Percentual sobre meta excedida.</div></div>
+        <div class="card"><span class="card-icon">⚡</span><div class="card-title">Acelerador Cat-A</div><div class="card-text">Incentivo adicional por cada fechamento de alto ticket.</div></div>
+        <div class="card"><span class="card-icon">🤝</span><div class="card-title">Indicação de Lead</div><div class="card-text">Reconhecimento formal se lead indicado por você fechar com outro membro.</div></div>
+      </div>
+      <div class="callout callout-info" style="margin-top:28px">
+        <span class="callout-icon">📊</span>
+        <div class="callout-body">
+          <strong>Relatórios:</strong> Diário — atualizar ClickUp ao fim do dia. Semanal — reunião de pipeline (segunda-feira). Mensal — relatório escrito enviado ao Luiz Portal.
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- 9. TREINAMENTO -->
+    <section class="chapter reveal" id="treinamento">
+      <div class="chapter-eyebrow">09 · Onboarding</div>
+      <h2 class="chapter-title">Cronograma<br/>30 Dias</h2>
+
+      <div class="week-card">
+        <div class="week-head">
+          <div class="week-num">1</div>
+          <div><div class="week-title">Semana 1 — Imersão</div><div class="week-subtitle">Conhecer a empresa, o método e as ferramentas</div></div>
+        </div>
+        <div class="week-body">
+          <div class="week-row"><div class="week-day">Dia 1</div><div class="week-task">Leitura completa deste playbook</div><div class="week-who">Você</div></div>
+          <div class="week-row"><div class="week-day">Dia 1</div><div class="week-task">Acesso a todas as ferramentas</div><div class="week-who">Ana Dias</div></div>
+          <div class="week-row"><div class="week-day">Dia 2</div><div class="week-task">Reunião de alinhamento com Luiz Portal (1h)</div><div class="week-who">Luiz Portal</div></div>
+          <div class="week-row"><div class="week-day">Dia 2</div><div class="week-task">Conteúdos dos mentores no NotebookLM</div><div class="week-who">Você</div></div>
+          <div class="week-row"><div class="week-day">Dia 3</div><div class="week-task">Sombra em call de diagnóstico real (observar)</div><div class="week-who">Luiz Portal</div></div>
+          <div class="week-row"><div class="week-day">Dia 4</div><div class="week-task">Sombra em call de fechamento (observar)</div><div class="week-who">Luiz Portal</div></div>
+          <div class="week-row"><div class="week-day">Dia 5</div><div class="week-task">Roleplay de call de diagnóstico</div><div class="week-who">Cléber / Luiz</div></div>
+        </div>
+      </div>
+
+      <div class="week-card">
+        <div class="week-head">
+          <div class="week-num">2</div>
+          <div><div class="week-title">Semana 2 — Prática Assistida</div><div class="week-subtitle">Primeiros contatos reais com supervisão</div></div>
+        </div>
+        <div class="week-body">
+          <div class="week-row"><div class="week-day">Dias 6–10</div><div class="week-task">Fazer primeiros contatos com leads Cat-B (supervisionado)</div><div class="week-who">Você</div></div>
+          <div class="week-row"><div class="week-day">Mid-week</div><div class="week-task">Agendar e conduzir 2 calls de diagnóstico com feedback</div><div class="week-who">Luiz Portal</div></div>
+          <div class="week-row"><div class="week-day">Sexta</div><div class="week-task">Revisão de objeções com Luiz Portal</div><div class="week-who">Luiz Portal</div></div>
+        </div>
+      </div>
+
+      <div class="week-card">
+        <div class="week-head">
+          <div class="week-num">3–4</div>
+          <div><div class="week-title">Semanas 3–4 — Autonomia Crescente</div><div class="week-subtitle">Conduzir calls independentes e apresentar propostas</div></div>
+        </div>
+        <div class="week-body">
+          <div class="week-row"><div class="week-day">Semana 3</div><div class="week-task">Calls de diagnóstico de forma independente</div><div class="week-who">Você</div></div>
+          <div class="week-row"><div class="week-day">Semana 3</div><div class="week-task">Apresentar proposta para Cat-B (aprovação prévia)</div><div class="week-who">Luiz Portal</div></div>
+          <div class="week-row"><div class="week-day">Semana 4</div><div class="week-task">Primeira revisão de desempenho com Luiz Portal</div><div class="week-who">Luiz Portal</div></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- 10. CHECKLIST -->
+    <section class="chapter reveal" id="checklist">
+      <div class="chapter-eyebrow">10 · Validação</div>
+      <h2 class="chapter-title">Checklist<br/>Primeiro Mês</h2>
+
+      <div class="grid-2">
+        <div>
+          <h3 style="color:var(--gold-light);font-size:.9rem;font-weight:700;margin-bottom:16px">📋 Semana 1</h3>
+          <ul class="checklist">
+            <li><div class="check-box" onclick="toggleCheck(this)"></div> Leu este playbook completo</li>
+            <li><div class="check-box" onclick="toggleCheck(this)"></div> Configurou todos os acessos</li>
+            <li><div class="check-box" onclick="toggleCheck(this)"></div> Reuniu-se com Luiz Portal</li>
+            <li><div class="check-box" onclick="toggleCheck(this)"></div> Assistiu 2 calls como observador</li>
+            <li><div class="check-box" onclick="toggleCheck(this)"></div> Conhece os 3 pilares do Método ViDi</li>
+            <li><div class="check-box" onclick="toggleCheck(this)"></div> Responde 5 objeções sem consultar script</li>
+          </ul>
+        </div>
+        <div>
+          <h3 style="color:var(--gold-light);font-size:.9rem;font-weight:700;margin-bottom:16px">📋 Semanas 2–4</h3>
+          <ul class="checklist">
+            <li><div class="check-box" onclick="toggleCheck(this)"></div> Contactou ao menos 10 leads Cat-B</li>
+            <li><div class="check-box" onclick="toggleCheck(this)"></div> Conduziu 2+ calls de diagnóstico</li>
+            <li><div class="check-box" onclick="toggleCheck(this)"></div> Recebeu feedback formal de Luiz</li>
+            <li><div class="check-box" onclick="toggleCheck(this)"></div> Conduziu 5 calls de forma autônoma</li>
+            <li><div class="check-box" onclick="toggleCheck(this)"></div> Submeteu ao menos 1 proposta</li>
+            <li><div class="check-box" onclick="toggleCheck(this)"></div> Revisão de desempenho do 1º mês</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- 11. CONTATOS -->
+    <section class="chapter reveal" id="contatos">
+      <div class="chapter-eyebrow">11 · Suporte</div>
+      <h2 class="chapter-title">Contatos<br/>e Escalada</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Situação</th><th>Contato</th><th>Canal</th></tr></thead>
+          <tbody>
+            <tr><td>Dúvida de produto ou pitch</td><td>Luiz Portal</td><td>WhatsApp direto</td></tr>
+            <tr><td>Dúvida de contrato/pagamento</td><td>Ana Dias</td><td>WhatsApp ou e-mail</td></tr>
+            <tr><td>Problema técnico (bot, ferramentas)</td><td>Cléber Donato</td><td>WhatsApp direto</td></tr>
+            <tr><td><strong style="color:var(--red)">Lead Cat-A quente</strong></td><td>Luiz Portal</td><td><strong style="color:var(--red)">WhatsApp — imediato</strong></td></tr>
+            <tr><td>Reunião com Ibrahim</td><td>Luiz Portal</td><td>Sempre intermediar</td></tr>
+            <tr><td>Emergência do evento</td><td>João Victor</td><td>WhatsApp</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-brand">ViDi</div>
+  <p>Ecossistema Live · Playbook Comercial v1.0</p>
+  <p class="footer-line" style="margin-top:8px;color:rgba(154,159,170,.5)">Confidencial · Uso interno · Março 2026</p>
+</footer>
+
+<script>
+  // Progress bar
+  function updateProgress() {
+    const s = document.documentElement.scrollTop;
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = Math.round((s / h) * 100);
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressText').textContent = pct + '%';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => io.observe(el));
+
+  // Active sidebar link
+  const sections = document.querySelectorAll('.chapter[id]');
+  const navLinks = document.querySelectorAll('.sidebar-nav a');
+  const navIO = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const link = document.querySelector(`.sidebar-nav a[href="#${e.target.id}"]`);
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  sections.forEach(s => navIO.observe(s));
+
+  // Checkbox toggle
+  function toggleCheck(el) {
+    el.classList.toggle('checked');
+    el.textContent = el.classList.contains('checked') ? '✓' : '';
+  }
+</script>
+</body>
+</html>
