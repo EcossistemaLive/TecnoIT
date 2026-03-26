@@ -465,7 +465,7 @@ Perfeito. Me conta rapidamente: qual é o principal travamento que você sente h
 
 | Ferramenta | Para que serve | Quem solicita acesso |
 |---|---|---|
-| **ClickUp** (Workspace: Projeto Mentoria/Evento Ibrahim) | Gestão de tarefas e projetos | Ana Dias |
+| **ClickUp** (Workspace: Projeto ViDi) | Gestão de tarefas e projetos | Ana Dias |
 | **WhatsApp Business** | Atendimento e follow-up de leads | Cléber Donato (config.) |
 | **Google Workspace** | E-mail, Drive, Calendar | Ana Dias |
 | **Bot Júlio** (Telegram) | Diagnóstico de leads no evento | Cléber Donato |
@@ -475,7 +475,7 @@ Perfeito. Me conta rapidamente: qual é o principal travamento que você sente h
 ### 7.2 Checklist de Acesso — Primeiro Dia
 
 - [ ] E-mail corporativo (@catalysteducacao.onmicrosoft.com ou @ecossistemalive...)
-- [ ] Acesso ao ClickUp — workspace "Projeto Mentoria/Evento Ibrahim"
+- [ ] Acesso ao ClickUp — workspace "Projeto ViDi"
 - [ ] Grupo WhatsApp do time interno
 - [ ] Acesso ao Google Drive compartilhado
 - [ ] Acesso ao calendário compartilhado da ViDi
