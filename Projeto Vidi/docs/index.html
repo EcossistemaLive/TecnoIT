@@ -2,10 +2,44 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="refresh" content="0; url=onboarding-comercial/" />
-  <title>ViDi Docs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ViDi / Ecossistema Live — Documentos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: #05070a; color: rgba(255,255,255,.87); min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 20px; }
+    h1 { font-family: 'Playfair Display', serif; font-size: 2rem; color: #c5a059; margin-bottom: 8px; }
+    p { color: rgba(255,255,255,.45); font-size: .9rem; margin-bottom: 40px; }
+    .cards { display: flex; flex-direction: column; gap: 16px; width: 100%; max-width: 500px; }
+    a.card { display: flex; align-items: center; gap: 16px; padding: 20px 24px; background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.07); border-radius: 14px; text-decoration: none; color: inherit; transition: all .2s; }
+    a.card:hover { border-color: rgba(197,160,89,.35); background: rgba(197,160,89,.06); }
+    .card-icon { font-size: 1.6rem; flex-shrink: 0; }
+    .card-info { flex: 1; }
+    .card-title { font-weight: 700; color: #e2c882; font-size: .95rem; margin-bottom: 3px; }
+    .card-desc { font-size: .78rem; color: rgba(255,255,255,.4); }
+    footer { margin-top: 48px; font-size: .72rem; color: rgba(255,255,255,.25); }
+  </style>
 </head>
 <body>
-  <p>Redirecionando... <a href="onboarding-comercial/">clique aqui</a></p>
+  <h1>ViDi · Ecossistema Live</h1>
+  <p>Documentos internos — acesso restrito</p>
+  <div class="cards">
+    <a href="onboarding-comercial/" class="card">
+      <span class="card-icon">📋</span>
+      <div class="card-info">
+        <div class="card-title">Onboarding Comercial v1.1</div>
+        <div class="card-desc">Processo de venda, qualificação, proposta e fechamento</div>
+      </div>
+    </a>
+    <a href="reuniao-30-03-2026/" class="card">
+      <span class="card-icon">🎯</span>
+      <div class="card-info">
+        <div class="card-title">Reunião Interna — 30/03/2026</div>
+        <div class="card-desc">Estratégia "O Chefe Morreu" · Plataformas · Plano de Ação</div>
+      </div>
+    </a>
+  </div>
+  <footer>ViDi / Ecossistema Live · TecnoIT</footer>
 </body>
 </html>

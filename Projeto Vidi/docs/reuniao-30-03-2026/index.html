@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reunião Interna — 30/03/2026 · ViDi / Ecossistema Live</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #05070a;
+      --bg-card: rgba(255,255,255,.03);
+      --bg-card-hover: rgba(255,255,255,.05);
+      --border: rgba(255,255,255,.07);
+      --text: rgba(255,255,255,.87);
+      --muted: rgba(255,255,255,.45);
+      --gold: #c5a059;
+      --gold-light: #e2c882;
+      --gold-dim: rgba(197,160,89,.1);
+      --gold-border: rgba(197,160,89,.25);
+      --green: #00e800;
+      --green-dim: rgba(0,232,0,.08);
+      --red: #e5484d;
+      --red-dim: rgba(229,72,77,.07);
+      --ease: cubic-bezier(.16,1,.3,1);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg); color: var(--text);
+      line-height: 1.6; overflow-x: hidden;
+    }
+
+    /* ─── BG TEXTURE ─── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image:
+        url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 60L60 0M-10 10L10-10M50 70L70 50' stroke='rgba(255,255,255,.018)' stroke-width='1'/%3E%3C/svg%3E");
+    }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0%,100% { opacity: 1; } 50% { opacity: .4; }
+    }
+    @keyframes scrollDot {
+      0% { top: 6px; opacity: 1; }
+      100% { top: 18px; opacity: 0; }
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px;
+      background: rgba(5,7,10,.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; font-weight: 700;
+      color: var(--gold); letter-spacing: .5px;
+    }
+    .nav-links { display: flex; gap: 8px; }
+    .nav-links a {
+      padding: 6px 14px; border-radius: 20px;
+      text-decoration: none; font-size: .75rem; font-weight: 600;
+      color: var(--muted); transition: all .2s var(--ease);
+    }
+    .nav-links a:hover { background: var(--gold-dim); color: var(--gold-light); }
+    .nav-badge {
+      padding: 5px 14px; border-radius: 20px;
+      background: var(--gold-dim); border: 1px solid var(--gold-border);
+      font-size: .65rem; letter-spacing: 2px; text-transform: uppercase;
+      font-weight: 700; color: var(--gold);
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative; z-index: 1;
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      text-align: center; padding: 100px 20px 60px;
+      background: radial-gradient(ellipse 80% 70% at 50% 40%, rgba(15,28,46,0.95) 0%, transparent 70%);
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 200px;
+      background: linear-gradient(to bottom, transparent, var(--bg));
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 6px 20px; border-radius: 50px;
+      background: var(--gold-dim); border: 1px solid var(--gold-border);
+      font-size: .65rem; letter-spacing: 4px;
+      text-transform: uppercase; font-weight: 700; color: var(--gold);
+      margin-bottom: 32px;
+      animation: fadeUp .8s var(--ease) both;
+    }
+    .hero-eyebrow-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--green); box-shadow: 0 0 8px var(--green);
+      animation: pulse 2s infinite;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      font-weight: 900; line-height: 1.05; letter-spacing: -2px;
+      background: linear-gradient(135deg, #fff 0%, var(--gold) 55%, var(--gold-light) 100%);
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 24px;
+      animation: fadeUp .8s .15s var(--ease) both;
+    }
+    .hero-sub {
+      font-size: clamp(.9rem, 1.5vw, 1.1rem);
+      color: var(--muted); max-width: 620px;
+      letter-spacing: .5px; line-height: 1.8;
+      animation: fadeUp .8s .3s var(--ease) both;
+    }
+    .hero-meta {
+      display: flex; gap: 40px; margin-top: 48px; flex-wrap: wrap; justify-content: center;
+      animation: fadeUp .8s .45s var(--ease) both;
+    }
+    .hero-meta-item { text-align: center; }
+    .hero-meta-label { font-size: .6rem; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+    .hero-meta-value { font-size: 1rem; font-weight: 700; color: var(--gold-light); }
+    .hero-scroll {
+      position: absolute; bottom: 60px;
+      width: 24px; height: 40px;
+      border: 2px solid var(--gold-border); border-radius: 12px;
+      animation: fadeUp .8s .6s var(--ease) both;
+    }
+    .hero-scroll::after {
+      content: ''; width: 4px; height: 8px;
+      background: var(--gold); border-radius: 2px;
+      position: absolute; top: 6px; left: 50%; transform: translateX(-50%);
+      animation: scrollDot 2s infinite;
+    }
+
+    /* ─── LAYOUT ─── */
+    .page-layout {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      max-width: 1300px; margin: 0 auto;
+      padding: 0 40px 100px;
+      gap: 60px; align-items: start;
+      position: relative; z-index: 1;
+    }
+    .sidebar {
+      position: sticky; top: 84px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px; padding: 28px;
+    }
+    .sidebar-title {
+      font-size: .6rem; letter-spacing: 4px; text-transform: uppercase;
+      color: var(--gold); font-weight: 700; margin-bottom: 20px;
+    }
+    .sidebar-nav { list-style: none; }
+    .sidebar-nav li { margin-bottom: 2px; }
+    .sidebar-nav a {
+      display: flex; align-items: center; gap: 10px;
+      padding: 8px 12px; border-radius: 10px;
+      text-decoration: none; color: var(--muted);
+      font-size: .8rem; font-weight: 500;
+      transition: all .2s var(--ease);
+    }
+    .sidebar-nav a:hover, .sidebar-nav a.active {
+      background: var(--gold-dim); color: var(--gold-light);
+    }
+    .sidebar-num {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: var(--gold-dim); border: 1px solid var(--gold-border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .6rem; font-weight: 700; color: var(--gold); flex-shrink: 0;
+    }
+
+    /* ─── CONTENT ─── */
+    .content { padding-top: 80px; }
+    .chapter { margin-bottom: 100px; scroll-margin-top: 84px; }
+    .chapter-eyebrow {
+      font-size: .6rem; letter-spacing: 4px; text-transform: uppercase;
+      color: var(--gold); font-weight: 700; margin-bottom: 10px;
+    }
+    .chapter-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      color: #fff; line-height: 1.15; margin-bottom: 16px;
+    }
+    .chapter-desc {
+      color: var(--muted); font-size: 1rem;
+      max-width: 680px; line-height: 1.8; margin-bottom: 40px;
+    }
+    .divider {
+      width: 50px; height: 2px; margin: 60px 0;
+      background: linear-gradient(90deg, var(--gold), transparent);
+    }
+
+    /* ─── CARDS ─── */
+    .card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 32px;
+      transition: all .3s var(--ease); position: relative; overflow: hidden;
+    }
+    .card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      opacity: 0; transition: opacity .3s;
+    }
+    .card:hover { border-color: var(--gold-border); transform: translateY(-2px); }
+    .card:hover::before { opacity: 1; }
+    .card-icon { font-size: 1.8rem; margin-bottom: 16px; display: block; }
+    .card-title { font-weight: 700; color: var(--gold-light); font-size: .95rem; margin-bottom: 8px; }
+    .card-text { color: var(--muted); font-size: .88rem; line-height: 1.7; }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+
+    /* ─── TABLE ─── */
+    .table-wrap { overflow-x: auto; border-radius: 14px; border: 1px solid var(--border); }
+    table { width: 100%; border-collapse: collapse; }
+    thead tr { background: var(--gold-dim); }
+    thead th {
+      padding: 14px 18px; text-align: left;
+      font-size: .65rem; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--gold); font-weight: 700;
+    }
+    tbody tr { border-top: 1px solid var(--border); transition: background .2s; }
+    tbody tr:hover { background: rgba(197,160,89,.04); }
+    tbody td { padding: 14px 18px; font-size: .88rem; color: var(--text); }
+    tbody td:first-child { color: var(--gold-light); font-weight: 600; }
+
+    /* ─── BADGE ─── */
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 12px; border-radius: 20px; font-size: .7rem; font-weight: 700;
+    }
+    .badge-gold { background: var(--gold-dim); color: var(--gold); border: 1px solid var(--gold-border); }
+    .badge-green { background: var(--green-dim); color: var(--green); border: 1px solid rgba(0,232,0,.25); }
+    .badge-red { background: var(--red-dim); color: var(--red); border: 1px solid rgba(229,72,77,.25); }
+
+    /* ─── CALLOUT ─── */
+    .callout {
+      border-radius: 14px; padding: 24px 28px;
+      border-left: 3px solid; margin: 28px 0;
+      display: flex; gap: 16px; align-items: flex-start;
+    }
+    .callout-warn { background: var(--red-dim); border-color: var(--red); }
+    .callout-info { background: var(--gold-dim); border-color: var(--gold); }
+    .callout-green { background: var(--green-dim); border-color: var(--green); }
+    .callout-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
+    .callout-body { font-size: .9rem; color: var(--text); line-height: 1.7; }
+    .callout-body strong { color: var(--gold-light); }
+
+    /* ─── TIMELINE ─── */
+    .timeline { position: relative; padding-left: 36px; }
+    .timeline::before {
+      content: '';
+      position: absolute; left: 10px; top: 6px; bottom: 6px; width: 2px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+    }
+    .timeline-item { position: relative; margin-bottom: 32px; }
+    .timeline-dot {
+      position: absolute; left: -30px; top: 4px;
+      width: 14px; height: 14px; border-radius: 50%;
+      background: var(--gold); border: 2px solid var(--bg);
+      box-shadow: 0 0 12px rgba(197,160,89,.4);
+    }
+    .timeline-label {
+      font-size: .65rem; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--gold); font-weight: 700; margin-bottom: 4px;
+    }
+    .timeline-title { font-weight: 700; color: var(--gold-light); margin-bottom: 6px; }
+    .timeline-body { color: var(--muted); font-size: .88rem; line-height: 1.7; }
+
+    /* ─── QUOTE ─── */
+    .quote-block {
+      border-left: 3px solid var(--gold-border);
+      padding: 16px 24px; margin: 20px 0;
+      background: rgba(197,160,89,.04); border-radius: 0 12px 12px 0;
+    }
+    .quote-block p { font-size: .92rem; color: var(--text); font-style: italic; line-height: 1.8; }
+    .quote-author { font-size: .75rem; color: var(--gold); font-weight: 700; margin-top: 8px; font-style: normal; }
+
+    /* ─── ACTION ITEM ─── */
+    .action-item {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 18px 22px;
+      display: flex; gap: 16px; align-items: flex-start;
+      margin-bottom: 12px; transition: all .2s var(--ease);
+    }
+    .action-item:hover { border-color: var(--gold-border); }
+    .action-num {
+      width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+      background: var(--gold-dim); border: 1px solid var(--gold-border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .75rem; font-weight: 800; color: var(--gold);
+    }
+    .action-info { flex: 1; }
+    .action-title { font-weight: 700; color: var(--gold-light); font-size: .92rem; margin-bottom: 4px; }
+    .action-meta { font-size: .78rem; color: var(--muted); }
+    .action-owner { color: var(--gold); font-weight: 600; }
+
+    /* ─── INSIGHT CARD ─── */
+    .insight-card {
+      background: linear-gradient(135deg, rgba(197,160,89,.07), rgba(15,28,46,.5));
+      border: 1px solid var(--gold-border);
+      border-radius: 16px; padding: 28px 32px; margin-bottom: 20px;
+    }
+    .insight-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem; font-weight: 900;
+      color: rgba(197,160,89,.25); line-height: 1; margin-bottom: 8px;
+    }
+    .insight-title { font-weight: 700; color: #fff; font-size: 1rem; margin-bottom: 8px; }
+    .insight-body { color: var(--muted); font-size: .88rem; line-height: 1.75; }
+
+    /* ─── STAT STRIP ─── */
+    .stat-strip {
+      display: flex; gap: 0; border-radius: 16px; overflow: hidden;
+      border: 1px solid var(--border); margin-bottom: 40px;
+    }
+    .stat-item {
+      flex: 1; padding: 28px 24px; text-align: center;
+      border-right: 1px solid var(--border);
+      background: var(--bg-card);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; font-weight: 900; color: var(--gold);
+      line-height: 1; margin-bottom: 6px;
+    }
+    .stat-label { font-size: .7rem; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+
+    /* ─── PLATFORM TAG ─── */
+    .platform-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
+    .platform-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 16px; border-radius: 10px;
+      background: var(--bg-card); border: 1px solid var(--border);
+      font-size: .82rem; font-weight: 600; color: var(--text);
+    }
+    .platform-tag .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .dot-gold { background: var(--gold); box-shadow: 0 0 6px var(--gold); }
+    .dot-green { background: var(--green); box-shadow: 0 0 6px var(--green); }
+    .dot-red { background: var(--red); box-shadow: 0 0 6px var(--red); }
+    .dot-blue { background: #4f9cf9; box-shadow: 0 0 6px #4f9cf9; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      position: relative; z-index: 1;
+      text-align: center; padding: 60px 40px;
+      border-top: 1px solid var(--border);
+    }
+    .footer-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem; color: var(--gold); margin-bottom: 12px;
+    }
+    footer p { font-size: .8rem; color: var(--muted); }
+
+    @media (max-width: 900px) {
+      .page-layout { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .stat-strip { flex-direction: column; }
+      .stat-item { border-right: none; border-bottom: 1px solid var(--border); }
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">ViDi · Ecossistema Live</div>
+  <div class="nav-links">
+    <a href="#contexto">Contexto</a>
+    <a href="#conceito">O Conceito</a>
+    <a href="#plataformas">Plataformas</a>
+    <a href="#decisoes">Decisões</a>
+    <a href="#revisoes">Revisões</a>
+    <a href="#plano">Plano de Ação</a>
+    <a href="#insights">Insights</a>
+  </div>
+  <span class="nav-badge">30 Mar 2026</span>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">
+    <span class="hero-eyebrow-dot"></span>
+    Reunião Interna · Alinhamento Estratégico
+  </div>
+  <h1>O Chefe Morreu.<br/>O Líder Nasceu.</h1>
+  <p class="hero-sub">
+    Diretoria ViDi / Ecossistema Live — Estratégia de marca pessoal Luiz Portal,
+    plataformas de conteúdo e automações de produção.
+  </p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <div class="hero-meta-label">Data</div>
+      <div class="hero-meta-value">30 Mar 2026</div>
+    </div>
+    <div class="hero-meta-item">
+      <div class="hero-meta-label">Participantes</div>
+      <div class="hero-meta-value">4 pessoas</div>
+    </div>
+    <div class="hero-meta-item">
+      <div class="hero-meta-label">Tipo</div>
+      <div class="hero-meta-value">Estratégia</div>
+    </div>
+    <div class="hero-meta-item">
+      <div class="hero-meta-label">Plataforma principal</div>
+      <div class="hero-meta-value">YouTube</div>
+    </div>
+    <div class="hero-meta-item">
+      <div class="hero-meta-label">Conceito central</div>
+      <div class="hero-meta-value">O Chefe Morreu</div>
+    </div>
+  </div>
+  <div class="hero-scroll"></div>
+</section>
+
+<!-- LAYOUT -->
+<div class="page-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-title">Índice</div>
+    <ul class="sidebar-nav">
+      <li><a href="#contexto"><span class="sidebar-num">1</span> Contexto da Reunião</a></li>
+      <li><a href="#conceito"><span class="sidebar-num">2</span> O Chefe Morreu</a></li>
+      <li><a href="#plataformas"><span class="sidebar-num">3</span> Estratégia Plataformas</a></li>
+      <li><a href="#decisoes"><span class="sidebar-num">4</span> Decisões Confirmadas</a></li>
+      <li><a href="#revisoes"><span class="sidebar-num">5</span> Revisões vs Anterior</a></li>
+      <li><a href="#plano"><span class="sidebar-num">6</span> Plano de Ação</a></li>
+      <li><a href="#insights"><span class="sidebar-num">7</span> Insights Estratégicos</a></li>
+    </ul>
+  </aside>
+
+  <!-- CONTENT -->
+  <main class="content">
+
+    <!-- 1. CONTEXTO -->
+    <section class="chapter" id="contexto">
+      <div class="chapter-eyebrow">01 — Contexto</div>
+      <h2 class="chapter-title">Reunião de Alinhamento Estratégico</h2>
+      <p class="chapter-desc">
+        Reunião interna da diretoria ViDi / Ecossistema Live para definição da estratégia de marca
+        pessoal de Luiz Portal e alinhamento do ecossistema de produção de conteúdo.
+      </p>
+
+      <div class="stat-strip">
+        <div class="stat-item">
+          <div class="stat-value">4</div>
+          <div class="stat-label">Participantes</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">30/03</div>
+          <div class="stat-label">Data</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">13k</div>
+          <div class="stat-label">Views YT (10 dias, sem pago)</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">2h/sem</div>
+          <div class="stat-label">Dedicação Luiz</div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <span class="card-icon">👥</span>
+          <div class="card-title">Participantes</div>
+          <div class="card-text">
+            <strong style="color:var(--gold-light)">Luiz Portal</strong> — Conteúdo e estratégia<br/>
+            <strong style="color:var(--gold-light)">Cleber (TecnoIT)</strong> — Tecnologia e automação<br/>
+            <strong style="color:var(--gold-light)">João Victor</strong> — Estratégia digital<br/>
+            <strong style="color:var(--gold-light)">Ana</strong> — Suporte estratégico
+          </div>
+        </div>
+        <div class="card">
+          <span class="card-icon">🎯</span>
+          <div class="card-title">Objetivo da Reunião</div>
+          <div class="card-text">
+            Alinhar conceito de marca pessoal "O Chefe Morreu", definir papel de cada plataforma
+            (YouTube, Instagram, TikTok, LinkedIn) e estabelecer fluxo de produção automatizado
+            com IA (Whisper + Claude).
+          </div>
+        </div>
+      </div>
+
+      <div class="callout callout-info" style="margin-top:28px">
+        <span class="callout-icon">📊</span>
+        <div class="callout-body">
+          <strong>Dado validado na reunião:</strong> Canal YouTube do Ibrahim — 13.000 visualizações + 2.501 curtidas em 10 dias
+          sem tráfego pago. Com tráfego pago: 53.000 views + 5.000 curtidas. O YouTube já entrega alcance
+          orgânico qualificado quando o conteúdo é bom.
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- 2. CONCEITO -->
+    <section class="chapter" id="conceito">
+      <div class="chapter-eyebrow">02 — Conceito Central</div>
+      <h2 class="chapter-title">O Chefe Morreu</h2>
+      <p class="chapter-desc">
+        Definição final do conceito, brand asset e posicionamento baseado em Byron Sharp (How Brands Grow).
+      </p>
+
+      <div class="grid-3">
+        <div class="card">
+          <span class="card-icon">☠️</span>
+          <div class="card-title">O Vilão = O Chefe</div>
+          <div class="card-text">
+            Bater no chefe, zoar o comportamento de quem lidera mal.
+            "O Chefe Morreu" como mote de entrada — polêmico, compartilhável,
+            atinge quem sofre com chefe ruim.
+          </div>
+        </div>
+        <div class="card">
+          <span class="card-icon">☕</span>
+          <div class="card-title">Brand Asset = A Xícara</div>
+          <div class="card-text">
+            Assim como Redbull tem a latinha e Apple tem o pomo, Luiz terá a xícara com frases.
+            10 xícaras diferentes para 10 semanas de conteúdo. Loja futura de merchandise.
+          </div>
+        </div>
+        <div class="card">
+          <span class="card-icon">🏛️</span>
+          <div class="card-title">Comunidade = Legião de Líderes</div>
+          <div class="card-text">
+            Organizada em torno de um problema (o chefe), não de algo positivo.
+            Audiência de massa que filtra para quem compra. Haters são leads.
+          </div>
+        </div>
+      </div>
+
+      <div class="callout callout-info" style="margin-top: 28px">
+        <span class="callout-icon">📖</span>
+        <div class="callout-body">
+          <strong>Embasamento — Byron Sharp (How Brands Grow):</strong> Para existir na cabeça do consumidor,
+          uma marca precisa resumir-se a um personagem e um mote. O mote é "O Chefe Morreu".
+          Ponto de entrada único — ninguém está falando sobre liderança desse jeito no Brasil.
+        </div>
+      </div>
+
+      <div class="timeline" style="margin-top: 40px">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-label">Entrada de funil</div>
+          <div class="timeline-title">Conteúdo curto e polêmico — "desce o sarrafo no chefe"</div>
+          <div class="timeline-body">Reels, clips, TikTok de corte. Zoar chefe, mostrar tipos de chefes ruins.
+          Gera alcance, compartilhamento e haters (que são leads).</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-label">Aprofundamento</div>
+          <div class="timeline-title">Conteúdo longo no YouTube — liderança de verdade</div>
+          <div class="timeline-body">Episódios de ~20 minutos. Converte chefe em líder.
+          Não entrega o que o mercado entrega. Forma líder de verdade.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-label">Conversão</div>
+          <div class="timeline-title">Produtos e serviços — cursos, palestras, consultoria</div>
+          <div class="timeline-body">CEO chega ao perfil depois que a audiência já deu volume e autoridade.
+          Vitrine executiva no Instagram para recepcionar o C-level.</div>
+        </div>
+      </div>
+
+      <div class="quote-block" style="margin-top: 32px">
+        <p>"Eu não vou me portar ridiculamente fazendo gracinha — isso eu não faço e não farei.
+        Mas as versões curtas, posso descer o sarrafo em chefe, zoar chefe, falar mal de chefe.
+        Isso dá audiência. E aí eu sempre vou trazer as pessoas para águas mais profundas."</p>
+        <div class="quote-author">— Luiz Portal, Reunião 30/03/2026</div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- 3. PLATAFORMAS -->
+    <section class="chapter" id="plataformas">
+      <div class="chapter-eyebrow">03 — Estratégia de Plataformas</div>
+      <h2 class="chapter-title">Papel de Cada Canal</h2>
+      <p class="chapter-desc">
+        Decisões definitivas sobre o role de cada plataforma no ecossistema de conteúdo.
+      </p>
+
+      <div class="platform-row">
+        <div class="platform-tag"><span class="dot dot-red"></span> YouTube — QG Principal</div>
+        <div class="platform-tag"><span class="dot dot-gold"></span> Instagram — Distribuição + Comunidade</div>
+        <div class="platform-tag"><span class="dot dot-blue"></span> LinkedIn — Autoridade B2B</div>
+        <div class="platform-tag"><span class="dot" style="background:#00c8ff;box-shadow:0 0 6px #00c8ff"></span> TikTok — Cortes para tráfego</div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <span class="card-icon">▶️</span>
+          <div class="card-title">YouTube — Plataforma Principal</div>
+          <div class="card-text">
+            Episódios de ~20 minutos como base de tudo. Conteúdo profundo de liderança.
+            1 episódio por semana. O YouTube já prova orgânico qualificado — 13k views em 10 dias sem pago.
+            <br/><br/>
+            <span class="badge badge-green">✓ QG do movimento</span>
+          </div>
+        </div>
+        <div class="card">
+          <span class="card-icon">📷</span>
+          <div class="card-title">Instagram — Distribuição + Vitrine</div>
+          <div class="card-text">
+            1 carrossel por semana (algoritmo). Reels curtos com cortes polêmicos.
+            Stories diários. Destaques como vitrine executiva: palestras, visitas a clientes,
+            escritórios bem estruturados.
+            <br/><br/>
+            <span class="badge badge-gold">Revisado: 1x/sem (era 3x)</span>
+          </div>
+        </div>
+        <div class="card">
+          <span class="card-icon">🎵</span>
+          <div class="card-title">TikTok — Cortes para YouTube</div>
+          <div class="card-text">
+            Não é plataforma primária. Recebe apenas cortes do YouTube (frases polêmicas,
+            "Seu chefe é um bosta"). Objetivo: viralizar e trazer tráfego para o YouTube.
+            Não converte diretamente — cumpre tabela.
+            <br/><br/>
+            <span class="badge badge-red">Revisado: só cortes</span>
+          </div>
+        </div>
+        <div class="card">
+          <span class="card-icon">💼</span>
+          <div class="card-title">LinkedIn — Autoridade B2B</div>
+          <div class="card-text">
+            Mesmo tema, outra embalagem. Conteúdo mais sóbrio.
+            Foco em mostrar repertório para entender o universo C-level.
+            Não que frequenta o que eles frequentam — mas que tem referências para entender seus problemas.
+            <br/><br/>
+            <span class="badge badge-gold">Mantido</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout callout-info" style="margin-top: 28px">
+        <span class="callout-icon">🔗</span>
+        <div class="callout-body">
+          <strong>Funil Complementar Luiz + Ibrahim:</strong> Luiz captura no nível do subordinado frustrado →
+          Ibrahim converte no nível C-level. O perfil do Ibrahim está posicionado em nível alto.
+          Luiz alimenta o Ibrahim com audiência qualificada que sobe. Os dois não competem — se complementam.
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- 4. DECISÕES -->
+    <section class="chapter" id="decisoes">
+      <div class="chapter-eyebrow">04 — Decisões</div>
+      <h2 class="chapter-title">O Que Foi Definido</h2>
+      <p class="chapter-desc">
+        Todas as decisões estratégicas confirmadas unanimemente na reunião.
+      </p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Decisão</th>
+              <th>Detalhe</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Conceito central</td>
+              <td>"O Chefe Morreu" — entrada polêmica + profundidade no YouTube</td>
+              <td><span class="badge badge-green">✓ Confirmado</span></td>
+            </tr>
+            <tr>
+              <td>Brand asset</td>
+              <td>A xícara com frases — elemento visual recorrente em todo conteúdo de vídeo</td>
+              <td><span class="badge badge-green">✓ Confirmado</span></td>
+            </tr>
+            <tr>
+              <td>YouTube como base</td>
+              <td>Episódios de ~20 min — 1x por semana — tudo parte daqui</td>
+              <td><span class="badge badge-green">✓ Confirmado</span></td>
+            </tr>
+            <tr>
+              <td>TikTok = cortes</td>
+              <td>Só recebe trechos do YouTube para trazer tráfego</td>
+              <td><span class="badge badge-gold">Revisado</span></td>
+            </tr>
+            <tr>
+              <td>Instagram</td>
+              <td>1 carrossel/semana + Reels curtos + Stories diários</td>
+              <td><span class="badge badge-gold">Revisado</span></td>
+            </tr>
+            <tr>
+              <td>Luiz + Ibrahim = funil</td>
+              <td>Luiz captura em nível menor, Ibrahim converte em nível C-level</td>
+              <td><span class="badge badge-green">✓ Confirmado</span></td>
+            </tr>
+            <tr>
+              <td>Comunidade</td>
+              <td>"Legião de Líderes" — organizada em torno do problema (o chefe)</td>
+              <td><span class="badge badge-green">✓ Confirmado</span></td>
+            </tr>
+            <tr>
+              <td>Haters = leads</td>
+              <td>Chefe que discorda é prospecto. O hater de nível médio virará lead ao discutir</td>
+              <td><span class="badge badge-green">✓ Confirmado</span></td>
+            </tr>
+            <tr>
+              <td>Manus no Instagram</td>
+              <td>Integração nativa disponível — explorar com Cleber para Luiz e Ibrahim</td>
+              <td><span class="badge badge-red">A explorar</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="margin-top: 40px">
+        <div class="chapter-eyebrow" style="margin-bottom: 16px">Fluxo de Produção Aprovado</div>
+        <div class="grid-2">
+          <div class="card">
+            <span class="card-icon">⚙️</span>
+            <div class="card-title">Pipeline Automatizado</div>
+            <div class="card-text">
+              2h/semana do Luiz (30–60 min de gravação bruta)<br/>
+              → Transcrição via <strong style="color:var(--gold-light)">Whisper</strong><br/>
+              → Fragmentação com <strong style="color:var(--gold-light)">Claude</strong><br/>
+              → Carrossel, scripts de Reel, legenda LinkedIn<br/>
+              → Aprovação via WhatsApp
+            </div>
+          </div>
+          <div class="card">
+            <span class="card-icon">📚</span>
+            <div class="card-title">Conteúdo Bruto Gratuito</div>
+            <div class="card-text">
+              Transcrições das palestras antigas do Luiz são conteúdo bruto gratuito
+              prontas para o pipeline. João transcreve via Whisper nas semanas de 07/04
+              e alimenta o banco de conteúdo.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- 5. REVISÕES -->
+    <section class="chapter" id="revisoes">
+      <div class="chapter-eyebrow">05 — Revisões</div>
+      <h2 class="chapter-title">O Que Mudou vs Documento Anterior</h2>
+      <p class="chapter-desc">
+        Itens ajustados durante a reunião em relação à estratégia anterior.
+      </p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Antes</th>
+              <th>Depois da reunião</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>TikTok</td>
+              <td>Plataforma de alcance massivo, 3–5x/semana, conteúdo próprio</td>
+              <td>Apenas cortes do YouTube para trazer tráfego. Não é plataforma primária.</td>
+            </tr>
+            <tr>
+              <td>Carrossel Instagram</td>
+              <td>3x por semana</td>
+              <td>1x por semana — maturidade: não vai viralizar agora</td>
+            </tr>
+            <tr>
+              <td>Instagram</td>
+              <td>QG do movimento</td>
+              <td>Canal de distribuição + comunidade. YouTube é o QG de profundidade.</td>
+            </tr>
+            <tr>
+              <td>YouTube</td>
+              <td>1x/semana (já definido)</td>
+              <td>Confirmado como QG principal — resultado validado pelo canal do Ibrahim</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout callout-warn" style="margin-top: 28px">
+        <span class="callout-icon">⚠️</span>
+        <div class="callout-body">
+          <strong>Alerta estratégico (João Victor):</strong> O risco real é que, ao longo do tempo,
+          o conteúdo caia nas mesmas coisas que já existem sobre liderança na internet.
+          A diferença precisa ser sustentada: criticar a falha antes de mostrar a solução,
+          e só mostrar a solução de uma forma que o mercado ainda não entrega.
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- 6. PLANO DE AÇÃO -->
+    <section class="chapter" id="plano">
+      <div class="chapter-eyebrow">06 — Plano de Ação</div>
+      <h2 class="chapter-title">Próximas Atividades</h2>
+      <p class="chapter-desc">
+        Ações definidas na reunião com responsável e prazo. Organizado por urgência.
+      </p>
+
+      <div style="margin-bottom: 32px">
+        <div class="chapter-eyebrow" style="color: var(--red); margin-bottom: 16px">Imediatas — Esta Semana</div>
+
+        <div class="action-item">
+          <div class="action-num">1</div>
+          <div class="action-info">
+            <div class="action-title">Enviar pagamentos pendentes para contabilidade (Tecom)</div>
+            <div class="action-meta">Responsável: <span class="action-owner">Luiz Portal</span> · Prazo: Terça, 31/03</div>
+          </div>
+          <span class="badge badge-red">Urgente</span>
+        </div>
+
+        <div class="action-item">
+          <div class="action-num">2</div>
+          <div class="action-info">
+            <div class="action-title">Sessão de gravação no estúdio — regravação do curso + conteúdo Instagram</div>
+            <div class="action-meta">Responsável: <span class="action-owner">Luiz + Equipe</span> · Quarta, 01/04 — 14:30 às 17:30</div>
+          </div>
+          <span class="badge badge-gold">Esta semana</span>
+        </div>
+
+        <div class="action-item">
+          <div class="action-num">3</div>
+          <div class="action-info">
+            <div class="action-title">Confirmar prazo com designer de branding — paleta "O Chefe Morreu", fonte, identidade visual</div>
+            <div class="action-meta">Responsável: <span class="action-owner">Cleber</span> · Prazo: Terça, 31/03</div>
+          </div>
+          <span class="badge badge-gold">Esta semana</span>
+        </div>
+
+        <div class="action-item">
+          <div class="action-num">4</div>
+          <div class="action-info">
+            <div class="action-title">Explorar integração Manus + Instagram (para Luiz e Ibrahim)</div>
+            <div class="action-meta">Responsável: <span class="action-owner">Cleber</span> · Prazo: Esta semana</div>
+          </div>
+          <span class="badge badge-gold">Esta semana</span>
+        </div>
+
+        <div class="action-item">
+          <div class="action-num">5</div>
+          <div class="action-info">
+            <div class="action-title">Ajustar documento de estratégia com revisões da reunião (carrossel 1x, TikTok só cortes)</div>
+            <div class="action-meta">Responsável: <span class="action-owner">João Victor + Cleber</span> · Prazo: Terça, 31/03</div>
+          </div>
+          <span class="badge badge-gold">Esta semana</span>
+        </div>
+      </div>
+
+      <div class="callout callout-green" style="margin-bottom: 32px">
+        <span class="callout-icon">🎬</span>
+        <div class="callout-body">
+          <strong>Gravação Quarta 01/04 — Detalhamento:</strong> Horário 14:30–17:30 · Estúdio.<br/>
+          O que gravar: Regravação do curso Liderança Antifrágil (manter cenário igual — inconsistência visual anterior) +
+          Conteúdo para Instagram Reels + Cortes para TikTok.<br/>
+          Atenção: não exagerar no café (ritmo acelerou e prejudicou Ibrahim) · Mesa digitalizadora confirmada ·
+          Cenas de live do fundo anterior eram incompatíveis — manter cenário atual.
+        </div>
+      </div>
+
+      <div class="chapter-eyebrow" style="color: var(--gold); margin-bottom: 16px">Curto Prazo — Semana de 07/04</div>
+
+      <div class="action-item">
+        <div class="action-num">6</div>
+        <div class="action-info">
+          <div class="action-title">Fotografar 10 xícaras com frases para as primeiras 10 semanas de conteúdo</div>
+          <div class="action-meta">Responsável: <span class="action-owner">Equipe Visual</span> · Semana de 07/04</div>
+        </div>
+        <span class="badge badge-gold">Abril</span>
+      </div>
+
+      <div class="action-item">
+        <div class="action-num">7</div>
+        <div class="action-info">
+          <div class="action-title">Gravar vídeo manifesto "O Chefe Morreu" (5 minutos)</div>
+          <div class="action-meta">Responsável: <span class="action-owner">Luiz + Estúdio</span> · Semana de 07/04</div>
+        </div>
+        <span class="badge badge-gold">Abril</span>
+      </div>
+
+      <div class="action-item">
+        <div class="action-num">8</div>
+        <div class="action-info">
+          <div class="action-title">Transcrever 3 palestras antigas do Luiz via Whisper (conteúdo bruto gratuito)</div>
+          <div class="action-meta">Responsável: <span class="action-owner">João Victor</span> · Semana de 07/04</div>
+        </div>
+        <span class="badge badge-gold">Abril</span>
+      </div>
+
+      <div class="action-item">
+        <div class="action-num">9</div>
+        <div class="action-info">
+          <div class="action-title">Definir username oficial (@luizportal ou @luizportallider)</div>
+          <div class="action-meta">Responsável: <span class="action-owner">Luiz Portal</span> · Prazo: 01/04</div>
+        </div>
+        <span class="badge badge-gold">Abril</span>
+      </div>
+
+      <div class="action-item">
+        <div class="action-num">10</div>
+        <div class="action-info">
+          <div class="action-title">Reestruturar destaques (highlights) do Instagram com foco em vitrine executiva</div>
+          <div class="action-meta">Responsável: <span class="action-owner">João Victor</span> · Semana de 07/04</div>
+        </div>
+        <span class="badge badge-gold">Abril</span>
+      </div>
+
+      <div class="action-item">
+        <div class="action-num">11</div>
+        <div class="action-info">
+          <div class="action-title">Criar template de carrossel "O Chefe Morreu" no Canva</div>
+          <div class="action-meta">Responsável: <span class="action-owner">João Victor</span> · Semana de 07/04</div>
+        </div>
+        <span class="badge badge-gold">Abril</span>
+      </div>
+
+      <div class="action-item">
+        <div class="action-num">12</div>
+        <div class="action-info">
+          <div class="action-title">Testar pipeline completo: gravar → Whisper → Claude → carrossel → agendar</div>
+          <div class="action-meta">Responsável: <span class="action-owner">Cleber + João</span> · Semana de 14/04</div>
+        </div>
+        <span class="badge badge-gold">Abril</span>
+      </div>
+
+      <div class="table-wrap" style="margin-top: 40px">
+        <table>
+          <thead>
+            <tr>
+              <th>Ponto em Aberto</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Canal de cortes separado no YouTube (só Shorts)</td>
+              <td>Em discussão — testar primeiro sem canal separado</td>
+            </tr>
+            <tr>
+              <td>Múltiplos perfis Instagram (Luiz + Ibrahim em collab)</td>
+              <td>Instagram tem collab — usar no YouTube também</td>
+            </tr>
+            <tr>
+              <td>Loja de marca (xícaras, merchandise)</td>
+              <td>Não é objetivo agora, mas não ignorar o movimento</td>
+            </tr>
+            <tr>
+              <td>Tráfego pago — quando iniciar</td>
+              <td>Não discutido — definir calendário</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- 7. INSIGHTS -->
+    <section class="chapter" id="insights">
+      <div class="chapter-eyebrow">07 — Insights</div>
+      <h2 class="chapter-title">Insights Estratégicos da Reunião</h2>
+      <p class="chapter-desc">
+        Raciocínios e descobertas que moldam a estratégia de longo prazo do ecossistema.
+      </p>
+
+      <div class="insight-card">
+        <div class="insight-num">01</div>
+        <div class="insight-title">A Lógica do Funil Invertido</div>
+        <div class="insight-body">
+          O público que vai fazer os números crescerem <strong style="color:var(--gold-light)">não é</strong> o cliente final.
+          É o subordinado, o gerente, o CLT frustrado com o chefe dele. Esse público compartilha, comenta,
+          vira hater dos chefes — e no processo, sobe os números do perfil até que o CEO apareça.<br/><br/>
+          Quando o CEO chega no perfil, ele não encontra zoeira — encontra autoridade, repertório e profundidade.
+          A primeira fileira do Instagram precisa ser essa vitrine executiva.
+        </div>
+      </div>
+
+      <div class="insight-card">
+        <div class="insight-num">02</div>
+        <div class="insight-title">Luiz vs Ibrahim — Complementaridade Estratégica</div>
+        <div class="insight-body">
+          <strong style="color:var(--gold-light)">Luiz</strong> = entrada de funil, crítica ao comportamento,
+          provocação do chefe, quem está subindo.<br/>
+          <strong style="color:var(--gold-light)">Ibrahim</strong> = topo do funil, autoridade consolidada, quem já chegou lá.<br/><br/>
+          Os dois perfis não competem. O Luiz alimenta o Ibrahim com audiência qualificada que sobe.
+          O hater inicial vai ser o chefe de nível médio — e quando vier falar "o chefe não é assim",
+          ele virou um lead.
+        </div>
+      </div>
+
+      <div class="insight-card">
+        <div class="insight-num">03</div>
+        <div class="insight-title">A Armadilha do Conteúdo Igual</div>
+        <div class="insight-body">
+          O risco ao longo do tempo é que o conteúdo caia nas mesmas coisas que já existem sobre liderança
+          na internet. A diferença que precisa ser sustentada:<br/><br/>
+          → Criticar a falha <em>antes</em> de mostrar a solução<br/>
+          → Mostrar a solução de uma forma que o mercado ainda não entrega<br/>
+          → Não entregar o que a galera rasa entrega — formar líder de verdade, converter chefe em líder
+        </div>
+      </div>
+
+      <div class="insight-card">
+        <div class="insight-num">04</div>
+        <div class="insight-title">YouTube como Plataforma de Referência</div>
+        <div class="insight-body">
+          O dado trazido pelo Luiz é relevante: 13.000 views + 2.501 curtidas em 10 dias sem tráfego pago
+          no YouTube supera o desempenho com tráfego pago no Instagram. O YouTube já entrega alcance
+          orgânico qualificado quando o conteúdo é bom.<br/><br/>
+          Com tráfego pago: 53.000 views + 5.000 curtidas. A aposta é clara:
+          <strong style="color:var(--gold-light)">conteúdo de qualidade no YouTube primeiro.</strong>
+        </div>
+      </div>
+
+      <div class="insight-card">
+        <div class="insight-num">05</div>
+        <div class="insight-title">A Guerra YouTube vs Instagram</div>
+        <div class="insight-body">
+          O Instagram está apostando em conteúdo profundo para disputar espaço com o YouTube.
+          O YouTube lançou Shorts para ir ao mobile. O Instagram respondeu botando fichas no conteúdo longo.<br/><br/>
+          O desafio de Luiz: <strong style="color:var(--gold-light)">surfar a onda</strong> —
+          as plataformas estão valorizando o conteúdo profundo, mas o público ainda valoriza o conteúdo raso.
+          Estratégia: entrar pelo raso (TikTok/Reels polêmicos), levar para o profundo (YouTube).
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">ViDi · Ecossistema Live</div>
+  <p>Documento interno · Reunião de Diretoria · 30 de março de 2026</p>
+  <p style="margin-top: 8px; font-size: .7rem">Gerado por Claude Code / TecnoIT</p>
+</footer>
+
+<script>
+  // Sidebar active state on scroll
+  const chapters = document.querySelectorAll('.chapter');
+  const navLinks = document.querySelectorAll('.sidebar-nav a');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(a => {
+          a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id);
+        });
+      }
+    });
+  }, { threshold: 0.3, rootMargin: '-80px 0px 0px 0px' });
+  chapters.forEach(c => observer.observe(c));
+</script>
+
+</body>
+</html>
