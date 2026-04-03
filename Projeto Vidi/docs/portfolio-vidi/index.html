@@ -1,0 +1,925 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PortfÃ³lio de Produtos ViDi Â· Ecossistema Live 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg:          #05070A;
+      --bg-card:     #0D1117;
+      --bg-card-2:   #111820;
+      --gold:        #C5A059;
+      --gold-light:  #E2C882;
+      --gold-dim:    #2A2010;
+      --gold-border: rgba(197,160,89,.22);
+      --white:       rgba(255,255,255,.87);
+      --muted:       rgba(139,149,161,.85);
+      --green:       #22C55E;
+      --green-dim:   rgba(34,197,94,.08);
+      --red:         #EF4444;
+      --red-dim:     rgba(239,68,68,.08);
+      --amber:       #F59E0B;
+      --amber-dim:   rgba(245,158,11,.1);
+      --divider:     rgba(30,37,48,.9);
+      --border:      rgba(255,255,255,.07);
+      --ease:        cubic-bezier(.16,1,.3,1);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg); color: var(--white);
+      line-height: 1.6; overflow-x: hidden;
+    }
+
+    /* â”€â”€â”€ TEXTURE â”€â”€â”€ */
+    body::before {
+      content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 60L60 0M-10 10L10-10M50 70L70 50' stroke='rgba(255,255,255,.015)' stroke-width='1'/%3E%3C/svg%3E");
+    }
+
+    /* â”€â”€â”€ ANIMATIONS â”€â”€â”€ */
+    @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes pulse  { 0%,100% { opacity:1; } 50% { opacity:.4; } }
+    .reveal { opacity:0; transform:translateY(24px); transition:opacity .7s var(--ease), transform .7s var(--ease); }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+
+    /* â”€â”€â”€ TOP BAR â”€â”€â”€ */
+    .top-bar { position:fixed; top:0; left:0; right:0; height:3px; background:var(--gold); z-index:200; }
+
+    /* â”€â”€â”€ NAV â”€â”€â”€ */
+    nav {
+      position:fixed; top:3px; left:0; right:0; z-index:100;
+      height:60px; display:flex; align-items:center; justify-content:space-between;
+      padding:0 40px;
+      background:rgba(5,7,10,.9); backdrop-filter:blur(20px);
+      border-bottom:1px solid var(--border);
+    }
+    .nav-brand { font-family:'Playfair Display',serif; font-size:1.1rem; font-weight:700; color:var(--gold); letter-spacing:.5px; }
+    .nav-links { display:flex; gap:6px; flex-wrap:wrap; }
+    .nav-links a {
+      padding:5px 12px; border-radius:20px; text-decoration:none;
+      font-size:.72rem; font-weight:600; color:var(--muted);
+      transition:all .2s var(--ease);
+    }
+    .nav-links a:hover { background:var(--gold-dim); color:var(--gold-light); }
+    .nav-badge {
+      padding:4px 12px; border-radius:20px;
+      background:var(--gold-dim); border:1px solid var(--gold-border);
+      font-size:.6rem; letter-spacing:2px; text-transform:uppercase;
+      font-weight:700; color:var(--gold);
+    }
+
+    /* â”€â”€â”€ HERO â”€â”€â”€ */
+    .hero {
+      position:relative; z-index:1;
+      min-height:100vh; display:flex; flex-direction:column;
+      justify-content:center; align-items:center;
+      text-align:center; padding:120px 20px 80px;
+      background:radial-gradient(ellipse 80% 70% at 50% 40%, rgba(15,28,46,.95) 0%, transparent 70%);
+    }
+    .hero::after { content:''; position:absolute; bottom:0; left:0; right:0; height:180px;
+      background:linear-gradient(to bottom, transparent, var(--bg)); pointer-events:none; }
+    .hero-left-bar { position:absolute; left:0; top:0; bottom:0; width:10px; background:var(--gold); }
+    .hero-eyebrow {
+      display:inline-flex; align-items:center; gap:10px;
+      padding:6px 20px; border-radius:50px;
+      background:var(--gold-dim); border:1px solid var(--gold-border);
+      font-size:.6rem; letter-spacing:4px; text-transform:uppercase;
+      font-weight:700; color:var(--gold); margin-bottom:32px;
+      animation:fadeUp .8s var(--ease) both;
+    }
+    .hero-dot { width:6px; height:6px; border-radius:50%; background:var(--green); box-shadow:0 0 8px var(--green); animation:pulse 2s infinite; }
+    .hero h1 {
+      font-family:'Playfair Display',serif;
+      font-size:clamp(2.8rem,7vw,5rem); font-weight:900;
+      line-height:1.05; letter-spacing:-2px;
+      background:linear-gradient(135deg,#fff 0%,var(--gold) 55%,var(--gold-light) 100%);
+      -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+      margin-bottom:16px; animation:fadeUp .8s .15s var(--ease) both;
+    }
+    .hero-sub {
+      font-size:clamp(.85rem,1.5vw,1rem); color:var(--muted);
+      max-width:560px; letter-spacing:.5px; line-height:1.8;
+      animation:fadeUp .8s .3s var(--ease) both;
+    }
+    .hero-meta {
+      display:flex; gap:40px; margin-top:48px; flex-wrap:wrap;
+      justify-content:center; animation:fadeUp .8s .45s var(--ease) both;
+    }
+    .hero-meta-item { text-align:center; }
+    .hero-meta-label { font-size:.58rem; letter-spacing:3px; text-transform:uppercase; color:var(--muted); margin-bottom:4px; }
+    .hero-meta-value { font-size:1rem; font-weight:700; color:var(--gold-light); }
+
+    /* â”€â”€â”€ LAYOUT â”€â”€â”€ */
+    .page-layout {
+      display:grid; grid-template-columns:240px 1fr;
+      max-width:1280px; margin:0 auto;
+      padding:0 40px 100px; gap:56px; align-items:start;
+      position:relative; z-index:1;
+    }
+    @media(max-width:900px) { .page-layout { grid-template-columns:1fr; } .sidebar { display:none; } }
+
+    /* â”€â”€â”€ SIDEBAR â”€â”€â”€ */
+    .sidebar {
+      position:sticky; top:80px;
+      background:var(--bg-card); border:1px solid var(--border);
+      border-radius:18px; padding:24px;
+    }
+    .sidebar-title { font-size:.58rem; letter-spacing:4px; text-transform:uppercase; color:var(--gold); font-weight:700; margin-bottom:16px; }
+    .sidebar-nav { list-style:none; }
+    .sidebar-nav li { margin-bottom:2px; }
+    .sidebar-nav a {
+      display:flex; align-items:center; gap:10px;
+      padding:7px 10px; border-radius:10px;
+      text-decoration:none; color:var(--muted);
+      font-size:.78rem; font-weight:500; transition:all .2s var(--ease);
+    }
+    .sidebar-nav a:hover, .sidebar-nav a.active { background:var(--gold-dim); color:var(--gold-light); }
+    .sidebar-num {
+      width:20px; height:20px; border-radius:50%;
+      background:var(--gold-dim); border:1px solid var(--gold-border);
+      display:flex; align-items:center; justify-content:center;
+      font-size:.58rem; font-weight:700; color:var(--gold); flex-shrink:0;
+    }
+
+    /* â”€â”€â”€ CONTENT â”€â”€â”€ */
+    .content { padding-top:80px; }
+    .chapter { margin-bottom:90px; scroll-margin-top:80px; }
+    .chapter-eyebrow { font-size:.58rem; letter-spacing:4px; text-transform:uppercase; color:var(--gold); font-weight:700; margin-bottom:10px; }
+    .chapter-title {
+      font-family:'Playfair Display',serif;
+      font-size:clamp(1.8rem,3vw,2.5rem); color:#fff;
+      line-height:1.15; margin-bottom:14px;
+    }
+    .chapter-desc { font-size:.9rem; color:var(--muted); max-width:660px; line-height:1.7; margin-bottom:32px; }
+    .divider { height:1px; background:var(--border); margin:80px 0; }
+
+    /* â”€â”€â”€ CARD â”€â”€â”€ */
+    .card {
+      background:var(--bg-card); border:1px solid var(--border);
+      border-radius:16px; padding:24px;
+      box-shadow:0 4px 24px rgba(0,0,0,.35);
+      transition:border-color .2s, transform .2s;
+    }
+    .card:hover { border-color:var(--gold-border); transform:translateY(-2px); }
+    .card-icon { font-size:1.6rem; margin-bottom:10px; display:block; }
+    .card-title { font-size:.95rem; font-weight:700; color:var(--white); margin-bottom:8px; }
+    .card-text { font-size:.85rem; color:var(--muted); line-height:1.6; }
+
+    /* â”€â”€â”€ ACCENT CARD â”€â”€â”€ */
+    .accent-card { border-left:4px solid var(--gold); }
+    .accent-card.green { border-left-color:var(--green); }
+    .accent-card.amber { border-left-color:var(--amber); }
+
+    /* â”€â”€â”€ PRICE TAG â”€â”€â”€ */
+    .price-display { margin:14px 0 10px; }
+    .price-value { font-family:'Playfair Display',serif; font-size:2rem; font-weight:700; color:#fff; line-height:1; }
+    .price-label { font-size:.72rem; color:var(--muted); margin-top:3px; }
+
+    /* â”€â”€â”€ GRIDS â”€â”€â”€ */
+    .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+    .grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    @media(max-width:700px) { .grid-2,.grid-3 { grid-template-columns:1fr; } }
+
+    /* â”€â”€â”€ BADGE â”€â”€â”€ */
+    .badge {
+      display:inline-flex; align-items:center;
+      padding:3px 10px; border-radius:20px;
+      font-size:.68rem; font-weight:700; letter-spacing:.5px;
+      text-transform:uppercase;
+    }
+    .badge-gold  { background:var(--gold-dim); color:var(--gold-light); border:1px solid var(--gold-border); }
+    .badge-green { background:var(--green-dim); color:var(--green); border:1px solid rgba(34,197,94,.2); }
+    .badge-red   { background:var(--red-dim); color:var(--red); border:1px solid rgba(239,68,68,.2); }
+    .badge-amber { background:var(--amber-dim); color:var(--amber); border:1px solid rgba(245,158,11,.2); }
+    .badge-teal  { background:rgba(0,229,204,.06); color:#00E5CC; border:1px solid rgba(0,229,204,.2); }
+
+    /* â”€â”€â”€ CALLOUT â”€â”€â”€ */
+    .callout {
+      display:flex; gap:14px; align-items:flex-start;
+      padding:16px 20px; border-radius:12px;
+      border:1px solid var(--border); background:var(--bg-card);
+    }
+    .callout-gold   { border-color:var(--gold-border); background:var(--gold-dim); }
+    .callout-green  { border-color:rgba(34,197,94,.2); background:var(--green-dim); }
+    .callout-red    { border-color:rgba(239,68,68,.2); background:var(--red-dim); }
+    .callout-amber  { border-color:rgba(245,158,11,.2); background:var(--amber-dim); }
+    .callout-icon   { font-size:1.1rem; margin-top:1px; flex-shrink:0; }
+    .callout-body   { font-size:.85rem; color:var(--muted); line-height:1.6; }
+    .callout-body strong { color:var(--white); }
+
+    /* â”€â”€â”€ SECTION HEADER IN CARDS â”€â”€â”€ */
+    .section-label {
+      font-size:.62rem; letter-spacing:3px; text-transform:uppercase;
+      font-weight:700; color:var(--gold); margin-bottom:10px;
+    }
+
+    /* â”€â”€â”€ TABLE â”€â”€â”€ */
+    .table-wrap { overflow-x:auto; border-radius:12px; border:1px solid var(--border); }
+    table { width:100%; border-collapse:collapse; font-size:.84rem; }
+    th { background:#0D1117; color:var(--gold-light); padding:11px 14px; font-size:.78rem; font-weight:600; text-align:left; border-bottom:1px solid var(--border); }
+    td { padding:10px 14px; color:var(--white); border-bottom:1px solid var(--border); vertical-align:middle; }
+    tr:last-child td { border-bottom:none; }
+    tr:hover td { background:rgba(197,160,89,.04); }
+    .price-cell { font-weight:700; color:var(--gold-light); white-space:nowrap; }
+    .confirm-cell { color:var(--muted); font-style:italic; }
+
+    /* â”€â”€â”€ TIMELINE â”€â”€â”€ */
+    .timeline { position:relative; }
+    .timeline-item {
+      display:grid; grid-template-columns:28px 1fr;
+      gap:14px; margin-bottom:28px;
+    }
+    .timeline-dot {
+      width:28px; height:28px; border-radius:50%;
+      background:var(--gold); display:flex; align-items:center; justify-content:center;
+      font-size:.72rem; font-weight:800; color:#000; flex-shrink:0; margin-top:2px;
+    }
+    .timeline-dot.gold-light { background:var(--gold-light); }
+    .timeline-body-wrap {}
+    .timeline-label { font-size:.72rem; color:var(--muted); margin-bottom:3px; }
+    .timeline-title { font-size:1rem; font-weight:700; color:var(--white); margin-bottom:4px; }
+    .timeline-desc { font-size:.84rem; color:var(--muted); line-height:1.6; }
+    .timeline-line {
+      position:absolute; left:13px; top:30px;
+      width:2px; background:var(--border);
+    }
+
+    /* â”€â”€â”€ FUNNEL â”€â”€â”€ */
+    .funnel { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+    .funnel-card {
+      background:var(--bg-card); border:1px solid var(--border);
+      border-radius:14px; padding:20px 16px; text-align:center;
+      position:relative; overflow:hidden;
+      transition:transform .2s, border-color .2s;
+    }
+    .funnel-card:hover { transform:translateY(-3px); border-color:var(--gold-border); }
+    .funnel-bar { position:absolute; top:0; left:0; right:0; height:4px; }
+    .funnel-icon { font-size:1.8rem; margin:10px 0 8px; }
+    .funnel-step { font-size:.62rem; letter-spacing:3px; text-transform:uppercase; font-weight:700; margin-bottom:5px; }
+    .funnel-title { font-size:1rem; font-weight:700; color:#fff; margin-bottom:8px; }
+    .funnel-items { font-size:.8rem; color:var(--muted); line-height:1.7; }
+    .funnel-arrow { display:flex; align-items:center; justify-content:center; color:var(--gold); font-size:1.5rem; padding-top:20px; }
+    @media(max-width:800px) { .funnel { grid-template-columns:1fr 1fr; } }
+
+    /* â”€â”€â”€ BOT JULIO SECTION â”€â”€â”€ */
+    .bot-channels { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+    .channel-block { background:var(--bg-card); border:1px solid var(--border); border-radius:14px; padding:20px; }
+    .channel-time { font-size:.65rem; letter-spacing:3px; text-transform:uppercase; font-weight:700; margin-bottom:12px; padding-bottom:8px; border-bottom:1px solid var(--border); }
+    .channel-item { display:flex; align-items:center; gap:10px; padding:6px 0; font-size:.88rem; color:var(--white); }
+    .channel-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+
+    /* â”€â”€â”€ MENTORIA HERO â”€â”€â”€ */
+    .mentoria-hero {
+      background:var(--bg-card); border:1px solid var(--border);
+      border-radius:20px; padding:32px; margin-bottom:24px;
+      position:relative; overflow:hidden;
+    }
+    .mentoria-hero::before {
+      content:''; position:absolute; left:0; top:0; bottom:0; width:5px;
+      background:var(--gold);
+    }
+    .mentoria-hero.amber::before { background:var(--amber); }
+    .mentoria-hero.gold-light::before { background:var(--gold-light); }
+    .mentoria-header { display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px; margin-bottom:20px; }
+    .mentoria-mentor-info {}
+    .mentoria-name { font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:700; color:#fff; margin-bottom:4px; }
+    .mentoria-mentor { font-size:.88rem; color:var(--gold-light); font-weight:600; }
+    .mentoria-role { font-size:.8rem; color:var(--muted); margin-top:2px; }
+    .mentoria-price-block { text-align:right; }
+    .mentoria-price { font-family:'Playfair Display',serif; font-size:2.2rem; font-weight:700; color:#fff; line-height:1; }
+    .mentoria-price-sub { font-size:.75rem; color:var(--muted); margin-top:4px; }
+    .mentoria-cols { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:20px; }
+    @media(max-width:600px) { .mentoria-cols { grid-template-columns:1fr; } }
+    .mentoria-col-title { font-size:.65rem; letter-spacing:3px; text-transform:uppercase; color:var(--gold); font-weight:700; margin-bottom:10px; }
+    .mentoria-feat { display:flex; align-items:flex-start; gap:8px; margin-bottom:8px; font-size:.85rem; color:var(--white); }
+    .mentoria-feat-dot { width:7px; height:7px; border-radius:50%; background:var(--gold); flex-shrink:0; margin-top:5px; }
+    .mentoria-feat-dot.gold-light { background:var(--gold-light); }
+    .mentoria-feat-dot.amber { background:var(--amber); }
+    .badges-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:20px; padding-top:20px; border-top:1px solid var(--border); }
+
+    /* â”€â”€â”€ CÃšPULA TICKETS â”€â”€â”€ */
+    .ticket-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    @media(max-width:700px) { .ticket-grid { grid-template-columns:1fr; } }
+    .ticket-card {
+      background:var(--bg-card); border:1px solid var(--border);
+      border-radius:16px; padding:24px; position:relative; overflow:hidden;
+    }
+    .ticket-card:hover { border-color:var(--gold-border); }
+    .ticket-top-bar { position:absolute; top:0; left:0; right:0; height:3px; }
+    .ticket-icon { font-size:1.5rem; margin-bottom:10px; }
+    .ticket-name { font-size:1rem; font-weight:700; margin-bottom:12px; }
+    .ticket-price { font-family:'Playfair Display',serif; font-size:1.8rem; font-weight:700; color:#fff; margin-bottom:4px; }
+    .ticket-sep { height:1px; background:var(--border); margin:12px 0; }
+    .ticket-feat { font-size:.82rem; color:var(--muted); line-height:1.7; }
+
+    /* â”€â”€â”€ UPSELL CARDS â”€â”€â”€ */
+    .upsell-grid { display:grid; gap:12px; }
+    .upsell-card {
+      background:var(--bg-card); border:1px solid var(--border);
+      border-radius:12px; padding:16px 20px; position:relative;
+      display:grid; grid-template-columns:1fr auto;
+      gap:8px; align-items:start; overflow:hidden;
+    }
+    .upsell-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--green); }
+    .upsell-card.downsell::before { background:var(--red); }
+    .upsell-name { font-size:.95rem; font-weight:700; color:#fff; }
+    .upsell-when { font-size:.78rem; color:var(--muted); margin-top:3px; }
+    .upsell-note { font-size:.78rem; color:var(--gold); font-style:italic; margin-top:3px; }
+    .upsell-note.red { color:var(--red); }
+    .upsell-price { font-family:'Playfair Display',serif; font-size:1.1rem; font-weight:700; color:var(--gold-light); white-space:nowrap; }
+    .upsell-price.red { color:var(--red); }
+    .two-cols { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+    @media(max-width:680px) { .two-cols { grid-template-columns:1fr; } }
+
+    /* â”€â”€â”€ CONFIDENTIAL â”€â”€â”€ */
+    .conf-bar {
+      background:rgba(239,68,68,.08); border:1px solid rgba(239,68,68,.25);
+      border-radius:10px; padding:12px 18px;
+      font-size:.82rem; color:var(--red); font-weight:700;
+    }
+
+    /* â”€â”€â”€ FOOTER â”€â”€â”€ */
+    footer {
+      position:relative; z-index:1;
+      background:linear-gradient(to bottom, transparent, var(--bg-card));
+      padding:80px 40px 48px; text-align:center;
+      border-top:1px solid var(--border);
+    }
+    .footer-brand { font-family:'Playfair Display',serif; font-size:2rem; font-weight:700; color:var(--gold); margin-bottom:8px; }
+    .footer-tagline { font-size:1.1rem; color:var(--muted); margin-bottom:28px; }
+    .footer-contacts { display:flex; gap:32px; justify-content:center; flex-wrap:wrap; margin-bottom:32px; }
+    .footer-contact { font-size:.85rem; color:var(--muted); }
+    .footer-contact strong { color:var(--white); display:block; margin-bottom:2px; }
+    .footer-conf { font-size:.75rem; color:rgba(139,149,161,.5); margin-top:24px; }
+    .footer-divider { width:80px; height:1px; background:var(--gold); margin:0 auto 28px; }
+  </style>
+</head>
+<body>
+
+<div class="top-bar"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">ViDi</div>
+  <div class="nav-links">
+    <a href="#visao">VisÃ£o Geral</a>
+    <a href="#digital">FormaÃ§Ãµes</a>
+    <a href="#cupula">CÃºpula CEO</a>
+    <a href="#upsells">Upsells</a>
+    <a href="#mentorias">Mentorias</a>
+    <a href="#servicos">ServiÃ§os</a>
+    <a href="#precos">PreÃ§os</a>
+  </div>
+  <span class="nav-badge">Confidencial Â· 2026</span>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left-bar"></div>
+  <div class="hero-eyebrow">
+    <span class="hero-dot"></span>
+    Ecossistema Live Â· 2026
+  </div>
+  <h1>PortfÃ³lio de Produtos<br/>ViDi</h1>
+  <p class="hero-sub">
+    Ferramental Â· Resultado<br/>
+    <span style="opacity:.6;font-size:.85em">Luiz Portal &amp; Ibrahim Boufleur</span>
+  </p>
+  <div class="hero-meta">
+    <div class="hero-meta-item"><div class="hero-meta-label">Evento</div><div class="hero-meta-value">CÃºpula CEO 2026</div></div>
+    <div class="hero-meta-item"><div class="hero-meta-label">Local</div><div class="hero-meta-value">Royal Tulip Â· BrasÃ­lia</div></div>
+    <div class="hero-meta-item"><div class="hero-meta-label">Uso</div><div class="hero-meta-value">Interno Â· Confidencial</div></div>
+    <div class="hero-meta-item"><div class="hero-meta-label">VersÃ£o</div><div class="hero-meta-value">Abr 2026</div></div>
+  </div>
+</section>
+
+<!-- LAYOUT -->
+<div class="page-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-title">Ãndice</div>
+    <ul class="sidebar-nav">
+      <li><a href="#visao"><span class="sidebar-num">1</span> VisÃ£o Geral</a></li>
+      <li><a href="#digital"><span class="sidebar-num">2</span> FormaÃ§Ãµes Digitais</a></li>
+      <li><a href="#cupula"><span class="sidebar-num">3</span> CÃºpula CEO</a></li>
+      <li><a href="#upsells"><span class="sidebar-num">4</span> Upsells &amp; Downsells</a></li>
+      <li><a href="#mentorias"><span class="sidebar-num">5</span> Mentorias</a></li>
+      <li><a href="#servicos"><span class="sidebar-num">6</span> Consultoria &amp; ImersÃµes</a></li>
+      <li><a href="#funil"><span class="sidebar-num">7</span> Jornada do Cliente</a></li>
+      <li><a href="#precos"><span class="sidebar-num">8</span> Resumo de PreÃ§os</a></li>
+    </ul>
+  </aside>
+
+  <!-- CONTENT -->
+  <main class="content">
+
+    <!-- 1. VISÃƒO GERAL -->
+    <section class="chapter reveal" id="visao">
+      <div class="chapter-eyebrow">01 Â· PortfÃ³lio</div>
+      <h2 class="chapter-title">VisÃ£o Geral dos Produtos</h2>
+
+      <div class="callout callout-gold" style="margin-bottom:24px">
+        <span class="callout-icon">ðŸ”’</span>
+        <div class="callout-body"><strong>Regra crÃ­tica:</strong> Valores sÃ£o compartilhados exclusivamente em reuniÃµes comerciais privadas. Nunca mencione em comunicaÃ§Ãµes pÃºblicas ou conversas gravadas.</div>
+      </div>
+
+      <div class="grid-2">
+        <!-- Bot JÃºlio -->
+        <div class="card accent-card">
+          <span class="card-icon">ðŸ¤–</span>
+          <div class="card-title">Bot JÃºlio â€” Vendas AutomÃ¡ticas</div>
+          <div class="bot-channels" style="margin-top:14px">
+            <div class="channel-block">
+              <div class="channel-time" style="color:var(--amber)">Durante o Evento</div>
+              <div class="channel-item"><span class="channel-dot" style="background:var(--amber)"></span>VIP Pass (R$ 8.998)</div>
+              <div class="channel-item"><span class="channel-dot" style="background:var(--amber)"></span>CÃºpula Dinner (R$ 8.998)</div>
+              <div class="channel-item"><span class="channel-dot" style="background:var(--amber)"></span>Pacote SÃ³cio (R$ 749/sÃ³cio)</div>
+              <div class="channel-item"><span class="channel-dot" style="background:var(--amber)"></span>DiagnÃ³stico Catalyst (R$ 248)</div>
+            </div>
+            <div class="channel-block">
+              <div class="channel-time" style="color:var(--gold-light)">PÃ³s-Evento</div>
+              <div class="channel-item"><span class="channel-dot" style="background:var(--gold-light)"></span>Mentorias (Individual Â· Grupo)</div>
+              <div class="channel-item"><span class="channel-dot" style="background:var(--gold-light)"></span>AlmoÃ§o com o CEO</div>
+              <div class="channel-item"><span class="channel-dot" style="background:var(--gold-light)"></span>Novos eventos e imersÃµes</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Time Comercial -->
+        <div class="card accent-card" style="border-left-color:var(--gold-light)">
+          <span class="card-icon">ðŸ¤</span>
+          <div class="card-title">Time Comercial â€” Alto Ticket</div>
+          <div class="card-text" style="margin-top:10px">
+            <div class="section-label" style="margin-bottom:10px">Produtos fechados pelo time</div>
+            <div class="channel-item" style="padding:4px 0"><span class="channel-dot" style="background:var(--gold-light)"></span>CÃºpula CEO â€” Ingresso (R$ 1.497)</div>
+            <div class="channel-item" style="padding:4px 0"><span class="channel-dot" style="background:var(--gold-light)"></span>FormaÃ§Ã£o do LÃ­der (R$ 698)</div>
+            <div class="channel-item" style="padding:4px 0"><span class="channel-dot" style="background:var(--gold-light)"></span>FormaÃ§Ã£o do CEO (R$ 698)</div>
+            <div class="channel-item" style="padding:4px 0"><span class="channel-dot" style="background:var(--gold-light)"></span>Consultoria ViDi</div>
+            <div class="channel-item" style="padding:4px 0"><span class="channel-dot" style="background:var(--gold-light)"></span>FormaÃ§Ãµes Presenciais</div>
+            <div class="channel-item" style="padding:4px 0"><span class="channel-dot" style="background:var(--gold-light)"></span>ImersÃµes Estruturadas</div>
+            <div class="channel-item" style="padding:4px 0"><span class="channel-dot" style="background:var(--gold-light)"></span>ExperiÃªncias Exclusivas</div>
+            <div class="channel-item" style="padding:4px 0"><span class="channel-dot" style="background:var(--gold-light)"></span>DiagnÃ³stico Catalyst</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="divider"></div>
+
+    <!-- 2. FORMAÃ‡Ã•ES DIGITAIS -->
+    <section class="chapter reveal" id="digital">
+      <div class="chapter-eyebrow">02 Â· Trilha Online</div>
+      <h2 class="chapter-title">Produtos Digitais</h2>
+      <p class="chapter-desc">Cursos online disponÃ­veis Â· comercializados pelo time comercial</p>
+
+      <div class="grid-2">
+        <!-- FormaÃ§Ã£o do LÃ­der -->
+        <div class="card accent-card">
+          <span class="card-icon">ðŸŽ“</span>
+          <div class="card-title">FormaÃ§Ã£o do LÃ­der</div>
+          <div class="price-display"><div class="price-value">R$ 698</div><div class="price-label">Acesso digital Â· plataforma online</div></div>
+          <div class="card-text" style="margin-top:12px">
+            <div class="mentoria-feat"><span class="mentoria-feat-dot"></span>Trilha completa de lideranÃ§a</div>
+            <div class="mentoria-feat"><span class="mentoria-feat-dot"></span>Para gestores e empresÃ¡rios em inÃ­cio de jornada</div>
+            <div class="mentoria-feat"><span class="mentoria-feat-dot"></span>Cultura de alta performance e resiliÃªncia</div>
+            <div class="mentoria-feat"><span class="mentoria-feat-dot"></span>ConteÃºdo prÃ¡tico e aplicÃ¡vel ao dia a dia</div>
+          </div>
+          <div style="margin-top:14px"><span class="badge badge-gold">LideranÃ§a</span></div>
+        </div>
+
+        <!-- FormaÃ§Ã£o do CEO -->
+        <div class="card accent-card">
+          <span class="card-icon">ðŸ¢</span>
+          <div class="card-title">FormaÃ§Ã£o do CEO</div>
+          <div class="price-display"><div class="price-value">R$ 698</div><div class="price-label">Acesso digital Â· plataforma online</div></div>
+          <div class="card-text" style="margin-top:12px">
+            <div class="mentoria-feat"><span class="mentoria-feat-dot gold-light"></span>Trilha CEO completa Â· governanÃ§a e escala</div>
+            <div class="mentoria-feat"><span class="mentoria-feat-dot gold-light"></span>Para fundadores, CEOs e quem quer se tornar CEO</div>
+            <div class="mentoria-feat"><span class="mentoria-feat-dot gold-light"></span>VisÃ£o estratÃ©gica, estruturaÃ§Ã£o e lideranÃ§a</div>
+            <div class="mentoria-feat" style="color:var(--amber)"><span class="mentoria-feat-dot amber"></span>âš™ AutomaÃ§Ã£o de resgate de lead perdido da CÃºpula CEO</div>
+          </div>
+          <div style="margin-top:14px"><span class="badge badge-gold">Trilha CEO</span></div>
+        </div>
+      </div>
+    </section>
+    <div class="divider"></div>
+
+    <!-- 3. CÃšPULA CEO -->
+    <section class="chapter reveal" id="cupula">
+      <div class="chapter-eyebrow">03 Â· Evento Presencial</div>
+      <h2 class="chapter-title">CÃºpula CEO 2026</h2>
+
+      <div class="callout callout-gold" style="margin-bottom:24px">
+        <span class="callout-icon">ðŸ“</span>
+        <div class="callout-body">
+          <strong>Royal Tulip Â· BrasÃ­lia</strong> &nbsp;Â·&nbsp; ImersÃ£o de 1 dia &nbsp;Â·&nbsp; Networking qualificado &nbsp;Â·&nbsp; ConteÃºdo prÃ¡tico para C-Levels<br/>
+          <span style="margin-top:5px;display:block">PÃºblico-alvo: CEOs, CFOs, Fundadores, Diretores Â· Empresas R$ 1M a R$ 50M+</span>
+          <span style="margin-top:4px;display:block;font-size:.8rem">Canal de entrada: Google Ads Â· Meta Ads Â· Lives de aquecimento Â· AlmoÃ§o com o CEO Â· IndicaÃ§Ãµes</span>
+        </div>
+      </div>
+
+      <div class="ticket-grid">
+        <!-- Standard -->
+        <div class="ticket-card">
+          <div class="ticket-top-bar" style="background:var(--gold)"></div>
+          <div class="ticket-icon">ðŸŽ«</div>
+          <div class="ticket-name" style="color:var(--gold)">Ingresso Standard</div>
+          <div class="ticket-price">R$ 1.497</div>
+          <div class="ticket-sep"></div>
+          <div class="ticket-feat">Acesso completo ao evento presencial<br/>Palestras Â· PainÃ©is Â· Networking<br/>Dia inteiro no Royal Tulip Â· BrasÃ­lia</div>
+          <div style="margin-top:12px"><span class="badge badge-gold">Entrada</span></div>
+        </div>
+        <!-- VIP -->
+        <div class="ticket-card">
+          <div class="ticket-top-bar" style="background:var(--gold-light)"></div>
+          <div class="ticket-icon">â­</div>
+          <div class="ticket-name" style="color:var(--gold-light)">VIP Pass</div>
+          <div class="ticket-price">R$ 8.998</div>
+          <div class="ticket-sep"></div>
+          <div class="ticket-feat">Tudo do Standard +<br/>Assentos prioritÃ¡rios Â· Acesso exclusivo<br/>AlmoÃ§o com os palestrantes<br/>Traslado em lancha</div>
+          <div style="margin-top:12px"><span class="badge badge-green">Upsell</span></div>
+        </div>
+        <!-- Virtual Pass -->
+        <div class="ticket-card">
+          <div class="ticket-top-bar" style="background:var(--muted)"></div>
+          <div class="ticket-icon">ðŸŒ</div>
+          <div class="ticket-name" style="color:var(--muted)">Virtual Pass</div>
+          <div class="ticket-price" style="color:var(--muted)">R$ 749</div>
+          <div class="ticket-sep"></div>
+          <div class="ticket-feat">Para quem nÃ£o pode comparecer<br/>Acesso online ao conteÃºdo<br/>Captura de quem ficou de fora</div>
+          <div style="margin-top:12px"><span class="badge badge-red">Downsell</span></div>
+        </div>
+      </div>
+    </section>
+    <div class="divider"></div>
+
+    <!-- 4. UPSELLS & DOWNSELLS -->
+    <section class="chapter reveal" id="upsells">
+      <div class="chapter-eyebrow">04 Â· Ecossistema de Ofertas</div>
+      <h2 class="chapter-title">Upsells &amp; Downsells</h2>
+
+      <div class="callout callout-green" style="margin-bottom:24px">
+        <span class="callout-icon">ðŸ¤–</span>
+        <div class="callout-body"><strong>Bot JÃºlio vende automaticamente</strong> todos os upsells durante o evento e as mentorias / novos eventos no pÃ³s-evento â€” sem envolvimento do time comercial.</div>
+      </div>
+
+      <div class="two-cols">
+        <!-- Upsells -->
+        <div>
+          <div style="font-size:.78rem;font-weight:700;color:var(--green);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px">â¬† Upsells</div>
+          <div class="upsell-grid">
+            <div class="upsell-card">
+              <div><div class="upsell-name">VIP Pass</div><div class="upsell-when">Quando: Na compra ou no check-in</div><div class="upsell-note">Assentos prioritÃ¡rios + almoÃ§o com palestrantes + traslado em lancha</div></div>
+              <div class="upsell-price">R$ 8.998</div>
+            </div>
+            <div class="upsell-card">
+              <div><div class="upsell-name">CÃºpula Dinner</div><div class="upsell-when">Quando: Para Cat-A via Bot JÃºlio</div><div class="upsell-note">Jantar + rodada de negÃ³cios na vÃ©spera + diagnÃ³stico / parecer tÃ©cnico Â· Limitado a 20 participantes</div></div>
+              <div class="upsell-price">R$ 8.998</div>
+            </div>
+            <div class="upsell-card">
+              <div><div class="upsell-name">Pacote SÃ³cio</div><div class="upsell-when">Quando: 2 ou mais sÃ³cios juntos</div><div class="upsell-note">Desconto por volume Â· ingresso conjunto</div></div>
+              <div class="upsell-price">R$ 749<span style="font-size:.7rem;font-weight:400">/sÃ³cio</span></div>
+            </div>
+            <div class="upsell-card">
+              <div><div class="upsell-name">DiagnÃ³stico Catalyst</div><div class="upsell-when">Quando: Dor identificada no evento</div><div class="upsell-note">AnÃ¡lise via formulÃ¡rio Â· mapeamento de dor estratÃ©gico</div></div>
+              <div class="upsell-price">R$ 248</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Downsells -->
+        <div>
+          <div style="font-size:.78rem;font-weight:700;color:var(--red);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px">â¬‡ Downsells</div>
+          <div class="upsell-grid">
+            <div class="upsell-card downsell">
+              <div><div class="upsell-name">Virtual Pass</div><div class="upsell-when">Quando: NÃ£o pode comparecer presencialmente</div><div class="upsell-note red">Acesso online ao conteÃºdo do evento</div></div>
+              <div class="upsell-price red">R$ 749</div>
+            </div>
+            <div class="upsell-card downsell">
+              <div><div class="upsell-name">CEO Toolkit</div><div class="upsell-when">Quando: NÃ£o estÃ¡ pronto para o evento</div><div class="upsell-note red">Material preparatÃ³rio para a prÃ³xima ediÃ§Ã£o</div></div>
+              <div class="upsell-price red">R$ 449</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout callout-gold" style="margin-top:24px">
+        <span class="callout-icon">ðŸ’¡</span>
+        <div class="callout-body"><strong>EstratÃ©gia de maximizaÃ§Ã£o por lead:</strong> Ingresso (R$ 1.497) â†’ VIP Pass (R$ 8.998) â†’ DiagnÃ³stico Catalyst (R$ 248) â†’ Mentoria de alto ticket</div>
+      </div>
+    </section>
+    <div class="divider"></div>
+
+    <!-- 5. MENTORIAS -->
+    <section class="chapter reveal" id="mentorias">
+      <div class="chapter-eyebrow">05 Â· Alto Ticket</div>
+      <h2 class="chapter-title">Mentorias</h2>
+
+      <!-- Mentoria Individual: O CÃ³digo da Nova LideranÃ§a -->
+      <div class="mentoria-hero">
+        <div class="mentoria-header">
+          <div>
+            <div class="mentoria-name">O CÃ³digo da Nova LideranÃ§a</div>
+            <div class="mentoria-mentor">ðŸ‘‘ Mentor: Luiz Portal</div>
+            <div class="mentoria-role">Fundador Â· Head Comercial e de Produto</div>
+          </div>
+          <div class="mentoria-price-block">
+            <div class="mentoria-price">R$ 39.990</div>
+            <div class="mentoria-price-sub">por mentorado</div>
+          </div>
+        </div>
+        <div class="mentoria-cols">
+          <div>
+            <div class="mentoria-col-title">Formato</div>
+            <div class="mentoria-feat"><span class="mentoria-feat-dot"></span>Modalidade: Individual</div>
+            <div class="mentoria-feat"><span class="mentoria-feat-dot"></span>10 encontros Â· 1 vez por mÃªs</div>
+            <div class="mentoria-feat"><span class="mentoria-feat-dot"></span>Presencial ou online</div>
+            <div class="mentoria-feat"><span class="mentoria-feat-dot"></span>Baseado no MÃ©todo ViDi</div>
+            <div class="mentoria-feat"><span class="mentoria-feat-dot"></span>Foco em cultura de alta performance</div>
+          </div>
+          <div>
+            <div class="mentoria-col-title">Limites &amp; Acesso</div>
+            <div class="mentoria-feat"><span class="mentoria-feat-dot gold-light"></span>Limitado a 10 mentorados</div>
+            <div class="mentoria-feat"><span class="mentoria-feat-dot gold-light"></span>Prioridade em todos os eventos ViDi</div>
+            <div class="mentoria-feat"><span class="mentoria-feat-dot gold-light"></span>Acesso Ã  rede de CEOs mentorados</div>
+            <div class="mentoria-feat"><span class="mentoria-feat-dot gold-light"></span>DiagnÃ³stico individualizado</div>
+            <div class="mentoria-feat"><span class="mentoria-feat-dot gold-light"></span>Acompanhamento mensal contÃ­nuo</div>
+          </div>
+        </div>
+        <div class="badges-row">
+          <span class="badge badge-green">âœ… Estruturada</span>
+          <span class="badge badge-gold">Individual</span>
+          <span class="badge badge-amber">Limitado a 10 mentorados</span>
+          <span class="badge" style="background:var(--gold-dim);color:var(--gold-light);border:1px solid var(--gold-border)">â­ Prioridade nos eventos</span>
+        </div>
+      </div>
+
+      <!-- Mentoria em Grupo -->
+      <div class="mentoria-hero gold-light">
+        <div class="mentoria-header">
+          <div>
+            <div class="mentoria-name">Mentoria em Grupo ViDi</div>
+            <div class="mentoria-mentor">ðŸ‘¥ Luiz Portal &amp; Ibrahim Boufleur</div>
+            <div class="mentoria-role">Presencial ou Online</div>
+          </div>
+          <div class="mentoria-price-block">
+            <div class="mentoria-price" style="color:var(--muted)">A confirmar</div>
+            <div class="mentoria-price-sub">preÃ§o a definir</div>
+          </div>
+        </div>
+
+        <div class="section-label" style="margin-top:4px">Estrutura dos 12 Encontros</div>
+        <div class="timeline" style="margin-top:16px">
+          <div class="timeline-item">
+            <div class="timeline-dot">1</div>
+            <div class="timeline-body-wrap">
+              <div class="timeline-title">1Âº Encontro â€” Individual</div>
+              <div class="timeline-desc">DiagnÃ³stico e alinhamento de metas pessoais de cada participante</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot" style="font-size:.6rem">2â€“11</div>
+            <div class="timeline-body-wrap">
+              <div class="timeline-title">10 Encontros Centrais â€” Em Grupo</div>
+              <div class="timeline-desc">Online ou presencial Â· ConteÃºdo aplicado e trocas ricas entre pares de alto nÃ­vel</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot gold-light">12</div>
+            <div class="timeline-body-wrap">
+              <div class="timeline-title">12Âº Encontro â€” Individual</div>
+              <div class="timeline-desc">RevisÃ£o de resultados, consolidaÃ§Ã£o e plano de continuidade personalizado</div>
+            </div>
+          </div>
+        </div>
+        <div class="badges-row">
+          <span class="badge badge-gold">Grupo</span>
+          <span class="badge badge-amber">Limitado a 10 pessoas</span>
+          <span class="badge badge-green">Prioridade nos eventos</span>
+        </div>
+      </div>
+
+      <!-- Mentoria CEO: Ibrahim -->
+      <div class="mentoria-hero amber">
+        <div class="mentoria-header">
+          <div>
+            <div class="mentoria-name">Mentoria CEO</div>
+            <div class="mentoria-mentor">ðŸŽ™ï¸ Mentor: Ibrahim Boufleur</div>
+            <div class="mentoria-role">Fundador Â· Mentor estratÃ©gico de CEOs</div>
+          </div>
+          <div class="mentoria-price-block">
+            <div class="mentoria-price">R$ 59.998</div>
+            <div class="mentoria-price-sub">por mentorado</div>
+          </div>
+        </div>
+        <div class="mentoria-cols">
+          <div>
+            <div class="mentoria-col-title">Formato</div>
+            <div class="mentoria-feat"><span class="mentoria-feat-dot amber"></span>Modalidade: Individual</div>
+            <div class="mentoria-feat"><span class="mentoria-feat-dot amber"></span>10 encontros mensais</div>
+            <div class="mentoria-feat"><span class="mentoria-feat-dot amber"></span>Presencial ou online com Ibrahim</div>
+            <div class="mentoria-feat"><span class="mentoria-feat-dot amber"></span>The Catalyst â€” programa de elite</div>
+            <div class="mentoria-feat"><span class="mentoria-feat-dot amber"></span>Aprofundamento estruturado por mÃ³dulos</div>
+          </div>
+          <div>
+            <div class="mentoria-col-title">Temas &amp; Acesso</div>
+            <div class="mentoria-feat"><span class="mentoria-feat-dot gold-light"></span>GovernanÃ§a corporativa e sucessÃ£o</div>
+            <div class="mentoria-feat"><span class="mentoria-feat-dot gold-light"></span>Marketing estratÃ©gico e posicionamento</div>
+            <div class="mentoria-feat"><span class="mentoria-feat-dot gold-light"></span>M&amp;A, captaÃ§Ã£o e exit strategy</div>
+            <div class="mentoria-feat"><span class="mentoria-feat-dot gold-light"></span>EstruturaÃ§Ã£o financeira e internacionalizaÃ§Ã£o</div>
+            <div class="mentoria-feat"><span class="mentoria-feat-dot gold-light"></span>Acesso mais exclusivo para mentorados</div>
+          </div>
+        </div>
+        <div class="badges-row">
+          <span class="badge badge-amber">âš  Em DefiniÃ§Ã£o</span>
+          <span class="badge badge-gold">Individual</span>
+          <span class="badge badge-green">Prioridade nos eventos</span>
+        </div>
+      </div>
+
+      <div class="callout" style="margin-top:20px">
+        <span class="callout-icon">âš–ï¸</span>
+        <div class="callout-body">Luiz e Ibrahim tÃªm contribuiÃ§Ãµes equivalentes e complementares. A consultoria pode envolver os dois conforme a natureza do projeto. Comunicar com equilÃ­brio ao lead.</div>
+      </div>
+    </section>
+    <div class="divider"></div>
+
+    <!-- 6. CONSULTORIA & SERVIÃ‡OS -->
+    <section class="chapter reveal" id="servicos">
+      <div class="chapter-eyebrow">06 Â· ServiÃ§os Presenciais</div>
+      <h2 class="chapter-title">Consultoria, FormaÃ§Ãµes e ImersÃµes</h2>
+
+      <!-- Consultoria -->
+      <div class="card accent-card" style="margin-bottom:24px">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px">
+          <div>
+            <span class="card-icon">ðŸ”¬</span>
+            <div class="card-title">Consultoria ViDi</div>
+          </div>
+          <span class="badge badge-gold">Alto Ticket</span>
+        </div>
+        <div class="card-text" style="margin-top:10px">
+          A ViDi nÃ£o vende mÃ©todo â€” vende ferramental e resultado. DiagnÃ³stico real + entrega do que precisa ser feito, sem meios-termos ou atalhos. Envolve Luiz e Ibrahim conforme a natureza do projeto.
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <span class="card-icon">ðŸŽ“</span>
+          <div class="card-title">FormaÃ§Ãµes Presenciais</div>
+          <div class="card-text">FormaÃ§Ã£o de LÃ­deres Â· FormaÃ§Ã£o de CEOs Â· Oficinas TÃ©cnicas. Participante sai com aÃ§Ãµes claras e resultado direto.</div>
+          <div style="margin-top:12px"><span class="badge badge-gold">Alto Ticket</span></div>
+        </div>
+        <div class="card">
+          <span class="card-icon">ðŸŒŠ</span>
+          <div class="card-title">ImersÃµes Estruturadas</div>
+          <div class="card-text">Jornada intensiva de 1 a 3 dias. Clareza de problemas, prioridades e prÃ³ximos passos.</div>
+          <div style="margin-top:12px"><span class="badge badge-gold">Alto Ticket</span></div>
+        </div>
+        <div class="card">
+          <span class="card-icon">ðŸ½ï¸</span>
+          <div class="card-title">AlmoÃ§o com o CEO</div>
+          <div class="card-text">Para Cat-A e mentorados de alto engajamento. Canal de entrada qualificado para novos participantes da CÃºpula CEO.</div>
+          <div style="margin-top:12px"><span class="badge badge-teal">Cat-A / Entrada</span></div>
+        </div>
+        <div class="card">
+          <span class="card-icon">ðŸ“‹</span>
+          <div class="card-title">DiagnÃ³stico Catalyst</div>
+          <div class="card-text">AnÃ¡lise via formulÃ¡rio Â· mapeamento de dor estratÃ©gico. Usado como upsell no evento e em reuniÃµes comerciais.</div>
+          <div style="margin-top:12px"><span class="badge badge-amber">R$ 248</span></div>
+        </div>
+      </div>
+    </section>
+    <div class="divider"></div>
+
+    <!-- 7. JORNADA DO CLIENTE -->
+    <section class="chapter reveal" id="funil">
+      <div class="chapter-eyebrow">07 Â· Processo Comercial</div>
+      <h2 class="chapter-title">Jornada do Cliente</h2>
+      <p class="chapter-desc">Do Lead ao Alto Ticket â€” entenda cada etapa do funil ViDi.</p>
+
+      <div class="funnel">
+        <div class="funnel-card">
+          <div class="funnel-bar" style="background:var(--muted)"></div>
+          <div class="funnel-icon">ðŸ“£</div>
+          <div class="funnel-step" style="color:var(--muted)">Topo</div>
+          <div class="funnel-title">AtraÃ§Ã£o</div>
+          <div class="funnel-items">Google Ads<br/>Meta Ads<br/>Lives de Aquecimento<br/>AlmoÃ§o com o CEO<br/>IndicaÃ§Ãµes</div>
+        </div>
+        <div class="funnel-card">
+          <div class="funnel-bar" style="background:var(--gold)"></div>
+          <div class="funnel-icon">ðŸ¤–</div>
+          <div class="funnel-step" style="color:var(--gold)">Meio</div>
+          <div class="funnel-title">QualificaÃ§Ã£o</div>
+          <div class="funnel-items">FormulÃ¡rio de vendas<br/>Bot JÃºlio (WhatsApp)<br/>Classifica Cat-A / B / C</div>
+        </div>
+        <div class="funnel-card">
+          <div class="funnel-bar" style="background:var(--gold-light)"></div>
+          <div class="funnel-icon">ðŸ“ž</div>
+          <div class="funnel-step" style="color:var(--gold-light)">Fundo</div>
+          <div class="funnel-title">Call Comercial</div>
+          <div class="funnel-items">Consultor conduz a call<br/>Identifica dor e fit<br/>Apresenta produto certo</div>
+        </div>
+        <div class="funnel-card">
+          <div class="funnel-bar" style="background:var(--green)"></div>
+          <div class="funnel-icon">ðŸ†</div>
+          <div class="funnel-step" style="color:var(--green)">Fechamento</div>
+          <div class="funnel-title">Alto Ticket</div>
+          <div class="funnel-items">Mentoria Â· Consultoria<br/>FormaÃ§Ãµes Â· ImersÃµes<br/>LTV do cliente ViDi</div>
+        </div>
+      </div>
+
+      <div class="callout callout-green" style="margin-top:24px">
+        <span class="callout-icon">ðŸ”‘</span>
+        <div class="callout-body"><strong>Cat-A:</strong> Faturamento acima de R$1M, sem plano de sucessÃ£o, exausto ou em plateau â€” acionar alerta humano imediatamente (Luiz Portal ou consultor comercial).</div>
+      </div>
+    </section>
+    <div class="divider"></div>
+
+    <!-- 8. RESUMO DE PREÃ‡OS -->
+    <section class="chapter reveal" id="precos">
+      <div class="chapter-eyebrow">08 Â· Uso Interno Â· Confidencial</div>
+      <h2 class="chapter-title">Resumo de PreÃ§os</h2>
+
+      <div class="conf-bar" style="margin-bottom:20px">
+        ðŸ”’ NUNCA mencione valores em comunicaÃ§Ãµes pÃºblicas, redes sociais ou conversas que possam ser gravadas. Valores apenas em reuniÃµes comerciais privadas.
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Produto</th>
+              <th>Categoria</th>
+              <th>PreÃ§o</th>
+              <th>Canal de Venda</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>FormaÃ§Ã£o do LÃ­der</td><td>Digital / Online</td><td class="price-cell">R$ 698</td><td>Time Comercial</td></tr>
+            <tr><td>FormaÃ§Ã£o do CEO</td><td>Digital / Online</td><td class="price-cell">R$ 698</td><td>Time Comercial Â· Resgate de leads</td></tr>
+            <tr><td>CÃºpula CEO â€” Ingresso Standard</td><td>Evento Presencial</td><td class="price-cell">R$ 1.497</td><td>Google Ads Â· Meta Ads Â· Lives Â· IndicaÃ§Ãµes</td></tr>
+            <tr><td>VIP Pass</td><td>Upsell Evento</td><td class="price-cell">R$ 8.998</td><td>Bot JÃºlio Â· no check-in</td></tr>
+            <tr><td>CÃºpula Dinner</td><td>Upsell Evento</td><td class="price-cell">R$ 8.998</td><td>Bot JÃºlio Â· Cat-A Â· Lim. 20 pessoas</td></tr>
+            <tr><td>Pacote SÃ³cio</td><td>Upsell Evento</td><td class="price-cell">R$ 749 / sÃ³cio</td><td>Bot JÃºlio Â· 2+ sÃ³cios</td></tr>
+            <tr><td>DiagnÃ³stico Catalyst</td><td>MÃ©dio Ticket</td><td class="price-cell">R$ 248</td><td>Bot JÃºlio Â· Upsell evento</td></tr>
+            <tr><td>Virtual Pass</td><td>Downsell</td><td class="price-cell">R$ 749</td><td>Quem nÃ£o pode comparecer</td></tr>
+            <tr><td>CEO Toolkit</td><td>Downsell</td><td class="price-cell">R$ 449</td><td>Quem nÃ£o estÃ¡ pronto</td></tr>
+            <tr><td>O CÃ³digo da Nova LideranÃ§a (Luiz)</td><td>Mentoria Individual</td><td class="price-cell">R$ 39.990</td><td>Time Comercial Â· Lim. 10 mentorados</td></tr>
+            <tr><td>Mentoria em Grupo ViDi</td><td>Mentoria Grupo</td><td class="confirm-cell">A confirmar</td><td>Time Comercial Â· Lim. 10 pessoas</td></tr>
+            <tr><td>Mentoria CEO (Ibrahim)</td><td>Mentoria Individual</td><td class="price-cell">R$ 59.998</td><td>Via Luiz Portal Â· Time Comercial</td></tr>
+            <tr><td>Consultoria ViDi</td><td>Consultoria</td><td class="confirm-cell">A confirmar</td><td>Time Comercial</td></tr>
+            <tr><td>FormaÃ§Ãµes / ImersÃµes</td><td>Presencial</td><td class="confirm-cell">A confirmar</td><td>Time Comercial</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+</div><!-- /page-layout -->
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">ViDi</div>
+  <p class="footer-tagline">Ferramental. Resultado.</p>
+  <div class="footer-divider"></div>
+  <div class="footer-contacts">
+    <div class="footer-contact"><strong>Luiz Portal</strong>luizeduardoportal@gmail.com</div>
+    <div class="footer-contact"><strong>Ibrahim Boufleur</strong>iboufleur@gmail.com</div>
+    <div class="footer-contact"><strong>ClÃ©ber Donato â€” Tech Lead</strong>cleber.ihs@gmail.com</div>
+  </div>
+  <p class="footer-conf">Documento Confidencial â€” Uso Interno ViDi / Ecossistema Live â€” NÃ£o distribua externamente</p>
+</footer>
+
+<script>
+  // Intersection Observer para animaÃ§Ãµes
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Active nav link
+  const sections = document.querySelectorAll('.chapter[id]');
+  const navLinks = document.querySelectorAll('.sidebar-nav a');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const link = document.querySelector(`.sidebar-nav a[href="#${e.target.id}"]`);
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { rootMargin:'-30% 0px -60% 0px' });
+  sections.forEach(s => io.observe(s));
+</script>
+</body>
+</html>
+
