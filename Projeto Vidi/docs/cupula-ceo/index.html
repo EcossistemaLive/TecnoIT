@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cúpula CEO — Plano de Lançamento | ViDi</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8D08A;
+    --dark: #0A0A0F;
+    --dark2: #111118;
+    --dark3: #1A1A24;
+    --dark4: #22222F;
+    --text: #E8E8F0;
+    --text-muted: #8888A8;
+    --accent: #7B6EF6;
+    --accent2: #4ECDC4;
+    --danger: #FF6B6B;
+    --green: #51CF66;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--dark); color: var(--text); font-family: 'Inter', sans-serif; line-height: 1.6; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: radial-gradient(ellipse at 60% 40%, rgba(201,168,76,0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 20% 80%, rgba(123,110,246,0.1) 0%, transparent 50%),
+                var(--dark);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 4rem 2rem; position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(201,168,76,0.03) 60px, rgba(201,168,76,0.03) 61px),
+                repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(201,168,76,0.03) 60px, rgba(201,168,76,0.03) 61px);
+  }
+  .badge {
+    display: inline-flex; align-items: center; gap: .5rem;
+    background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.3);
+    color: var(--gold); padding: .4rem 1.2rem; border-radius: 50px; font-size: .8rem;
+    letter-spacing: .15em; text-transform: uppercase; font-weight: 600; margin-bottom: 2rem;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif; font-size: clamp(3rem, 8vw, 7rem);
+    font-weight: 800; line-height: 1; margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, #fff 30%, var(--gold) 70%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .hero p { font-size: 1.2rem; color: var(--text-muted); max-width: 600px; margin-bottom: 3rem; }
+  .hero-meta {
+    display: flex; gap: 3rem; justify-content: center; flex-wrap: wrap;
+  }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-item .num { font-size: 2rem; font-weight: 800; color: var(--gold); }
+  .hero-meta-item .lbl { font-size: .8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: .1em; }
+  .scroll-hint {
+    position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+    color: var(--text-muted); font-size: .8rem; animation: bounce 2s infinite;
+  }
+  @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(8px)} }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(10,10,15,0.9); backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 3rem;
+  }
+  .nav-logo { font-weight: 700; color: var(--gold); font-size: .9rem; letter-spacing: .1em; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { color: var(--text-muted); text-decoration: none; font-size: .85rem; transition: color .2s; }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* SECTIONS */
+  section { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
+  .section-tag { color: var(--gold); font-size: .75rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; margin-bottom: .75rem; }
+  h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; margin-bottom: 1rem; }
+  h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: .5rem; }
+  .divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(201,168,76,0.3), transparent); margin: 1.5rem 0; }
+
+  /* CARDS */
+  .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; }
+  .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; }
+  .card {
+    background: var(--dark3); border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px; padding: 1.75rem; transition: transform .3s, border-color .3s;
+  }
+  .card:hover { transform: translateY(-4px); border-color: rgba(201,168,76,0.3); }
+  .card-icon { font-size: 2rem; margin-bottom: 1rem; }
+  .card p { color: var(--text-muted); font-size: .9rem; line-height: 1.7; }
+
+  /* PILLARS */
+  .pillar {
+    background: var(--dark3); border-radius: 16px; padding: 1.75rem;
+    border-left: 4px solid var(--gold); margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 1.5rem;
+  }
+  .pillar-pct { font-size: 2.5rem; font-weight: 900; color: var(--gold); min-width: 80px; }
+  .pillar p { color: var(--text-muted); font-size: .88rem; margin-top: .25rem; }
+
+  /* TIMELINE / PHASES */
+  .phases { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; }
+  .phase {
+    background: var(--dark3); border-radius: 16px; padding: 1.75rem;
+    border-top: 4px solid; position: relative; overflow: hidden;
+  }
+  .phase-1 { border-color: var(--accent2); }
+  .phase-2 { border-color: var(--accent); }
+  .phase-3 { border-color: var(--gold); }
+  .phase-4 { border-color: var(--danger); }
+  .phase-num { font-size: 4rem; font-weight: 900; opacity: .07; position: absolute; top: .5rem; right: 1rem; }
+  .phase-week { font-size: .75rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; margin-bottom: .5rem; }
+  .phase-1 .phase-week { color: var(--accent2); }
+  .phase-2 .phase-week { color: var(--accent); }
+  .phase-3 .phase-week { color: var(--gold); }
+  .phase-4 .phase-week { color: var(--danger); }
+  .phase h3 { font-size: 1.05rem; margin-bottom: .75rem; }
+  .phase ul { list-style: none; }
+  .phase ul li { color: var(--text-muted); font-size: .85rem; padding: .3rem 0; border-bottom: 1px solid rgba(255,255,255,0.04); display: flex; gap: .5rem; }
+  .phase ul li::before { content: '→'; color: var(--gold); flex-shrink: 0; }
+
+  /* SCHEDULE TABLE */
+  .schedule-header {
+    display: grid; grid-template-columns: 100px 1fr 1fr 1fr 1fr;
+    gap: 1px; background: rgba(201,168,76,0.2); border-radius: 12px 12px 0 0; overflow: hidden;
+  }
+  .schedule-body { border: 1px solid rgba(255,255,255,0.06); border-top: none; border-radius: 0 0 12px 12px; overflow: hidden; }
+  .sh-cell {
+    background: var(--dark4); padding: .75rem 1rem; font-size: .78rem;
+    font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--gold);
+    text-align: center;
+  }
+  .sr { display: grid; grid-template-columns: 100px 1fr 1fr 1fr 1fr; gap: 1px; background: rgba(255,255,255,0.04); }
+  .sr:nth-child(even) .sc { background: rgba(255,255,255,0.015); }
+  .sc { background: var(--dark3); padding: .85rem 1rem; font-size: .82rem; }
+  .sc.day { font-weight: 700; color: var(--gold); text-align: center; }
+  .sc:not(.day) { color: var(--text-muted); line-height: 1.4; }
+  .tag-ig { display: inline-block; background: rgba(232,144,12,0.15); color: #E8900C; font-size: .7rem; border-radius: 4px; padding: .1rem .4rem; margin-bottom: .2rem; }
+  .tag-li { display: inline-block; background: rgba(0,119,181,0.2); color: #0A97D9; font-size: .7rem; border-radius: 4px; padding: .1rem .4rem; margin-bottom: .2rem; }
+  .tag-wa { display: inline-block; background: rgba(37,211,102,0.15); color: #25D366; font-size: .7rem; border-radius: 4px; padding: .1rem .4rem; margin-bottom: .2rem; }
+
+  /* COPY EXAMPLES */
+  .copy-block {
+    background: var(--dark4); border-radius: 12px; padding: 1.5rem;
+    border: 1px solid rgba(255,255,255,0.06); margin-bottom: 1rem; position: relative;
+  }
+  .copy-label { font-size: .72rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; margin-bottom: .75rem; }
+  .copy-block pre { font-family: 'Inter', sans-serif; font-size: .88rem; color: var(--text-muted); white-space: pre-wrap; line-height: 1.8; }
+  .copy-block .platform-badge {
+    position: absolute; top: 1rem; right: 1rem;
+    font-size: .7rem; font-weight: 600; padding: .2rem .65rem; border-radius: 6px;
+  }
+
+  /* METRICS */
+  .metric-bar { margin-bottom: 1.25rem; }
+  .metric-label { display: flex; justify-content: space-between; margin-bottom: .4rem; font-size: .85rem; }
+  .metric-label span:last-child { color: var(--gold); font-weight: 600; }
+  .bar-track { height: 8px; background: var(--dark4); border-radius: 50px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 50px; background: linear-gradient(90deg, var(--gold), var(--gold-light)); transition: width 1s ease; }
+
+  /* CHECKLIST */
+  .checklist { list-style: none; }
+  .checklist li {
+    display: flex; align-items: flex-start; gap: .75rem;
+    padding: .75rem 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+    font-size: .9rem; color: var(--text-muted);
+  }
+  .checklist li .check {
+    width: 20px; height: 20px; border: 2px solid rgba(201,168,76,0.4); border-radius: 4px;
+    flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: all .2s;
+  }
+  .checklist li .check:hover { border-color: var(--gold); background: rgba(201,168,76,0.1); }
+  .checklist li.done .check { background: var(--gold); border-color: var(--gold); }
+  .checklist li.done .check::after { content: '✓'; color: var(--dark); font-size: .75rem; font-weight: 700; }
+  .checklist li.done > span { text-decoration: line-through; opacity: .5; }
+
+  /* TIMING TABLE */
+  .timing-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-top: 1.5rem; }
+  .timing-card { background: var(--dark3); border-radius: 12px; padding: 1.25rem; text-align: center; }
+  .timing-card .plat { font-size: .8rem; font-weight: 700; color: var(--gold); margin-bottom: .5rem; }
+  .timing-card .times { font-size: .85rem; color: var(--text-muted); }
+
+  /* UTM */
+  .utm-block { background: var(--dark4); border-radius: 10px; padding: 1rem 1.25rem; margin-bottom: .75rem; font-family: 'Courier New', monospace; font-size: .8rem; color: var(--accent2); border: 1px solid rgba(78,205,196,0.15); }
+
+  /* FOOTER */
+  footer { background: var(--dark2); border-top: 1px solid rgba(201,168,76,0.15); text-align: center; padding: 3rem 2rem; }
+  footer p { color: var(--text-muted); font-size: .85rem; }
+  footer strong { color: var(--gold); }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .schedule-header, .sr { grid-template-columns: 80px 1fr 1fr; }
+    .sc:nth-child(4), .sc:nth-child(5), .sh-cell:nth-child(4), .sh-cell:nth-child(5) { display: none; }
+    .timing-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="badge">⚡ ViDi · Plano Estratégico 2026</div>
+  <h1>Cúpula CEO</h1>
+  <p>Plano completo de lançamento e cronograma de postagens para redes sociais</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item"><div class="num">4</div><div class="lbl">Semanas</div></div>
+    <div class="hero-meta-item"><div class="num">3</div><div class="lbl">Plataformas</div></div>
+    <div class="hero-meta-item"><div class="num">28+</div><div class="lbl">Publicações</div></div>
+    <div class="hero-meta-item"><div class="num">100%</div><div class="lbl">Meta Vagas</div></div>
+  </div>
+  <div class="scroll-hint">↓ Role para explorar</div>
+</section>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">🏛 CÚPULA CEO · VIDI</div>
+  <ul class="nav-links">
+    <li><a href="#visao">Visão</a></li>
+    <li><a href="#pilares">Pilares</a></li>
+    <li><a href="#fases">Fases</a></li>
+    <li><a href="#cronograma">Cronograma</a></li>
+    <li><a href="#copies">Copies</a></li>
+    <li><a href="#metricas">Métricas</a></li>
+    <li><a href="#checklist">Checklist</a></li>
+  </ul>
+</nav>
+
+<!-- VISÃO -->
+<section id="visao">
+  <div class="section-tag">01 · Visão Geral</div>
+  <h2>O Evento & a Estratégia</h2>
+  <p style="color:var(--text-muted); max-width:620px; margin-bottom:2.5rem;">A Cúpula CEO é o primeiro encontro exclusivo da ViDi para CEOs, fundadores e diretores prontos para o próximo nível — sem burnout, sem isolamento, com método.</p>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-icon">🎯</div>
+      <h3>Público-alvo</h3>
+      <p>CEOs, fundadores, diretores e líderes de operações comerciais que buscam escalar sem se destruir.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔥</div>
+      <h3>Proposta de Valor</h3>
+      <p>Metodologia antifrágil aplicada à alta liderança. Grupo de pares de elite. Imersão facilitada pela ViDi.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🎙️</div>
+      <h3>Tom de Comunicação</h3>
+      <p>Autoridade + Urgência + Pertencimento. Direto ao ponto. Provocador intencional. Exclusividade real.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📱</div>
+      <h3>Plataformas</h3>
+      <p>Instagram (feed, reels, stories) · LinkedIn (texto e carrosseis) · WhatsApp Broadcast</p>
+    </div>
+  </div>
+</section>
+
+<!-- PILARES -->
+<section id="pilares">
+  <div class="section-tag">02 · Pilares de Conteúdo</div>
+  <h2>Framework 40/30/20/10</h2>
+  <p style="color:var(--text-muted); margin-bottom:2rem;">Distribuição estratégica para construir autoridade, gerar engajamento e converter.</p>
+
+  <div class="pillar">
+    <div class="pillar-pct">40%</div>
+    <div>
+      <h3>Autoridade & Insights</h3>
+      <p>Posicionar ViDi como referência. Erros fatais de CEOs, lições reais, dados de mercado, perspectivas exclusivas.</p>
+    </div>
+  </div>
+  <div class="pillar" style="border-color:var(--accent)">
+    <div class="pillar-pct" style="color:var(--accent)">30%</div>
+    <div>
+      <h3>Provocação & Ruptura</h3>
+      <p>Gerar engajamento e compartilhamento. Mitos de liderança, verdades incômodas, comparações antes/depois.</p>
+    </div>
+  </div>
+  <div class="pillar" style="border-color:var(--accent2)">
+    <div class="pillar-pct" style="color:var(--accent2)">20%</div>
+    <div>
+      <h3>Prova Social & Bastidores</h3>
+      <p>Construir confiança e FOMO. Depoimentos de participantes, bastidores do evento, relatos reais de transformação.</p>
+    </div>
+  </div>
+  <div class="pillar" style="border-color:var(--danger)">
+    <div class="pillar-pct" style="color:var(--danger)">10%</div>
+    <div>
+      <h3>Promocional — Cúpula CEO</h3>
+      <p>Converter em inscrições. Anúncio oficial, contagem regressiva, vagas limitadas, urgência real.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FASES -->
+<section id="fases">
+  <div class="section-tag">03 · Fases do Lançamento</div>
+  <h2>4 Semanas · 4 Fases</h2>
+  <div class="phases">
+    <div class="phase phase-1">
+      <div class="phase-num">1</div>
+      <div class="phase-week">Semana 1 · D-28 a D-22</div>
+      <h3>Aquecimento</h3>
+      <p style="color:var(--text-muted);font-size:.85rem;margin-bottom:.75rem;">Ativar a audiência com o problema</p>
+      <ul>
+        <li>Carrossel "paradoxo do CEO"</li>
+        <li>Post LinkedIn — solidão no topo</li>
+        <li>Stories enquete (sim/não)</li>
+        <li>Broadcast WhatsApp #1</li>
+        <li>Reels — "negócio dependente de você"</li>
+      </ul>
+    </div>
+    <div class="phase phase-2">
+      <div class="phase-num">2</div>
+      <div class="phase-week">Semana 2 · D-21 a D-15</div>
+      <h3>Agitação</h3>
+      <p style="color:var(--text-muted);font-size:.85rem;margin-bottom:.75rem;">Apresentar a solução e construir autoridade</p>
+      <ul>
+        <li>Post "CEO extraordinário pensa melhor"</li>
+        <li>Carrossel LinkedIn — 5 hábitos</li>
+        <li>Stories bastidores do evento</li>
+        <li>Broadcast WhatsApp #2</li>
+        <li>Reels — "CEO que quase quebrou"</li>
+      </ul>
+    </div>
+    <div class="phase phase-3">
+      <div class="phase-num">3</div>
+      <div class="phase-week">Semana 3 · D-14 a D-8</div>
+      <h3>Lançamento 🚀</h3>
+      <p style="color:var(--text-muted);font-size:.85rem;margin-bottom:.75rem;">Abrir inscrições e gerar FOMO</p>
+      <ul>
+        <li>Post anúncio oficial (todos canais)</li>
+        <li>Sequência FAQ no Stories</li>
+        <li>Depoimento de participante</li>
+        <li>Broadcast abertura de vagas</li>
+        <li>"X vagas preenchidas em 48h"</li>
+      </ul>
+    </div>
+    <div class="phase phase-4">
+      <div class="phase-num">4</div>
+      <div class="phase-week">Semana 4 · D-7 a D-1</div>
+      <h3>Urgência & Fechamento</h3>
+      <p style="color:var(--text-muted);font-size:.85rem;margin-bottom:.75rem;">Converter os indecisos e fechar vagas</p>
+      <ul>
+        <li>Barra de vagas preenchidas</li>
+        <li>Broadcast D-5 urgência direta</li>
+        <li>Reels "você deixou pra última hora"</li>
+        <li>Post encerramento D-1</li>
+        <li>Confirmação e onboarding inscritos</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CRONOGRAMA -->
+<section id="cronograma">
+  <div class="section-tag">04 · Cronograma Semanal</div>
+  <h2>Distribuição por Canal</h2>
+  <p style="color:var(--text-muted);margin-bottom:2rem;">Grade de publicações para cada plataforma ao longo das 4 semanas.</p>
+
+  <!-- Semana 1 -->
+  <h3 style="color:var(--accent2);margin-bottom:1rem;">📗 Semana 1 — Aquecimento (D-28 a D-22)</h3>
+  <div class="schedule-header">
+    <div class="sh-cell">Dia</div>
+    <div class="sh-cell">📸 Instagram</div>
+    <div class="sh-cell">💼 LinkedIn</div>
+    <div class="sh-cell">📱 Stories</div>
+    <div class="sh-cell">💬 WhatsApp</div>
+  </div>
+  <div class="schedule-body">
+    <div class="sr"><div class="sc day">Seg</div><div class="sc"><span class="tag-ig">Feed</span><br>Carrossel "Paradoxo do CEO" — 8 slides</div><div class="sc">—</div><div class="sc">—</div><div class="sc">—</div></div>
+    <div class="sr"><div class="sc day">Ter</div><div class="sc">—</div><div class="sc"><span class="tag-li">Post</span><br>CEO isolado toma decisão no escuro</div><div class="sc">—</div><div class="sc">—</div></div>
+    <div class="sr"><div class="sc day">Qua</div><div class="sc">—</div><div class="sc">—</div><div class="sc"><span class="tag-ig">Stories</span><br>Enquete: "Tem grupo de pares?"</div><div class="sc">—</div></div>
+    <div class="sr"><div class="sc day">Qui</div><div class="sc">—</div><div class="sc">—</div><div class="sc">—</div><div class="sc"><span class="tag-wa">Broadcast</span><br>Reflexão sobre solidão no comando</div></div>
+    <div class="sr"><div class="sc day">Sex</div><div class="sc"><span class="tag-ig">Reels</span><br>"Seu negócio depende de você estar presente?"</div><div class="sc">—</div><div class="sc"><span class="tag-ig">Stories</span><br>Chamada para seguir o perfil</div><div class="sc">—</div></div>
+  </div>
+
+  <div class="divider" style="margin:2rem 0"></div>
+
+  <!-- Semana 2 -->
+  <h3 style="color:var(--accent);margin-bottom:1rem;">📘 Semana 2 — Agitação (D-21 a D-15)</h3>
+  <div class="schedule-header">
+    <div class="sh-cell">Dia</div>
+    <div class="sh-cell">📸 Instagram</div>
+    <div class="sh-cell">💼 LinkedIn</div>
+    <div class="sh-cell">📱 Stories</div>
+    <div class="sh-cell">💬 WhatsApp</div>
+  </div>
+  <div class="schedule-body">
+    <div class="sr"><div class="sc day">Seg</div><div class="sc"><span class="tag-ig">Feed</span><br>Quote "CEO extraordinário pensa melhor"</div><div class="sc">—</div><div class="sc">—</div><div class="sc">—</div></div>
+    <div class="sr"><div class="sc day">Ter</div><div class="sc">—</div><div class="sc"><span class="tag-li">Carrossel</span><br>5 hábitos de CEOs R$10M/ano</div><div class="sc">—</div><div class="sc">—</div></div>
+    <div class="sr"><div class="sc day">Qua</div><div class="sc">—</div><div class="sc">—</div><div class="sc"><span class="tag-ig">Stories</span><br>Bastidores: preparação do evento</div><div class="sc">—</div></div>
+    <div class="sr"><div class="sc day">Qui</div><div class="sc">—</div><div class="sc">—</div><div class="sc">—</div><div class="sc"><span class="tag-wa">Broadcast</span><br>Teaser: "Não é mentoria. Não é curso."</div></div>
+    <div class="sr"><div class="sc day">Sex</div><div class="sc"><span class="tag-ig">Reels</span><br>"Empresa de R$50M que quase quebrou"</div><div class="sc">—</div><div class="sc"><span class="tag-ig">Stories</span><br>Chamada: sininho do perfil</div><div class="sc">—</div></div>
+  </div>
+
+  <div class="divider" style="margin:2rem 0"></div>
+
+  <!-- Semana 3 -->
+  <h3 style="color:var(--gold);margin-bottom:1rem;">🔥 Semana 3 — Lançamento (D-14 a D-8)</h3>
+  <div class="schedule-header">
+    <div class="sh-cell">Dia</div>
+    <div class="sh-cell">📸 Instagram</div>
+    <div class="sh-cell">💼 LinkedIn</div>
+    <div class="sh-cell">📱 Stories</div>
+    <div class="sh-cell">💬 WhatsApp</div>
+  </div>
+  <div class="schedule-body">
+    <div class="sr"><div class="sc day">Seg</div><div class="sc"><span class="tag-ig">Feed</span><br>🚀 ANÚNCIO OFICIAL Cúpula CEO</div><div class="sc"><span class="tag-li">Post</span><br>Lançamento + link inscrição</div><div class="sc"><span class="tag-ig">Stories</span><br>Contagem + link direto</div><div class="sc"><span class="tag-wa">Broadcast</span><br>Abertura de vagas urgente</div></div>
+    <div class="sr"><div class="sc day">Ter</div><div class="sc">—</div><div class="sc">—</div><div class="sc"><span class="tag-ig">Stories</span><br>FAQ — 5 perguntas frequentes</div><div class="sc"><span class="tag-wa">Broadcast</span><br>Depoimento participante</div></div>
+    <div class="sr"><div class="sc day">Qua</div><div class="sc"><span class="tag-ig">Reels</span><br>"Por que a Cúpula CEO é diferente"</div><div class="sc"><span class="tag-li">Post</span><br>Por que criei este evento</div><div class="sc"><span class="tag-ig">Stories</span><br>Bastidores ao vivo</div><div class="sc">—</div></div>
+    <div class="sr"><div class="sc day">Qui</div><div class="sc"><span class="tag-ig">Feed</span><br>Carrossel: o que você leva da Cúpula</div><div class="sc">—</div><div class="sc">—</div><div class="sc"><span class="tag-wa">Broadcast</span><br>"X vagas preenchidas em 48h"</div></div>
+    <div class="sr"><div class="sc day">Sex</div><div class="sc">—</div><div class="sc">—</div><div class="sc"><span class="tag-ig">Stories</span><br>Barra: vagas se esgotando</div><div class="sc">—</div></div>
+    <div class="sr"><div class="sc day">Sáb</div><div class="sc"><span class="tag-ig">Feed</span><br>Post de valor gratuito → FOMO</div><div class="sc"><span class="tag-li">Post</span><br>Insight profundo + link comentário</div><div class="sc">—</div><div class="sc">—</div></div>
+  </div>
+
+  <div class="divider" style="margin:2rem 0"></div>
+
+  <!-- Semana 4 -->
+  <h3 style="color:var(--danger);margin-bottom:1rem;">⏰ Semana 4 — Urgência & Fechamento (D-7 a D-1)</h3>
+  <div class="schedule-header">
+    <div class="sh-cell">Dia</div>
+    <div class="sh-cell">📸 Instagram</div>
+    <div class="sh-cell">💼 LinkedIn</div>
+    <div class="sh-cell">📱 Stories</div>
+    <div class="sh-cell">💬 WhatsApp</div>
+  </div>
+  <div class="schedule-body">
+    <div class="sr"><div class="sc day">D-7</div><div class="sc">—</div><div class="sc">—</div><div class="sc"><span class="tag-ig">Stories</span><br>Barra de vagas preenchidas (70%)</div><div class="sc">—</div></div>
+    <div class="sr"><div class="sc day">D-5</div><div class="sc">—</div><div class="sc">—</div><div class="sc"><span class="tag-ig">Stories</span><br>"Restam [X] vagas"</div><div class="sc"><span class="tag-wa">Broadcast</span><br>Urgência direta: "Quanto custa 1 ano no mesmo lugar?"</div></div>
+    <div class="sr"><div class="sc day">D-3</div><div class="sc"><span class="tag-ig">Reels</span><br>"Você deixou pra última hora"</div><div class="sc"><span class="tag-li">Post</span><br>Recapitulação + urgência</div><div class="sc"><span class="tag-ig">Stories</span><br>Countdown</div><div class="sc">—</div></div>
+    <div class="sr"><div class="sc day">D-1</div><div class="sc"><span class="tag-ig">Feed</span><br>"Amanhã fecha. Última chamada."</div><div class="sc"><span class="tag-li">Post</span><br>Encerramento oficial</div><div class="sc"><span class="tag-ig">Stories</span><br>Countdown + link a cada 2h</div><div class="sc"><span class="tag-wa">Broadcast</span><br>Último aviso — encerramento 23h59</div></div>
+  </div>
+</section>
+
+<!-- COPIES -->
+<section id="copies">
+  <div class="section-tag">05 · Templates de Copy</div>
+  <h2>Exemplos de Publicações</h2>
+
+  <h3 style="margin-bottom:1rem;margin-top:1.5rem;">Lançamento — Instagram Feed</h3>
+  <div class="copy-block">
+    <span class="platform-badge tag-ig">Instagram</span>
+    <div class="copy-label" style="color:var(--gold)">Post de Anúncio Oficial</div>
+    <pre>Apresentando:
+
+CÚPULA CEO
+
+O primeiro encontro exclusivo da ViDi
+para CEOs, fundadores e diretores
+que querem crescer sem se destruir.
+
+📍 [Local ou Online]
+📅 [Data do evento]
+🔒 Vagas limitadas a [X] participantes
+
+Não é evento de networking genérico.
+Não é palestra motivacional.
+
+É uma imersão de alto calibre com o método
+que já transformou +[X] líderes.
+
+→ Metodologia antifrágil aplicada ao comando
+→ Grupo de pares de alto desempenho
+→ Frameworks para escala sem burnout
+→ Decisões melhores, mais rápidas
+
+Vagas por perfil. Não é para todos.
+É para quem está pronto.
+
+Link na bio. Inscrições abertas agora.</pre>
+  </div>
+
+  <h3 style="margin-bottom:1rem;margin-top:1.5rem;">Aquecimento — LinkedIn</h3>
+  <div class="copy-block">
+    <span class="platform-badge tag-li">LinkedIn</span>
+    <div class="copy-label" style="color:#0A97D9">Post Texto — Semana 1</div>
+    <pre>Depois de 20 anos trabalhando com líderes,
+aprendi uma coisa que ninguém gosta de ouvir:
+
+O CEO que não tem um grupo de pares
+está sempre tomando decisões no escuro.
+
+Não porque ele seja menos inteligente.
+Porque ele está sozinho no topo.
+
+E solidão no comando tem um custo.
+Decisões mais lentas. Vieses não questionados.
+Falta de benchmark real.
+
+Os maiores avanços de empresários aconteceram
+quando pararam de tentar descobrir tudo sozinhos.
+
+Em breve vou trazer algo sobre isso.
+
+Você concorda que CEOs precisam
+de um grupo de pares?</pre>
+  </div>
+
+  <h3 style="margin-bottom:1rem;margin-top:1.5rem;">Urgência — WhatsApp Broadcast</h3>
+  <div class="copy-block">
+    <span class="platform-badge tag-wa">WhatsApp</span>
+    <div class="copy-label" style="color:#25D366">Broadcast D-5</div>
+    <pre>[Nome],
+
+Quero ser direto.
+
+Restam [X] vagas para a Cúpula CEO.
+
+Se você ficou na dúvida até agora,
+deixa eu te fazer uma pergunta:
+
+Quanto custa mais um ano no mesmo lugar?
+
+O link ainda está aberto:
+[LINK]
+
+Mas não por muito tempo.
+— [Nome / ViDi]</pre>
+  </div>
+</section>
+
+<!-- HORÁRIOS -->
+<section>
+  <div class="section-tag">06 · Horários Ideais</div>
+  <h2>Quando Publicar (BRT)</h2>
+  <div class="timing-grid">
+    <div class="timing-card">
+      <div class="plat">📸 Instagram Feed</div>
+      <div class="times">Seg · Qua · Sex<br><strong>08h · 12h · 19h</strong></div>
+    </div>
+    <div class="timing-card">
+      <div class="plat">🎬 Instagram Reels</div>
+      <div class="times">Qua · Sex<br><strong>19h – 21h</strong></div>
+    </div>
+    <div class="timing-card">
+      <div class="plat">📎 Instagram Stories</div>
+      <div class="times">Diário<br><strong>08h · 12h · 18h</strong></div>
+    </div>
+    <div class="timing-card">
+      <div class="plat">💼 LinkedIn</div>
+      <div class="times">Ter · Qui<br><strong>08h–09h ou 18h–19h</strong></div>
+    </div>
+    <div class="timing-card">
+      <div class="plat">💬 WhatsApp Broadcast</div>
+      <div class="times">Ter · Qui · Sáb<br><strong>09h ou 19h</strong></div>
+    </div>
+    <div class="timing-card">
+      <div class="plat">🚀 Dia de Lançamento</div>
+      <div class="times">Todos canais simultâneos<br><strong>08h · 12h · 19h</strong></div>
+    </div>
+  </div>
+</section>
+
+<!-- UTMs -->
+<section>
+  <div class="section-tag">07 · Rastreamento</div>
+  <h2>UTMs de Conversão</h2>
+  <p style="color:var(--text-muted);margin-bottom:1.5rem;">Todos os links devem incluir UTMs para rastrear a origem das inscrições.</p>
+  <div class="utm-block">?utm_source=instagram&utm_medium=feed&utm_campaign=cupula-ceo&utm_content=s3-lancamento</div>
+  <div class="utm-block">?utm_source=instagram&utm_medium=stories&utm_campaign=cupula-ceo&utm_content=s3-cta</div>
+  <div class="utm-block">?utm_source=linkedin&utm_medium=organic&utm_campaign=cupula-ceo&utm_content=s3-lancamento</div>
+  <div class="utm-block">?utm_source=whatsapp&utm_medium=broadcast&utm_campaign=cupula-ceo&utm_content=s3-abertura</div>
+
+  <h3 style="margin-top:2rem;margin-bottom:1rem;">Eventos Críticos a Monitorar</h3>
+  <div class="grid-3">
+    <div class="card" style="text-align:center;">
+      <div style="font-size:1.8rem;margin-bottom:.5rem;">👁️</div>
+      <h3>landing_viewed</h3>
+      <p>Chegou na página de inscrição</p>
+    </div>
+    <div class="card" style="text-align:center;">
+      <div style="font-size:1.8rem;margin-bottom:.5rem;">📝</div>
+      <h3>form_started</h3>
+      <p>Iniciou o formulário de inscrição</p>
+    </div>
+    <div class="card" style="text-align:center;border-color:rgba(201,168,76,0.4)">
+      <div style="font-size:1.8rem;margin-bottom:.5rem;">🏆</div>
+      <h3>inscricao_completed</h3>
+      <p>Finalizou a inscrição — evento crítico</p>
+    </div>
+  </div>
+</section>
+
+<!-- MÉTRICAS -->
+<section id="metricas">
+  <div class="section-tag">08 · Métricas de Sucesso</div>
+  <h2>KPIs por Fase</h2>
+
+  <div style="margin-top:2rem;">
+    <div class="metric-bar">
+      <div class="metric-label"><span>Semana 1 — Alcance orgânico vs. média</span><span>+20%</span></div>
+      <div class="bar-track"><div class="bar-fill" style="width:20%"></div></div>
+    </div>
+    <div class="metric-bar">
+      <div class="metric-label"><span>Semana 2 — Comentários no post âncora</span><span>50+</span></div>
+      <div class="bar-track"><div class="bar-fill" style="width:40%"></div></div>
+    </div>
+    <div class="metric-bar">
+      <div class="metric-label"><span>Semana 3 — Vagas preenchidas no lançamento</span><span>60%</span></div>
+      <div class="bar-track"><div class="bar-fill" style="width:60%"></div></div>
+    </div>
+    <div class="metric-bar">
+      <div class="metric-label"><span>Semana 4 — Meta final de vagas</span><span>100%</span></div>
+      <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CHECKLIST -->
+<section id="checklist">
+  <div class="section-tag">09 · Checklist Operacional</div>
+  <h2>Antes de Lançar</h2>
+  <p style="color:var(--text-muted);margin-bottom:2rem;">Clique nos itens para marcar como concluído.</p>
+  <ul class="checklist" id="cl">
+    <li onclick="toggle(this)"><div class="check"></div><span>Definir data oficial e local do evento</span></li>
+    <li onclick="toggle(this)"><div class="check"></div><span>Criar identidade visual da Cúpula CEO (logo, paleta, templates)</span></li>
+    <li onclick="toggle(this)"><div class="check"></div><span>Configurar página de inscrição com UTMs ativos</span></li>
+    <li onclick="toggle(this)"><div class="check"></div><span>Preparar lista de broadcast WhatsApp (segmentada CEOs/diretores)</span></li>
+    <li onclick="toggle(this)"><div class="check"></div><span>Produzir banco de imagens e vídeos para as 4 semanas</span></li>
+    <li onclick="toggle(this)"><div class="check"></div><span>Escrever e aprovar todos os copies das publicações</span></li>
+    <li onclick="toggle(this)"><div class="check"></div><span>Configurar agendamento (mLabs, Later ou Buffer)</span></li>
+    <li onclick="toggle(this)"><div class="check"></div><span>Criar documento de respostas rápidas para DMs e comentários</span></li>
+    <li onclick="toggle(this)"><div class="check"></div><span>Definir número de vagas e critérios do processo seletivo</span></li>
+    <li onclick="toggle(this)"><div class="check"></div><span>Treinar responsável pelo monitoramento e engajamento diário</span></li>
+    <li onclick="toggle(this)"><div class="check"></div><span>Ativar pixel/rastreamento antes do lançamento</span></li>
+    <li onclick="toggle(this)"><div class="check"></div><span>Testar todos os links UTM em ambiente de staging</span></li>
+  </ul>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>ViDi — Cúpula CEO</strong></p>
+  <p style="margin-top:.5rem;">Plano estratégico de lançamento · Skills: content-creator · social-content · analytics-tracking · Abril 2026</p>
+</footer>
+
+<script>
+  function toggle(el) {
+    el.classList.toggle('done');
+  }
+  // Animate bars on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.bar-fill').forEach(b => {
+          b.style.width = b.style.width;
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.metric-bar').forEach(b => observer.observe(b));
+</script>
+</body>
+</html>
