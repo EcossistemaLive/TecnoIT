@@ -1,10 +1,27 @@
 import logging
 import numpy as np
-from langchain_openai import OpenAIEmbeddings  # mantido para compatibilidade prod
 from app.db.postgres import db
 from app.config import config
 
 logger = logging.getLogger(__name__)
+
+# Mapeamento user_type → níveis de acesso RAG permitidos
+_ACCESS_LEVELS_BY_TYPE: dict[str, list[str]] = {
+    "lead":        ["public"],
+    "participant": ["public", "participant"],
+    "mentored":    ["public", "mentored"],         # sem evento
+    "staff":       ["public", "participant", "mentored", "internal"],
+}
+
+
+def _build_allowed_levels(user_type: str, has_event_access: bool) -> list[str]:
+    """Retorna a lista de access_levels que este usuário pode ver."""
+    levels = list(_ACCESS_LEVELS_BY_TYPE.get(user_type, ["public", "participant"]))
+    # Mentorado com acesso ao evento também vê conteúdo de participant
+    if user_type == "mentored" and has_event_access and "participant" not in levels:
+        levels.append("participant")
+    return levels
+
 
 class DocumentRetriever:
     def __init__(self):
@@ -12,12 +29,22 @@ class DocumentRetriever:
         self.embeddings = None
         self.embedding_dim = 768
 
-    async def search(self, query: str, limit: int = None, threshold: float = None, totem_tag: str = None) -> list[dict]:
-        """Busca vetorial no pgvector (cosine similarity com embeddings mock)"""
+    async def search(
+        self,
+        query: str,
+        limit: int = None,
+        threshold: float = None,
+        totem_tag: str = None,
+        user_type: str = "participant",
+        has_event_access: bool = True,
+    ) -> list[dict]:
+        """Busca vetorial no pgvector filtrada por access_level e opcionalmente por totem_tag."""
         if limit is None:
             limit = config.MAX_RAG_CHUNKS
         if threshold is None:
             threshold = config.RAG_SIMILARITY_THRESHOLD
+
+        allowed_levels = _build_allowed_levels(user_type, has_event_access)
 
         # Gera um vetor mock pseudo-aleatório baseado no hash da query
         query_hash = hash(query.lower()) % 1000000
@@ -25,19 +52,19 @@ class DocumentRetriever:
         query_vector = np.random.randn(768).tolist()
         formatted_vector = f"[{','.join(str(f) for f in query_vector)}]"
 
+        params = [formatted_vector, allowed_levels, threshold]
+
         sql = """
-            SELECT id, content, source_document, theme, totem_tag,
+            SELECT id, content, source_document, theme, totem_tag, access_level,
                    1 - (embedding <=> $1::vector) as similarity
             FROM knowledge_chunks
+            WHERE access_level = ANY($2::text[])
+              AND 1 - (embedding <=> $1::vector) > $3
         """
-        params = [formatted_vector]
 
         if totem_tag:
-            sql += " WHERE totem_tag = $2 AND 1 - (embedding <=> $1::vector) > $3"
-            params.extend([totem_tag, threshold])
-        else:
-            sql += " WHERE 1 - (embedding <=> $1::vector) > $2"
-            params.append(threshold)
+            sql += " AND totem_tag = $4"
+            params.append(totem_tag)
 
         sql += " ORDER BY similarity DESC LIMIT $" + str(len(params) + 1)
         params.append(limit)
@@ -53,9 +80,11 @@ class DocumentRetriever:
                 "content": r["content"],
                 "similarity": float(r["similarity"]) if r["similarity"] else 0.5,
                 "theme": r["theme"],
-                "totem_tag": r["totem_tag"]
+                "totem_tag": r["totem_tag"],
+                "access_level": r["access_level"],
             }
             for r in records
         ]
+
 
 retriever = DocumentRetriever()

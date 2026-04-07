@@ -7,14 +7,15 @@ from app.agent.nodes import (
     call_llm,
     evaluate_upsell,
     notify_team,
-    persist_history
+    persist_history,
 )
+
 
 def create_agent_graph():
     """Constrói e compila o StateGraph do LangGraph."""
     workflow = StateGraph(AgentState)
 
-    # 1. Adicionar os Nós
+    # Nós
     workflow.add_node("validate_user", validate_user)
     workflow.add_node("classify_intent", classify_intent)
     workflow.add_node("retrieve_context", retrieve_context)
@@ -22,54 +23,40 @@ def create_agent_graph():
     workflow.add_node("evaluate_upsell", evaluate_upsell)
     workflow.add_node("notify_team", notify_team)
     workflow.add_node("persist_history", persist_history)
-    
-    # 2. Definir Ponto de Entrada
+
+    # Ponto de entrada
     workflow.set_entry_point("validate_user")
 
-    # 3. Adicionar Arestas e Condicionais
+    # Fluxo principal
     def check_auth(state: AgentState):
-        if not state.get("is_authenticated"):
-            return "bloqueado"
-        return "classificar"
+        return "classificar" if state.get("is_authenticated") else "bloqueado"
 
-    # Se validate_user falhar, vai pro fim (bloqueado)
     workflow.add_conditional_edges(
         "validate_user",
         check_auth,
-        {
-            "bloqueado": END,
-            "classificar": "classify_intent"
-        }
+        {"bloqueado": END, "classificar": "classify_intent"},
     )
 
-    # De classificar, todos vão puxar contexto RAG do evento
     workflow.add_edge("classify_intent", "retrieve_context")
     workflow.add_edge("retrieve_context", "call_llm")
-    
-    # Apos LLM responder, avaliamos upsell em paralelo com persistencia
+
+    # Após LLM: avalia upsell e persiste histórico em paralelo
     workflow.add_edge("call_llm", "evaluate_upsell")
     workflow.add_edge("call_llm", "persist_history")
-    
-    # De Evaluate Upsell, decide se alerta a equipe
+
     def check_upsell(state: AgentState):
-        if state.get("needs_team_alert"):
-            return "notificar"
-        return "fim"
-        
+        return "notificar" if state.get("needs_team_alert") else "fim"
+
     workflow.add_conditional_edges(
         "evaluate_upsell",
         check_upsell,
-        {
-            "notificar": "notify_team",
-            "fim": END
-        }
+        {"notificar": "notify_team", "fim": END},
     )
-    
+
     workflow.add_edge("notify_team", END)
     workflow.add_edge("persist_history", END)
 
-    # Compilar Grafo
     return workflow.compile()
 
-# Instância global do grafo copilado
+
 app_graph = create_agent_graph()

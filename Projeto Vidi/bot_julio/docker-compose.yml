@@ -16,6 +16,8 @@ services:
     volumes:
       - botjulio_pg_data:/var/lib/postgresql/data
       - ./app/db/migrations/001_initial.sql:/docker-entrypoint-initdb.d/001_initial.sql:ro
+      - ./app/db/migrations/002_whatsapp_migration.sql:/docker-entrypoint-initdb.d/002_whatsapp_migration.sql:ro
+      - ./app/db/migrations/003_user_types.sql:/docker-entrypoint-initdb.d/003_user_types.sql:ro
     restart: unless-stopped
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres -d botjulio_test"]

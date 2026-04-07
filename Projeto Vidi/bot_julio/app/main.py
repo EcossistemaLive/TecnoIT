@@ -1,73 +1,102 @@
-import asyncio
 import logging
-from telegram import Update
-from telegram.ext import Application, CommandHandler, MessageHandler, filters
+from contextlib import asynccontextmanager
+
+from fastapi import FastAPI, BackgroundTasks, HTTPException, Query, Response
 
 from app.config import config
 from app.db.postgres import db
-from app.db.mongo import mongo_db
 from app.db.redis_client import redis_client
 from app.scheduler.scheduler import start_scheduler, stop_scheduler
+from app.whatsapp_handlers.handlers import handle_whatsapp_message
 
-from app.telegram_bot_handlers.commands import cmd_totem, cmd_status
-from app.admin.commands import admin_list, admin_add, admin_fire, admin_reset
-from app.telegram_bot_handlers.handlers import handle_start, handle_text_message, handle_media
-
-# Logging config
 logging.basicConfig(
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    level=getattr(logging, config.LOG_LEVEL, logging.INFO),
 )
 logger = logging.getLogger(__name__)
 
-async def start_databases():
+
+@asynccontextmanager
+async def lifespan(_app: FastAPI):
+    """Conecta bancos e inicia scheduler na subida; desconecta na descida."""
     await db.connect()
-    await mongo_db.connect()
     await redis_client.connect()
-
-async def close_databases():
+    start_scheduler()
+    logger.info("Bot Julio v4 iniciado (Meta Cloud API)")
+    yield
+    stop_scheduler()
     await db.disconnect()
-    await mongo_db.disconnect()
     await redis_client.disconnect()
+    logger.info("Bot Julio v4 encerrado")
 
-def main():
-    """Start the bot."""
-    if not config.TELEGRAM_BOT_TOKEN:
-        logger.error("TELEGRAM_BOT_TOKEN was not set in .env")
-        return
 
-    application = Application.builder().token(config.TELEGRAM_BOT_TOKEN).build()
+app = FastAPI(title="Bot Julio v4", lifespan=lifespan)
 
-    # Comandos Globais
-    application.add_handler(CommandHandler("start", handle_start))
-    application.add_handler(CommandHandler("totem", cmd_totem))
-    application.add_handler(CommandHandler("status", cmd_status))
-    
-    # Comandos Admin
-    application.add_handler(CommandHandler("admin_list", admin_list))
-    application.add_handler(CommandHandler("admin_add", admin_add))
-    application.add_handler(CommandHandler("admin_fire", admin_fire))
-    application.add_handler(CommandHandler("reset", admin_reset))
 
-    # Textos e Mídia
-    application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_text_message))
-    application.add_handler(MessageHandler(filters.ATTACHMENT | filters.PHOTO | filters.Document.ALL | filters.VOICE, handle_media))
+# ---------------------------------------------------------------------------
+# Health check — Cloud Run exige resposta 200 na porta 8080
+# ---------------------------------------------------------------------------
 
-    # Inicia o loop para os DBs antes de rodar o polling
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(start_databases())
-    
-    # Async init: startup hook
-    async def post_init(app):
-        start_scheduler()
-        logger.info("Bot Julio v3 iniciado com sucesso (Polling ativo)...")
+@app.get("/")
+async def health():
+    return {"status": "ok", "version": "4.0"}
 
-    application.post_init = post_init
-    
+
+# ---------------------------------------------------------------------------
+# Webhook Meta — GET: verificação inicial no painel Meta for Developers
+# ---------------------------------------------------------------------------
+
+@app.get("/webhook/whatsapp")
+async def verify_webhook(
+    hub_mode: str = Query(default=None, alias="hub.mode"),
+    hub_token: str = Query(default=None, alias="hub.verify_token"),
+    hub_challenge: str = Query(default=None, alias="hub.challenge"),
+):
+    if hub_mode == "subscribe" and hub_token == config.WHATSAPP_VERIFY_TOKEN:
+        logger.info("Webhook Meta verificado com sucesso")
+        return Response(content=hub_challenge, media_type="text/plain")
+    logger.warning(f"Webhook verify falhou — token recebido: {hub_token}")
+    raise HTTPException(status_code=403, detail="Token inválido")
+
+
+# ---------------------------------------------------------------------------
+# Webhook Meta — POST: mensagens recebidas dos usuários
+# ---------------------------------------------------------------------------
+
+@app.post("/webhook/whatsapp")
+async def receive_message(payload: dict, background_tasks: BackgroundTasks):
+    """
+    Meta envia POST para cada evento (mensagem, status de entrega, etc.).
+    Responde imediatamente com 200 e processa em background para não exceder
+    o timeout de 20s da Meta.
+    """
     try:
-        application.run_polling(allowed_updates=Update.ALL_TYPES)
-    finally:
-        stop_scheduler()
-        loop.run_until_complete(close_databases())
+        entry = payload.get("entry", [{}])[0]
+        changes = entry.get("changes", [{}])[0]
+        value = changes.get("value", {})
+        messages = value.get("messages", [])
 
-if __name__ == "__main__":
-    main()
+        if not messages:
+            # Notificação de status (entregue, lido) — ignorar silenciosamente
+            return {"status": "ok"}
+
+        msg = messages[0]
+        phone = msg.get("from")
+        msg_type = msg.get("type")
+
+        # Ignorar mídias (áudio, imagem, documento)
+        if msg_type != "text":
+            logger.debug(f"Mídia ignorada de {phone}: tipo={msg_type}")
+            return {"status": "ok"}
+
+        text = msg.get("text", {}).get("body", "").strip()
+
+        if not phone or not text:
+            return {"status": "ok"}
+
+        background_tasks.add_task(handle_whatsapp_message, phone, text)
+        return {"status": "accepted"}
+
+    except Exception as e:
+        logger.error(f"Erro ao parsear payload Meta: {e}")
+        return {"status": "ok"}  # Sempre 200 para a Meta não reenviar
