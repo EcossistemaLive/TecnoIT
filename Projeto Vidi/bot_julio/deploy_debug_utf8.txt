@@ -1,0 +1,88 @@
+﻿[2026-04-02T03:02:59.416Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[2026-04-02T03:02:59.419Z] > authorizing via signed-in user (cleber.ihs@gmail.com)
+[2026-04-02T03:02:59.419Z] [iam] checking project julio-bot-ecd02 for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[2026-04-02T03:02:59.424Z] Checked if tokens are valid: true, expires at: 1775100400250
+[2026-04-02T03:02:59.424Z] Checked if tokens are valid: true, expires at: 1775100400250
+[2026-04-02T03:02:59.426Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/julio-bot-ecd02:testIamPermissions [none]
+[2026-04-02T03:02:59.427Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/julio-bot-ecd02:testIamPermissions x-goog-quota-user=projects/julio-bot-ecd02
+[2026-04-02T03:02:59.427Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/julio-bot-ecd02:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[2026-04-02T03:03:00.559Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/julio-bot-ecd02:testIamPermissions 200
+[2026-04-02T03:03:00.559Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/julio-bot-ecd02:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[2026-04-02T03:03:00.560Z] Checked if tokens are valid: true, expires at: 1775100400250
+[2026-04-02T03:03:00.560Z] Checked if tokens are valid: true, expires at: 1775100400250
+[2026-04-02T03:03:00.560Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/julio-bot-ecd02/serviceAccounts/julio-bot-ecd02@appspot.gserviceaccount.com:testIamPermissions [none]
+[2026-04-02T03:03:00.560Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/julio-bot-ecd02/serviceAccounts/julio-bot-ecd02@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[2026-04-02T03:03:01.657Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/julio-bot-ecd02/serviceAccounts/julio-bot-ecd02@appspot.gserviceaccount.com:testIamPermissions 200
+[2026-04-02T03:03:01.657Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/julio-bot-ecd02/serviceAccounts/julio-bot-ecd02@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+
+=== Deploying to 'julio-bot-ecd02'...
+
+i  deploying functions 
+[2026-04-02T03:03:01.661Z] Checked if tokens are valid: true, expires at: 1775100400250
+[2026-04-02T03:03:01.662Z] Checked if tokens are valid: true, expires at: 1775100400250
+[2026-04-02T03:03:01.662Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/projects/julio-bot-ecd02 [none]
+[2026-04-02T03:03:02.052Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/projects/julio-bot-ecd02 200
+[2026-04-02T03:03:02.053Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/projects/julio-bot-ecd02 {"projectNumber":"285462944271","projectId":"julio-bot-ecd02","lifecycleState":"ACTIVE","name":"Julio bot","labels":{"firebase":"enabled","firebase-core":"disabled"},"createTime":"2026-04-02T01:38:24.749Z"}
+i  functions: preparing codebase default for deployment 
+i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+i  artifactregistry: ensuring required API artifactregistry.googleapis.com is enabled... 
+[2026-04-02T03:03:02.054Z] Checked if tokens are valid: true, expires at: 1775100400250
+[2026-04-02T03:03:02.054Z] Checked if tokens are valid: true, expires at: 1775100400250
+[2026-04-02T03:03:02.055Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/julio-bot-ecd02/adminSdkConfig [none]
+[2026-04-02T03:03:03.646Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/julio-bot-ecd02/adminSdkConfig 200
+[2026-04-02T03:03:03.647Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/julio-bot-ecd02/adminSdkConfig {"projectId":"julio-bot-ecd02","storageBucket":"julio-bot-ecd02.firebasestorage.app"}
+[2026-04-02T03:03:03.647Z] Checked if tokens are valid: true, expires at: 1775100400250
+[2026-04-02T03:03:03.648Z] Checked if tokens are valid: true, expires at: 1775100400250
+[2026-04-02T03:03:03.648Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/julio-bot-ecd02/configs [none]
+[2026-04-02T03:03:04.921Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/julio-bot-ecd02/configs 200
+[2026-04-02T03:03:04.922Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/julio-bot-ecd02/configs {}
+[2026-04-02T03:03:04.926Z] Customer code is not Node
+[2026-04-02T03:03:04.927Z] Validating python source
+[2026-04-02T03:03:04.927Z] Building python source
+i  functions: Loading and analyzing source code for codebase default to determine what to deploy 
+[2026-04-02T03:03:04.929Z] Could not find functions.yaml. Must use http discovery
+[2026-04-02T03:03:04.951Z] Running command with virtualenv: command="C:\Users\clebe\OneDrive\├ürea de Trabalho\ProjetosGit\TecnoIT\Projeto Vidi\bot_julio\venv\Scripts\activate.bat", args=["","&&","python.exe","-c","\"import firebase_functions; import os; print(os.path.dirname(firebase_functions.__file__))\""]
+node.exe : (node:43708) 
+[DEP0190] 
+DeprecationWarning: 
+Passing args to a child 
+process with shell 
+option true can lead to 
+security 
+vulnerabilities, as the 
+arguments are not 
+escaped, only 
+concatenated.
+No C:\Users\clebe\AppData
+\Roaming\npm\firebase.ps1
+:24 caractere:5
++     & "node$exe"  "$bas
+edir/node_modules/firebas
+e-tools/lib/bin/fireb ...
++     ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo       
+       : NotSpecified: 
+((no    de:43708) [D...y 
+conca    
+tenated.:String) [], R   
+ emoteException
+    + 
+FullyQualifiedErrorI    
+d : NativeCommandError
+ 
+(Use `node 
+--trace-deprecation ...` 
+to show where the 
+warning was created)
+[2026-04-02T03:03:04.999Z] stderr: O sistema n´┐¢o pode encontrar o caminho especificado.
+
+[2026-04-02T03:03:05.459Z] Error: spawn "C:\Users\clebe\OneDrive\├ürea de Trabalho\ProjetosGit\TecnoIT\Projeto Vidi\bot_julio\venv\Scripts\activate.bat" ENOENT
+    at notFoundError (C:\Users\clebe\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\cross-spawn\lib\enoent.js:6:26)
+    at verifyENOENT (C:\Users\clebe\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\cross-spawn\lib\enoent.js:40:16)
+    at cp.emit (C:\Users\clebe\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\cross-spawn\lib\enoent.js:27:25)
+    at ChildProcess._handle.onexit (node:internal/child_process:294:12)
+
+Error: An unexpected error has occurred.

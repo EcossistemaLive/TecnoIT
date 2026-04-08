@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bot Júlio v4.0 — Relatório de Implantação</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+/* === VIEWPORT BASE — MANDATORY === */
+html, body { height: 100%; overflow-x: hidden; margin: 0; padding: 0; }
+html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
+*, *::before, *::after { box-sizing: border-box; }
+.slide {
+  width: 100vw; height: 100vh; height: 100dvh;
+  overflow: hidden; scroll-snap-align: start;
+  display: flex; flex-direction: column; position: relative;
+}
+.slide-content {
+  flex: 1; display: flex; flex-direction: column;
+  justify-content: center; max-height: 100%; overflow: hidden;
+  padding: var(--slide-padding);
+}
+:root {
+  --title-size: clamp(1.5rem, 5vw, 4rem);
+  --h2-size: clamp(1.25rem, 3.5vw, 2.5rem);
+  --h3-size: clamp(1rem, 2.5vw, 1.75rem);
+  --body-size: clamp(0.75rem, 1.5vw, 1.05rem);
+  --small-size: clamp(0.65rem, 1vw, 0.875rem);
+  --slide-padding: clamp(1rem, 4vw, 4rem);
+  --content-gap: clamp(0.5rem, 2vw, 2rem);
+  --element-gap: clamp(0.25rem, 1vw, 0.75rem);
+}
+@media (max-height: 700px) {
+  :root { --slide-padding: clamp(0.75rem, 3vw, 2rem); --title-size: clamp(1.25rem, 4.5vw, 2.5rem); --h2-size: clamp(1rem, 3vw, 1.75rem); }
+}
+@media (max-height: 600px) {
+  :root { --slide-padding: clamp(0.5rem, 2.5vw, 1.5rem); --title-size: clamp(1.1rem, 4vw, 2rem); --body-size: clamp(0.65rem, 1.2vw, 0.9rem); }
+  .nav-dots, .keyboard-hint { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.2s !important; }
+  html { scroll-behavior: auto; }
+}
+
+/* === ELECTRIC STUDIO THEME === */
+:root {
+  --bg-dark: #08090e;
+  --bg-white: #ffffff;
+  --accent-blue: #3b5bdb;
+  --accent-bright: #4c6ef5;
+  --accent-cyan: #22d3ee;
+  --text-dark: #0a0a0a;
+  --text-light: #ffffff;
+  --text-muted: #94a3b8;
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+}
+
+body { font-family: 'Manrope', sans-serif; background: var(--bg-dark); }
+
+/* === NAVIGATION === */
+.nav-dots {
+  position: fixed; right: clamp(12px, 2vw, 24px); top: 50%;
+  transform: translateY(-50%); z-index: 100;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.nav-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: rgba(255,255,255,0.25); cursor: pointer;
+  transition: all 0.3s; border: none; padding: 0;
+}
+.nav-dot.active { background: var(--accent-cyan); transform: scale(1.5); }
+
+/* === SLIDE COUNTER === */
+.slide-num {
+  position: absolute; bottom: clamp(12px, 2vh, 24px); right: clamp(16px, 2.5vw, 32px);
+  font-size: var(--small-size); color: rgba(255,255,255,0.3); font-weight: 600;
+  letter-spacing: 0.1em;
+}
+
+/* === ACCENT BAR === */
+.accent-bar {
+  height: 4px; background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
+  width: 100%; flex-shrink: 0;
+}
+
+/* === ANIMATIONS === */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideRight { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes scaleIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+@keyframes blinkBar { 0%,100%{ width:0 } 50%{ width:100% } }
+
+.anim-1 { animation: fadeUp 0.6s ease both; }
+.anim-2 { animation: fadeUp 0.6s 0.15s ease both; }
+.anim-3 { animation: fadeUp 0.6s 0.3s ease both; }
+.anim-4 { animation: fadeUp 0.6s 0.45s ease both; }
+.anim-5 { animation: fadeUp 0.6s 0.6s ease both; }
+.anim-fade { animation: fadeIn 0.8s ease both; }
+.anim-slide { animation: slideRight 0.6s ease both; }
+
+/* ============================================
+   SLIDE 1 — TITLE
+   ============================================ */
+#s1 { background: var(--bg-dark); justify-content: space-between; }
+#s1 .accent-bar { order: -1; }
+#s1 .slide-content { justify-content: center; gap: var(--content-gap); }
+#s1 .tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(59,91,219,0.15); border: 1px solid rgba(59,91,219,0.4);
+  padding: 6px 14px; border-radius: 100px;
+  font-size: var(--small-size); color: var(--accent-cyan); font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  width: fit-content;
+}
+#s1 .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-cyan); }
+#s1 h1 {
+  font-size: clamp(2rem, 7vw, 5.5rem); font-weight: 800;
+  color: var(--text-light); line-height: 1.05; margin: 0;
+}
+#s1 h1 span { color: var(--accent-cyan); }
+#s1 .subtitle { font-size: var(--h3-size); color: var(--text-muted); font-weight: 400; margin: 0; }
+#s1 .meta {
+  display: flex; gap: clamp(16px, 3vw, 40px); margin-top: clamp(8px, 2vh, 24px);
+}
+#s1 .meta-item { display: flex; flex-direction: column; gap: 4px; }
+#s1 .meta-label { font-size: var(--small-size); color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; }
+#s1 .meta-val { font-size: var(--body-size); color: var(--text-light); font-weight: 700; }
+#s1 .saving-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(34,211,238,0.1); border: 1px solid rgba(34,211,238,0.3);
+  padding: 10px 18px; border-radius: 8px; width: fit-content;
+}
+#s1 .saving-badge .val { font-size: clamp(1rem, 2.5vw, 1.5rem); font-weight: 800; color: var(--accent-cyan); }
+#s1 .saving-badge .lbl { font-size: var(--small-size); color: var(--text-muted); }
+
+/* ============================================
+   SLIDE 2 — PROBLEMA
+   ============================================ */
+#s2 { background: linear-gradient(135deg, #08090e 0%, #0f1629 100%); }
+#s2 .slide-content { gap: var(--content-gap); }
+.section-label {
+  font-size: var(--small-size); font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.15em; color: var(--accent-cyan); margin-bottom: 4px;
+}
+.slide-title { font-size: var(--h2-size); font-weight: 800; color: var(--text-light); margin: 0 0 var(--content-gap); line-height: 1.2; }
+.problem-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: clamp(8px, 1.5vw, 16px);
+}
+.problem-card {
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px; padding: clamp(10px, 1.5vw, 18px);
+  border-top: 2px solid var(--danger);
+}
+.problem-card .icon { font-size: clamp(1rem, 2.5vw, 1.5rem); margin-bottom: 6px; }
+.problem-card .title { font-size: var(--body-size); font-weight: 700; color: var(--text-light); margin-bottom: 4px; }
+.problem-card .desc { font-size: var(--small-size); color: var(--text-muted); line-height: 1.5; }
+.cost-highlight {
+  display: flex; align-items: center; gap: 12px;
+  background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.25);
+  padding: 12px 16px; border-radius: 8px;
+}
+.cost-highlight .amount { font-size: clamp(1.2rem, 3vw, 2rem); font-weight: 800; color: var(--danger); }
+.cost-highlight .desc { font-size: var(--body-size); color: var(--text-muted); }
+
+/* ============================================
+   SLIDE 3 — NOVA STACK
+   ============================================ */
+#s3 { background: var(--bg-dark); }
+#s3 .slide-content { gap: var(--content-gap); }
+.stack-table { width: 100%; border-collapse: collapse; }
+.stack-table th {
+  font-size: var(--small-size); text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--text-muted); font-weight: 700; padding: 8px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.08); text-align: left;
+}
+.stack-table td {
+  font-size: var(--small-size); padding: 7px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.04); color: var(--text-light);
+}
+.stack-table tr:hover td { background: rgba(255,255,255,0.03); }
+.stack-table .before { color: rgba(239,68,68,0.8); text-decoration: line-through; }
+.stack-table .arrow { color: var(--text-muted); }
+.stack-table .after { color: var(--success); font-weight: 600; }
+.stack-table .reason { color: var(--text-muted); font-size: clamp(0.6rem, 0.9vw, 0.8rem); }
+.saving-row {
+  display: flex; justify-content: space-between; align-items: center;
+  background: rgba(34,211,238,0.08); border: 1px solid rgba(34,211,238,0.2);
+  padding: 10px 16px; border-radius: 8px;
+}
+.saving-row .lbl { font-size: var(--body-size); color: var(--text-muted); }
+.saving-row .val { font-size: clamp(1rem, 2vw, 1.4rem); font-weight: 800; color: var(--accent-cyan); }
+
+/* ============================================
+   SLIDE 4 — O QUE JÁ FOI FEITO
+   ============================================ */
+#s4 { background: linear-gradient(135deg, #050d1a 0%, #08090e 100%); }
+#s4 .slide-content { gap: var(--content-gap); }
+.done-header {
+  display: flex; align-items: center; gap: 10px;
+}
+.done-badge {
+  background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.3);
+  color: var(--success); font-size: var(--small-size); font-weight: 700;
+  padding: 4px 12px; border-radius: 100px; letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.done-date { font-size: var(--small-size); color: var(--text-muted); }
+.done-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: clamp(6px, 1vw, 10px);
+}
+.done-item {
+  display: flex; align-items: flex-start; gap: 10px;
+  background: rgba(34,197,94,0.05); border: 1px solid rgba(34,197,94,0.12);
+  border-radius: 8px; padding: clamp(8px, 1vw, 12px);
+}
+.done-check {
+  width: clamp(18px, 2vw, 22px); height: clamp(18px, 2vw, 22px);
+  background: var(--success); border-radius: 50%; display: flex;
+  align-items: center; justify-content: center; flex-shrink: 0;
+  font-size: clamp(9px, 1.2vw, 12px); color: white; font-weight: 800; margin-top: 1px;
+}
+.done-text { font-size: var(--small-size); color: var(--text-light); line-height: 1.4; font-weight: 500; }
+.done-text span { color: var(--text-muted); font-weight: 400; }
+
+/* ============================================
+   SLIDE 5 — CREDENCIAIS ATIVAS
+   ============================================ */
+#s5 { background: var(--bg-dark); }
+#s5 .slide-content { gap: var(--content-gap); }
+.cred-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: clamp(8px, 1.5vw, 16px);
+}
+.cred-card {
+  border-radius: 10px; padding: clamp(12px, 1.5vw, 18px);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.cred-card.active { border-top: 3px solid var(--success); background: rgba(34,197,94,0.05); }
+.cred-card.pending { border-top: 3px solid var(--warning); background: rgba(245,158,11,0.05); }
+.cred-card .status-row { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; }
+.status-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.status-dot.green { background: var(--success); }
+.status-dot.yellow { background: var(--warning); }
+.cred-card .service { font-size: var(--body-size); font-weight: 700; color: var(--text-light); margin-bottom: 4px; }
+.cred-card .detail { font-size: var(--small-size); color: var(--text-muted); font-family: 'Courier New', monospace; line-height: 1.5; }
+.cred-card .badge {
+  display: inline-block; font-size: clamp(0.55rem, 0.8vw, 0.7rem); font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em; padding: 3px 8px; border-radius: 4px; margin-top: 6px;
+}
+.badge-ok { background: rgba(34,197,94,0.15); color: var(--success); }
+.badge-wait { background: rgba(245,158,11,0.15); color: var(--warning); }
+
+/* ============================================
+   SLIDE 6 — SEMANA 2
+   ============================================ */
+#s6 { background: linear-gradient(135deg, #08090e 0%, #0f1629 100%); }
+#s6 .slide-content { gap: var(--content-gap); }
+.week-header { display: flex; align-items: center; gap: 12px; }
+.week-num {
+  font-size: clamp(2rem, 5vw, 4rem); font-weight: 800;
+  color: rgba(255,255,255,0.07); line-height: 1;
+}
+.week-info .week-label { font-size: var(--small-size); color: var(--accent-cyan); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; }
+.week-info .week-title { font-size: var(--h3-size); color: var(--text-light); font-weight: 800; }
+.task-list { display: flex; flex-direction: column; gap: clamp(5px, 0.8vw, 8px); }
+.task-item {
+  display: flex; align-items: flex-start; gap: 10px;
+  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 8px; padding: clamp(8px, 1vw, 12px);
+}
+.task-num {
+  width: clamp(20px, 2.5vw, 26px); height: clamp(20px, 2.5vw, 26px);
+  background: rgba(59,91,219,0.2); border: 1px solid rgba(59,91,219,0.3);
+  border-radius: 6px; display: flex; align-items: center; justify-content: center;
+  font-size: var(--small-size); font-weight: 800; color: var(--accent-bright); flex-shrink: 0;
+}
+.task-body .task-title { font-size: var(--body-size); font-weight: 700; color: var(--text-light); margin-bottom: 2px; }
+.task-body .task-sub { font-size: var(--small-size); color: var(--text-muted); line-height: 1.4; }
+.code-snippet {
+  background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 6px; padding: 8px 12px;
+  font-family: 'Courier New', monospace; font-size: clamp(0.6rem, 0.9vw, 0.75rem);
+  color: var(--accent-cyan); margin-top: 4px; line-height: 1.6;
+}
+
+/* ============================================
+   SLIDE 7 — SEMANA 3
+   ============================================ */
+#s7 { background: var(--bg-dark); }
+#s7 .slide-content { gap: var(--content-gap); }
+.llm-split {
+  display: grid; grid-template-columns: 1fr 1fr; gap: clamp(10px, 2vw, 20px);
+}
+.llm-box {
+  border-radius: 10px; padding: clamp(10px, 1.5vw, 16px);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.llm-box.gemini { border-top: 3px solid #4285f4; background: rgba(66,133,244,0.06); }
+.llm-box.claude { border-top: 3px solid #d97706; background: rgba(217,119,6,0.06); }
+.llm-box .llm-label { font-size: var(--small-size); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+.llm-box.gemini .llm-label { color: #4285f4; }
+.llm-box.claude .llm-label { color: #d97706; }
+.llm-box .llm-name { font-size: var(--body-size); font-weight: 800; color: var(--text-light); margin-bottom: 4px; }
+.llm-box .llm-cat { font-size: var(--small-size); color: var(--text-muted); margin-bottom: 6px; }
+.llm-box .llm-cost { font-size: var(--body-size); font-weight: 700; }
+.llm-box.gemini .llm-cost { color: var(--success); }
+.llm-box.claude .llm-cost { color: #d97706; }
+.totem-list { display: flex; flex-direction: column; gap: 6px; }
+.totem-item {
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 8px; padding: 8px 12px;
+}
+.totem-icon { font-size: clamp(0.9rem, 1.5vw, 1.2rem); flex-shrink: 0; }
+.totem-name { font-size: var(--body-size); font-weight: 700; color: var(--text-light); }
+.totem-desc { font-size: var(--small-size); color: var(--text-muted); }
+
+/* ============================================
+   SLIDE 8 — SEMANA 4
+   ============================================ */
+#s8 { background: linear-gradient(135deg, #050d1a 0%, #08090e 100%); }
+#s8 .slide-content { gap: var(--content-gap); }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(12px, 2vw, 24px); }
+.col-section .col-title {
+  font-size: var(--body-size); font-weight: 800; color: var(--accent-cyan);
+  text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: clamp(6px, 1vh, 10px);
+  display: flex; align-items: center; gap: 6px;
+}
+.step-list { display: flex; flex-direction: column; gap: 5px; }
+.step { display: flex; align-items: flex-start; gap: 8px; }
+.step-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-blue); flex-shrink: 0; margin-top: 5px; }
+.step-text { font-size: var(--small-size); color: var(--text-light); line-height: 1.45; }
+.step-text em { color: var(--text-muted); font-style: normal; }
+.cmd-block {
+  background: rgba(0,0,0,0.5); border: 1px solid rgba(59,91,219,0.25);
+  border-radius: 8px; padding: 10px 14px;
+  font-family: 'Courier New', monospace; font-size: clamp(0.55rem, 0.85vw, 0.72rem);
+  color: #7dd3fc; line-height: 1.8; margin-top: 8px;
+}
+.cmd-block .comment { color: rgba(255,255,255,0.25); }
+
+/* ============================================
+   SLIDE 9 — CRONOGRAMA
+   ============================================ */
+#s9 { background: var(--bg-dark); }
+#s9 .slide-content { gap: var(--content-gap); }
+.timeline { display: flex; flex-direction: column; gap: clamp(6px, 1vh, 12px); }
+.tl-item {
+  display: flex; align-items: stretch; gap: 0;
+  border-radius: 10px; overflow: hidden;
+}
+.tl-week {
+  background: rgba(59,91,219,0.2); padding: clamp(10px, 1.5vw, 16px) clamp(12px, 2vw, 20px);
+  display: flex; flex-direction: column; justify-content: center; min-width: clamp(80px, 10vw, 120px);
+  border-right: none;
+}
+.tl-week .wn { font-size: var(--small-size); color: var(--accent-cyan); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; }
+.tl-week .wd { font-size: var(--body-size); font-weight: 800; color: var(--text-light); }
+.tl-body {
+  flex: 1; padding: clamp(10px, 1.5vw, 16px) clamp(12px, 2vw, 20px);
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px;
+}
+.tl-item.done { background: rgba(34,197,94,0.07); border: 1px solid rgba(34,197,94,0.2); }
+.tl-item.next { background: rgba(59,91,219,0.07); border: 1px solid rgba(59,91,219,0.25); }
+.tl-item.pending { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); }
+.tl-item.done .tl-week { background: rgba(34,197,94,0.15); }
+.tl-item.next .tl-week { background: rgba(59,91,219,0.25); }
+.tl-focus { font-size: var(--body-size); font-weight: 700; color: var(--text-light); }
+.tl-tasks { font-size: var(--small-size); color: var(--text-muted); }
+.tl-status {
+  font-size: var(--small-size); font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.08em; padding: 4px 12px; border-radius: 100px; flex-shrink: 0;
+}
+.tl-item.done .tl-status { background: rgba(34,197,94,0.15); color: var(--success); }
+.tl-item.next .tl-status { background: rgba(59,91,219,0.2); color: #818cf8; }
+.tl-item.pending .tl-status { background: rgba(255,255,255,0.06); color: var(--text-muted); }
+
+/* ============================================
+   SLIDE 10 — CUSTO
+   ============================================ */
+#s10 { background: linear-gradient(135deg, #08090e 0%, #0f1629 100%); }
+#s10 .slide-content { gap: var(--content-gap); }
+.cost-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: clamp(8px, 1.5vw, 16px);
+}
+.cost-section .cost-section-title {
+  font-size: var(--small-size); font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.1em; padding: 6px 12px; border-radius: 6px; margin-bottom: 8px;
+}
+.cost-section.old .cost-section-title { background: rgba(239,68,68,0.12); color: var(--danger); }
+.cost-section.new .cost-section-title { background: rgba(34,197,94,0.12); color: var(--success); }
+.cost-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+.cost-row .item { font-size: var(--small-size); color: var(--text-light); }
+.cost-row .price { font-size: var(--small-size); font-weight: 700; }
+.cost-section.old .price { color: var(--danger); }
+.cost-section.new .price { color: var(--success); }
+.cost-row .price.free { color: var(--accent-cyan); }
+.cost-total { font-size: var(--body-size); font-weight: 800; padding: 8px 0; display: flex; justify-content: space-between; }
+.cost-section.old .cost-total .price { color: var(--danger); font-size: clamp(1rem, 2vw, 1.5rem); }
+.cost-section.new .cost-total .price { color: var(--success); font-size: clamp(1rem, 2vw, 1.5rem); }
+.saving-banner {
+  background: linear-gradient(90deg, rgba(34,211,238,0.1), rgba(59,91,219,0.1));
+  border: 1px solid rgba(34,211,238,0.25); border-radius: 10px;
+  padding: 12px 20px; display: flex; justify-content: space-between; align-items: center;
+}
+.saving-banner .lbl { font-size: var(--body-size); color: var(--text-muted); }
+.saving-banner .val { font-size: clamp(1.2rem, 2.5vw, 2rem); font-weight: 800; color: var(--accent-cyan); }
+
+/* ============================================
+   SLIDE 11 — RISCOS
+   ============================================ */
+#s11 { background: var(--bg-dark); }
+#s11 .slide-content { gap: var(--content-gap); }
+.risk-list { display: flex; flex-direction: column; gap: clamp(6px, 1vh, 10px); }
+.risk-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  border-radius: 10px; padding: clamp(10px, 1.5vw, 16px);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.risk-level {
+  padding: 4px 10px; border-radius: 6px; font-size: var(--small-size); font-weight: 800;
+  text-transform: uppercase; letter-spacing: 0.08em; flex-shrink: 0; margin-top: 1px;
+}
+.risk-item.high { background: rgba(239,68,68,0.05); border-left: 3px solid var(--danger); }
+.risk-item.med { background: rgba(245,158,11,0.05); border-left: 3px solid var(--warning); }
+.risk-item.low { background: rgba(34,197,94,0.05); border-left: 3px solid var(--success); }
+.risk-item.high .risk-level { background: rgba(239,68,68,0.12); color: var(--danger); }
+.risk-item.med .risk-level { background: rgba(245,158,11,0.12); color: var(--warning); }
+.risk-item.low .risk-level { background: rgba(34,197,94,0.12); color: var(--success); }
+.risk-body .risk-title { font-size: var(--body-size); font-weight: 700; color: var(--text-light); margin-bottom: 3px; }
+.risk-body .risk-desc { font-size: var(--small-size); color: var(--text-muted); line-height: 1.45; }
+.risk-body .risk-fix { font-size: var(--small-size); color: var(--accent-cyan); margin-top: 3px; }
+
+/* ============================================
+   SLIDE 12 — PRÓXIMA AÇÃO
+   ============================================ */
+#s12 { background: linear-gradient(135deg, #050d1a 0%, #08090e 100%); justify-content: space-between; }
+#s12 .accent-bar { order: 999; }
+#s12 .slide-content { gap: var(--content-gap); }
+.action-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(8px, 1.5vw, 16px); }
+.action-card {
+  border-radius: 10px; padding: clamp(12px, 1.5vw, 18px);
+  border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.02);
+}
+.action-card .num {
+  font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; line-height: 1;
+  color: rgba(255,255,255,0.06); margin-bottom: 4px;
+}
+.action-card .title { font-size: var(--body-size); font-weight: 800; color: var(--text-light); margin-bottom: 6px; }
+.action-card .time-badge {
+  display: inline-block; background: rgba(59,91,219,0.15); border: 1px solid rgba(59,91,219,0.3);
+  color: var(--accent-bright); font-size: var(--small-size); font-weight: 700;
+  padding: 3px 10px; border-radius: 100px; margin-bottom: 8px;
+}
+.action-card .steps { display: flex; flex-direction: column; gap: 4px; }
+.action-card .step-line { display: flex; gap: 6px; align-items: flex-start; }
+.action-card .step-line .bullet { color: var(--accent-cyan); flex-shrink: 0; margin-top: 1px; font-size: var(--small-size); }
+.action-card .step-line .text { font-size: var(--small-size); color: var(--text-muted); line-height: 1.4; }
+.status-bar {
+  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px; padding: 12px 16px;
+  display: flex; justify-content: space-between; align-items: center; gap: 8px;
+}
+.status-bar .label { font-size: var(--small-size); color: var(--text-muted); }
+.status-dot-row { display: flex; gap: 6px; align-items: center; }
+.sdot { width: 10px; height: 10px; border-radius: 50%; }
+.sdot-label { font-size: var(--small-size); font-weight: 600; }
+
+/* === KEYBOARD HINT === */
+.keyboard-hint {
+  position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%);
+  font-size: 11px; color: rgba(255,255,255,0.2); display: flex; align-items: center; gap: 6px;
+}
+.key {
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 4px; padding: 2px 6px; font-size: 10px; color: rgba(255,255,255,0.3);
+}
+</style>
+</head>
+<body>
+
+<!-- === NAVIGATION DOTS === -->
+<nav class="nav-dots" id="navDots" aria-label="Navegação"></nav>
+<div class="keyboard-hint">
+  <kbd class="key">↑↓</kbd> ou <kbd class="key">scroll</kbd> para navegar · <kbd class="key">1–9</kbd> para ir direto
+</div>
+
+<!-- ============================================
+     SLIDE 1 — TÍTULO
+     ============================================ -->
+<section class="slide" id="s1">
+  <div class="accent-bar"></div>
+  <div class="slide-content">
+    <div class="tag anim-1"><span class="dot"></span>Relatório de Implantação</div>
+    <h1 class="anim-2">Bot Júlio<br><span>v4.0</span></h1>
+    <p class="subtitle anim-3">ViDi · Cúpula CEO 2026 · WhatsApp Meta Cloud API</p>
+    <div class="meta anim-4">
+      <div class="meta-item">
+        <span class="meta-label">Data</span>
+        <span class="meta-val">Abril 2026</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Capacidade</span>
+        <span class="meta-val">300 usuários</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Canal</span>
+        <span class="meta-val">WhatsApp</span>
+      </div>
+    </div>
+    <div class="saving-badge anim-5">
+      <div>
+        <div class="val">R$26–110 <span style="font-size:0.6em;color:var(--text-muted)">vs R$60–120</span></div>
+        <div class="lbl">Custo por evento · Redução de 80–90%</div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">01 / 12</div>
+</section>
+
+<!-- ============================================
+     SLIDE 2 — PROBLEMA ORIGINAL
+     ============================================ -->
+<section class="slide" id="s2">
+  <div class="slide-content">
+    <div class="anim-1">
+      <div class="section-label">O Problema</div>
+      <h2 class="slide-title">Stack original: cara, complexa e com deploy quebrado</h2>
+    </div>
+    <div class="problem-grid anim-2">
+      <div class="problem-card">
+        <div class="icon">🗄️</div>
+        <div class="title">3 Bancos de dados</div>
+        <div class="desc">PostgreSQL + MongoDB + Redis — tripla complexidade operacional e custo</div>
+      </div>
+      <div class="problem-card">
+        <div class="icon">💥</div>
+        <div class="title">Deploy quebrado</div>
+        <div class="desc">Firebase Cloud Functions falhou — bug de path Windows com espaços e Unicode</div>
+      </div>
+      <div class="problem-card">
+        <div class="icon">⚙️</div>
+        <div class="title">Celery + Workers</div>
+        <div class="desc">Infraestrutura pesada de workers separados para evento de apenas 1 dia</div>
+      </div>
+      <div class="problem-card">
+        <div class="icon">💸</div>
+        <div class="title">LangSmith pago</div>
+        <div class="desc">R$39/mês de observabilidade quando existem alternativas open source</div>
+      </div>
+      <div class="problem-card">
+        <div class="icon">🔌</div>
+        <div class="title">Evolution API</div>
+        <div class="desc">WhatsApp self-hosted: risco de ban 24/7 e responsabilidade operacional total</div>
+      </div>
+      <div class="problem-card">
+        <div class="icon">📦</div>
+        <div class="title">LangGraph + LangChain</div>
+        <div class="desc">40+ dependências transitivas para um fluxo essencialmente linear</div>
+      </div>
+    </div>
+    <div class="cost-highlight anim-3">
+      <div class="amount">R$60–120</div>
+      <div class="desc">por evento — custo estimado da stack original planejada</div>
+    </div>
+  </div>
+  <div class="slide-num">02 / 12</div>
+</section>
+
+<!-- ============================================
+     SLIDE 3 — NOVA STACK
+     ============================================ -->
+<section class="slide" id="s3">
+  <div class="slide-content">
+    <div class="anim-1">
+      <div class="section-label">Decisões Técnicas</div>
+      <h2 class="slide-title">Stack v4.0: simples, segura e 80% mais barata</h2>
+    </div>
+    <div class="anim-2">
+      <table class="stack-table">
+        <thead>
+          <tr><th>Camada</th><th>Antes</th><th></th><th>Depois</th><th>Motivo</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Orquestração</td><td class="before">LangGraph + LangChain</td><td class="arrow">→</td><td class="after">Python async nativo</td><td class="reason">60% menos deps, mais simples</td></tr>
+          <tr><td>LLM Principal</td><td class="before">Claude (todos)</td><td class="arrow">→</td><td class="after">Gemini Flash (Cat. B/C)</td><td class="reason">60x mais barato</td></tr>
+          <tr><td>LLM Upsell</td><td class="before">—</td><td class="arrow">→</td><td class="after">Claude Sonnet 4 (Cat. A)</td><td class="reason">Qualidade onde importa</td></tr>
+          <tr><td>Embeddings</td><td class="before">OpenAI (pago)</td><td class="arrow">→</td><td class="after">Google text-embedding-004</td><td class="reason">Gratuito, já configurado</td></tr>
+          <tr><td>Histórico</td><td class="before">MongoDB</td><td class="arrow">→</td><td class="after">PostgreSQL JSONB</td><td class="reason">Elimina 1 serviço</td></tr>
+          <tr><td>Observabilidade</td><td class="before">LangSmith (R$39/mês)</td><td class="arrow">→</td><td class="after">Langfuse (open source)</td><td class="reason">Mesma qualidade, grátis</td></tr>
+          <tr><td>Deploy</td><td class="before">Firebase (quebrado)</td><td class="arrow">→</td><td class="after">Google Cloud Run</td><td class="reason">Dockerfile, sem bugs path</td></tr>
+          <tr><td>WhatsApp</td><td class="before">Evolution API</td><td class="arrow">→</td><td class="after">Meta Cloud API (oficial)</td><td class="reason">Seguro, grátis 1k conv/mês</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="saving-row anim-3">
+      <span class="lbl">Custo total por evento com stack otimizada</span>
+      <span class="val">R$26–110</span>
+    </div>
+  </div>
+  <div class="slide-num">03 / 12</div>
+</section>
+
+<!-- ============================================
+     SLIDE 4 — O QUE JÁ FOI FEITO
+     ============================================ -->
+<section class="slide" id="s4">
+  <div class="slide-content">
+    <div class="done-header anim-1">
+      <div class="section-label" style="margin:0">Semana 1</div>
+      <div class="done-badge">✓ Concluída</div>
+      <div class="done-date">05 de Abril de 2026</div>
+    </div>
+    <h2 class="slide-title anim-2" style="margin-bottom:var(--element-gap)">Quick Wins aplicados hoje</h2>
+    <div class="done-grid anim-3">
+      <div class="done-item">
+        <div class="done-check">✓</div>
+        <div class="done-text">requirements.txt limpo <span>— LangGraph, LangChain, Telegram, Motor, Celery removidos</span></div>
+      </div>
+      <div class="done-item">
+        <div class="done-check">✓</div>
+        <div class="done-text">Dockerfile criado <span>— python:3.11-slim, porta 8080, resolve bug Windows</span></div>
+      </div>
+      <div class="done-item">
+        <div class="done-check">✓</div>
+        <div class="done-text">main.py reescrito <span>— FastAPI + webhook Meta (GET verificação + POST recebimento)</span></div>
+      </div>
+      <div class="done-item">
+        <div class="done-check">✓</div>
+        <div class="done-text">config.py atualizado <span>— vars WhatsApp Meta, Langfuse, Supabase</span></div>
+      </div>
+      <div class="done-item">
+        <div class="done-check">✓</div>
+        <div class="done-text">sender.py já correto <span>— Meta Cloud API com httpx, sem Evolution API</span></div>
+      </div>
+      <div class="done-item">
+        <div class="done-check">✓</div>
+        <div class="done-text">Supabase conectado <span>— PostgreSQL 17.6 @ supabase.co testado com sucesso</span></div>
+      </div>
+      <div class="done-item">
+        <div class="done-check">✓</div>
+        <div class="done-text">Langfuse configurado <span>— pk-lf-8f768495 @ cloud.langfuse.com ativo</span></div>
+      </div>
+      <div class="done-item">
+        <div class="done-check">✓</div>
+        <div class="done-text">Google Embeddings ativado <span>— text-embedding-004, gratuito, já no .env</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">04 / 12</div>
+</section>
+
+<!-- ============================================
+     SLIDE 5 — CREDENCIAIS ATIVAS
+     ============================================ -->
+<section class="slide" id="s5">
+  <div class="slide-content">
+    <div class="anim-1">
+      <div class="section-label">Infraestrutura</div>
+      <h2 class="slide-title">Serviços configurados no .env</h2>
+    </div>
+    <div class="cred-grid anim-2">
+      <div class="cred-card active">
+        <div class="status-row"><div class="status-dot green"></div><span style="font-size:var(--small-size);color:var(--success);font-weight:700">Ativo · Testado</span></div>
+        <div class="service">Supabase PostgreSQL 17.6</div>
+        <div class="detail">db.qinkglwwtujaurkagjri.supabase.co<br>Conexão asyncpg OK</div>
+        <div class="badge badge-ok">Conectado</div>
+      </div>
+      <div class="cred-card active">
+        <div class="status-row"><div class="status-dot green"></div><span style="font-size:var(--small-size);color:var(--success);font-weight:700">Ativo · Configurado</span></div>
+        <div class="service">Langfuse (Observabilidade)</div>
+        <div class="detail">cloud.langfuse.com<br>pk-lf-8f768495...</div>
+        <div class="badge badge-ok">Configurado</div>
+      </div>
+      <div class="cred-card active">
+        <div class="status-row"><div class="status-dot green"></div><span style="font-size:var(--small-size);color:var(--success);font-weight:700">Ativo</span></div>
+        <div class="service">Google Gemini 2.0 Flash</div>
+        <div class="detail">LLM primário Cat. B e C<br>Embedding: text-embedding-004</div>
+        <div class="badge badge-ok">Pronto</div>
+      </div>
+      <div class="cred-card active">
+        <div class="status-row"><div class="status-dot green"></div><span style="font-size:var(--small-size);color:var(--success);font-weight:700">Ativo</span></div>
+        <div class="service">Claude Sonnet 4 (Anthropic)</div>
+        <div class="detail">LLM upsell Cat. A<br>claude-sonnet-4-20250514</div>
+        <div class="badge badge-ok">Pronto</div>
+      </div>
+      <div class="cred-card pending">
+        <div class="status-row"><div class="status-dot yellow"></div><span style="font-size:var(--small-size);color:var(--warning);font-weight:700">Pendente</span></div>
+        <div class="service">WhatsApp Meta Cloud API</div>
+        <div class="detail">WHATSAPP_TOKEN: aguardando<br>Cadastro Meta for Developers</div>
+        <div class="badge badge-wait">Aguardando</div>
+      </div>
+      <div class="cred-card pending">
+        <div class="status-row"><div class="status-dot yellow"></div><span style="font-size:var(--small-size);color:var(--warning);font-weight:700">Local · Semana 2</span></div>
+        <div class="service">Redis (Rate Limiting)</div>
+        <div class="detail">Local: redis://localhost:6379/1<br>Migrar para Redis Cloud free</div>
+        <div class="badge badge-wait">Local</div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">05 / 12</div>
+</section>
+
+<!-- ============================================
+     SLIDE 6 — SEMANA 2
+     ============================================ -->
+<section class="slide" id="s6">
+  <div class="slide-content">
+    <div class="week-header anim-1">
+      <div class="week-num">02</div>
+      <div class="week-info">
+        <div class="week-label">Próxima etapa</div>
+        <div class="week-title">Consolidação de Infraestrutura</div>
+      </div>
+    </div>
+    <div class="task-list anim-2">
+      <div class="task-item">
+        <div class="task-num">1</div>
+        <div class="task-body">
+          <div class="task-title">Executar migration no Supabase</div>
+          <div class="task-sub">Rodar <code style="background:rgba(0,0,0,0.3);padding:1px 5px;border-radius:3px;font-size:0.9em">app/db/migrations/001_initial.sql</code> no SQL Editor do Supabase</div>
+        </div>
+      </div>
+      <div class="task-item">
+        <div class="task-num">2</div>
+        <div class="task-body">
+          <div class="task-title">Adicionar tabela chat_sessions (substitui MongoDB)</div>
+          <div class="code-snippet">CREATE TABLE chat_sessions (<br>&nbsp;&nbsp;session_id TEXT UNIQUE NOT NULL,<br>&nbsp;&nbsp;participant_id UUID REFERENCES participants(id),<br>&nbsp;&nbsp;messages JSONB NOT NULL DEFAULT '[]',<br>&nbsp;&nbsp;last_activity TIMESTAMPTZ DEFAULT NOW()<br>);</div>
+        </div>
+      </div>
+      <div class="task-item">
+        <div class="task-num">3</div>
+        <div class="task-body">
+          <div class="task-title">Reescrever app/db/mongo.py → PostgreSQL JSONB</div>
+          <div class="task-sub">Remover dependência Firestore dos whatsapp_handlers</div>
+        </div>
+      </div>
+      <div class="task-item">
+        <div class="task-num">4</div>
+        <div class="task-body">
+          <div class="task-title">Configurar Redis Cloud free (30MB)</div>
+          <div class="task-sub">Registrar em redis.com · Atualizar REDIS_URL no .env</div>
+        </div>
+      </div>
+      <div class="task-item">
+        <div class="task-num">5</div>
+        <div class="task-body">
+          <div class="task-title">Popular banco de dados</div>
+          <div class="task-sub"><code style="background:rgba(0,0,0,0.3);padding:1px 5px;border-radius:3px;font-size:0.9em">python scripts/seed_participants.py</code> — inserir participantes do evento</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">06 / 12</div>
+</section>
+
+<!-- ============================================
+     SLIDE 7 — SEMANA 3
+     ============================================ -->
+<section class="slide" id="s7">
+  <div class="slide-content">
+    <div class="anim-1">
+      <div class="week-header">
+        <div class="week-num">03</div>
+        <div class="week-info">
+          <div class="week-label">Semana 3</div>
+          <div class="week-title">LLM por Categoria + RAG com dados reais</div>
+        </div>
+      </div>
+    </div>
+    <div class="llm-split anim-2">
+      <div class="llm-box gemini">
+        <div class="llm-label">LLM Primário</div>
+        <div class="llm-name">Gemini 2.0 Flash</div>
+        <div class="llm-cat">Categorias B e C — 80% dos usuários</div>
+        <div class="llm-cost">~R$1–8 por evento inteiro</div>
+      </div>
+      <div class="llm-box claude">
+        <div class="llm-label">LLM Upsell</div>
+        <div class="llm-name">Claude Sonnet 4</div>
+        <div class="llm-cat">Categoria A — leads de alto valor (20%)</div>
+        <div class="llm-cost">~R$10–50 por evento</div>
+      </div>
+    </div>
+    <div class="anim-3">
+      <div class="section-label" style="margin-bottom:8px">RAG — Indexar base de conhecimento com Google Embeddings reais</div>
+      <div class="totem-list">
+        <div class="totem-item">
+          <div class="totem-icon">🌎</div>
+          <div>
+            <div class="totem-name">TOTEM_INTERNACIONALIZACAO</div>
+            <div class="totem-desc">Paraguai · Zonas Francas · Offshore · Redução tributária</div>
+          </div>
+        </div>
+        <div class="totem-item">
+          <div class="totem-icon">🏢</div>
+          <div>
+            <div class="totem-name">TOTEM_SUCESSAO_GOVERNANCA</div>
+            <div class="totem-desc">Caso Vulcabras · Gargalo do Fundador · Delegação executiva</div>
+          </div>
+        </div>
+        <div class="totem-item">
+          <div class="totem-icon">💰</div>
+          <div>
+            <div class="totem-name">TOTEM_CAPITAL_INTELIGENTE</div>
+            <div class="totem-desc">FIDC · Bitcoin · Crédito estruturado · Arsenal financeiro</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">07 / 12</div>
+</section>
+
+<!-- ============================================
+     SLIDE 8 — SEMANA 4
+     ============================================ -->
+<section class="slide" id="s8">
+  <div class="slide-content">
+    <div class="anim-1">
+      <div class="week-header">
+        <div class="week-num">04</div>
+        <div class="week-info">
+          <div class="week-label">Semana 4 — Go-live</div>
+          <div class="week-title">Cadastro Meta + Deploy Cloud Run</div>
+        </div>
+      </div>
+    </div>
+    <div class="two-col anim-2">
+      <div class="col-section">
+        <div class="col-title">📱 Cadastro Meta for Developers</div>
+        <div class="step-list">
+          <div class="step"><div class="step-dot"></div><div class="step-text">Criar App Business em developers.facebook.com</div></div>
+          <div class="step"><div class="step-dot"></div><div class="step-text">Adicionar produto WhatsApp · Anotar <em>Phone Number ID</em></div></div>
+          <div class="step"><div class="step-dot"></div><div class="step-text">Gerar Access Token permanente via System User</div></div>
+          <div class="step"><div class="step-dot"></div><div class="step-text">Verificar número de telefone WhatsApp</div></div>
+          <div class="step"><div class="step-dot"></div><div class="step-text">Configurar Webhook após deploy Cloud Run</div></div>
+        </div>
+        <div style="margin-top:8px;font-size:var(--small-size);color:var(--warning)">⚠️ Aprovação Meta: 2–5 dias úteis — iniciar hoje</div>
+      </div>
+      <div class="col-section">
+        <div class="col-title">☁️ Deploy Google Cloud Run</div>
+        <div class="cmd-block">
+          <span class="comment"># Build da imagem Docker</span><br>
+          docker build -t gcr.io/[PROJECT]/bot-julio:v4 .<br><br>
+          <span class="comment"># Deploy com min=1 para evitar cold start</span><br>
+          gcloud run deploy bot-julio \<br>
+          &nbsp;&nbsp;--min-instances=1 \<br>
+          &nbsp;&nbsp;--memory=512Mi \<br>
+          &nbsp;&nbsp;--region=us-central1<br><br>
+          <span class="comment"># Registrar webhook Meta</span><br>
+          curl "https://graph.facebook.com/v19.0/
+          [ID]/subscribed_apps"
+        </div>
+      </div>
+    </div>
+    <div class="anim-3" style="display:flex;gap:8px;flex-wrap:wrap">
+      <div style="background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);padding:6px 12px;border-radius:6px;font-size:var(--small-size)">✓ Dockerfile pronto</div>
+      <div style="background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);padding:6px 12px;border-radius:6px;font-size:var(--small-size)">✓ Webhook endpoint implementado</div>
+      <div style="background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);padding:6px 12px;border-radius:6px;font-size:var(--small-size)">✓ WHATSAPP_VERIFY_TOKEN configurado</div>
+      <div style="background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.2);padding:6px 12px;border-radius:6px;font-size:var(--small-size)">⏳ WHATSAPP_TOKEN: aguarda Meta</div>
+    </div>
+  </div>
+  <div class="slide-num">08 / 12</div>
+</section>
+
+<!-- ============================================
+     SLIDE 9 — CRONOGRAMA
+     ============================================ -->
+<section class="slide" id="s9">
+  <div class="slide-content">
+    <div class="anim-1">
+      <div class="section-label">Cronograma</div>
+      <h2 class="slide-title">4 semanas para o go-live</h2>
+    </div>
+    <div class="timeline anim-2">
+      <div class="tl-item done">
+        <div class="tl-week"><div class="wn">Sem. 1</div><div class="wd">Quick Wins</div></div>
+        <div class="tl-body">
+          <div>
+            <div class="tl-focus">Infra base + dependências limpas + credenciais</div>
+            <div class="tl-tasks">Dockerfile · FastAPI webhook · Supabase · Langfuse · Google Embeddings · Meta sender</div>
+          </div>
+          <div class="tl-status">✓ Concluída</div>
+        </div>
+      </div>
+      <div class="tl-item next">
+        <div class="tl-week"><div class="wn">Sem. 2</div><div class="wd">DB + Código</div></div>
+        <div class="tl-body">
+          <div>
+            <div class="tl-focus">Supabase migration + MongoDB → JSONB + Redis Cloud</div>
+            <div class="tl-tasks">001_initial.sql · chat_sessions · seed_participants · remover Firestore</div>
+          </div>
+          <div class="tl-status">→ Próxima</div>
+        </div>
+      </div>
+      <div class="tl-item pending">
+        <div class="tl-week"><div class="wn">Sem. 3</div><div class="wd">LLM + RAG</div></div>
+        <div class="tl-body">
+          <div>
+            <div class="tl-focus">Roteamento Gemini/Claude + indexação RAG real</div>
+            <div class="tl-tasks">seed_knowledge · 3 totens testados · threshold ajustado</div>
+          </div>
+          <div class="tl-status">Pendente</div>
+        </div>
+      </div>
+      <div class="tl-item pending">
+        <div class="tl-week"><div class="wn">Sem. 4</div><div class="wd">Go-live</div></div>
+        <div class="tl-body">
+          <div>
+            <div class="tl-focus">Cadastro Meta + Deploy Cloud Run + testes de carga</div>
+            <div class="tl-tasks">300 usuários · latência &lt;5s · treinar equipe</div>
+          </div>
+          <div class="tl-status">Pendente</div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px" class="anim-3">
+      <div style="display:flex;align-items:center;gap:6px;font-size:var(--small-size);color:var(--text-muted)"><div style="width:10px;height:10px;background:rgba(34,197,94,0.5);border-radius:2px"></div>Concluída</div>
+      <div style="display:flex;align-items:center;gap:6px;font-size:var(--small-size);color:var(--text-muted)"><div style="width:10px;height:10px;background:rgba(59,91,219,0.5);border-radius:2px"></div>Em andamento</div>
+      <div style="display:flex;align-items:center;gap:6px;font-size:var(--small-size);color:var(--text-muted)"><div style="width:10px;height:10px;background:rgba(255,255,255,0.1);border-radius:2px"></div>Pendente</div>
+    </div>
+  </div>
+  <div class="slide-num">09 / 12</div>
+</section>
+
+<!-- ============================================
+     SLIDE 10 — CUSTO
+     ============================================ -->
+<section class="slide" id="s10">
+  <div class="slide-content">
+    <div class="anim-1">
+      <div class="section-label">Financeiro</div>
+      <h2 class="slide-title">Custo por evento: antes vs depois</h2>
+    </div>
+    <div class="cost-grid anim-2">
+      <div class="cost-section old">
+        <div class="cost-section-title">Stack Original (planejada)</div>
+        <div class="cost-row"><span class="item">Claude Sonnet 4 (todos)</span><span class="price">R$9–45</span></div>
+        <div class="cost-row"><span class="item">OpenAI Embeddings</span><span class="price">R$0,50–2</span></div>
+        <div class="cost-row"><span class="item">LangSmith</span><span class="price">R$39/mês</span></div>
+        <div class="cost-row"><span class="item">MongoDB Atlas</span><span class="price">R$0–15</span></div>
+        <div class="cost-row"><span class="item">Firebase Functions</span><span class="price">R$5–15</span></div>
+        <div class="cost-row"><span class="item">PostgreSQL managed</span><span class="price">R$5–20</span></div>
+        <div class="cost-total"><span>Total estimado</span><span class="price">R$60–120</span></div>
+      </div>
+      <div class="cost-section new">
+        <div class="cost-section-title">Stack v4.0 (otimizada)</div>
+        <div class="cost-row"><span class="item">Gemini Flash (Cat. B/C ~80%)</span><span class="price">R$1–8</span></div>
+        <div class="cost-row"><span class="item">Claude Sonnet 4 (Cat. A ~20%)</span><span class="price">R$10–50</span></div>
+        <div class="cost-row"><span class="item">Google Cloud Run (1 dia)</span><span class="price">R$15–50</span></div>
+        <div class="cost-row"><span class="item">Supabase free tier</span><span class="price free">R$0</span></div>
+        <div class="cost-row"><span class="item">Redis Cloud free</span><span class="price free">R$0</span></div>
+        <div class="cost-row"><span class="item">Langfuse + Embeddings Google</span><span class="price free">R$0</span></div>
+        <div class="cost-total"><span>Total estimado</span><span class="price">R$26–108</span></div>
+      </div>
+    </div>
+    <div class="saving-banner anim-3">
+      <span class="lbl">Economia por evento · Redução comprovada</span>
+      <span class="val">↓ 80–90%</span>
+    </div>
+  </div>
+  <div class="slide-num">10 / 12</div>
+</section>
+
+<!-- ============================================
+     SLIDE 11 — RISCOS
+     ============================================ -->
+<section class="slide" id="s11">
+  <div class="slide-content">
+    <div class="anim-1">
+      <div class="section-label">Gestão de Risco</div>
+      <h2 class="slide-title">Riscos ativos e mitigações</h2>
+    </div>
+    <div class="risk-list anim-2">
+      <div class="risk-item med">
+        <div class="risk-level">Médio</div>
+        <div class="risk-body">
+          <div class="risk-title">Firestore ainda nos whatsapp_handlers</div>
+          <div class="risk-desc">Os handlers de WhatsApp ainda importam firestore_db para rate limiting, dados de participantes e sessões JWT.</div>
+          <div class="risk-fix">→ Migrar para PostgreSQL + Redis na Semana 2</div>
+        </div>
+      </div>
+      <div class="risk-item med">
+        <div class="risk-level">Médio</div>
+        <div class="risk-body">
+          <div class="risk-title">Aprovação Meta for Developers: 2–5 dias úteis</div>
+          <div class="risk-desc">Número WhatsApp precisa ser verificado e app aprovado pela Meta antes do deploy funcionar em produção.</div>
+          <div class="risk-fix">→ Iniciar cadastro imediatamente — não bloqueia outras semanas</div>
+        </div>
+      </div>
+      <div class="risk-item low">
+        <div class="risk-level">Baixo</div>
+        <div class="risk-body">
+          <div class="risk-title">Supabase free tier pausa após 1 semana sem uso</div>
+          <div class="risk-desc">Inatividade por 7+ dias causa pausa do projeto. Retoma automaticamente no primeiro request.</div>
+          <div class="risk-fix">→ Health-check diário pré-evento ou upgrade para Pro ($25/mês)</div>
+        </div>
+      </div>
+      <div class="risk-item low">
+        <div class="risk-level">Baixo</div>
+        <div class="risk-body">
+          <div class="risk-title">Claude API: créditos no workspace atual</div>
+          <div class="risk-desc">API key configurada mas workspace pode precisar de créditos adicionais para Cat. A em produção.</div>
+          <div class="risk-fix">→ Verificar saldo em console.anthropic.com antes do evento</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">11 / 12</div>
+</section>
+
+<!-- ============================================
+     SLIDE 12 — PRÓXIMA AÇÃO
+     ============================================ -->
+<section class="slide" id="s12">
+  <div class="accent-bar" style="order:-1"></div>
+  <div class="slide-content">
+    <div class="anim-1">
+      <div class="section-label">Ação Imediata</div>
+      <h2 class="slide-title">O que fazer agora para avançar</h2>
+    </div>
+    <div class="action-grid anim-2">
+      <div class="action-card">
+        <div class="num">01</div>
+        <div class="title">Migration no Supabase</div>
+        <div class="time-badge">⏱ 30 min</div>
+        <div class="steps">
+          <div class="step-line"><div class="bullet">›</div><div class="text">Abrir Supabase → SQL Editor</div></div>
+          <div class="step-line"><div class="bullet">›</div><div class="text">Colar e executar 001_initial.sql</div></div>
+          <div class="step-line"><div class="bullet">›</div><div class="text">Adicionar tabela chat_sessions JSONB</div></div>
+          <div class="step-line"><div class="bullet">›</div><div class="text">Rodar seed_participants.py</div></div>
+        </div>
+      </div>
+      <div class="action-card">
+        <div class="num">02</div>
+        <div class="title">Cadastro Meta for Developers</div>
+        <div class="time-badge">⏱ Hoje — prazo!</div>
+        <div class="steps">
+          <div class="step-line"><div class="bullet">›</div><div class="text">Criar App Business em developers.facebook.com</div></div>
+          <div class="step-line"><div class="bullet">›</div><div class="text">Adicionar produto WhatsApp</div></div>
+          <div class="step-line"><div class="bullet">›</div><div class="text">Gerar Access Token permanente</div></div>
+          <div class="step-line"><div class="bullet">›</div><div class="text">Verificar número de telefone</div></div>
+        </div>
+      </div>
+      <div class="action-card">
+        <div class="num">03</div>
+        <div class="title">Redis Cloud + Código</div>
+        <div class="time-badge">⏱ Semana 2</div>
+        <div class="steps">
+          <div class="step-line"><div class="bullet">›</div><div class="text">Criar conta redis.com (free 30MB)</div></div>
+          <div class="step-line"><div class="bullet">›</div><div class="text">Atualizar REDIS_URL no .env</div></div>
+          <div class="step-line"><div class="bullet">›</div><div class="text">Reescrever mongo.py → JSONB</div></div>
+          <div class="step-line"><div class="bullet">›</div><div class="text">Remover dependência Firestore</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="status-bar anim-3">
+      <span class="label">Status geral da implantação</span>
+      <div class="status-dot-row">
+        <div class="sdot" style="background:var(--success)"></div>
+        <span class="sdot-label" style="color:var(--success);font-size:var(--small-size)">Sem. 1 Concluída</span>
+        <div class="sdot" style="background:var(--accent-blue);margin-left:8px"></div>
+        <span class="sdot-label" style="color:var(--accent-bright);font-size:var(--small-size)">3 semanas restantes</span>
+        <div class="sdot" style="background:var(--warning);margin-left:8px"></div>
+        <span class="sdot-label" style="color:var(--warning);font-size:var(--small-size)">Meta: ação urgente</span>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">12 / 12</div>
+</section>
+
+<script>
+// === NAVIGATION ===
+const slides = document.querySelectorAll('.slide');
+const navDots = document.getElementById('navDots');
+let current = 0;
+
+// Build nav dots
+slides.forEach((_, i) => {
+  const btn = document.createElement('button');
+  btn.className = 'nav-dot' + (i === 0 ? ' active' : '');
+  btn.setAttribute('aria-label', `Slide ${i+1}`);
+  btn.onclick = () => goTo(i);
+  navDots.appendChild(btn);
+});
+
+function goTo(idx) {
+  current = Math.max(0, Math.min(slides.length - 1, idx));
+  slides[current].scrollIntoView({ behavior: 'smooth' });
+  document.querySelectorAll('.nav-dot').forEach((d, i) => d.classList.toggle('active', i === current));
+}
+
+// Scroll observer
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const idx = Array.from(slides).indexOf(e.target);
+      current = idx;
+      document.querySelectorAll('.nav-dot').forEach((d, i) => d.classList.toggle('active', i === idx));
+    }
+  });
+}, { threshold: 0.6 });
+slides.forEach(s => observer.observe(s));
+
+// Keyboard
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); goTo(current + 1); }
+  if (e.key === 'ArrowUp') { e.preventDefault(); goTo(current - 1); }
+  if (e.key >= '1' && e.key <= '9') goTo(parseInt(e.key) - 1);
+});
+</script>
+</body>
+</html>

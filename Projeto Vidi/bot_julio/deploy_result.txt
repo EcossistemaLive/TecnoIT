@@ -1,0 +1,13 @@
+
+[1m[37m===[39m Deploying to 'julio-bot-ecd02'...[22m
+
+[36m[1mi [22m[39m deploying [1mfunctions[22m
+[36m[1mi  functions:[22m[39m preparing codebase [1mdefault[22m for deployment
+[36m[1mi  functions:[22m[39m ensuring required API [1mcloudfunctions.googleapis.com[22m is enabled...
+[36m[1mi  functions:[22m[39m ensuring required API [1mcloudbuild.googleapis.com[22m is enabled...
+[36m[1mi  artifactregistry:[22m[39m ensuring required API [1martifactregistry.googleapis.com[22m is enabled...
+[36m[1mi  functions:[22m[39m Loading and analyzing source code for codebase default to determine what to deploy
+(node:47096) [DEP0190] DeprecationWarning: Passing args to a child process with shell option true can lead to security vulnerabilities, as the arguments are not escaped, only concatenated.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+C:\Users\clebe\AppData\Local\Programs\Python\Python311\python.exe: can't open file 'C:\\Users\\clebe\\OneDrive\\\ufffdrea de Trabalho\\ProjetosGit\\TecnoIT\\Projeto Vidi\\bot_julio\\.venv\\Lib\\site-packages\\firebase_functions\\private\\serving.py': [Errno 2] No such file or directory
+
