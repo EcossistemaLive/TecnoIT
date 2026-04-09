@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Briefing Executivo — Cúpula CEO 2026 | ViDi</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8D08A;
+    --dark: #0A0A0F;
+    --dark2: #111118;
+    --dark3: #1A1A24;
+    --dark4: #22222F;
+    --text: #E8E8F0;
+    --text-muted: #8888A8;
+    --accent: #7B6EF6;
+    --accent2: #4ECDC4;
+    --danger: #FF6B6B;
+    --green: #51CF66;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--dark); color: var(--text); font-family: 'Inter', sans-serif; line-height: 1.6; }
+
+  /* HERO */
+  .hero {
+    min-height: 80vh;
+    background: radial-gradient(ellipse at 60% 40%, rgba(201,168,76,0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 20% 80%, rgba(123,110,246,0.1) 0%, transparent 50%),
+                var(--dark);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 4rem 2rem; position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(201,168,76,0.03) 60px, rgba(201,168,76,0.03) 61px),
+                repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(201,168,76,0.03) 60px, rgba(201,168,76,0.03) 61px);
+  }
+  .badge {
+    display: inline-flex; align-items: center; gap: .5rem;
+    background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.3);
+    color: var(--gold); padding: .4rem 1.2rem; border-radius: 50px; font-size: .8rem;
+    letter-spacing: .15em; text-transform: uppercase; font-weight: 600; margin-bottom: 2rem;
+    position: relative; z-index: 1;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 7vw, 6rem);
+    font-weight: 800; line-height: 1.1; margin-bottom: 1rem;
+    background: linear-gradient(135deg, #fff 30%, var(--gold) 70%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    position: relative; z-index: 1;
+  }
+  .hero-sub {
+    font-size: 1.1rem; color: var(--text-muted); max-width: 650px; margin-bottom: 2.5rem;
+    position: relative; z-index: 1;
+  }
+  .hero-meta {
+    display: flex; gap: 2.5rem; justify-content: center; flex-wrap: wrap;
+    position: relative; z-index: 1;
+  }
+  .hero-meta-item { text-align: center; }
+  .hero-meta-item .num { font-size: 1.8rem; font-weight: 800; color: var(--gold); }
+  .hero-meta-item .lbl { font-size: .75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: .1em; }
+
+  /* NAV */
+  .toc {
+    background: var(--dark2); border-bottom: 1px solid rgba(201,168,76,0.15);
+    padding: 1rem 2rem; display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center;
+    position: sticky; top: 0; z-index: 100;
+  }
+  .toc a {
+    color: var(--text-muted); text-decoration: none; font-size: .8rem;
+    font-weight: 500; letter-spacing: .05em; text-transform: uppercase;
+    transition: color .2s;
+  }
+  .toc a:hover { color: var(--gold); }
+
+  /* LAYOUT */
+  .container { max-width: 980px; margin: 0 auto; padding: 0 2rem; }
+
+  /* SECTIONS */
+  .section {
+    padding: 4rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .section-header {
+    display: flex; align-items: center; gap: 1rem; margin-bottom: 2.5rem;
+  }
+  .section-num {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.3);
+    color: var(--gold); display: flex; align-items: center; justify-content: center;
+    font-size: .85rem; font-weight: 700; flex-shrink: 0;
+  }
+  .section h2 {
+    font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700;
+    color: #fff;
+  }
+  .section h3 {
+    font-size: 1.1rem; font-weight: 600; color: var(--gold); margin: 2rem 0 1rem;
+  }
+  p { color: var(--text-muted); margin-bottom: 1rem; }
+
+  /* CARDS */
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+  .card {
+    background: var(--dark3); border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 12px; padding: 1.5rem;
+  }
+  .card .card-icon { font-size: 1.5rem; margin-bottom: .75rem; }
+  .card .card-title { font-weight: 600; color: #fff; font-size: 1rem; margin-bottom: .4rem; }
+  .card .card-desc { color: var(--text-muted); font-size: .9rem; }
+
+  /* TABLES */
+  .table-wrap { overflow-x: auto; margin: 1.5rem 0; border-radius: 12px; border: 1px solid rgba(255,255,255,0.07); }
+  table { width: 100%; border-collapse: collapse; }
+  th {
+    background: var(--dark3); padding: .9rem 1.2rem; text-align: left;
+    font-size: .8rem; font-weight: 600; text-transform: uppercase; letter-spacing: .08em;
+    color: var(--text-muted);
+  }
+  td { padding: .85rem 1.2rem; border-top: 1px solid rgba(255,255,255,0.05); color: var(--text-muted); font-size: .92rem; }
+  tr:hover td { background: rgba(255,255,255,0.02); }
+  td strong { color: var(--text); }
+
+  /* HIGHLIGHT ROW */
+  .row-highlight td { background: rgba(201,168,76,0.07); }
+  .row-highlight td strong { color: var(--gold); }
+
+  /* TAGS / PILLS */
+  .pill {
+    display: inline-flex; align-items: center; gap: .35rem;
+    padding: .25rem .8rem; border-radius: 50px; font-size: .78rem; font-weight: 600;
+  }
+  .pill-gold { background: rgba(201,168,76,0.15); color: var(--gold); border: 1px solid rgba(201,168,76,0.3); }
+  .pill-purple { background: rgba(123,110,246,0.15); color: var(--accent); border: 1px solid rgba(123,110,246,0.3); }
+  .pill-teal { background: rgba(78,205,196,0.15); color: var(--accent2); border: 1px solid rgba(78,205,196,0.3); }
+  .pill-red { background: rgba(255,107,107,0.15); color: var(--danger); border: 1px solid rgba(255,107,107,0.3); }
+  .pill-green { background: rgba(81,207,102,0.15); color: var(--green); border: 1px solid rgba(81,207,102,0.3); }
+
+  /* STAT BOXES */
+  .stat-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+  .stat-box {
+    background: var(--dark3); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px;
+    padding: 1.5rem; text-align: center;
+  }
+  .stat-box .stat-val { font-size: 1.7rem; font-weight: 800; color: var(--gold); display: block; }
+  .stat-box .stat-lbl { font-size: .78rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: .08em; margin-top: .3rem; }
+
+  /* RISK BOXES */
+  .risk-grid { display: grid; gap: 1rem; margin: 1.5rem 0; }
+  .risk-card {
+    background: var(--dark3); border-left: 3px solid var(--danger);
+    border-radius: 0 12px 12px 0; padding: 1.2rem 1.5rem;
+  }
+  .risk-card .risk-title { font-weight: 700; color: #fff; margin-bottom: .3rem; }
+  .risk-card .risk-desc { font-size: .9rem; color: var(--text-muted); }
+  .risk-card .risk-fix { font-size: .85rem; color: var(--green); margin-top: .5rem; }
+
+  /* JOURNEY */
+  .journey {
+    background: var(--dark3); border-radius: 12px; padding: 2rem;
+    border: 1px solid rgba(255,255,255,0.07); margin: 1.5rem 0;
+  }
+  .journey-step {
+    display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.2rem;
+  }
+  .journey-step:last-child { margin-bottom: 0; }
+  .journey-arrow { color: var(--gold); font-size: 1.2rem; margin-top: .1rem; flex-shrink: 0; }
+  .journey-label { font-weight: 600; color: #fff; font-size: .95rem; }
+  .journey-detail { font-size: .85rem; color: var(--text-muted); }
+
+  /* CONTENT PILLARS */
+  .pillar-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin: 1.5rem 0; }
+  @media(max-width:700px) { .pillar-row { grid-template-columns: 1fr 1fr; } }
+  .pillar-card { border-radius: 12px; padding: 1.5rem; text-align: center; }
+  .pillar-pct { font-size: 2.5rem; font-weight: 900; display: block; margin-bottom: .5rem; }
+  .pillar-name { font-size: .85rem; font-weight: 600; }
+  .pillar-desc { font-size: .78rem; margin-top: .4rem; opacity: .7; }
+  .p40 { background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.3); }
+  .p40 .pillar-pct { color: var(--gold); }
+  .p30 { background: rgba(123,110,246,0.1); border: 1px solid rgba(123,110,246,0.3); }
+  .p30 .pillar-pct { color: var(--accent); }
+  .p20 { background: rgba(78,205,196,0.1); border: 1px solid rgba(78,205,196,0.3); }
+  .p20 .pillar-pct { color: var(--accent2); }
+  .p10 { background: rgba(81,207,102,0.1); border: 1px solid rgba(81,207,102,0.3); }
+  .p10 .pillar-pct { color: var(--green); }
+
+  /* TIMELINE */
+  .timeline { margin: 1.5rem 0; }
+  .timeline-item { display: flex; gap: 1.5rem; margin-bottom: 1.5rem; }
+  .timeline-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--gold); flex-shrink: 0; margin-top: .4rem; }
+  .timeline-body .tl-month { font-weight: 700; color: var(--gold); font-size: .9rem; }
+  .timeline-body ul { margin-top: .4rem; padding-left: 1rem; }
+  .timeline-body ul li { color: var(--text-muted); font-size: .9rem; margin-bottom: .2rem; }
+
+  /* FOOTER */
+  footer {
+    text-align: center; padding: 3rem 2rem; color: var(--text-muted);
+    font-size: .85rem; border-top: 1px solid rgba(255,255,255,0.05);
+  }
+  footer a { color: var(--gold); text-decoration: none; }
+
+  /* DIVIDER */
+  .gold-line { width: 60px; height: 3px; background: var(--gold); border-radius: 2px; margin-bottom: 1.5rem; }
+
+  /* CHECKLIST */
+  .checklist { list-style: none; margin: 1rem 0; }
+  .checklist li {
+    padding: .5rem 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+    display: flex; align-items: center; gap: .75rem; color: var(--text-muted); font-size: .92rem;
+  }
+  .checklist li::before { content: '○'; color: var(--text-muted); flex-shrink: 0; }
+  .checklist li.done::before { content: '✓'; color: var(--green); }
+  .checklist li.warn::before { content: '⚠'; color: #F0A500; }
+
+  @media(max-width:600px) {
+    .hero h1 { font-size: 2.5rem; }
+    .hero-meta { gap: 1.5rem; }
+    .toc { gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="badge">📋 Briefing Executivo · ViDi · Abril 2026</div>
+  <h1>Cúpula CEO</h1>
+  <p class="hero-sub">Fonte única de verdade sobre o evento — público, temas, formato, estratégia e execução</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <div class="num">20 AGO</div>
+      <div class="lbl">Data do Evento</div>
+    </div>
+    <div class="hero-meta-item">
+      <div class="num">250</div>
+      <div class="lbl">Participantes</div>
+    </div>
+    <div class="hero-meta-item">
+      <div class="num">R$375k</div>
+      <div class="lbl">Receita Projetada</div>
+    </div>
+    <div class="hero-meta-item">
+      <div class="num">Royal Tulip</div>
+      <div class="lbl">Brasília</div>
+    </div>
+  </div>
+</section>
+
+<!-- NAV -->
+<nav class="toc">
+  <a href="#summary">Resumo</a>
+  <a href="#problema">Problema</a>
+  <a href="#solucao">Solução</a>
+  <a href="#publico">Público</a>
+  <a href="#metas">Metas</a>
+  <a href="#formato">Formato</a>
+  <a href="#gtm">Marketing</a>
+  <a href="#equipe">Equipe</a>
+  <a href="#financeiro">Financeiro</a>
+  <a href="#riscos">Riscos</a>
+</nav>
+
+<!-- 1. EXECUTIVE SUMMARY -->
+<section class="section" id="summary">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <h2>Executive Summary</h2>
+    </div>
+    <div class="gold-line"></div>
+    <p style="font-size:1.15rem; color: var(--text); line-height:1.8; max-width:780px;">
+      A <strong>Cúpula CEO</strong> é o encontro presencial de elite da ViDi para CEOs, fundadores e diretores
+      de alto desempenho com empresas entre R$ 1M e R$ 50M de faturamento — realizado em
+      <strong style="color:var(--gold)">20 de agosto de 2026 no Royal Tulip Brasília</strong>,
+      com capacidade para 250–300 participantes.
+    </p>
+    <p style="font-size:1rem; color: var(--text-muted); max-width:780px; margin-top:1rem;">
+      Imersão de um dia que combina metodologia antifrágil, grupo de pares C-Level e networking
+      facilitado por Ibrahim Boufleur e Luiz Portal — gerando o primeiro passo qualificado na jornada
+      de mentoria de alto ticket da ViDi.
+    </p>
+    <div style="margin-top:2rem;">
+      <span class="pill pill-gold" style="font-size:.9rem; padding:.5rem 1.2rem;">"Chegue, Enxergue, Conquiste"</span>
+    </div>
+
+    <div class="stat-row" style="margin-top:2.5rem;">
+      <div class="stat-box"><span class="stat-val">20/08/26</span><span class="stat-lbl">Data do Evento</span></div>
+      <div class="stat-box"><span class="stat-val">250–300</span><span class="stat-lbl">Participantes</span></div>
+      <div class="stat-box"><span class="stat-val">1 dia</span><span class="stat-lbl">Formato Imersão</span></div>
+      <div class="stat-box"><span class="stat-val">R$ 375k</span><span class="stat-lbl">Receita Esperada</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. PROBLEM STATEMENT -->
+<section class="section" id="problema">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <h2>Problem Statement</h2>
+    </div>
+    <div class="gold-line"></div>
+    <p>CEOs e fundadores de empresas em crescimento (R$ 1M–R$ 50M) vivem o paradoxo: quanto mais crescem, mais isolados ficam das decisões. As dores centrais mapeadas pela ViDi:</p>
+
+    <div class="card-grid" style="margin-top:1.5rem;">
+      <div class="card">
+        <div class="card-icon">🔒</div>
+        <div class="card-title">Síndrome do Controle Perpetuado</div>
+        <div class="card-desc">CEO preso no operacional, incapaz de delegar sem ansiedade</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🧱</div>
+        <div class="card-title">Gargalo do Fundador</div>
+        <div class="card-desc">Empresa não escala porque depende 100% do dono para decisões</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">📉</div>
+        <div class="card-title">Inércia do Sucesso</div>
+        <div class="card-desc">Receio de mudar o modelo que funcionou até agora</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">😰</div>
+        <div class="card-title">Ansiedade de Escala</div>
+        <div class="card-desc">Crescimento sem estrutura gera caos interno e burnout executivo</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏝️</div>
+        <div class="card-title">Isolamento Executivo</div>
+        <div class="card-desc">Falta de pares que compreendem a realidade do comando</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">💸</div>
+        <div class="card-title">Asfixia Tributária</div>
+        <div class="card-desc">Carga tributária sem estratégia de proteção patrimonial eficaz</div>
+      </div>
+    </div>
+
+    <h3>Por que soluções existentes falham</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Solução Atual</th><th>Por que falha</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Mentoria genérica</strong></td><td>Não considera o estágio real da empresa nem o contexto do CEO</td></tr>
+          <tr><td><strong>Cursos online baratos</strong></td><td>Não geram accountability nem grupo de pares qualificado</td></tr>
+          <tr><td><strong>Eventos de massa</strong></td><td>Público heterogêneo dilui o valor do networking</td></tr>
+          <tr><td><strong>Consultorias tradicionais</strong></td><td>Caras, lentas, desconectadas da realidade do CEO médio brasileiro</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 3. PROPOSED SOLUTION -->
+<section class="section" id="solucao">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <h2>Proposed Solution</h2>
+    </div>
+    <div class="gold-line"></div>
+    <p>A Cúpula CEO não é um evento de conteúdo passivo. É uma <strong>imersão de um dia em 3 camadas simultâneas:</strong></p>
+
+    <div class="card-grid" style="margin-top:1.5rem;">
+      <div class="card" style="border-top:3px solid var(--gold);">
+        <div class="card-icon">🎤</div>
+        <div class="card-title">Conteúdo de Alto Impacto</div>
+        <div class="card-desc">Palestras e painéis com CEOs reais sobre temas de sucesso, fracasso e escala</div>
+      </div>
+      <div class="card" style="border-top:3px solid var(--accent);">
+        <div class="card-icon">🤖</div>
+        <div class="card-title">Diagnóstico Personalizado</div>
+        <div class="card-desc">Bot Júlio (IA + WhatsApp) mapeia a dor de cada participante e sugere antídotos durante o evento</div>
+      </div>
+      <div class="card" style="border-top:3px solid var(--accent2);">
+        <div class="card-icon">🤝</div>
+        <div class="card-title">Networking Curado</div>
+        <div class="card-desc">250+ executivos do mesmo nível de decisão — sem iniciantes, sem diluição de valor</div>
+      </div>
+    </div>
+
+    <h3>Diferenciadores</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Diferencial</th><th>Como se aplica</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Curadoria de Palestrantes</strong></td><td>"Curadoria com Alma" — relevância real + conversão, não apenas seguidores</td></tr>
+          <tr><td><strong>Bot Júlio</strong></td><td>Concierge de IA que mapeia dor e qualifica lead para upsell em tempo real</td></tr>
+          <tr><td><strong>Totens Temáticos</strong></td><td>3 estações físicas com QR Code e diagnóstico interativo por tema</td></tr>
+          <tr><td><strong>Seleção de Público</strong></td><td>Inscrição por perfil — "não é para todos"</td></tr>
+          <tr><td><strong>Jornada Pós-Evento</strong></td><td>Evento é o primeiro limiar para mentoria de R$ 40k–R$ 100k</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Palestrantes / Mentores</h3>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">👑</div>
+        <div class="card-title">Ibrahim Boufleur</div>
+        <div class="card-desc">Mentor CEO — levou empresa de R$ 80k para R$ 180M de faturamento. Foco: Forja do CEO, decisões difíceis, estruturação de times</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🧠</div>
+        <div class="card-title">Luiz Portal</div>
+        <div class="card-desc">Mentor Liderança Antifrágil — psicologia do comando, transformação pessoal, identidade de liderança</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">⭐</div>
+        <div class="card-title">Emmanuele Louza</div>
+        <div class="card-desc">CEO Grupo Flamboyant — trunfo local Goiás, sucessão familiar bem-sucedida. <span class="pill pill-gold" style="font-size:.7rem;">Prioridade</span></div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌟</div>
+        <div class="card-title">Sérgio Sampaio</div>
+        <div class="card-desc">O Boticário — credibilidade e autoridade nacional. <span class="pill pill-purple" style="font-size:.7rem;">Backup</span></div>
+      </div>
+      <div class="card">
+        <div class="card-icon">📱</div>
+        <div class="card-title">Marcos Buaiz</div>
+        <div class="card-desc">BTG — engajamento real no Instagram, apelo de entretenimento executivo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. TARGET USERS -->
+<section class="section" id="publico">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <h2>Target Users — Público-Alvo</h2>
+    </div>
+    <div class="gold-line"></div>
+
+    <h3>Perfil Primário — "O CEO no Plateau"</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Atributo</th><th>Detalhe</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Cargo</strong></td><td>CEO, Fundador, Sócio-Diretor, CFO</td></tr>
+          <tr><td><strong>Faturamento</strong></td><td>R$ 1M a R$ 50M anuais</td></tr>
+          <tr><td><strong>Setor</strong></td><td>Varejo, Serviços, Agro, Indústria leve, Tech</td></tr>
+          <tr><td><strong>Localização</strong></td><td>Brasília, Goiás, Centro-Oeste (expansão nacional)</td></tr>
+          <tr><td><strong>Poder de Decisão</strong></td><td>Alto — decide investimentos acima de R$ 100k sem aprovação</td></tr>
+          <tr><td><strong>Dor Principal</strong></td><td>Empresa cresce mas o CEO não consegue sair do operacional</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Comportamentos Atuais</h3>
+    <ul style="list-style:none; margin:1rem 0;">
+      <li style="padding:.5rem 0; border-bottom:1px solid rgba(255,255,255,0.05); color:var(--text-muted);">→ Consome conteúdo de liderança no LinkedIn e Instagram</li>
+      <li style="padding:.5rem 0; border-bottom:1px solid rgba(255,255,255,0.05); color:var(--text-muted);">→ Participa de 1–2 eventos de negócios por ano</li>
+      <li style="padding:.5rem 0; border-bottom:1px solid rgba(255,255,255,0.05); color:var(--text-muted);">→ Investe em educação executiva (MBA, cursos, mentorias)</li>
+      <li style="padding:.5rem 0; color:var(--text-muted);">→ Toma decisões baseadas em networking e indicação de pares</li>
+    </ul>
+
+    <h3>O que precisa e não encontra</h3>
+    <div class="card-grid">
+      <div class="card"><div class="card-desc">🎯 Grupo de pares do mesmo nível — sem iniciantes</div></div>
+      <div class="card"><div class="card-desc">🔧 Metodologia aplicável, não teoria acadêmica</div></div>
+      <div class="card"><div class="card-desc">📖 Cases reais de CEOs que já passaram pelo mesmo momento</div></div>
+      <div class="card"><div class="card-desc">💰 Proteção patrimonial e inteligência financeira (FIDC, offshore, FCO)</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. GOALS & SUCCESS METRICS -->
+<section class="section" id="metas">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <h2>Goals &amp; Success Metrics</h2>
+    </div>
+    <div class="gold-line"></div>
+
+    <h3>Objetivos de Negócio (SMART)</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Objetivo</th><th>Meta</th><th>Prazo</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Lotar o evento</strong></td><td>250 participantes confirmados</td><td>20/08/2026</td></tr>
+          <tr><td><strong>ROAS mínimo</strong></td><td>1.5x (cenário realista)</td><td>Encerramento campanhas</td></tr>
+          <tr><td><strong>Receita do evento</strong></td><td>R$ 375.000 em ingressos</td><td>20/08/2026</td></tr>
+          <tr><td><strong>Upsell pós-evento</strong></td><td>15% dos participantes → mentoria</td><td>Out/2026</td></tr>
+          <tr><td><strong>NPS</strong></td><td>&gt; 8/10</td><td>30 dias após evento</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Jornada LTV do Cliente</h3>
+    <div class="journey">
+      <div class="journey-step">
+        <div class="journey-arrow">→</div>
+        <div>
+          <div class="journey-label">Ingresso Standard — R$ 1.497</div>
+          <div class="journey-detail">Entrada principal do funil presencial</div>
+        </div>
+      </div>
+      <div class="journey-step">
+        <div class="journey-arrow">→</div>
+        <div>
+          <div class="journey-label">VIP Pass — +R$ 997</div>
+          <div class="journey-detail">Áreas exclusivas + almoço com palestrantes</div>
+        </div>
+      </div>
+      <div class="journey-step">
+        <div class="journey-arrow">→</div>
+        <div>
+          <div class="journey-label">Cúpula Dinner — +R$ 7.997</div>
+          <div class="journey-detail">Jantar exclusivo com mentores e CEOs selecionados</div>
+        </div>
+      </div>
+      <div class="journey-step">
+        <div class="journey-arrow">→</div>
+        <div>
+          <div class="journey-label">Mentoria Liderança Antifrágil — R$ 39.997</div>
+          <div class="journey-detail">Luiz Portal — programa de transformação executiva</div>
+        </div>
+      </div>
+      <div class="journey-step">
+        <div class="journey-arrow">→</div>
+        <div>
+          <div class="journey-label">Mentoria CEO — R$ 100.000</div>
+          <div class="journey-detail">Ibrahim Boufleur — acompanhamento individual de alto ticket</div>
+        </div>
+      </div>
+      <div class="journey-step">
+        <div class="journey-arrow">→</div>
+        <div>
+          <div class="journey-label">Equity &amp; Exit Strategy — sob consulta</div>
+          <div class="journey-detail">Nível máximo — co-participação e advisory board</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. EVENT SCOPE & FORMAT -->
+<section class="section" id="formato">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <h2>Event Scope &amp; Format</h2>
+    </div>
+    <div class="gold-line"></div>
+
+    <h3>Estrutura do Dia</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Momento</th><th>Atividade</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Credenciamento</strong></td><td>Check-in com Bot Júlio (QR Code pessoal)</td></tr>
+          <tr><td><strong>Manhã</strong></td><td>Boas-vindas + Palestra de abertura (Ibrahim/Luiz)</td></tr>
+          <tr><td><strong>Manhã</strong></td><td>Painel com palestrante convidado (Emmanuele Louza)</td></tr>
+          <tr><td><strong>Almoço VIP</strong></td><td>Reservado para detentores de VIP Pass</td></tr>
+          <tr><td><strong>Tarde</strong></td><td>Sessões temáticas nos 3 totens interativos</td></tr>
+          <tr><td><strong>14h — Painel</strong></td><td>Dinâmica: Delegação e remoção do CEO do operacional</td></tr>
+          <tr><td><strong>Encerramento</strong></td><td>Premiação Top 3 Engajamento + Networking livre</td></tr>
+          <tr><td><strong>Noite (VIP)</strong></td><td>Cúpula Dinner — jantar exclusivo com mentores e CEOs</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>3 Totens Temáticos (QR Codes Individuais)</h3>
+    <div class="card-grid">
+      <div class="card" style="border-top:3px solid var(--gold);">
+        <div class="card-icon">🌍</div>
+        <div class="card-title">Internacionalização</div>
+        <div class="card-desc">Zona franca, operações offshore, incentivos tributários, Paraguai</div>
+      </div>
+      <div class="card" style="border-top:3px solid var(--accent);">
+        <div class="card-icon">👨‍👩‍👧</div>
+        <div class="card-title">Sucessão e Governança</div>
+        <div class="card-desc">Conselho consultivo, remoção CEO do operacional, estrutura de governança</div>
+      </div>
+      <div class="card" style="border-top:3px solid var(--accent2);">
+        <div class="card-icon">🏦</div>
+        <div class="card-title">Arsenal Financeiro</div>
+        <div class="card-desc">FIDC, FCO, proteção patrimonial, Bitcoin e inflação</div>
+      </div>
+    </div>
+
+    <h3>Estrutura de Ingressos</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Produto</th><th>Valor</th><th>Condições</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Early Bird</strong></td><td style="color:var(--gold)"><strong>R$ 1.197</strong></td><td>Apenas os 50 primeiros</td></tr>
+          <tr class="row-highlight"><td><strong>Standard (Nomad)</strong></td><td><strong>R$ 1.497</strong></td><td>Ingresso padrão</td></tr>
+          <tr><td><strong>VIP Pass</strong></td><td style="color:var(--accent)"><strong>+R$ 997</strong></td><td>Áreas exclusivas + almoço</td></tr>
+          <tr><td><strong>Cúpula Dinner</strong></td><td style="color:var(--gold)"><strong>+R$ 7.997</strong></td><td>Inclui VIP + jantar exclusivo</td></tr>
+          <tr><td><strong>Diagnóstico Catalyst</strong></td><td><strong>R$ 297</strong></td><td>Case pode ser analisado ao vivo no palco</td></tr>
+          <tr><td><strong>Virtual Pass</strong></td><td><strong>R$ 997</strong></td><td>Downsell — acesso online + curso completo</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Gamificação</h3>
+    <div class="card-grid">
+      <div class="card"><div class="card-desc">📲 Check-in obrigatório em todas as palestras via Bot Júlio</div></div>
+      <div class="card"><div class="card-desc">🎁 Brindes por engajamento: acesso a curso, análise de diagnóstico, livro autografado</div></div>
+      <div class="card"><div class="card-desc">🏆 Premiação Top 3: Diagnóstico Completo pelo time de especialistas</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. GO-TO-MARKET -->
+<section class="section" id="gtm">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <h2>Go-to-Market Strategy</h2>
+    </div>
+    <div class="gold-line"></div>
+
+    <h3>Pilares de Conteúdo</h3>
+    <div class="pillar-row">
+      <div class="pillar-card p40">
+        <span class="pillar-pct">40%</span>
+        <div class="pillar-name">Autoridade &amp; Insights</div>
+        <div class="pillar-desc">Posicionar ViDi como referência</div>
+      </div>
+      <div class="pillar-card p30">
+        <span class="pillar-pct">30%</span>
+        <div class="pillar-name">Provocação &amp; Ruptura</div>
+        <div class="pillar-desc">Engajamento e compartilhamento</div>
+      </div>
+      <div class="pillar-card p20">
+        <span class="pillar-pct">20%</span>
+        <div class="pillar-name">Prova Social &amp; Bastidores</div>
+        <div class="pillar-desc">Construir confiança e FOMO</div>
+      </div>
+      <div class="pillar-card p10">
+        <span class="pillar-pct">10%</span>
+        <div class="pillar-name">Promocional</div>
+        <div class="pillar-desc">Converter em inscrições</div>
+      </div>
+    </div>
+
+    <h3>Cronograma — 4 Semanas de Lançamento</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Semana</th><th>Fase</th><th>Ações Principais</th><th>Meta</th></tr></thead>
+        <tbody>
+          <tr><td><strong>S1 — D-28 a D-22</strong></td><td><span class="pill pill-teal">Aquecimento</span></td><td>Carrossel, LinkedIn, Stories enquete, Broadcast WhatsApp, Reels presença</td><td>Alcance +20%</td></tr>
+          <tr><td><strong>S2 — D-21 a D-15</strong></td><td><span class="pill pill-purple">Agitação</span></td><td>Feed CEO mindset, LinkedIn hábitos, Bastidores evento, Teaser "não é curso"</td><td>50+ comentários</td></tr>
+          <tr class="row-highlight"><td><strong>S3 — D-14 a D-8</strong></td><td><span class="pill pill-gold">🚀 Lançamento</span></td><td>Todos os canais: anúncio oficial + link, FAQ stories, depoimento, Reels diferencial</td><td>60% vagas</td></tr>
+          <tr><td><strong>S4 — D-7 a D-1</strong></td><td><span class="pill pill-red">Urgência</span></td><td>Barra de progresso, "Restam X vagas", "Última chamada" em todos os canais</td><td>100% vagas</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Canais e Horários (BRT)</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Canal</th><th>Dias</th><th>Horários</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Instagram Feed</strong></td><td>Seg, Qua, Sex</td><td>08h / 12h / 19h</td></tr>
+          <tr><td><strong>Instagram Reels</strong></td><td>Qua, Sex</td><td>19h–21h</td></tr>
+          <tr><td><strong>Instagram Stories</strong></td><td>Diário</td><td>08h / 12h / 18h</td></tr>
+          <tr><td><strong>LinkedIn</strong></td><td>Ter, Qui</td><td>08h–09h ou 18h–19h</td></tr>
+          <tr><td><strong>WhatsApp Broadcast</strong></td><td>Ter, Qui, Sáb</td><td>09h ou 19h</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 8. EQUIPE -->
+<section class="section" id="equipe">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">8</div>
+      <h2>Team &amp; Operational Structure</h2>
+    </div>
+    <div class="gold-line"></div>
+
+    <h3>Equipe Core</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Nível</th><th>Papel</th><th>Responsável</th><th>Escopo</th></tr></thead>
+        <tbody>
+          <tr><td><span class="pill pill-gold">Estratégico</span></td><td><strong>Mentor CEO</strong></td><td>Ibrahim Boufleur</td><td>Conteúdo, curadoria, produto mentoria</td></tr>
+          <tr><td><span class="pill pill-gold">Estratégico</span></td><td><strong>Mentor/Estratégia</strong></td><td>Luiz Portal</td><td>Liderança antifrágil, brand, palestrantes</td></tr>
+          <tr><td><span class="pill pill-purple">Executivo</span></td><td><strong>Tecnologia</strong></td><td>Cléber Donato</td><td>Bot Júlio, Landing Pages, CRM, App evento</td></tr>
+          <tr><td><span class="pill pill-purple">Executivo</span></td><td><strong>Operações &amp; Eventos</strong></td><td>João Victor Rosa</td><td>Royal Tulip, A&amp;B, staff, materiais, kits</td></tr>
+          <tr><td><span class="pill pill-purple">Executivo</span></td><td><strong>Financeiro/Admin</strong></td><td>Ana Dias</td><td>CNPJ, bancário, ASAAS, contratos</td></tr>
+          <tr><td><span class="pill pill-teal">Terceirizado</span></td><td><strong>Marketing &amp; Tráfego</strong></td><td>Bruno Lesche / Guilherme</td><td>Agência tráfego pago, campanhas, conteúdo</td></tr>
+          <tr><td><span class="pill pill-teal">Comercial</span></td><td><strong>Vendas</strong></td><td>Mariana</td><td>Fechamento e acompanhamento de leads</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Patrocínios em Negociação</h3>
+    <div class="card-grid">
+      <div class="card"><div class="card-title">Ótica San Pietro</div><div class="card-desc"><span class="pill pill-gold">Em negociação</span> — Cota de visibilidade no evento</div></div>
+      <div class="card"><div class="card-title">Muy Café</div><div class="card-desc"><span class="pill pill-gold">Em negociação</span> — Cota de A&amp;B / naming rights</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. FINANCEIRO -->
+<section class="section" id="financeiro">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">9</div>
+      <h2>Budget &amp; Financial Projections</h2>
+    </div>
+    <div class="gold-line"></div>
+
+    <div class="stat-row">
+      <div class="stat-box"><span class="stat-val">250</span><span class="stat-lbl">Meta Participantes</span></div>
+      <div class="stat-box"><span class="stat-val">R$ 1.500</span><span class="stat-lbl">Ticket Médio</span></div>
+      <div class="stat-box"><span class="stat-val">R$ 375k</span><span class="stat-lbl">Receita Total</span></div>
+      <div class="stat-box"><span class="stat-val">194 dias</span><span class="stat-lbl">Captação</span></div>
+    </div>
+
+    <h3>Cenários de Investimento em Tráfego</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Cenário</th><th>ROAS</th><th>Investimento Total</th><th>Orçamento Mensal</th><th>Margem de Lucro</th></tr></thead>
+        <tbody>
+          <tr><td>Pessimista</td><td>1.0x</td><td>R$ 375.000</td><td>R$ 57.692</td><td style="color:var(--danger)">0%</td></tr>
+          <tr class="row-highlight"><td><strong>Realista (meta)</strong></td><td><strong>1.5x</strong></td><td><strong>R$ 250.000</strong></td><td><strong>R$ 38.462</strong></td><td style="color:var(--green)"><strong>33,3%</strong></td></tr>
+          <tr><td>Otimista</td><td>1.8x</td><td>R$ 208.333</td><td>R$ 32.051</td><td style="color:var(--green)">44,4%</td></tr>
+          <tr><td>Super Meta</td><td>2.5x</td><td>R$ 150.000</td><td>R$ 23.077</td><td style="color:var(--green)">60,0%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p style="margin-top:1rem; font-size:.9rem; background:rgba(201,168,76,0.08); border:1px solid rgba(201,168,76,0.2); padding:1rem 1.5rem; border-radius:8px; color:var(--text-muted);">
+      <strong style="color:var(--gold)">Nota estratégica:</strong> O evento equilibra o investimento em tráfego no cenário pessimista. A lucratividade real da ViDi vem do upsell pós-evento para mentorias de R$ 40k–R$ 100k.
+    </p>
+  </div>
+</section>
+
+<!-- 10. RISKS -->
+<section class="section" id="riscos">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">10</div>
+      <h2>Risks, Open Questions &amp; Next Steps</h2>
+    </div>
+    <div class="gold-line"></div>
+
+    <h3>Riscos Críticos</h3>
+    <div class="risk-grid">
+      <div class="risk-card">
+        <div class="risk-title">⚠ Impasse INPI — nome "ViDi"</div>
+        <div class="risk-desc">Bloqueia todo o marketing, landing pages e campanhas antes da resolução</div>
+        <div class="risk-fix">→ Mitigação: Prioridade máxima — validar antes de qualquer campanha paga</div>
+      </div>
+      <div class="risk-card">
+        <div class="risk-title">⚠ Conta bancária travada (C6)</div>
+        <div class="risk-desc">Atrasa pagamentos de fornecedores e folha de pagamento</div>
+        <div class="risk-fix">→ Mitigação: Resolver via banco físico (Safra) imediatamente</div>
+      </div>
+      <div class="risk-card">
+        <div class="risk-title">⚠ Palestrante estrela não confirmado</div>
+        <div class="risk-desc">Emmanuele Louza ainda em negociação — fragiliza autoridade local do evento</div>
+        <div class="risk-fix">→ Mitigação: Sérgio Sampaio como backup estratégico; usar Vox/Media Training como moeda de troca</div>
+      </div>
+      <div class="risk-card">
+        <div class="risk-title">⚠ João Victor sobrecarregado</div>
+        <div class="risk-desc">Concentra Local + A&amp;B + Staff + Materiais — gargalo operacional de alto risco</div>
+        <div class="risk-fix">→ Mitigação: Delegar Staff para agência ou assistente adicional</div>
+      </div>
+      <div class="risk-card">
+        <div class="risk-title">⚠ ROAS abaixo de 1.0x</div>
+        <div class="risk-desc">Campanhas mal otimizadas podem gerar prejuízo no evento isolado</div>
+        <div class="risk-fix">→ Mitigação: Monitoramento semanal + otimização de criativos + ROAS 1.5x como meta mínima</div>
+      </div>
+    </div>
+
+    <h3>Assumptions a Confirmar</h3>
+    <ul class="checklist">
+      <li class="warn">Royal Tulip reservado e contrato assinado para 20/08/2026</li>
+      <li class="warn">CNPJ emitido e conta bancária operacional antes de março/2026</li>
+      <li class="warn">Emmanuele Louza aberta a negociação de participação</li>
+      <li class="warn">Bot Júlio em versão estável antes de maio/2026</li>
+      <li class="warn">Tráfego pago iniciado até 05/03/2026</li>
+    </ul>
+
+    <h3>Próximos Passos</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>ID</th><th>O que</th><th>Quem</th><th>Prazo</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>01</td><td><strong>Validar nome no INPI (Classe 35 e 41)</strong></td><td>Luiz Portal</td><td>Imediato</td><td><span class="pill pill-gold">Em andamento</span></td></tr>
+          <tr><td>02</td><td><strong>Abertura conta bancária (Safra físico)</strong></td><td>Ana Dias</td><td>Imediato</td><td><span class="pill pill-gold">Em andamento</span></td></tr>
+          <tr><td>03</td><td>Cronograma completo no ClickUp</td><td>Cléber / Ana</td><td>10/03/2026</td><td><span class="pill pill-purple">A iniciar</span></td></tr>
+          <tr><td>04</td><td>Abordagem formal a Emmanuele Louza</td><td>Ibrahim / Luiz</td><td>A definir</td><td><span class="pill pill-teal">Planejado</span></td></tr>
+          <tr><td>05</td><td>Contrato agência de tráfego</td><td>Bruno Lesche</td><td>Março/2026</td><td><span class="pill pill-gold">Em assinatura</span></td></tr>
+          <tr><td>06</td><td>Bot Júlio beta funcional</td><td>Cléber</td><td>20/03/2026</td><td><span class="pill pill-purple">Em desenvolvimento</span></td></tr>
+          <tr><td>07</td><td>Landing Pages + CRM integrado</td><td>Cléber</td><td>25d pós-estratégia</td><td><span class="pill pill-purple">A iniciar</span></td></tr>
+          <tr><td>08</td><td>Travar orçamento do evento (Story 4.5)</td><td>Ana Dias</td><td>Antes dos contratos</td><td><span class="pill pill-red">Pendente</span></td></tr>
+          <tr><td>09</td><td>Início das lives de aquecimento</td><td>Luiz / Ibrahim</td><td>Março/2026</td><td><span class="pill pill-teal">Planejado</span></td></tr>
+          <tr><td>10</td><td>Fechar cotas de patrocínio</td><td>Luiz / Ibrahim</td><td>Março/2026</td><td><span class="pill pill-gold">Em negociação</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p style="font-family:'Playfair Display',serif; font-size:1.5rem; color:var(--gold); margin-bottom:.5rem;">ViDi</p>
+  <p>Briefing Executivo — Cúpula CEO 2026 · Versão 1.0 · Abril 2026</p>
+  <p style="margin-top:.5rem;">
+    Fontes: Atas 25/02/2026 · Épico Cúpula CEO · Orçamento · Spec Bot Júlio · Plano de Lançamento<br>
+    <a href="index.html">← Plano de Lançamento</a> &nbsp;|&nbsp;
+    <a href="../index.html">Página Principal ViDi</a>
+  </p>
+</footer>
+
+</body>
+</html>
