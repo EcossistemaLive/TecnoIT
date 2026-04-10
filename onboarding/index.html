@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Onboarding Tecno IT — Bem-vindo, Tecnauta!</title>
+    <meta name="description" content="Portal de Onboarding oficial da Tecno IT. Informações essenciais para novos colaboradores de todos os departamentos.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;0,900;1,300&display=swap" rel="stylesheet">
+    <style>
+        /* ==============================
+           DESIGN TOKENS
+        ============================== */
+        :root {
+            --orange:  #EE7203;
+            --orange-d:#B85700;
+            --graphite:#575756;
+            --blue:    #0056A4;
+            --blue-d:  #003d7a;
+            --white:   #FFFFFF;
+            --off-white:#F7F7F7;
+            --dark:    #0d0d0d;
+            --dark2:   #161616;
+            --glass:   rgba(255,255,255,0.06);
+            --radius:  14px;
+            --font:    'Montserrat', sans-serif;
+            --transition: all .3s cubic-bezier(.4,0,.2,1);
+        }
+
+        /* ==============================
+           RESET & BASE
+        ============================== */
+        *, *::before, *::after { box-sizing: border-box; margin:0; padding:0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font);
+            background: var(--dark);
+            color: var(--white);
+            line-height: 1.65;
+            min-height: 100vh;
+        }
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; display: block; }
+
+        /* ==============================
+           HERO
+        ============================== */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 3rem 2rem;
+            background:
+                radial-gradient(ellipse 80% 60% at 50% 100%, rgba(238,114,3,.25) 0%, transparent 70%),
+                radial-gradient(ellipse 60% 40% at 80% 20%, rgba(0,86,164,.2) 0%, transparent 60%),
+                var(--dark);
+            overflow: hidden;
+        }
+        .hero::before {
+            content:'';
+            position: absolute;
+            inset:0;
+            background: repeating-linear-gradient(
+                0deg, transparent, transparent 58px,
+                rgba(255,255,255,.025) 58px, rgba(255,255,255,.025) 59px
+            ), repeating-linear-gradient(
+                90deg, transparent, transparent 58px,
+                rgba(255,255,255,.025) 58px, rgba(255,255,255,.025) 59px
+            );
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap:.5rem;
+            background: rgba(238,114,3,.15);
+            border: 1px solid rgba(238,114,3,.4);
+            border-radius: 999px;
+            padding: .4rem 1.2rem;
+            font-size:.8rem;
+            font-weight:600;
+            letter-spacing:.08em;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 2rem;
+            animation: fadeUp .6s ease both;
+        }
+
+        .logo-mark {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2.5rem;
+            animation: fadeUp .6s .1s ease both;
+        }
+        .logo-circle {
+            width: 72px; height: 72px;
+            background: var(--orange);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.8rem; font-weight:900; color:#fff;
+            box-shadow: 0 0 36px rgba(238,114,3,.5);
+        }
+        .logo-text {
+            font-size: 2.4rem; font-weight:900;
+            text-transform: lowercase; letter-spacing:-.02em;
+            color: var(--graphite);
+        }
+        .logo-text span { color: var(--orange); }
+
+        .hero h1 {
+            font-size: clamp(2.2rem, 6vw, 5rem);
+            font-weight:900;
+            line-height:1.05;
+            letter-spacing:-.03em;
+            background: linear-gradient(135deg, #fff 40%, var(--orange) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.25rem;
+            animation: fadeUp .6s .2s ease both;
+        }
+        .hero p {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            font-weight:300;
+            opacity:.7;
+            max-width:680px;
+            margin: 0 auto 3rem;
+            animation: fadeUp .6s .3s ease both;
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 2rem;
+            left:50%;
+            transform: translateX(-50%);
+            display:flex; flex-direction:column; align-items:center; gap:.4rem;
+            font-size:.75rem; letter-spacing:.1em; text-transform:uppercase; opacity:.4;
+            animation: bounce 2s infinite;
+        }
+        .hero-scroll::after {
+            content:'';
+            width:2px; height:36px;
+            background: linear-gradient(to bottom, var(--orange), transparent);
+        }
+
+        /* ==============================
+           NAV TABS
+        ============================== */
+        .tabs-wrapper {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(13,13,13,.9);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255,255,255,.08);
+        }
+        .tabs-nav {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            gap: 0;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        .tabs-nav::-webkit-scrollbar { display:none; }
+
+        .tab-btn {
+            flex-shrink: 0;
+            border: none;
+            background: transparent;
+            color: rgba(255,255,255,.45);
+            font-family: var(--font);
+            font-size:.85rem;
+            font-weight:600;
+            text-transform: uppercase;
+            letter-spacing:.08em;
+            padding: 1.25rem 1.5rem;
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+        .tab-btn:hover { color: rgba(255,255,255,.8); }
+        .tab-btn.active { color: var(--orange); }
+        .tab-btn.active::after {
+            content:'';
+            position:absolute;
+            bottom:0; left:0; right:0;
+            height:2px;
+            background: var(--orange);
+            border-radius:999px 999px 0 0;
+        }
+        .tab-dept {
+            background: rgba(238,114,3,.1);
+            border: 1px solid rgba(238,114,3,.2);
+            border-radius: 999px;
+            font-size:.65rem;
+            padding:.15rem .5rem;
+            margin-left:.4rem;
+            color: var(--orange);
+        }
+
+        /* ==============================
+           CONTENT PANELS
+        ============================== */
+        .panels {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 4rem 2rem 6rem;
+        }
+
+        .panel { display: none; }
+        .panel.active { display: block; animation: fadeIn .4s ease; }
+
+        /* ==============================
+           SECTION COMPONENTS
+        ============================== */
+        .section-heading {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+        .section-heading h2 {
+            font-size: clamp(1.5rem,3vw,2.2rem);
+            font-weight:900;
+            letter-spacing:-.02em;
+        }
+        .section-heading .accent-line {
+            flex:1; height:1px;
+            background: linear-gradient(to right, var(--orange), transparent);
+        }
+        .section-icon {
+            width:40px; height:40px;
+            background: rgba(238,114,3,.15);
+            border: 1px solid rgba(238,114,3,.3);
+            border-radius:10px;
+            display:flex; align-items:center; justify-content:center;
+            font-size:1.1rem;
+            flex-shrink:0;
+        }
+
+        /* Cards grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px,1fr));
+            gap: 1.5rem;
+            margin-bottom: 3.5rem;
+        }
+        .card {
+            background: var(--glass);
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: var(--radius);
+            padding: 1.75rem;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        .card::before {
+            content:'';
+            position:absolute;
+            top:0; left:0; right:0; height:2px;
+            background: var(--orange);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: var(--transition);
+        }
+        .card:hover { border-color: rgba(238,114,3,.3); transform:translateY(-3px); }
+        .card:hover::before { transform: scaleX(1); }
+        .card-icon { font-size:2rem; margin-bottom:1rem; }
+        .card h3 { font-size:1.05rem; font-weight:700; margin-bottom:.6rem; color:var(--orange); }
+        .card p, .card ul { font-size:.9rem; opacity:.8; }
+        .card ul { padding-left:1.2rem; }
+        .card ul li { margin:.3rem 0; }
+
+        /* Alert box */
+        .alert {
+            border-radius: var(--radius);
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+        .alert-warning {
+            background: rgba(238,114,3,.1);
+            border: 1px solid rgba(238,114,3,.35);
+        }
+        .alert-info {
+            background: rgba(0,86,164,.1);
+            border: 1px solid rgba(0,86,164,.35);
+        }
+        .alert-icon { font-size:1.3rem; flex-shrink:0; }
+        .alert-text strong { display:block; margin-bottom:.3rem; }
+        .alert-text { font-size:.9rem; opacity:.85; }
+
+        /* NR Tags */
+        .nr-tags { display:flex; flex-wrap:wrap; gap:.6rem; margin-bottom: 2.5rem; }
+        .nr-tag {
+            background: rgba(0,86,164,.15);
+            border: 1px solid rgba(0,86,164,.4);
+            color: #5aa3ff;
+            border-radius:999px;
+            font-size:.75rem;
+            font-weight:700;
+            padding:.3rem .9rem;
+            letter-spacing:.06em;
+        }
+
+        /* List section */
+        .list-section {
+            background: var(--glass);
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: var(--radius);
+            padding: 1.75rem;
+            margin-bottom: 1.5rem;
+        }
+        .list-section h3 {
+            font-size:1rem; font-weight:700; color:var(--orange);
+            margin-bottom:1rem;
+            display:flex; align-items:center; gap:.6rem;
+        }
+        .list-section ul { padding-left:1.2rem; }
+        .list-section ul li {
+            font-size:.9rem;
+            margin:.45rem 0;
+            opacity:.82;
+        }
+        .list-section ul li::marker { color: var(--orange); }
+
+        /* Steps */
+        .steps { display:flex; flex-direction:column; gap:1rem; margin-bottom:3rem; }
+        .step {
+            display:flex; gap:1.25rem; align-items:flex-start;
+            background: var(--glass);
+            border: 1px solid rgba(255,255,255,.07);
+            border-radius:var(--radius);
+            padding:1.25rem 1.5rem;
+        }
+        .step-num {
+            width:36px; height:36px; flex-shrink:0;
+            background: var(--orange);
+            border-radius:50%;
+            display:flex; align-items:center; justify-content:center;
+            font-size:.85rem; font-weight:900;
+        }
+        .step-body h4 { font-weight:700; margin-bottom:.3rem; }
+        .step-body p { font-size:.88rem; opacity:.75; }
+
+        /* Divider */
+        .divider {
+            height:1px;
+            background: rgba(255,255,255,.06);
+            margin: 3rem 0;
+        }
+
+        /* Highlight row */
+        .highlight-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+            gap:1rem;
+            margin-bottom: 3rem;
+        }
+        .stat-card {
+            background: var(--glass);
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius:var(--radius);
+            padding:1.5rem;
+            text-align:center;
+        }
+        .stat-card .stat-num {
+            font-size:2.2rem;
+            font-weight:900;
+            color:var(--orange);
+            display:block;
+            margin-bottom:.25rem;
+        }
+        .stat-card .stat-label { font-size:.82rem; opacity:.6; text-transform:uppercase; letter-spacing:.08em; }
+
+        /* ==============================
+           FOOTER
+        ============================== */
+        footer {
+            text-align:center;
+            padding: 2.5rem;
+            font-size:.8rem;
+            opacity:.35;
+            border-top: 1px solid rgba(255,255,255,.06);
+        }
+
+        /* ==============================
+           ANIMATIONS
+        ============================== */
+        @keyframes fadeUp {
+            from { opacity:0; transform:translateY(20px); }
+            to   { opacity:1; transform:translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity:0; }
+            to   { opacity:1; }
+        }
+        @keyframes bounce {
+            0%,100% { transform: translateX(-50%) translateY(0); }
+            50%      { transform: translateX(-50%) translateY(6px); }
+        }
+
+        /* ==============================
+           RESPONSIVE
+        ============================== */
+        @media (max-width:768px) {
+            .cards-grid { grid-template-columns:1fr; }
+            .tab-btn { padding:.9rem 1rem; font-size:.75rem; }
+            .panels { padding: 2.5rem 1.25rem 4rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ========== HERO ========== -->
+<header class="hero">
+    <div class="hero-badge">🚀 Universo IT &mdash; Portal de Onboarding</div>
+
+    <div class="logo-mark">
+        <div class="logo-circle">it</div>
+        <div class="logo-text">tecno <span>it</span></div>
+    </div>
+
+    <h1>Bem-vindo,<br>Tecnauta!</h1>
+    <p>Sua missão começa agora. Este é o guia oficial de integração para novos membros do Universo IT.</p>
+
+    <div class="hero-scroll">Explorar</div>
+</header>
+
+<!-- ========== TABS NAV ========== -->
+<nav class="tabs-wrapper" role="navigation" aria-label="Abas de onboarding">
+    <div class="tabs-nav">
+        <button class="tab-btn active" data-tab="geral" id="tab-geral" aria-selected="true" role="tab">
+            🌐 Modelo Geral
+        </button>
+        <button class="tab-btn" data-tab="engenharia" id="tab-engenharia" role="tab">
+            ⚙️ Engenharia <span class="tab-dept">Depto</span>
+        </button>
+        <button class="tab-btn" data-tab="comercial" id="tab-comercial" role="tab">
+            💼 Comercial <span class="tab-dept">Depto</span>
+        </button>
+        <button class="tab-btn" data-tab="financeiro" id="tab-financeiro" role="tab">
+            💰 Adm. Financeiro <span class="tab-dept">Depto</span>
+        </button>
+        <button class="tab-btn" data-tab="rh" id="tab-rh" role="tab">
+            🧑‍🤝‍🧑 RH <span class="tab-dept">Depto</span>
+        </button>
+    </div>
+</nav>
+
+<!-- ========== PANELS ========== -->
+<main class="panels">
+
+    <!-- ==================
+         ABA GERAL
+    ================== -->
+    <section class="panel active" id="panel-geral" role="tabpanel" aria-labelledby="tab-geral">
+
+        <!-- Pilares rápidos -->
+        <div class="section-heading">
+            <div class="section-icon">✨</div>
+            <h2>Quem Somos</h2>
+            <div class="accent-line"></div>
+        </div>
+
+        <div class="highlight-row">
+            <div class="stat-card">
+                <span class="stat-num">2013</span>
+                <span class="stat-label">Ano de Fundação</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-num">R$100M</span>
+                <span class="stat-label">Faturamento em &lt; 10 anos</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-num">+400</span>
+                <span class="stat-label">Colaboradores</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-num">+50</span>
+                <span class="stat-label">Cidades com projetos</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-num">4</span>
+                <span class="stat-label">Escritórios (BR · HK · USA)</span>
+            </div>
+        </div>
+
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-icon">🌍</div>
+                <h3>Propósito</h3>
+                <p>Mudar o mundo para melhor, através da tecnologia.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🚀</div>
+                <h3>Missão</h3>
+                <p>Entregar tecnologias inovadoras com excelência.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🎯</div>
+                <h3>Visão</h3>
+                <p>Ser líder no mercado de tecnologia na América Latina até 2033.</p>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Valores INOTEC -->
+        <div class="section-heading">
+            <div class="section-icon">💎</div>
+            <h2>Valores INOTEC</h2>
+            <div class="accent-line"></div>
+        </div>
+
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-icon">💡</div>
+                <h3>I — Inovação</h3>
+                <p>Transformar ideias em soluções. Melhorar a performance da empresa todos os dias.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🤝</div>
+                <h3>N — Networking</h3>
+                <p>Construir relações de confiança. Comunicar claramente com parceiros e colegas.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🎯</div>
+                <h3>O — Objetividade</h3>
+                <p>Decidir com assertividade. Admitir erros rapidamente e corrigir com o dobro de rapidez.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">⚡</div>
+                <h3>T — Transformação</h3>
+                <p>Agir com iniciativa e autogestão. Ser protagonista da própria jornada.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">💚</div>
+                <h3>E — Empatia</h3>
+                <p>Tratar pessoas com respeito. Pensar no coletivo antes do individual.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🔒</div>
+                <h3>C — Comprometimento</h3>
+                <p>Pensar e agir como dono. Garantir resultados para o cliente.</p>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- SST / SESMT -->
+        <div class="section-heading">
+            <div class="section-icon">🦺</div>
+            <h2>Saúde e Segurança do Trabalho — SST</h2>
+            <div class="accent-line"></div>
+        </div>
+
+        <div class="alert alert-info">
+            <div class="alert-icon">ℹ️</div>
+            <div class="alert-text">
+                <strong>Responsável: Thiago Maulaz</strong>
+                Eng. Ambiental · Eng. de Segurança do Trabalho · Técnico de Segurança do Trabalho
+            </div>
+        </div>
+
+        <div class="alert alert-warning">
+            <div class="alert-icon">⚠️</div>
+            <div class="alert-text">
+                <strong>Política de SST</strong>
+                Todo Tecnauta deve ler e assinar a Política de Saúde e Segurança do Trabalho. O uso do crachá, uniforme e EPIs é <strong>obrigatório</strong> em campo.
+            </div>
+        </div>
+
+        <div class="nr-tags">
+            <span class="nr-tag">NR-10 Elétrica</span>
+            <span class="nr-tag">NR-17 Ergonomia</span>
+            <span class="nr-tag">NR-33 Espaços Confinados</span>
+            <span class="nr-tag">NR-35 Trabalho em Altura</span>
+        </div>
+
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-icon">⚠️</div>
+                <h3>Riscos da Atividade</h3>
+                <ul>
+                    <li>Choque elétrico</li>
+                    <li>Quedas (nível e altura)</li>
+                    <li>Esforço físico / repetitivo</li>
+                    <li>Corte e perfuração</li>
+                    <li>Incêndios em áreas técnicas</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-icon">🦺</div>
+                <h3>EPIs Obrigatórios</h3>
+                <ul>
+                    <li>Capacete, luvas e óculos de proteção</li>
+                    <li>Cinto de segurança (trabalho em altura)</li>
+                    <li>Protetores auriculares (ruído)</li>
+                    <li>Calçado de segurança</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-icon">⚡</div>
+                <h3>NR-10 — Instalações Elétricas</h3>
+                <ul>
+                    <li>Somente autorizados e capacitados</li>
+                    <li>Identificação e desenergização de circuitos</li>
+                    <li>Uso de ferramentas isoladas</li>
+                    <li>Distâncias mínimas de segurança</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-icon">🧗</div>
+                <h3>NR-35 — Trabalho em Altura</h3>
+                <ul>
+                    <li>Aplicável acima de 2 metros</li>
+                    <li>Treinamento obrigatório</li>
+                    <li>Análise de risco e Permissão de Trabalho (PT)</li>
+                    <li>Inspeção dos equipamentos antes do uso</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-icon">🪑</div>
+                <h3>NR-17 — Ergonomia</h3>
+                <ul>
+                    <li>Técnicas de levantamento de cabos/equipamentos</li>
+                    <li>Cuidados com postura</li>
+                    <li>Intervalos e pausas regulares</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-icon">🕳️</div>
+                <h3>NR-33 — Espaços Confinados</h3>
+                <ul>
+                    <li>Ex.: shafts, dutos, subterrâneos</li>
+                    <li>Entrada segura com autorização</li>
+                    <li>Monitoramento da atmosfera</li>
+                    <li>Equipamentos e equipe de resgate</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-icon">🚨</div>
+                <h3>Comunicação de Incidentes</h3>
+                <p>Todo incidente deve ser comunicado imediatamente ao responsável de SST. Nunca improvise após um ocorrido.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">📋</div>
+                <h3>Documentações Obrigatórias</h3>
+                <ul>
+                    <li>Ficha de EPI e ferramentas</li>
+                    <li>Certificados (NR-10, NR-35)</li>
+                    <li>Checklists diários</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-icon">📐</div>
+                <h3>Sinalização e Organização</h3>
+                <ul>
+                    <li>Delimitar áreas de risco</li>
+                    <li>Evitar cabos soltos no ambiente</li>
+                    <li>Armazenamento correto de materiais</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="list-section">
+            <h3>🤝 Conduta Ética e Responsabilidade</h3>
+            <ul>
+                <li>Relacionamento respeitoso com o cliente em todo momento</li>
+                <li>Zelar pelas instalações e patrimônio do cliente</li>
+                <li>Nunca improvisar — sempre seguir projetos e normas técnicas</li>
+            </ul>
+        </div>
+
+    </section>
+
+    <!-- ==================
+         ABA ENGENHARIA
+    ================== -->
+    <section class="panel" id="panel-engenharia" role="tabpanel" aria-labelledby="tab-engenharia">
+
+        <div class="section-heading">
+            <div class="section-icon">⚙️</div>
+            <h2>Onboarding — Engenharia</h2>
+            <div class="accent-line"></div>
+        </div>
+
+        <div class="alert alert-info">
+            <div class="alert-icon">ℹ️</div>
+            <div class="alert-text">
+                <strong>Bem-vindo à Engenharia Tecno IT</strong>
+                Aqui desenvolvemos e entregamos projetos de inteligência tecnológica em mais de 50 cidades brasileiras.
+            </div>
+        </div>
+
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-icon">🏗️</div>
+                <h3>Projetos e Metodologia</h3>
+                <ul>
+                    <li>Leitura do escopo técnico antes do início</li>
+                    <li>Registro de atividades via sistema interno</li>
+                    <li>Comunicação com líder técnico diariamente</li>
+                    <li>Documentação de As-Built obrigatória</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-icon">🛠️</div>
+                <h3>Ferramentas e Sistemas</h3>
+                <ul>
+                    <li>Acesso ao portal de projetos (credenciais via TI)</li>
+                    <li>Git/GitLab para versionamento de código</li>
+                    <li>Jira / Linear para gestão de tarefas</li>
+                    <li>Confluence para documentação</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-icon">🔐</div>
+                <h3>Acesso e Credenciais</h3>
+                <ul>
+                    <li>Solicitar credenciais ao TI no D+1</li>
+                    <li>VPN obrigatória para ambientes de produção</li>
+                    <li>2FA ativado em todas as contas</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-icon">🦺</div>
+                <h3>SST em Campo</h3>
+                <ul>
+                    <li>Portar sempre os EPIs conforme NR-10 e NR-35</li>
+                    <li>Preencher checklist diário de segurança</li>
+                    <li>Reportar incidentes ao SESMT imediatamente</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-icon">📊</div>
+                <h3>Indicadores e Qualidade</h3>
+                <ul>
+                    <li>SLAs de entrega por contrato</li>
+                    <li>Relatório semanal de progresso</li>
+                    <li>Revisão técnica com pares antes de fechamento</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-icon">🤝</div>
+                <h3>Cultura de Equipe</h3>
+                <ul>
+                    <li>Stand-up diário às 9h com time técnico</li>
+                    <li>Retrospectiva quinzenal</li>
+                    <li>Mentoria para novos Tecnautas (D+30)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="section-heading">
+            <div class="section-icon">📅</div>
+            <h2>Primeiros 30 dias</h2>
+            <div class="accent-line"></div>
+        </div>
+
+        <div class="steps">
+            <div class="step">
+                <div class="step-num">1</div>
+                <div class="step-body">
+                    <h4>Semana 1 — Ambientação</h4>
+                    <p>Reuniões de apresentação com o time, configuração de ferramentas e leitura de documentação de projetos em andamento.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <div class="step-body">
+                    <h4>Semana 2 — Shadowing</h4>
+                    <p>Acompanhar um senior em campo ou em projeto ativo. Entender processos, padrões de qualidade e comunicação com cliente.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <div class="step-body">
+                    <h4>Semana 3-4 — Contribuição Guiada</h4>
+                    <p>Assumir tarefas com supervisão. Primeiro entregável técnico documentado e validado pelo líder.</p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- ==================
+         ABA COMERCIAL
+    ================== -->
+    <section class="panel" id="panel-comercial" role="tabpanel" aria-labelledby="tab-comercial">
+
+        <div class="section-heading">
+            <div class="section-icon">💼</div>
+            <h2>Onboarding — Comercial</h2>
+            <div class="accent-line"></div>
+        </div>
+
+        <div class="alert alert-info">
+            <div class="alert-icon">🎯</div>
+            <div class="alert-text">
+                <strong>Missão do Time Comercial</strong>
+                Ampliar a atuação da Tecno IT no mercado com excelência em relacionamento, proposta de valor e gestão de contratos.
+            </div>
+        </div>
+
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-icon">🏛️</div>
+                <h3>Principais Clientes</h3>
+                <ul>
+                    <li>Governo Federal: Ministérios, BNDES, Banco do Brasil</li>
+                    <li>Judiciário: TJ, TRF, TRT em múltiplos estados</li>
+                    <li>Privado: Enel, Coca-Cola, Unimed, Anglo American</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-icon">🤝</div>
+                <h3>Parceiros Estratégicos</h3>
+                <ul>
+                    <li>Lightera — Software/Plataforma</li>
+                    <li>SDC — Smart Data Computing</li>
+                    <li>ISS — Videomonitoramento</li>
+                    <li>HID — Controle de Acesso</li>
+                    <li>TP-Link — Redes e Infraestrutura</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-icon">📋</div>
+                <h3>Processos Comerciais</h3>
+                <ul>
+                    <li>Qualificação de leads e oportunidades</li>
+                    <li>Propostas técnicas e comerciais</li>
+                    <li>Contratos e compliance</li>
+                    <li>Gestão pós-venda e renovação</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-icon">📊</div>
+                <h3>CRM e Ferramentas</h3>
+                <ul>
+                    <li>Acesso ao CRM interno (credenciais via TI)</li>
+                    <li>Templates de proposta padronizados</li>
+                    <li>Pipeline de vendas atualizado semanalmente</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-icon">📜</div>
+                <h3>Compliance Comercial</h3>
+                <ul>
+                    <li>Anti-suborno e LGPD em contratos</li>
+                    <li>Aprovação jurídica obrigatória nos contratos</li>
+                    <li>Registro de todas as tratativas no CRM</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-icon">💬</div>
+                <h3>Discurso de Marca</h3>
+                <ul>
+                    <li>pessoas (i) + tecnologia (t) = inteligência tecnológica (it)</li>
+                    <li>+R$100M faturados; 50+ cidades; 400+ colaboradores</li>
+                    <li>Posicionamento: líder na América Latina até 2033</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="section-heading">
+            <div class="section-icon">📅</div>
+            <h2>Primeiros 30 dias</h2>
+            <div class="accent-line"></div>
+        </div>
+
+        <div class="steps">
+            <div class="step">
+                <div class="step-num">1</div>
+                <div class="step-body">
+                    <h4>Semana 1 — Imersão no Portfólio</h4>
+                    <p>Estudo completo do portfólio de soluções, cases e cartela de clientes. Reunião com líderes de cada vertical.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <div class="step-body">
+                    <h4>Semana 2 — Processo e Ferramentas</h4>
+                    <p>Treinamento no CRM, metodologia de proposta e acompanhamento de pipeline com comercial sênior.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <div class="step-body">
+                    <h4>Semana 3-4 — Primeira Oportunidade</h4>
+                    <p>Identificar e qualificar a primeira oportunidade mapeada com suporte do time. Apresentar ao gestor no D+30.</p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- ==================
+         ABA FINANCEIRO
+    ================== -->
+    <section class="panel" id="panel-financeiro" role="tabpanel" aria-labelledby="tab-financeiro">
+
+        <div class="section-heading">
+            <div class="section-icon">💰</div>
+            <h2>Onboarding — Administrativo Financeiro</h2>
+            <div class="accent-line"></div>
+        </div>
+
+        <div class="alert alert-info">
+            <div class="alert-icon">🏛️</div>
+            <div class="alert-text">
+                <strong>Estrutura Societária</strong>
+                A Tecno IT opera como Sociedade Anônima (capital fechado) com balanço auditado e compliance estruturado.
+            </div>
+        </div>
+
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-icon">📊</div>
+                <h3>Governança Financeira</h3>
+                <ul>
+                    <li>Balanço auditado anualmente</li>
+                    <li>Foco em rentabilidade sobre receita</li>
+                    <li>DRE e cash flow monitorados mensalmente</li>
+                    <li>Reportes à diretoria no fechamento de cada mês</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-icon">📋</div>
+                <h3>Processos Administrativos</h3>
+                <ul>
+                    <li>Emissão e controle de NFs</li>
+                    <li>Gestão de contratos e aditivos</li>
+                    <li>Controle de despesas e reembolsos</li>
+                    <li>Fluxo de aprovação de compras</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-icon">🔒</div>
+                <h3>Compliance e LGPD</h3>
+                <ul>
+                    <li>Conformidade com Lei Geral de Proteção de Dados</li>
+                    <li>Políticas de controle interno</li>
+                    <li>Relatórios de integridade para auditoria</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-icon">💻</div>
+                <h3>Sistemas e Ferramentas</h3>
+                <ul>
+                    <li>ERP interno (acesso via TI)</li>
+                    <li>Conciliação bancária diária</li>
+                    <li>Planilhas controladas e versionadas</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-icon">📅</div>
+                <h3>Calendário Financeiro</h3>
+                <ul>
+                    <li>Fechamento contábil: todo dia 5 do mês seguinte</li>
+                    <li>Aprovação de despesas: toda sexta-feira</li>
+                    <li>Reunião de budget: trimestral</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-icon">📂</div>
+                <h3>Documentação Obrigatória</h3>
+                <ul>
+                    <li>Leitura das políticas financeiras internas</li>
+                    <li>Assinatura de termo de confidencialidade</li>
+                    <li>Cadastro no sistema de reembolso</li>
+                </ul>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- ==================
+         ABA RH
+    ================== -->
+    <section class="panel" id="panel-rh" role="tabpanel" aria-labelledby="tab-rh">
+
+        <div class="section-heading">
+            <div class="section-icon">🧑‍🤝‍🧑</div>
+            <h2>Onboarding — Recursos Humanos</h2>
+            <div class="accent-line"></div>
+        </div>
+
+        <div class="alert alert-info">
+            <div class="alert-icon">💙</div>
+            <div class="alert-text">
+                <strong>O RH é o guardião da Cultura Tecnauta</strong>
+                Nosso papel é garantir que cada colaborador viva os valores INOTEC e contribua para um ambiente de alta performance e pertencimento.
+            </div>
+        </div>
+
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-icon">📝</div>
+                <h3>Admissão e Contratos</h3>
+                <ul>
+                    <li>Assinatura digital de contrato de trabalho</li>
+                    <li>Entrega de documentos admissionais</li>
+                    <li>Cadastro no sistema de ponto</li>
+                    <li>Benefícios: VT, VR, plano de saúde</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-icon">🎓</div>
+                <h3>Treinamentos Obrigatórios</h3>
+                <ul>
+                    <li>Treinamento de SST (NR-10, NR-35 conforme função)</li>
+                    <li>LGPD e Segurança da Informação</li>
+                    <li>Código de Conduta e Ética</li>
+                    <li>Plataforma de aprendizado: itCast</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-icon">📅</div>
+                <h3>Calendário de RH</h3>
+                <ul>
+                    <li>Avaliação de desempenho: semestral</li>
+                    <li>Pesquisa de clima: trimestral</li>
+                    <li>1:1 com gestor: quinzenal (mínimo)</li>
+                    <li>Feedback contínuo via itCast</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-icon">🚀</div>
+                <h3>Desenvolvimento de Carreira</h3>
+                <ul>
+                    <li>Plano de Desenvolvimento Individual (PDI)</li>
+                    <li>Trilhas de aprendizado por função</li>
+                    <li>Programa de mentoria interna</li>
+                    <li>Certificações apoiadas pela empresa</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-icon">💬</div>
+                <h3>Canal de Comunicação</h3>
+                <ul>
+                    <li>Ouvidoria interna (anonimato garantido)</li>
+                    <li>Canal de sugestões via itCast</li>
+                    <li>Reuniões All-hands mensais</li>
+                </ul>
+            </div>
+            <div class="card">
+                <div class="card-icon">🌟</div>
+                <h3>Reconhecimento</h3>
+                <ul>
+                    <li>Programa Tecnauta Destaque</li>
+                    <li>Reconhecimento por metas atingidas</li>
+                    <li>Comemoração de aniversários</li>
+                    <li>Incentivos por certificações</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="section-heading">
+            <div class="section-icon">💬</div>
+            <h2>Mensagem de Boas-vindas</h2>
+            <div class="accent-line"></div>
+        </div>
+
+        <div class="list-section">
+            <h3>📜 Aos novos Tecnautas</h3>
+            <ul>
+                <li>"Você foi admitido por reunir condições e características adequadas às necessidades da Tecno it."</li>
+                <li>"Estamos certos de que você não terá dificuldades em adaptar-se a sua nova vida profissional."</li>
+                <li>"Sua missão começa agora. Seu esforço, somado ao de todos, contribuirá para tornar maior o sucesso do nosso empreendimento."</li>
+                <li>"Seu sucesso profissional depende muito de você — de seus conhecimentos, atitudes, eficiência e disposição."</li>
+            </ul>
+        </div>
+
+        <div class="alert alert-warning">
+            <div class="alert-icon">🚀</div>
+            <div class="alert-text">
+                <strong>Tecnauta, seja bem-vindo ao Universo IT!</strong>
+                — Departamento de Recursos Humanos · Tecno IT
+            </div>
+        </div>
+
+    </section>
+
+</main>
+
+<footer>
+    <p>&copy; 2026 Tecno IT &mdash; todos os direitos reservados. Universo IT.</p>
+</footer>
+
+<script>
+    const tabs = document.querySelectorAll('.tab-btn');
+    const panels = document.querySelectorAll('.panel');
+
+    tabs.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const target = btn.dataset.tab;
+
+            // deactivate all
+            tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
+            panels.forEach(p => p.classList.remove('active'));
+
+            // activate selected
+            btn.classList.add('active');
+            btn.setAttribute('aria-selected','true');
+            document.getElementById('panel-' + target).classList.add('active');
+
+            // scroll to panels
+            document.querySelector('.panels').scrollIntoView({ behavior:'smooth', block:'start' });
+        });
+    });
+</script>
+
+</body>
+</html>
