@@ -52,7 +52,7 @@ Março de 2026
 
 # **1\. Visão Geral e Missão do Projeto**
 
-O Bot Júlio é o assistente digital de elite criado para a ViDi, empresa de mentoria conduzida por Ibrahim Boufleur e Luiz Portal. O agente opera durante o evento Cúpula CEO 2026, realizado em 24 de março de 2026 no WTC Goiânia, atendendo até 300 executivos C-Level via WhatsApp.
+O Bot Júlio é o assistente digital de elite criado para a ViDi, empresa de mentoria conduzida por Ibrahim Boufleur e Luiz Portal. O agente opera durante o evento Cúpula CEO 2026, realizado em 20 de agosto de 2026 no Royal Tulip Brasília, atendendo até 300 executivos C-Level via WhatsApp.
 
 O Júlio não é um chatbot de perguntas e respostas. Ele é o Co-Produtor da Experiência: um concierge de conhecimento que combina a hospitalidade de um hotel 5 estrelas com a profundidade analítica de um psicólogo organizacional, operando sobre uma infraestrutura de RAG, banco de dados de perfis e integração física com totens do evento.
 
@@ -84,8 +84,8 @@ O Júlio não é um chatbot de perguntas e respostas. Ele é o Co-Produtor da Ex
 
 | Atributo | Detalhe |
 | :---- | :---- |
-| Data | 24 de março de 2026 |
-| Local | WTC Goiânia |
+| Data | 20 de agosto de 2026 |
+| Local | Royal Tulip Brasília |
 | Formato | Imersão de um dia — networking qualificado \+ conteúdo prático para C-Levels |
 | Público-alvo | CEOs, CFOs, Fundadores, Diretores — empresas de R$ 1M a R$ 50M+ de faturamento |
 | Capacidade | Até 300 participantes simultâneos no sistema |
@@ -721,7 +721,7 @@ Ao acionar o alerta\_humano, o sistema dispara um webhook com o seguinte payload
 
   "alert\_type": "upsell\_trigger",
 
-  "timestamp": "2026-03-24T14:35:00Z",
+  "timestamp": "2026-08-20T14:35:00Z",
 
   "participant": {
 
@@ -1270,7 +1270,7 @@ O WhatsApp introduz vetores de ataque específicos que não existem em interface
 | :---- | :---- |
 | Imagens enviadas pelo usuário | NÃO processar imagens. Responder: 'No momento, trabalho apenas com texto. O que posso fazer por você?' |
 | Áudios (mensagens de voz) | NÃO transcrever nem processar áudios. Solicitar que o usuário envie a mensagem em texto. |
-| Documentos (PDF, Word, etc.) | NÃO processar documentos enviados pelo usuário. Redirecionar para o staff do evento. |
+| Documentos (PDF, Word, etc.) | NÃO processar documentos enviados pelo usuário. Redirecionar para the staff do evento. |
 | Vídeos e GIFs | Ignorar completamente. Responder ao contexto textual da conversa, se houver. |
 | Stickers | Ignorar. Continuar o fluxo da conversa normalmente. |
 | Links externos | NÃO acessar links enviados pelo usuário. Não clicar, não requisitar, não processar o conteúdo do link. |
@@ -1837,6 +1837,6 @@ await redis.setex(
 
 * Confirmado que a Evolution API está configurada com rate limit de saída de no mínimo 100 mensagens por minuto.
 
-*Fim do Documento — Bot Júlio v3.0 — ViDi*
+# **Prompt — Portfólio ViDi — Bot Júlio — Agosto de 2026 — v3.0**
 
-ViDi — Confidencial — Cúpula CEO 2026 — Março de 2026
+ViDi — Confidencial — Cúpula CEO 2026 — Agosto de 2026

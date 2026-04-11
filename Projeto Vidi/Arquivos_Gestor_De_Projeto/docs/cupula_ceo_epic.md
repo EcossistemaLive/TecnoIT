@@ -2,7 +2,7 @@
 
 **Status:** Draft
 **Proprietários:** Ibrahim Boufleur, Luiz Portal
-**Prazo:** Maio de 2026 (Evento: 28-29/05)
+**Prazo:** Agosto de 2026 (Evento: 20/08/2026)
 
 ## Visão Geral
 Este épico abrange toda a preparação, planejamento e execução do evento "Cúpula CEO", além da estruturação contínua da jornada do cliente, englobando as mentorias de Ibrahim Boufleur e Luiz Portal. O objetivo é criar uma experiência premium, do primeiro contato (tráfego/lives) até o evento presencial ("Primeiro Limiar") e posterior upsell para as mentorias "Liderança Antifrágil" e "Conselho/Equity".
@@ -22,7 +22,7 @@ Este épico abrange toda a preparação, planejamento e execução do evento "C�
 - **Story 2.4:** Desenvolver ou parametrizar App/Solução de interação ao vivo para os participantes do evento VIP (Sorteios, Q&A).
 
 ### 3. Operações, Logística e Eventos (PO responsável: João Victor)
-- **Story 3.1:** Definir, auditar e assinar contrato do local do evento (data alvo: 28 ou 29 de Maio de 2026).
+- **Story 3.1:** Reservar e assinar contrato do local: **Royal Tulip, Brasília** (Data alvo: 20 de Agosto de 2026).
 - **Story 3.2:** Mapear e contratar serviços de A&B (Ex: República da Saúde, Reserva 35).
 - **Story 3.3:** Elaborar orçamento, fechar fornecedores e confeccionar materiais do participante (Kits, brindes).
 - **Story 3.4:** Recrutar e treinar o Staff/Recepcionistas para o Cúpula CEO Experience.

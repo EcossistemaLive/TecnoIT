@@ -338,7 +338,7 @@ Ingresso Standard (R$ 1.497)
 | Super Meta | 2.5x | R$ 150.000 | R$ 23.077 | 60,0% |
 
 **Período de captação:** ~194 dias (março a agosto 2026)  
-**Recomendação:** Trabalhar com ROAS 1.5x como base de planejamento.
+**Recomendação:** Trabalhar com ROAS 1.5x como base de [planejamento de tráfego](https://docs.google.com/spreadsheets/d/1QF7M67ysJDuTuhk4S-cIaPpOxj9hNGsR/edit?gid=580949647#gid=580949647).
 
 ### Lucratividade Real
 

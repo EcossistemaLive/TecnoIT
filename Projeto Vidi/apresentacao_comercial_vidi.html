@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apresentação Comercial & Playbook de Vendas | ViDi</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8D08A;
+    --dark: #0A0A0F;
+    --dark2: #111118;
+    --dark3: #1A1A24;
+    --dark4: #22222F;
+    --text: #E8E8F0;
+    --text-muted: #8888A8;
+    --accent: #7B6EF6;
+    --danger: #FF6B6B;
+    --green: #51CF66;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--dark); color: var(--text); font-family: 'Inter', sans-serif; line-height: 1.6; overflow-x: hidden; }
+
+  /* NAVIGATION */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 1000;
+    background: rgba(10,10,15,0.85); backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 5%;
+  }
+  .logo { font-weight: 800; color: var(--gold); font-size: 1.2rem; letter-spacing: 0.1em; text-transform: uppercase; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { color: var(--text); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* HERO SECTION */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+    padding: 6rem 2rem 2rem; position: relative;
+    background: radial-gradient(ellipse at center, rgba(201,168,76,0.1) 0%, transparent 70%);
+  }
+  .hero::after {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: url('data:image/svg+xml;utf8,<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg"><circle cx="2" cy="2" r="1" fill="rgba(201,168,76,0.1)"/></svg>') repeat;
+    z-index: -1;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif; font-size: clamp(3rem, 6vw, 5rem);
+    color: #fff; margin-bottom: 1rem; line-height: 1.1;
+  }
+  .hero h1 span { color: var(--gold); }
+  .hero p {
+    font-size: 1.2rem; color: var(--text-muted); max-width: 600px; margin-bottom: 2.5rem;
+  }
+  .btn {
+    display: inline-block; padding: 1rem 2.5rem; background: var(--gold); color: var(--dark);
+    font-weight: 700; text-transform: uppercase; letter-spacing: 1px; text-decoration: none;
+    border-radius: 4px; transition: all 0.3s; box-shadow: 0 4px 15px rgba(201,168,76,0.3);
+  }
+  .btn:hover { background: var(--gold-light); transform: translateY(-3px); box-shadow: 0 6px 20px rgba(201,168,76,0.5); }
+
+  /* SECTION CONTAINERS */
+  .section { padding: 6rem 5%; max-width: 1400px; margin: 0 auto; }
+  .section-title {
+    font-family: 'Playfair Display', serif; font-size: 2.5rem; 
+    margin-bottom: 3rem; text-align: center; color: #fff;
+    position: relative;
+  }
+  .section-title::after {
+    content: ''; display: block; width: 60px; height: 3px; 
+    background: var(--gold); margin: 1rem auto 0;
+  }
+
+  /* CARDS GRID */
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+  .card {
+    background: var(--dark2); border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 8px; padding: 2rem; transition: transform 0.3s, border-color 0.3s;
+    display: flex; flex-direction: column;
+  }
+  .card:hover { transform: translateY(-5px); border-color: rgba(201,168,76,0.3); }
+  .card-icon { font-size: 2.5rem; margin-bottom: 1.5rem; }
+  .card h3 { font-size: 1.4rem; color: var(--gold); margin-bottom: 1rem; }
+  .card p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; flex-grow: 1; }
+  .card .price { font-size: 1.25rem; font-weight: 700; color: #fff; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1.5rem; }
+  
+  /* RULES & PROTOCOLS */
+  .rules-container {
+    background: var(--dark2); border-left: 4px solid var(--danger);
+    padding: 2rem; border-radius: 4px 8px 8px 4px; margin-bottom: 2rem;
+  }
+  .rules-container h3 { color: var(--danger); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+  .rules-list { list-style: none; }
+  .rules-list li { margin-bottom: 0.8rem; display: flex; gap: 1rem; color: var(--text-muted); }
+  .rules-list li::before { content: '⚠️'; }
+
+  /* OVERCOMING OBJECTIONS */
+  .objection-item {
+    background: var(--dark3); margin-bottom: 1rem; border-radius: 8px; overflow: hidden;
+  }
+  .objection-header {
+    padding: 1.5rem; background: var(--dark4); font-weight: 600; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .objection-header:hover { color: var(--gold); }
+  .objection-body { padding: 1.5rem; border-top: 1px solid rgba(255,255,255,0.05); color: var(--text-muted); }
+  .objection-body strong { color: var(--gold-light); }
+
+  /* PORTFOLIO HIGHLIGHT */
+  .portfolio-table { width: 100%; border-collapse: collapse; margin-top: 2rem; }
+  .portfolio-table th, .portfolio-table td { padding: 1rem; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .portfolio-table th { color: var(--gold); font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; }
+  .portfolio-table tr:hover { background: var(--dark3); }
+  .badge { display: inline-block; padding: 0.25rem 0.75rem; border-radius: 50px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
+  .badge.digital { background: rgba(123,110,246,0.15); color: var(--accent); }
+  .badge.event { background: rgba(201,168,76,0.15); color: var(--gold); }
+  .badge.mentor { background: rgba(81,207,102,0.15); color: var(--green); }
+
+  /* TIMELINE */
+  .timeline { border-left: 2px solid var(--gold); padding-left: 2rem; margin-top: 2rem; }
+  .timeline-item { position: relative; margin-bottom: 2.5rem; }
+  .timeline-item::before {
+    content: ''; position: absolute; left: -2.4rem; top: 0.2rem;
+    width: 12px; height: 12px; border-radius: 50%; background: var(--gold);
+    border: 3px solid var(--dark);
+  }
+  .timeline-date { font-size: 0.85rem; color: var(--gold); font-weight: 700; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 1px; }
+  .timeline-content h4 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+  .timeline-content p { color: var(--text-muted); font-size: 0.95rem; }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark2); border-top: 1px solid rgba(201,168,76,0.15);
+    text-align: center; padding: 3rem 2rem; margin-top: 4rem;
+  }
+  footer p { color: var(--text-muted); font-size: 0.85rem; }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hero h1 { font-size: 2.5rem; }
+    .portfolio-table { display: block; overflow-x: auto; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">ViDi Comercial</div>
+  <ul class="nav-links">
+    <li><a href="#cultura">Nossa Cultura</a></li>
+    <li><a href="#portfolio">Portfólio & Tiers</a></li>
+    <li><a href="#eventos">Cúpula CEO</a></li>
+    <li><a href="#scripts">Argumentação & Objeções</a></li>
+    <li><a href="#regras">Regras de Ouro</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <h1>A Força Motriz da <span>ViDi</span></h1>
+  <p>Munição tática, portfólio detalhado e diretrizes comerciais para consultores de vendas de alto desempenho e ticket.</p>
+  <a href="#cultura" class="btn">Iniciar Treinamento</a>
+</section>
+
+<!-- CULTURA E POSICIONAMENTO -->
+<section id="cultura" class="section">
+  <h2 class="section-title">O DNA da ViDi</h2>
+  <div class="grid">
+    <div class="card">
+      <div class="card-icon">🦅</div>
+      <h3>Nosso "Porquê"</h3>
+      <p>A ViDi defende a Verdade. Empreendedores e CEOs sentem-se isolados no topo. Nosso papel não é vender "cursos", é vender clareza, direção metodológica (antifragilidade) e um grupo de pares inabalável.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">⚖️</div>
+      <h3>Posicionamento</h3>
+      <p>Apoiamos valores universais e atemporais, sem amarras ideológicas ou partidárias. Falamos com a elite do comando que quer crescer sem burnout e sem destruir seus lares.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🤖</div>
+      <h3>Bot Júlio vs. High Ticket</h3>
+      <p>O Bot Júlio cuida do tráfego orgânico e produtos digitais de entrada. O seu foco (Comercial) é o <strong>High Ticket</strong>: eventos de imersão, consultoria e acompanhamentos exclusivos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- REGRAS DE OURO -->
+<section id="regras" class="section">
+  <h2 class="section-title">Regras Inegociáveis</h2>
+  <div class="rules-container">
+    <h3>Protocolo de Comunicação e Sigilo</h3>
+    <ul class="rules-list">
+      <li><strong>Terminologia Proibida:</strong> NUNCA use o termo "Mentoria" na venda inicial. A palavra foi banalizada pelo mercado. Use: "Acompanhamento Exclusivo", "Board Consultivo" ou "Diagnóstico Direto".</li>
+      <li><strong>Confidencialidade de Preço:</strong> Produtos High-Ticket (Acompanhamentos de R$ 50k+, imersões fechadas) NUNCA devem ter preços expostos abertamente no WhatsApp ou redes. Valores só são abertos em call de alinhamento com leads qualificados.</li>
+      <li><strong>Sem Descontos Injustificados:</strong> A ViDi não compite por preço. Nós ancoramos o valor na transformação e no custo da inércia do empresário, não no preço final.</li>
+      <li><strong>Accountability:</strong> Respeite o pipeline. Alimente o CRM religiosamente. Lead frio é responsabilidade do comercial esquentar (follow-up cadenciado).</li>
+    </ul>
+  </div>
+</section>
+
+<!-- PORTFOLIO DE PRODUTOS -->
+<section id="portfolio" class="section">
+  <h2 class="section-title">Matriz de Portfólio</h2>
+  <p style="text-align: center; color: var(--text-muted); max-width: 800px; margin: 0 auto 3rem;">O ecossistema ViDi é construído em escada de valor. Identifique o momento do CEO e oferte a solução adequada.</p>
+  
+  <div style="overflow-x: auto;">
+    <table class="portfolio-table">
+      <thead>
+        <tr>
+          <th>Produto</th>
+          <th>Tipo</th>
+          <th>Público Alvo</th>
+          <th>Ticket Ref. (Ancoragem)</th>
+          <th>Pitch Principal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Formação do Líder / CEO</strong></td>
+          <td><span class="badge digital">Digital</span></td>
+          <td>Gestores em formação, pequenos negócios.</td>
+          <td>Low Ticket (Bot Júlio)</td>
+          <td>O fundamento e o método base para gerir uma operação que não dependa 100% de você.</td>
+        </tr>
+        <tr>
+          <td><strong>Cúpula CEO (Standard/VIP)</strong></td>
+          <td><span class="badge event">Imersão / Evento</span></td>
+          <td>CEOs e Diretores de empresas médias.</td>
+          <td>Mid-High Ticket</td>
+          <td>Pares de elite. Networking genuíno e 3 dias fora da operação para destravar seu maior gargalo.</td>
+        </tr>
+        <tr>
+          <td><strong>Acompanhamento Luiz Portal</strong></td>
+          <td><span class="badge mentor">Acompanhamento</span></td>
+          <td>CEOs (Faturamento R$ 10M+)</td>
+          <td>High Ticket (R$ 50k+)</td>
+          <td>Estratégia antifrágil, estruturação de conselho e visão macro para escalar ou preparar para exit.</td>
+        </tr>
+        <tr>
+          <td><strong>Acompanhamento I. Boufleur</strong></td>
+          <td><span class="badge mentor">Acompanhamento</span></td>
+          <td>Diretores de Operações / Projetos</td>
+          <td>High Ticket</td>
+          <td>Gestão implacável, implantação de OKRs, processos maduros e previsibilidade comercial.</td>
+        </tr>
+        <tr>
+          <td><strong>Diagnóstico Catalyst</strong></td>
+          <td><span class="badge mentor">Cross-sell</span></td>
+          <td>Corporações e Times de Vendas</td>
+          <td>Sob Consulta</td>
+          <td>Diagnóstico empresarial e estruturação do comercial. Escopo fechado de consultoria B2B.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- CÚPULA CEO - DETALHE E EVENTOS -->
+<section id="eventos" class="section">
+  <h2 class="section-title">Especial: Lançamento Cúpula CEO</h2>
+  <div class="grid" style="grid-template-columns: 1fr 1fr;">
+    <div>
+      <h3 style="color: var(--gold); margin-bottom: 1.5rem; font-family: 'Playfair Display', serif;">O Evento</h3>
+      <p style="color: var(--text-muted); margin-bottom: 1rem;"><strong>Data e Local:</strong> 20 de Agosto de 2026 — Royal Tulip, Brasília.</p>
+      <p style="color: var(--text-muted); margin-bottom: 1rem;"><strong>Premissa:</strong> Não é motivação, é método. 4 semanas de campanha de lançamento via Instagram, LinkedIn e WhatsApp.</p>
+      <p style="color: var(--text-muted); margin-bottom: 2rem;"><strong>Estratégia de Venda:</strong> Foco no FOMO (Fear Of Missing Out) e escassez real de vagas. Use os argumentos da dor da "solidão no topo" e decisões estagnadas.</p>
+      
+      <h3 style="color: var(--gold); margin-bottom: 1rem; font-family: 'Playfair Display', serif;">Timing de Campanha (Consultor)</h3>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">Semana 1 (D-28 a D-22)</div>
+          <div class="timeline-content">
+            <h4>Aquecimento (Prospectar)</h4>
+            <p>Conecte com leads que têm perfil, enviando mensagens orgânicas focadas nos desafios deles (sem vender).</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">Semana 3 (D-14 a D-8)</div>
+          <div class="timeline-content">
+            <h4>Super Pitch</h4>
+            <p>Abertura oficial das vagas. Momento de convidar ativamente os decisores para calls rápidas de fechamento (15 min).</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">Semana 4 (D-7 a D-1)</div>
+          <div class="timeline-content">
+            <h4>Urgência Real</h4>
+            <p>"Quero ser direto: temos X vagas. Quanto custa mais 1 ano na inércia?"</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div style="background: var(--dark3); padding: 2.5rem; border-radius: 8px;">
+      <h3 style="color: #fff; margin-bottom: 1.5rem;">Upsells e Downsells (Evento)</h3>
+      <p style="color: var(--text-muted); margin-bottom: 1.5rem;">A esteira de eventos possui incrementos. Seu objetivo é buscar a maximização do ticket médio do C-Level.</p>
+      <ul style="list-style: none;">
+        <li style="margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.05);">
+          <strong style="color: var(--gold); display: block; font-size: 1.1rem; margin-bottom: 0.5rem;">VIP Pass (Upsell)</strong>
+          <span style="color: var(--text-muted); font-size: 0.9rem;">Acesso aos assentos frontais, jantar exclusivo com fundadores e materiais físicos premium da imersão.</span>
+        </li>
+        <li style="margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.05);">
+          <strong style="color: var(--gold); display: block; font-size: 1.1rem; margin-bottom: 0.5rem;">Virtual Pass (Downsell)</strong>
+          <span style="color: var(--text-muted); font-size: 0.9rem;">Para o contato que não pode ir à Brasília, ofertar acesso gravado às palestras (sem o networking local e jantares).</span>
+        </li>
+        <li>
+          <strong style="color: var(--gold); display: block; font-size: 1.1rem; margin-bottom: 0.5rem;">Cúpula Dinner (Add-on)</strong>
+          <span style="color: var(--text-muted); font-size: 0.9rem;">Venda de assento extra no jantar executivo para sócios de quem já garantiu ingresso.</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SCRIPTS E CONTORNO DE OBJEÇÕES -->
+<section id="scripts" class="section">
+  <h2 class="section-title">Contorno de Objeções (Scripts)</h2>
+  
+  <div class="objection-item">
+    <div class="objection-header">
+      "Não tenho tempo agora, o dia a dia está uma loucura."
+      <span>+</span>
+    </div>
+    <div class="objection-body">
+      <strong>O que dizer:</strong> "João, é exatamente por isso que estamos conversando. Se você não tem 3 dias para olhar o seu negócio de cima, você deixou de ser CEO e virou um funcionário de luxo da sua própria empresa. A Cúpula CEO não é para gastar seu tempo, é para ensiná-lo a comprá-lo de volta através da estruturação antifrágil. Qual a sua perspectiva para sair desse gargalo nos próximos 6 meses?"
+    </div>
+  </div>
+
+  <div class="objection-item">
+    <div class="objection-header">
+      "Está fora do orçamento/É muito caro."
+      <span>+</span>
+    </div>
+    <div class="objection-body">
+      <strong>O que dizer:</strong> (Ancore no valor relativo e dor). "Caro comparado a quê? Qual é o custo de uma decisão lenta no próximo semestre porque você está decidindo tudo sozinho? Nossos acompanhamentos filtram quem está disposto a escalar de verdade. Nós mostramos os processos para gerar 4x esse valor em faturamento em pouco tempo. A questão não é o recurso, é a prioridade. Hoje, qual é o principal funil vazando na sua operação?"
+    </div>
+  </div>
+
+  <div class="objection-item">
+    <div class="objection-header">
+      "Já faço outras 'mentorias'/participo de mastermind."
+      <span>+</span>
+    </div>
+    <div class="objection-body">
+      <strong>O que dizer:</strong> "Excelente. Isso mostra que você investe no seu crescimento. A diferença aqui na ViDi é que nós não vivemos de vender palco. Nós instalamos a operação técnica e cultural de empresas que não dependem do fundador para rodar. Queremos auditar seu modelo atual. Nossos encontros são baseados em método aplicado (Catalyst) e não apenas em palestras de networking vazio."
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="logo" style="margin-bottom: 1rem; font-size: 1rem;">ViDi Comercial</div>
+  <p>&copy; 2026 Catalyst Educação LTDA / ViDi. Confidencial.</p>
+  <p style="margin-top: 0.5rem; opacity: 0.5;">Material de Onboarding Tático para Consultores | Desenvolvido com Antigravity-awesome-skills.</p>
+</footer>
+
+<script>
+  // Simple accordion logic for objections
+  document.querySelectorAll('.objection-header').forEach(header => {
+    header.addEventListener('click', () => {
+      const body = header.nextElementSibling;
+      const isOpen = body.style.display === 'block';
+      document.querySelectorAll('.objection-body').forEach(b => b.style.display = 'none');
+      body.style.display = isOpen ? 'none' : 'block';
+    });
+  });
+  // Initially hide objection bodies
+  document.querySelectorAll('.objection-body').forEach(b => b.style.display = 'none');
+</script>
+
+</body>
+</html>

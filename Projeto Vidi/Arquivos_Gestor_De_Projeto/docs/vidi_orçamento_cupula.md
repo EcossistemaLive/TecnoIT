@@ -2,7 +2,7 @@
 
 **Evento:** 24 de Setembro de 2025
 
-Esta base de conhecimento centraliza as projeções financeiras, metas de tráfego e cenários de ROAS para o evento Vidi do projeto The Catalyst / Cúpula CEO, conforme a planilha original estratégica.
+Esta base de conhecimento centraliza as projeções financeiras, metas de tráfego e cenários de ROAS para o evento Vidi do projeto The Catalyst / Cúpula CEO, conforme a [planilha original estratégica](https://docs.google.com/spreadsheets/d/1QF7M67ysJDuTuhk4S-cIaPpOxj9hNGsR/edit?gid=580949647#gid=580949647).
 
 ## 1. Dados Gerais do Evento
 

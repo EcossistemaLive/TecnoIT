@@ -1,3 +1,11 @@
 {
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/clebe/OneDrive/Área de Trabalho/ProjetosGit/TecnoIT/**)",
+      "Bash(python -c \"import json,sys; d=json.load\\(sys.stdin\\); [print\\(f'Space: {s[\\\\\"name\\\\\"]} \\(ID: {s[\\\\\"id\\\\\"]}\\)'\\) for s in d.get\\('spaces',[]\\)]\")",
+      "Bash(python -c \"import json,sys; d=json.load\\(sys.stdin\\); [print\\(f'Lista: {l[\\\\\"name\\\\\"]} \\(ID: {l[\\\\\"id\\\\\"]}\\) — Tasks: {l.get\\(\\\\\"task_count\\\\\",\\\\\"?\\\\\"\\)}'\\) for l in d.get\\('lists',[]\\)]\")",
+      "Bash(curl -s -H 'Authorization: pk_106183045_B72T4RRH3ZKX19RBT7H6RX6UOGHRGBG8' 'https://api.clickup.com/api/v2/list/__TRACKED_VAR__/task?archived=false&include_closed=true&page=0')"
+    ]
+  },
   "language": "portuguese"
 }

@@ -34,3 +34,15 @@ Thumbs.db
 temp_repo/
 temp_manual/
 /tmp/
+
+# Media & Large Files
+*.mp4
+*.jpeg
+*.jpg
+*.png
+*.docx
+*.pdf
+*.pptx
+
+# Agent Scratch
+.antigravity/scratch/

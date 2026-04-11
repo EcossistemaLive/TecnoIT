@@ -1,4 +1,4 @@
-# Diagrama de Execução: Cúpula CEO (Até Maio de 2026)
+# Diagrama de Execução: Cúpula CEO (Até Agosto de 2026)
 
 Este documento detalha as fases, departamentos e responsabilidades para a execução do evento "Cúpula CEO" e estruturação da mentoria de Ibrahim Boufleur e Luís Portal.
 
@@ -6,7 +6,7 @@ Este documento detalha as fases, departamentos e responsabilidades para a execu�
 
 ```mermaid
 gantt
-    title Cronograma de Execução - Cúpula CEO (Fev a Mai 2026)
+    title Cronograma de Execução - Cúpula CEO (Fev a Ago 2026)
     dateFormat  YYYY-MM-DD
     axisFormat  %m/%y
     
@@ -40,7 +40,7 @@ gantt
     Postagens e Tráfego Ativo            :mkt4, 2026-03-05, 80d
 
     section Evento Principal
-    Cúpula CEO Experience              :milestone, event1, 2026-05-28, 2d
+    Cúpula CEO Experience              :milestone, event1, 2026-08-20, 1d
 ```
 
 ## 🏢 Departamentos e Task Allocation
@@ -63,7 +63,7 @@ gantt
 
 ### 3. Operações, Logística e Eventos
 **Responsável Principal:** João Victor Lopes Rosa
-*   **Prioridade 0:** Reservar o local definitivo para o evento de maio.
+*   **Prioridade 0:** Reservar o Royal Tulip em Brasília para o evento de agosto.
 *   **Tarefas:**
     *   Mapear e contatar opções de alimentação (República da Saúde, Reserva 35, etc.).
     *   Fazer o levantamento de orçamentos para materiais (brindes, estrutura, audiovisual).

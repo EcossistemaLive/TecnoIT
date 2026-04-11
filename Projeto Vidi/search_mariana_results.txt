@@ -1,0 +1,7 @@
+Arquivos_Gestor_De_Projeto\data\apresentacao_vidi_conceito.html
+Arquivos_Gestor_De_Projeto\data\ata_reuniao_19_02.md
+Arquivos_Gestor_De_Projeto\docs\onboarding_time_comercial.md
+Arquivos_Gestor_De_Projeto\docs\organizational_structure.md
+Arquivos_Gestor_De_Projeto\projects\apresentacao-catalisador\index.html
+Arquivos_Gestor_De_Projeto\projects\reuniao-guilherme-16-03\index.html
+docs\onboarding-comercial\index.html

@@ -19,6 +19,7 @@ Este arquivo visa reunir e centralizar todos os links importantes do projeto que
 ## Google Drive (Pastas, Arquivos, Gravações)
 *   **Arquivos do Curso do Luiz (Editáveis/Gravação de 01/04):** [Acessar Pasta](https://drive.google.com/drive/folders/10rBp9p0BL05xI0dVFvnoZYOVj81qSJcy)
 *   **VSL (Video Sales Letter) Pasta:** [Acessar Pasta](https://drive.google.com/drive/folders/1p7pLR20X2OROG7gzHOQgDBg0RBrhU3He?usp=sharing)
+*   **Planejamento de Tráfego (Planilha):** [Acessar Planilha](https://docs.google.com/spreadsheets/d/1QF7M67ysJDuTuhk4S-cIaPpOxj9hNGsR/edit?gid=580949647#gid=580949647)
 
 ---
 
