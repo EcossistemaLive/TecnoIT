@@ -176,7 +176,7 @@ Entregues de forma acessível e escalável. Vendidos de forma automatizada pelo 
 | **VIP Pass** | Na compra do ingresso ou no check-in |
 | **Cúpula Dinner** | Para participantes Cat-A identificados pelo Bot Júlio |
 | **Pacote Sócio** | Para grupos de 2+ sócios que compram juntos |
-| **Diagnóstico Catalyst** | Para participantes com dor identificada no evento |
+| **Diagnóstico** | Para participantes com dor identificada no evento |
 
 #### Downsells do Evento
 
@@ -238,7 +238,7 @@ Não é uma consultoria tradicional. A ViDi **não vende método** — vende men
 | Produto | Formato | Observação |
 |---|---|---|
 | **Livros** | Digital/Físico | Conteúdo dos fundadores — porta de entrada para o ecossistema |
-| **Diagnóstico Catalyst** | Sessão 30-45 min | Mapeamento de dor — produto de médio ticket, também usado como upsell no evento |
+| **Diagnóstico** | Sessão 30-45 min | Mapeamento de dor — produto de médio ticket, também usado como upsell no evento |
 
 ---
 
@@ -247,7 +247,7 @@ Não é uma consultoria tradicional. A ViDi **não vende método** — vende men
 | Canal de Venda | Produtos |
 |---|---|
 | **Bot Júlio** (automatizado) | Cursos online (Formação do Líder + Formação do CEO) |
-| **Time Comercial** (consultores) | Cúpula CEO, Mentorias, Consultoria, Formações Presenciais, Imersões, Diagnóstico Catalyst |
+| **Time Comercial** (consultores) | Cúpula CEO, Mentorias, Consultoria, Formações Presenciais, Imersões, Diagnóstico |
 
 ---
 
@@ -263,7 +263,7 @@ Não é uma consultoria tradicional. A ViDi **não vende método** — vende men
 | **George** | Consultor Comercial | *(a confirmar)* |
 | **Cléber Donato** | Tech Lead / Gestor de Projeto | cleber.ihs@gmail.com |
 | **João Victor Lopes Rosa** | Coordenador de Marketing e Conteúdo | joaaovictorlr@gmail.com |
-| **Ana Dias** | Gestão Administrativa e Financeira | contato@catalysteducacao.onmicrosoft.com |
+| **Ana Dias** | Gestão Administrativa e Financeira | financeiro@vidiceo.com.br |
 
 > **Importante:** Não há distinção de "mentor principal" entre Luiz e Ibrahim. Os dois fundadores têm contribuições equivalentes e complementares — cada um com seus produtos e seu papel. Isso deve ser comunicado com equilíbrio para o lead. Quem toca a operação e o comercial no dia a dia é o **Luiz Portal**.
 
@@ -271,7 +271,7 @@ Não é uma consultoria tradicional. A ViDi **não vende método** — vende men
 
 ### 4.2 Papel dos Consultores Comerciais
 
-Os consultores (Mariana e Jorge) são os **Closers** da ViDi. Eles conduzem todo o processo comercial de ponta a ponta, desde a qualificação até o fechamento.
+Os consultores (Mariana e Jorge) são os **Closers** da ViDi. Eles conduzem todo o processo comercial de ponta a ponta, desde a qualificação até o fechamento. **O foco principal e prioritário de atendimento do time comercial são os produtos de Alto Ticket (Mentorias e Consultoria).**
 
 **O consultor pode acionar recursos de apoio quando necessário:**
 
@@ -463,7 +463,7 @@ Perfeito. Me conta rapidamente: qual é o principal travamento que você sente h
 
 ### 7.1 Ferramentas do Time
 
-| Ferramenta | Para que serve | Quem solicita acesso |
+| Ferramenta | Para que serve | Link / Acesso |
 |---|---|---|
 | **ClickUp** (Workspace: Projeto ViDi) | Gestão de tarefas e projetos | Ana Dias |
 | **WhatsApp Business** | Atendimento e follow-up de leads | Cléber Donato (config.) |
@@ -471,10 +471,27 @@ Perfeito. Me conta rapidamente: qual é o principal travamento que você sente h
 | **Bot Júlio** (Telegram) | Diagnóstico de leads no evento | Cléber Donato |
 | **Instagram / LinkedIn** | Geração de leads e conteúdo | João Victor |
 | **NotebookLM** | Base de conhecimento dos mentores | Cléber Donato |
+| **Landing Page ViDi** | Página institucional de captura | [Acessar Landing Page](https://vidiceo.com.br/landing_home/) |
+| **CRM** | Gestão de pipeline de vendas | [Acessar CRM](https://crm.datacrazy.io/) |
 
-### 7.2 Checklist de Acesso — Primeiro Dia
+### 7.2 Links de Pagamento & Preços (Checkout Asaas)
 
-- [ ] E-mail corporativo (@catalysteducacao.onmicrosoft.com ou @ecossistemalive...)
+| Produto | Valor / Condição | Link de Checkout |
+|---|---|---|
+| **CEO Toolkit** | R$ 449,00 (À vista) | [Acessar Checkout](https://www.asaas.com/c/pnx2uiddj16esn86) |
+| **Diagnóstico Empresarial (Formulário)** | R$ 248,00 (Até 12x) | [Acessar Checkout](https://www.asaas.com/c/o3hl8tdx9daxer6g) |
+| **Ingresso Standard Cúpula** | R$ 1.497,00 (Até 12x) | [Acessar Checkout](https://www.asaas.com/c/mg3q40yhc4cuq1qe) |
+| **VIP Pass (Upsell)** | R$ 1.998,00 (Até 12x) | [Acessar Checkout](https://www.asaas.com/c/xnb02rk8vyhtx4te) |
+| **Ingresso Standard + Pacote Sócio** | R$ 2.246,00 (Até 12x) | [Acessar Checkout](https://www.asaas.com/c/pggmigsis406oews) |
+| **Formação Liderança Antifrágil** | R$ 3.989,00 (Até 12x) | [Acessar Checkout](https://www.asaas.com/c/d3o5hfjatby9dmxd) |
+| **Cúpula Dinner (Upsell)** | R$ 8.998,00 (Até 12x) | [Acessar Checkout](https://www.asaas.com/c/zxslknkefwwuefs6) |
+| **Formação CEO (Ibrahim - online)** | (Online / Direct Checkout) | [Acessar Checkout](https://www.asaas.com/c/vmdh94jp0d2hsc2n) |
+| **Mentoria Individual (Luiz)** | R$ 39.900,00 | [Acessar Checkout](https://www.asaas.com/c/ae3n4d0u232vbapz) |
+| **Mentoria para CEOs (Ibrahim)** | R$ 59.980,00 (Até 12x) | [Acessar Checkout](https://www.asaas.com/c/4oc9nn2pdxemy2w0) |
+
+### 7.3 Checklist de Acesso — Primeiro Dia
+
+- [ ] E-mail corporativo (@vidiceo.com.br ou @ecossistemalive...)
 - [ ] Acesso ao ClickUp — workspace "Projeto ViDi"
 - [ ] Grupo WhatsApp do time interno
 - [ ] Acesso ao Google Drive compartilhado
@@ -482,7 +499,7 @@ Perfeito. Me conta rapidamente: qual é o principal travamento que você sente h
 - [ ] Leitura do documento de restrições absolutas de negócio
 - [ ] Reunião de alinhamento com Luiz Portal (30 min)
 
-### 7.3 O que NÃO fazer com as ferramentas
+### 7.4 O que NÃO fazer com as ferramentas
 
 - Nunca compartilhar dados de leads com pessoas fora do time.
 - Nunca postar sobre o evento sem revisão de João Victor.
@@ -528,6 +545,7 @@ Perfeito. Me conta rapidamente: qual é o principal travamento que você sente h
 | Dia 2 | Reunião de alinhamento com Luiz Portal (1h) | Luiz Portal |
 | Dia 2 | Assistir/ler conteúdos dos mentores no NotebookLM | Você |
 | Dia 3 | Sombra em call de diagnóstico real (observar) | Luiz Portal |
+| Dia 3 | Assistir à aula de vendas do Flávio Augusto (obrigatório) | [YouTube](https://www.youtube.com/watch?v=V2W9DwW_be8) |
 | Dia 4 | Sombra em call de fechamento (observar) | Luiz Portal |
 | Dia 5 | Roleplay de call de diagnóstico com Cléber ou Luiz | Cléber / Luiz |
 
@@ -592,7 +610,7 @@ Perfeito. Me conta rapidamente: qual é o principal travamento que você sente h
 |---|---|
 | Cat-A / Cat-B / Cat-C | Categorias de leads por potencial de compra |
 | Rótulo ViDi | Nome técnico dado à dor do cliente (ex: Gargalo do Fundador) |
-| Diagnóstico Catalyst | Sessão estruturada de 30-45 min para mapear a dor |
+| Diagnóstico | Sessão estruturada de 30-45 min para mapear a dor |
 | Alto ticket | Produtos acima de R$10.000 (valores exatos apenas em contrato) |
 | Nurturing | Processo de educar e aquecer leads ainda não prontos para comprar |
 | Follow-up | Retorno ativo ao lead após interação ou proposta |
