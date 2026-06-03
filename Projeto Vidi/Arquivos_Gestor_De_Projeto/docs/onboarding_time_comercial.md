@@ -1,7 +1,7 @@
 # Onboarding — Time Comercial
 ## ViDi / Ecossistema Live · Playbook de Entrada
 
-**Versão:** 1.1 · Março 2026
+**Versão:** 1.2 · Junho 2026
 **Responsável:** Cléber Donato / Luiz Portal
 **ClickUp:** https://app.clickup.com/t/86agd9ed6
 
@@ -620,6 +620,6 @@ Perfeito. Me conta rapidamente: qual é o principal travamento que você sente h
 ---
 
 *ViDi / Ecossistema Live — Documento confidencial — Uso interno*
-*Criado em: Março 2026 · Versão 1.1 · Responsável: Cléber Donato*
-*Atualizado em: Março 2026 — Seções 1 a 5 revisadas com transcrição de alinhamento dos fundadores*
+*Criado em: Março 2026 · Versão 1.2 · Responsável: Cléber Donato*
+*Atualizado em: Junho 2026 — Atualização de links de pagamento, CRM, landing page e vídeo de treinamento*
 *ClickUp: https://app.clickup.com/t/86agd9ed6*
