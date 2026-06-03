@@ -1,7 +1,7 @@
 # Onboarding — Time Comercial
 ## ViDi / Ecossistema Live · Playbook de Entrada
 
-**Versão:** 1.3 · Junho 2026
+**Versão:** 1.4 · Junho 2026
 **Responsável:** Cléber Donato / Luiz Portal
 **ClickUp:** https://app.clickup.com/t/86agd9ed6
 
@@ -468,7 +468,7 @@ Perfeito. Me conta rapidamente: qual é o principal travamento que você sente h
 | **WhatsApp Business** | Atendimento e follow-up de leads | Cléber Donato (config.) |
 | **Google Workspace** | E-mail, Calendar | Ana Dias |
 | **Bot Júlio** (Telegram) | Diagnóstico de leads no evento | Cléber Donato |
-| **Instagram / LinkedIn** | Geração de leads e conteúdo | João Victor |
+| **Instagram / LinkedIn** | Geração de leads e conteúdo | João Victor ([Instagram](https://www.instagram.com/vidi.ceo/) / [LinkedIn](https://www.linkedin.com/company/vidi-ceo)) |
 | **NotebookLM** | Base de conhecimento dos mentores | Cléber Donato |
 | **Landing Page ViDi** | Página institucional de captura | [Acessar Landing Page](https://vidiceo.com.br/landing_home/) |
 | **CRM** | Gestão de pipeline de vendas | [Acessar CRM](https://crm.datacrazy.io/) |
@@ -619,6 +619,6 @@ Perfeito. Me conta rapidamente: qual é o principal travamento que você sente h
 ---
 
 *ViDi / Ecossistema Live — Documento confidencial — Uso interno*
-*Criado em: Março 2026 · Versão 1.3 · Responsável: Cléber Donato*
-*Atualizado em: Junho 2026 — Atualização de links de pagamento, CRM, LP, vídeo de treinamento, e inclusão de regras obrigatórias de CRM*
+*Criado em: Março 2026 · Versão 1.4 · Responsável: Cléber Donato*
+*Atualizado em: Junho 2026 — Inclusão do link de Instagram e LinkedIn da ViDi*
 *ClickUp: https://app.clickup.com/t/86agd9ed6*
