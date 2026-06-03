@@ -1,7 +1,7 @@
 # Onboarding — Time Comercial
 ## ViDi / Ecossistema Live · Playbook de Entrada
 
-**Versão:** 1.2 · Junho 2026
+**Versão:** 1.3 · Junho 2026
 **Responsável:** Cléber Donato / Luiz Portal
 **ClickUp:** https://app.clickup.com/t/86agd9ed6
 
@@ -465,14 +465,15 @@ Perfeito. Me conta rapidamente: qual é o principal travamento que você sente h
 
 | Ferramenta | Para que serve | Link / Acesso |
 |---|---|---|
-| **ClickUp** (Workspace: Projeto ViDi) | Gestão de tarefas e projetos | Ana Dias |
 | **WhatsApp Business** | Atendimento e follow-up de leads | Cléber Donato (config.) |
-| **Google Workspace** | E-mail, Drive, Calendar | Ana Dias |
+| **Google Workspace** | E-mail, Calendar | Ana Dias |
 | **Bot Júlio** (Telegram) | Diagnóstico de leads no evento | Cléber Donato |
 | **Instagram / LinkedIn** | Geração de leads e conteúdo | João Victor |
 | **NotebookLM** | Base de conhecimento dos mentores | Cléber Donato |
 | **Landing Page ViDi** | Página institucional de captura | [Acessar Landing Page](https://vidiceo.com.br/landing_home/) |
 | **CRM** | Gestão de pipeline de vendas | [Acessar CRM](https://crm.datacrazy.io/) |
+
+> **Regra de CRM Obrigatória:** É obrigatória a inclusão de todos os leads no CRM e a atualização de seus status à medida que o atendimento acontece. Todos os campos do negócio devem ser preenchidos (nome, telefone, produto, etc.) e o negócio fechado deve ser marcado como **"Ganho"** assim que o pagamento for efetuado.
 
 ### 7.2 Links de Pagamento & Preços (Checkout Asaas)
 
@@ -491,11 +492,9 @@ Perfeito. Me conta rapidamente: qual é o principal travamento que você sente h
 
 ### 7.3 Checklist de Acesso — Primeiro Dia
 
-- [ ] E-mail corporativo (@vidiceo.com.br ou @ecossistemalive...)
-- [ ] Acesso ao ClickUp — workspace "Projeto ViDi"
+- [ ] E-mail corporativo (Acessar [webmail.vidiceo.com.br](https://webmail.vidiceo.com.br))
 - [ ] Grupo WhatsApp do time interno
-- [ ] Acesso ao Google Drive compartilhado
-- [ ] Acesso ao calendário compartilhado da ViDi
+- [ ] Acesso ao [calendário compartilhado da ViDi](https://calendar.google.com/calendar/u/0?cid=MDA4OGViY2U0MTJiYjY4NGY1MzRhODY5ZGE2MmE2NGE2Zjk3NWM3YzkwNzIxY2Q5YTYyYTgwYjBhZjY5ZTVlY0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t)
 - [ ] Leitura do documento de restrições absolutas de negócio
 - [ ] Reunião de alinhamento com Luiz Portal (30 min)
 
@@ -528,7 +527,7 @@ Perfeito. Me conta rapidamente: qual é o principal travamento que você sente h
 
 ### 8.3 Relatórios
 
-- **Diário:** atualizar status de leads no ClickUp ao final do dia.
+- **Diário:** atualizar status de leads no CRM ao final do dia.
 - **Semanal:** reunião de pipeline às segundas (ou dia acordado com Luiz Portal).
 - **Mensal:** relatório de resultado individual enviado por escrito ao Luiz Portal.
 
@@ -620,6 +619,6 @@ Perfeito. Me conta rapidamente: qual é o principal travamento que você sente h
 ---
 
 *ViDi / Ecossistema Live — Documento confidencial — Uso interno*
-*Criado em: Março 2026 · Versão 1.2 · Responsável: Cléber Donato*
-*Atualizado em: Junho 2026 — Atualização de links de pagamento, CRM, landing page e vídeo de treinamento*
+*Criado em: Março 2026 · Versão 1.3 · Responsável: Cléber Donato*
+*Atualizado em: Junho 2026 — Atualização de links de pagamento, CRM, LP, vídeo de treinamento, e inclusão de regras obrigatórias de CRM*
 *ClickUp: https://app.clickup.com/t/86agd9ed6*
