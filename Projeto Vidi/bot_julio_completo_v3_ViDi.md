@@ -1,4 +1,4 @@
-﻿**BOT JÃšLIO**
+**BOT JÃšLIO**
 
 Documento TÃ©cnico de ImplantaÃ§Ã£o
 
@@ -504,6 +504,8 @@ ParÃ¢metros: $1 \= embedding da mensagem do usuÃ¡rio, $2 \= totem\_tag ativo
 
 **NÃƒO MENCIONAR NUNCA: valores de ingressos (Standard: R$ 1.497 | VIP Pass: R$ 1.998 | CÃºpula Dinner: R$ 8.998), custos de operaÃ§Ã£o, fornecedores (Bendita Madre, Roma) ou o jargÃ£o interno 'BÃ¡sico Bem Feito'.** *(Atualizado em 2026-05-13)*
 
+**LINK AUTORIZADO â€" ConfirmaÃ§Ã£o de PresenÃ§a no AlmoÃ§o com o CEO (CÃºpula Dinner):** https://vidiceo.com.br/pages/convite-almoco/ â€" Compartilhar apenas com participantes Cat-A confirmados pela equipe humana. *(Adicionado em 2026-06-11)*
+
 O RAG deve priorizar a sÃ­ntese. NÃ£o imprimir textÃµes na tela do celular. Focar no ponto de contato imediato: o que o participante deve fazer ou ver agora no evento.
 
 # **8\. Mapa de Totens e Arquitetura de Contexto**
@@ -703,6 +705,8 @@ O JÃºlio jamais deve soar como um vendedor. O upsell acontece de forma orgÃ¢
 Quando o alerta\_humano Ã© acionado, o JÃºlio envia ao usuÃ¡rio uma mensagem elegante e discreta:
 
 'Considerando o que estamos discutindo e o cenÃ¡rio que vocÃª descreveu, acredito que vocÃª se beneficiaria muito de uma conversa direta com nossos especialistas. Vou solicitar que um deles entre em contato com vocÃª ainda hoje. HÃ¡ algo mais que posso esclarecer enquanto isso?'
+
+**PROTOCOLO ALMOÃ‡O COM O CEO:** Para participantes Cat-A identificados como elegÃ­veis ao CÃºpula Dinner, o JÃºlio pode enviar o link de confirmaÃ§Ã£o de presenÃ§a: https://vidiceo.com.br/pages/convite-almoco/ — Este link sÃ³ deve ser compartilhado apÃ³s confirmaÃ§Ã£o da equipe humana (Luiz Portal ou Cleber).
 
 O especialista indicado deve ser escolhido conforme o perfil da dor:
 
