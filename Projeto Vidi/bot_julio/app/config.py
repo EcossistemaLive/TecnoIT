@@ -22,7 +22,12 @@ class Config:
     LLM_TEMPERATURE = float(os.getenv("LLM_TEMPERATURE", "0.3"))
 
     # ============================================
-    # WhatsApp — Meta Cloud API
+    # WhatsApp — Evolution API
+    # ============================================
+    EVOLUTION_API_URL = os.getenv("EVOLUTION_API_URL", "http://evolution:8080")
+    EVOLUTION_GLOBAL_API_KEY = os.getenv("EVOLUTION_GLOBAL_API_KEY")
+
+    # WhatsApp — Meta Cloud API (Fallback/Antigo)
     # ============================================
     WHATSAPP_TOKEN = os.getenv("WHATSAPP_TOKEN")
     WHATSAPP_PHONE_NUMBER_ID = os.getenv("WHATSAPP_PHONE_NUMBER_ID")
@@ -39,10 +44,11 @@ class Config:
     REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379/1")
 
     # ============================================
-    # Segurança
+    # Segurança (Auth e LGPD)
     # ============================================
     JWT_SECRET = os.getenv("JWT_SECRET", "julio_vidi_cupula_ceo_2026_secret_super_seguro_64chars_minimo")
     JWT_EXPIRE_HOURS = int(os.getenv("JWT_EXPIRE_HOURS", "24"))
+    CPF_ENCRYPTION_KEY = os.getenv("CPF_ENCRYPTION_KEY")  # Chave base64 de 32 bytes (Fernet)
 
     # ============================================
     # RAG

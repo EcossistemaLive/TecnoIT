@@ -125,6 +125,21 @@ import { useStore } from '../../../stores/feature/store'
 
 ---
 
+### VII. Visual Identity (ViDi Project) (NON-NEGOTIABLE)
+
+Atenção: O manual antigo ("A marca Tecno it.pdf") está depreciado e DEVE ser sumariamente ignorado pela IA. 
+Todos os novos artefatos, web designs, componentes e estratégias gerados para o projeto ViDi DEVEM seguir estritamente as diretrizes do "Manual da marca Vidi (nova)".
+
+**Regras UI/UX & Copywriting:**
+- MUST: Utilizar paleta de cores ViDi: Dourado `#C9A84C`, Preto `#0A0A0A`, Cinza `#3D3D3D`, Off-White `#F5F0E8` e Cinza Claro `#EBEBEB`.
+- MUST: Utilizar tipologia base: `The Seasons` (ou `Playfair Display` nas alternativas gratuitas) para títulos e `DIN` (ou `Roboto`) para textos.
+- MUST: Aplicar Arquétipos "Sábio Socrático" + "Governante Servidor": a voz da marca deve ser precisa, filosófica e apresentar provas reais.
+- MUST NOT: Utilizar referências visuais da Tecno IT antiga ou laranjas institucionais.
+
+**Gate:** `spec-write-spec.md` - BLOCK se o manual de marca/styling conter referências da Tech IT antigas.
+
+---
+
 ## Governance
 
 ### Amendment Process

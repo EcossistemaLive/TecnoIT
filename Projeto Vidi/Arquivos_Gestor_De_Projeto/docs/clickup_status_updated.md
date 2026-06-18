@@ -15,14 +15,14 @@
 <details><summary>Ver tasks</summary>
 
 - ⬜ **Sugestões de palestrantes do agro.** — João Victor Lopes Rosa, Luiz Portal (Sem prazo)
-- ⬜ **Novo orçamento WTC para dois dias.** — João Victor Lopes Rosa (Sem prazo)
+- ⬜ **Novo orçamento WTC para dois dias.** — João Victor Lopes Rosa (Sem prazo) *(Abrange: Terminar orçamento evento São Paulo para definir up selling, cross selling ou substituição - João)*
 - ⬜ **Gestão conteúdo BI$** — João Victor Lopes Rosa (Sem prazo)
 - ✅ **Gravação BI$** — Sem responsável (Sem prazo)
 - ⬜ **Produção carrossel - IG / LinkedIN - Ibrahim Boufleur (Semanal)** — João Victor Lopes Rosa (Sem prazo)
 - ⬜ **Monitorar comentários - IG / Tiktok / Youtube / LinkedIN - Ibrahim Boufleur (Diário)** — João Victor Lopes Rosa (Sem prazo)
 - ⬜ **Gerar legenda - IG / Tiktok / Youtube / LinkedIN - Ibrahim Boufleur (Diário)** — João Victor Lopes Rosa (Sem prazo)
 - ⬜ **Agendamento - IG / Tiktok / Youtube / LinkedIN - Ibrahim Boufleur (Diário)** — João Victor Lopes Rosa (Sem prazo)
-- ✅ **Criação de Redes sociais do evento.** — Sem responsável (Sem prazo)
+- ✅ **Criação de Redes sociais do evento.** — Sem responsável (Sem prazo) *(Abrange: Setup/revisão das contas de redes sociais - todos as contas - João)*
 - ⬜ **Gravação e edição do curso do Ibrahim** — João Victor Lopes Rosa, Cléber Donato (Sem prazo)
 - ⬜ **Analisar e avaliar Circle** — Sem responsável (Sem prazo)
 - ⬜ **Analisar e avaliar Stan** — Sem responsável (Sem prazo)
@@ -47,13 +47,13 @@
 - ⬜ **Formalizar patrocínio Ótica San Pietro** — Luiz Portal (Sem prazo)
 - ⬜ **Preencher todas as tarefas no ClickUp (feitas e pendentes)** — João Victor Lopes Rosa, Ana Dias, Luiz Portal (Sem prazo)
 - ⬜ **Definir entregáveis por fase da jornada do mentorado** — Luiz Portal (Sem prazo)
-- ⬜ **Desenhar jornada do cliente (evento → mentoria → consultoria)** — Luiz Portal, Cléber Donato (16/02/2026)
+- ⬜ **Desenhar jornada do cliente (evento → mentoria → consultoria)** — Luiz Portal, Cléber Donato (16/02/2026) *(Abrange: Revisar Jornada do cliente completa - todo o time)*
 - ✅ **Busca de nome registrável no INPI ** — Luiz Portal, Cléber Donato (Sem prazo)
-- ⬜ **Definir materiais para o evento.** — Luiz Portal (27/02/2026)
+- ⬜ **Definir materiais para o evento.** — Luiz Portal (27/02/2026) *(Abrange: Material gráfico do evento - digital - Fabio, João, Luiz)*
 - ⬜ **Início das lives de aquecimento semanais** — Luiz Portal (28/02/2026)
 - ⬜ **Elaborar roteiros para postagens nas redes sociais** — Luiz Portal (14/03/2026)
 - ⬜ **Apresentar comparativo de plataformas de conteúdo** — Cléber Donato (24/02/2026)
-- ⬜ **Coordenar contratação de assessoria de imprensa** — Luiz Portal, João Victor Lopes Rosa, Ana Dias (06/03/2026)
+- ⬜ **Coordenar contratação de assessoria de imprensa** — Luiz Portal, João Victor Lopes Rosa, Ana Dias (06/03/2026) *(Abrange: Criar Midia Kit e Press Kit do evento - Karol ass imprensa, João e Luiz)*
 - ✅ **Assinatura do contrato de tráfego pago** — Ana Dias (20/02/2026)
 - ✅ **Reunião de alinhamento da equipe** — Luiz Portal, Cléber Donato (19/02/2026)
 - ⬜ **Elaborar Planilha de comparação CAC/LTV/ROI** — Cléber Donato (Sem prazo)
@@ -69,7 +69,7 @@
 - ⬜ **Elaborar roteiros para postagens nas redes sociais (orgânico e impulsionado).** — Luiz Portal (Sem prazo)
 - ⬜ **Elaborar roteiros de aulas para a plataforma de conteúdos.** — Luiz Portal, Cléber Donato (Sem prazo)
 - ⬜ **Estabelecer jornada e campanha de Marketing.** — Luiz Portal (Sem prazo)
-- ⬜ **Estabelecer descrição completa de cada produto.** — Luiz Portal, Cléber Donato (Sem prazo)
+- ⬜ **Estabelecer descrição completa de cada produto.** — Luiz Portal, Cléber Donato (Sem prazo) *(Abrange: Terminar a política comercial para cada produto - Luiz Portal e Cleber)*
 - ⬜ **Concluir elaboração dos contratos da equipe.** — Luiz Portal (Sem prazo)
 
 </details>
@@ -90,7 +90,7 @@ _Nenhuma task encontrada._
 
 _Nenhuma task encontrada._
 
-### 📋 Setup (17 tasks)
+### 📋 Setup (23 tasks)
 
 | Status | Qtd |
 |--------|-----|
@@ -112,11 +112,17 @@ _Nenhuma task encontrada._
 - ⬜ **Contratação do plano premium** — Ana Dias (Sem prazo)
 - ✅ **Cadastro de chave PIX (cnpj) e teste de transferência** — Sem responsável (Sem prazo)
 - ⬜ **Cadastro de usuários (Ana, Luiz, Camilla)** — Ana Dias (Sem prazo)
-- ⬜ **Definir identidade, site principal, plataforma de conteúdos e landingpages** — Sem responsável (Sem prazo)
+- ⬜ **Definir identidade, site principal, plataforma de conteúdos e landingpages** — Sem responsável (Sem prazo) *(Abrange: Adequação das Landing Pages com nossa identidade visual - time Guilherme / Estruturar e publicar versão 1.0 do site institucional da VIDI e do evento - Cleber e Go Sites)*
 - ⬜ **Desenho dos produtos+precificação** — Luiz Portal (20/03/2026)
 - ⬜ **Contratar e configurar ERP** — Cléber Donato, Luiz Portal (Sem prazo)
-- ⬜ **Contratar e configurar CRM** — Cléber Donato, Luiz Portal (Sem prazo)
+- ⬜ **Contratar e configurar CRM** — Cléber Donato, Luiz Portal (Sem prazo) *(Abrange: Terminar configuração de funis no CRM e criar fluxos de automação e indicadores - Cleber e time Guilherme)*
 - ⬜ **Acompanhamento da Criação da Marca** — Luiz Portal, Cléber Donato (Sem prazo)
+- ⬜ **Definir o fluxo financeiro de recebimento, links de pagamento, taxas, etc.** — Luiz Portal, Ana (Sem prazo)
+- ⬜ **Estruturar cartão de crédito pré-pago para usar nas contas para tráfego pago** — Ana (Sem prazo)
+- ⬜ **Terminar estruturação de Scripts de cada etapa do comercial** — Mariana, Cleber, Luiz (Sem prazo)
+- ⬜ **Terminar apresentação comercial do evento - versão completa e versão reduzida/rápida** — Fabio, Cleber, Luiz (Sem prazo)
+- ⬜ **Terminar apresentação institucional da VIDI - versão completa e reduzida** — Fabio, Cleber, Luiz (Sem prazo)
+- ⬜ **Estruturar todos o fluxo de comunicação do cliente - todas as mensagens, emails, formulários, comprovantes** — Cleber (Sem prazo)
 
 </details>
 

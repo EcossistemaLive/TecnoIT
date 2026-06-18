@@ -7,7 +7,8 @@ from app.auth.cpf_validator import is_valid_cpf
 from app.auth.jwt_manager import create_access_token
 from app.whatsapp_handlers.middleware import check_auth_middleware
 from app.whatsapp_handlers.sender import send_whatsapp_message
-from app.agent.graph import app_graph
+from app.agent.orchestrator import orchestrator
+from app.utils.crypto import cpf_encryptor
 
 logger = logging.getLogger(__name__)
 
@@ -108,11 +109,13 @@ async def _handle_cpf_attempt(phone: str, text: str):
         return
 
     cpf_clean = "".join(filter(str.isdigit, text))
+    encrypted_cpf = cpf_encryptor.encrypt(cpf_clean)
 
+    # Busca tanto o criptografado quanto o plano (para casos legados ou de desenvolvimento)
     row = await db.fetchrow(
         "SELECT id, full_name, company, role, upsell_category, whatsapp_phone "
-        "FROM participants WHERE cpf = $1",
-        cpf_clean,
+        "FROM participants WHERE cpf = $1 OR cpf = $2",
+        encrypted_cpf, cpf_clean
     )
 
     if not row:
@@ -167,7 +170,7 @@ async def _handle_totem(phone: str, totem_id: str):
         "totem_id": totem_id,
         "messages": [],
     }
-    result = await app_graph.ainvoke(state)
+    result = await orchestrator.ainvoke(state)
     response = result.get("final_response", "Erro interno ao processar totem.")
     await send_whatsapp_message(phone, response)
 
@@ -212,7 +215,7 @@ async def _handle_chat(phone: str, text: str):
     }
 
     try:
-        result = await app_graph.ainvoke(state)
+        result = await orchestrator.ainvoke(state)
         response = result.get("final_response", "Erro interno ao formular resposta.")
         await send_whatsapp_message(phone, response)
     except Exception as e:

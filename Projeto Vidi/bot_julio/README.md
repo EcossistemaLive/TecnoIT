@@ -17,8 +17,20 @@ Atua como Concierge de Elite + Co-Produtor da Experiência da Cúpula CEO 2026.
 | Cache / Rate Limit | Redis 7 |
 | Webhook WhatsApp | Meta Cloud API v19 + FastAPI |
 | Jobs Proativos | APScheduler |
+| **Painel Admin** | **FastAPI + Vanilla HTML/CSS/JS (Glassmorphism)** |
 
 ---
+
+## 🚀 Admin Dashboard
+
+Um painel administrativo premium integrado para gestão de participantes e agendamentos.
+
+- **Acesso:** `http://localhost:8080/dashboard`
+- **Funcionalidades:**
+    - Visão geral de métricas (Participantes, Mensagens Pendentes).
+    - Gestão completa de base de dados de participantes.
+    - Monitoramento de mensagens agendadas e automações.
+    - Pesquisa dinâmica e interface otimizada para Desktop.
 
 ## Sistema de Modos de Usuário
 
@@ -119,6 +131,8 @@ gcloud run deploy bot-julio \
 ```
 bot_julio/
 ├── app/
+│   ├── api/                # Endpoints administrativos e integração
+│   │   └── admin.py        # API do Dashboard
 │   ├── agent/
 │   │   ├── graph.py        # Grafo LangGraph (fluxo do agente)
 │   │   ├── nodes.py        # Nós do grafo (validate, classify, llm, etc.)
@@ -140,6 +154,8 @@ bot_julio/
 │   ├── seed_participants.py
 │   ├── seed_knowledge.py
 │   └── test_scenarios.py
+├── static/                 # Arquivos estáticos do Dashboard
+│   └── admin/              # Interface do Painel
 ├── Dockerfile
 ├── docker-compose.yml      # Infraestrutura local (PG + Redis)
 └── requirements.txt

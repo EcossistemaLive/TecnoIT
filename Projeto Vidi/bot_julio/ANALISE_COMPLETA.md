@@ -511,7 +511,111 @@ python app/main.py
 ---
 
 **Gerado em**: 2026-03-18 22:36 -03:00
-**Atualizado em**: 2026-03-18 23:40 -03:00
+**Atualizado em**: 2026-04-20 16:06 -03:00
 **Bot Status**: 🟢 Running (MockLLM fallback ativo)
 **Último Erro Corrigido**: Anthropic credit balance → fallback automático implementado
-**Próximo passo**: Adicionar créditos no workspace correto em console.anthropic.com
+**Próximo passo**: Contratar Contabo VPS 20 e executar deploy com docker-compose + Traefik (ver Anexo A)
+
+---
+
+## ANEXO A — Análise de Infraestrutura (Proposta Vinícius)
+
+> **Contexto:** Em reunião com o programador Vinícius (Abril/2026), foi proposta uma arquitetura de implantação baseada na experiência dele com o sistema Atbus (AWS). O princípio central é priorizar **autonomia operacional e custo controlado** em vez de performance máxima. Documento completo em `docs/analise-infra-vinicius.md`.
+
+---
+
+### A.1 — Contabo Cloud VPS 20
+
+**Link:** https://contabo.com/en/vps/
+
+| Recurso | Especificação |
+|---|---|
+| vCPUs | 6 AMD |
+| RAM | ~20 GB |
+| Armazenamento | ~200 GB NVMe SSD |
+| Tráfego | Ilimitado |
+| IPv4 | 1 dedicado |
+| Preço estimado | ~€15/mês ≈ R$ 90/mês |
+
+**Veredicto: ✅ APROVADO** para a fase de validação/tração. Economiza R$ 500–800/mês comparado a um setup equivalente na AWS (EC2 + RDS + ElastiCache).
+
+---
+
+### A.2 — Traefik: Proxy Reverso + HTTPS Automático
+
+**Link:** https://traefik.io/traefik/
+
+Traefik é um reverse proxy cloud-native que descobre containers Docker automaticamente e obtém/renova certificados SSL via **Let's Encrypt** sem configuração manual. Substitui o setup tradicional Nginx + Certbot.
+
+**Veredicto: ✅ APROVADO** — solução para a rota HTTPS que o Vinícius indicou como bloqueador para o deploy em produção.
+
+---
+
+### A.3 — Kubernetes
+
+**Veredicto: ❌ NÃO RECOMENDADO** na fase atual.
+
+| Motivo | Detalhe |
+|---|---|
+| Overkill de complexidade | Nossa stack tem apenas 3–4 serviços |
+| Exige equipe DevOps dedicada | Não temos esse recurso |
+| Custo adicional | +€200–500/mês só em infra de cluster |
+| Manutenção permanente | Contradiz o princípio do Vinícius |
+
+Reavaliar quando o bot superar **500 usuários simultâneos** ou receita acima de R$ 30k/mês.
+
+---
+
+### A.4 — Docker: Arquivos Atualizados
+
+#### Dockerfile (melhorias aplicadas)
+- ✅ Usuário não-root adicionado (segurança)
+- ✅ `--workers 2` para aproveitar multi-core do VPS
+
+#### docker-compose.yml (reescrito em Abril/2026)
+- ✅ **Traefik** adicionado como proxy reverso com HTTPS automático
+- ✅ **Serviço `api`** (FastAPI) adicionado
+- ✅ **MongoDB removido** — legado da v3.x, histórico migrado para PostgreSQL na v4.0
+- ✅ Segredos movidos para `.env.production` (não commitado no Git)
+- ✅ `docker-compose.dev.yml` criado para ambiente de desenvolvimento local
+
+#### Arquivos criados
+| Arquivo | Propósito |
+|---|---|
+| `docker-compose.yml` | Produção: Traefik + API + Postgres + Redis |
+| `docker-compose.dev.yml` | Dev local: sem Traefik, hot-reload ativo |
+| `.env.production.template` | Template de variáveis de produção |
+| `.gitignore` | Protege `.env` e `.env.production` do Git |
+
+---
+
+### A.5 — Plano de Ação Resumido
+
+**🔴 Alta Prioridade (bloqueador para produção)**
+- [ ] Contratar Contabo VPS 20
+- [ ] Apontar DNS `api.vidiceo.com.br` para o IP do VPS
+- [ ] Preencher `.env.production` com os segredos reais
+- [ ] Executar: `docker-compose up -d` no servidor
+
+**🟡 Média Prioridade (primeira semana)**
+- [ ] Validar certificado HTTPS via Traefik/Let's Encrypt
+- [ ] Configurar backup automático do PostgreSQL (cron)
+- [ ] Script de deploy via SSH no GitHub Actions
+
+**🟢 Baixa Prioridade (Fase 2)**
+- [ ] Monitoramento com Uptime Kuma (gratuito)
+- [ ] Segundo VPS para redundância quando houver tração
+
+---
+
+### A.6 — Estimativa de Custos Mensais
+
+| Item | Custo |
+|---|---|
+| Contabo VPS 20 | ~€15/mês ≈ R$ 90/mês |
+| Domínio `.com.br` | ~R$ 3/mês |
+| Let's Encrypt SSL | **Gratuito** |
+| Backup Add-On Contabo | ~€1,5/mês ≈ R$ 9/mês |
+| **Total estimado** | **~R$ 102/mês** |
+
+> Comparação: AWS equivalente (EC2 t3.large + RDS + ElastiCache) = **R$ 600–900/mês**

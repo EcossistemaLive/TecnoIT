@@ -5,7 +5,7 @@ doc = docx.Document()
 doc.add_heading('CONTRATO DE PRESTAÇÃO DE SERVIÇOS DE AGENCIAMENTO COMERCIAL E INTERMEDIAÇÃO DE NEGÓCIOS', level=1)
 
 doc.add_heading('PREÂMBULO DO CONTRATO', level=2)
-doc.add_paragraph('CONTRATANTE: CATALYST EDUCAÇÃO LTDA, pessoa jurídica de direito privado, inscrita no CNPJ sob o nº 64.465.973/0001-89, sediada na Av. PL3, nº 960, Complemento Quadra H4, Lote 01/03, Sala 2508, Edifício T, Bairro Lozandes, Goiânia, Goiás, CEP 74.884-115, neste ato representada legalmente por seus administradores LUIZ EDUARDO ARAUJO PORTAL e CAMYLLA BORGES CONCEIÇÃO BOUFLEUR, doravante denominada simplesmente CONTRATANTE.')
+doc.add_paragraph('CONTRATANTE: ViDi EDUCAÇÃO LTDA, pessoa jurídica de direito privado, inscrita no CNPJ sob o nº 64.465.973/0001-89, sediada na Av. PL3, nº 960, Complemento Quadra H4, Lote 01/03, Sala 2508, Edifício T, Bairro Lozandes, Goiânia, Goiás, CEP 74.884-115, neste ato representada legalmente por seus administradores LUIZ EDUARDO ARAUJO PORTAL e CAMYLLA BORGES CONCEIÇÃO BOUFLEUR, doravante denominada simplesmente CONTRATANTE.')
 doc.add_paragraph('CONTRATADA: [RAZÃO SOCIAL DA EMPRESA DA MARIANA], pessoa jurídica de direito privado, inscrita no CNPJ sob o nº [00.000.000/0000-00], estabelecida no endereço [ENDEREÇO COMPLETO DA MARIANA], neste ato representada por sua sócia titular MARIANA [SOBRENOME DA MARIANA], inscrita no CPF sob o nº [000.000.000-00].')
 doc.add_paragraph('Resolvem, de comum acordo, firmar este contrato de prestação de serviços comerciais, que se regerá pelas cláusulas e condições seguintes:')
 
@@ -47,19 +47,19 @@ row1_cells3 = table3.rows[1].cells
 row1_cells3[0].text = 'Luiz Eduardo A. Portal / Camylla B. C. Boufleur'
 row1_cells3[1].text = 'Nome: Mariana [Sobrenome da Mariana]'
 row2_cells3 = table3.rows[2].cells
-row2_cells3[0].text = 'E-mail: [INSERIR E-MAIL DA CATALYST]'
+row2_cells3[0].text = 'E-mail: [INSERIR E-MAIL DA ViDi]'
 row2_cells3[1].text = 'E-mail: mariana@vidiceo.com.br'
 row3_cells3 = table3.rows[3].cells
-row3_cells3[0].text = 'Telefone: [INSERIR TELEFONE DA CATALYST]'
+row3_cells3[0].text = 'Telefone: [INSERIR TELEFONE DA ViDi]'
 row3_cells3[1].text = 'Telefone: [TELEFONE DA MARIANA]'
 
 doc.add_heading('CONDIÇÕES GERAIS DE CONTRATAÇÃO', level=2)
 doc.add_heading('CLÁUSULA PRIMEIRA – DO OBJETO E ATUAÇÃO', level=3)
-doc.add_paragraph('1.1. O objeto deste contrato é a prestação de serviços de Agenciamento Comercial e Intermediação de Negócios pela CONTRATADA à CONTRATANTE, visando a expansão da carteira de clientes da CATALYST EDUCAÇÃO.')
+doc.add_paragraph('1.1. O objeto deste contrato é a prestação de serviços de Agenciamento Comercial e Intermediação de Negócios pela CONTRATADA à CONTRATANTE, visando a expansão da carteira de clientes da ViDi.')
 doc.add_paragraph('1.2. A CONTRATADA atuará com autonomia técnica e administrativa, sem subordinação jurídica, executando prospecção, qualificação, negociação e atualização de CRM.')
-doc.add_paragraph('1.3. Da Territorialidade: A CONTRATADA exercerá suas atividades com foco na região de [INSERIR REGIÃO DE ATUAÇÃO DA MARIANA], sem exclusividade de zona.')
+doc.add_paragraph('1.3. Da Territorialidade: A CONTRATADA exercerá suas atividades em território nacional, sem exclusividade de zona.')
 doc.add_paragraph('1.4. DA NÃO EXCLUSIVIDADE (Cláusula Expressa):')
-doc.add_paragraph('A CONTRATADA não atuará com exclusividade para a CONTRATANTE. Fica expressamente autorizado à CONTRATADA prestar serviços a terceiros, inclusive a empresas do mesmo segmento ou concorrentes da CONTRATANTE, desde que, nessa atuação, não utilize informações confidenciais, segredos comerciais ou bases de dados de propriedade da CONTRATANTE, sob pena das sanções previstas na Cláusula 13.')
+doc.add_paragraph('A CONTRATADA não atuará com exclusividade para a CONTRATANTE. Fica expressamente autorizado à CONTRATADA prestar serviços a terceiros, inclusive a empresas do mesmo segmento ou concorrentes da CONTRATANTE, bem como representar outros produtos de alto ticket e parcerias as quais ela possua interesse, desde que, nessa atuação, não utilize informações confidenciais, segredos comerciais ou bases de dados de propriedade da CONTRATANTE, sob pena das sanções previstas na Cláusula 13.')
 
 doc.add_heading('CLÁUSULA SEGUNDA - DO PRAZO', level=3)
 doc.add_paragraph('2.1. O prazo de validade deste contrato é por tempo indeterminado, com início na data de sua assinatura.')
@@ -112,10 +112,10 @@ doc.add_heading('CLÁUSULA DÉCIMA QUARTA - DISPOSIÇÕES GERAIS', level=3)
 doc.add_paragraph('14.1. Inexistência de vínculo empregatício e natureza estritamente comercial.')
 
 doc.add_paragraph('\nE, por estarem justas e contratadas, assinam as partes.\n')
-doc.add_paragraph('Goiânia, [DATA].\n')
+doc.add_paragraph('[LOCAL], [DATA].\n')
 
 doc.add_paragraph('_____________________________________________________')
-doc.add_paragraph('CATALYST EDUCAÇÃO LTDA\nContratante')
+doc.add_paragraph('ViDi EDUCAÇÃO LTDA\nContratante')
 
 doc.add_paragraph('\n_____________________________________________________')
 doc.add_paragraph('[RAZÃO SOCIAL DA EMPRESA DA MARIANA]\nContratada (repr. legal: Mariana [Sobrenome da Mariana])')

@@ -2,12 +2,15 @@ import logging
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, BackgroundTasks, HTTPException, Query, Response
+from fastapi.staticfiles import StaticFiles
 
 from app.config import config
 from app.db.postgres import db
 from app.db.redis_client import redis_client
 from app.scheduler.scheduler import start_scheduler, stop_scheduler
 from app.whatsapp_handlers.handlers import handle_whatsapp_message
+from app.api.admin import router as admin_router
+from app.api.webhook_evolution import router as evolution_router
 
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
@@ -31,6 +34,9 @@ async def lifespan(_app: FastAPI):
 
 
 app = FastAPI(title="Bot Julio v4", lifespan=lifespan)
+app.include_router(admin_router)
+app.include_router(evolution_router, prefix="/webhook")
+app.mount("/dashboard", StaticFiles(directory="app/static/admin", html=True), name="admin_dashboard")
 
 
 # ---------------------------------------------------------------------------

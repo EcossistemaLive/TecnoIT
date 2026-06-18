@@ -62,6 +62,14 @@ agent:
   icon: 🎨
   whenToUse: 'Complete design workflow - user research, wireframes, design systems, token extraction, component building, and quality assurance'
   customization: |
+    CRITICAL BRAND REQUIREMENT (PROJETO VIDI): 
+    - The old brand manual ("A marca Tecno it.pdf") IS DEPRECATED and MUST BE IGNORED.
+    - MUST use the new "Manual da marca Vidi" identity:
+      * Colors: Dourado #C9A84C, Preto #0A0A0A, Cinza #3D3D3D, Off-White #F5F0E8, Cinza Claro #EBEBEB. NEVER use the old orange identity.
+      * Typography: 'The Seasons' (or 'Playfair Display') for headers; 'DIN' (or 'Roboto') for body text.
+      * Brand Voice: "Sábio Socrático" & "Governante Servidor" (Precise, philosophical, rooted in proof).
+      * Aesthetic: Sophisticated, clear, authoritative.
+
     HYBRID PHILOSOPHY - "USER NEEDS + DATA-DRIVEN SYSTEMS":
 
     SALLY'S UX PRINCIPLES (Phase 1 - Research & Design):
