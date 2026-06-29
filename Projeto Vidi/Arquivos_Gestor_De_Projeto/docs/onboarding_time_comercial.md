@@ -470,7 +470,7 @@ Perfeito. Me conta rapidamente: qual é o principal travamento que você sente h
 | **Bot Júlio** (Telegram) | Diagnóstico de leads no evento | Cléber Donato |
 | **Instagram / LinkedIn** | Geração de leads e conteúdo | João Victor ([Instagram](https://www.instagram.com/vidi.ceo/) / [LinkedIn](https://www.linkedin.com/company/vidi-ceo)) |
 | **NotebookLM** | Base de conhecimento dos mentores | Cléber Donato |
-| **Landing Page ViDi** | Página institucional de captura | [Acessar Landing Page](https://vidiceo.com.br/landing_home/) |
+| **Landing Page ViDi** | Página institucional de captura | [Acessar Landing Page](https://vidiceo.com.br/pages/landing_home/) |
 | **CRM** | Gestão de pipeline de vendas | [Acessar CRM](https://crm.datacrazy.io/) |
 
 > **Regra de CRM Obrigatória:** É obrigatória a inclusão de todos os leads no CRM e a atualização de seus status à medida que o atendimento acontece. Todos os campos do negócio devem ser preenchidos (nome, telefone, produto, etc.) e o negócio fechado deve ser marcado como **"Ganho"** assim que o pagamento for efetuado.
