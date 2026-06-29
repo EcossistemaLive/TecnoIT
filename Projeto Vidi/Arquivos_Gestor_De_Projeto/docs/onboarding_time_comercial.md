@@ -259,8 +259,8 @@ Não é uma consultoria tradicional. A ViDi **não vende método** — vende men
 |---|---|---|
 | **Luiz Portal** | Fundador — Toca a operação da ViDi no dia a dia | luizeduardoportal@gmail.com |
 | **Ibrahim Boufleur** | Fundador — Atua como consultor e recurso da empresa (não toca o dia a dia) | iboufleur@gmail.com |
-| **Mariana** | Consultora Comercial | *(a confirmar)* |
-| **George** | Consultor Comercial | *(a confirmar)* |
+| **Mariana** | Consultor Comercial | *(a confirmar)* |
+| **Renato** | Consultor Comercial | *(a confirmar)* |
 | **Cléber Donato** | Tech Lead / Gestor de Projeto | cleber.ihs@gmail.com |
 | **João Victor Lopes Rosa** | Coordenador de Marketing e Conteúdo | joaaovictorlr@gmail.com |
 | **Ana Dias** | Gestão Administrativa e Financeira | financeiro@vidiceo.com.br |
@@ -271,7 +271,7 @@ Não é uma consultoria tradicional. A ViDi **não vende método** — vende men
 
 ### 4.2 Papel dos Consultores Comerciais
 
-Os consultores (Mariana e Jorge) são os **Closers** da ViDi. Eles conduzem todo o processo comercial de ponta a ponta, desde a qualificação até o fechamento. **O foco principal e prioritário de atendimento do time comercial são os produtos de Alto Ticket (Mentorias e Consultoria).**
+Os consultores (Mariana e Renato) são os **Closers** da ViDi. Eles conduzem todo o processo comercial de ponta a ponta, desde a qualificação até o fechamento. **O foco principal e prioritário de atendimento do time comercial são os produtos de Alto Ticket (Mentorias e Consultoria).**
 
 **O consultor pode acionar recursos de apoio quando necessário:**
 
@@ -288,7 +288,7 @@ Os consultores (Mariana e Jorge) são os **Closers** da ViDi. Eles conduzem todo
 ### 4.3 Regras de Escalada Comercial
 
 ```
-Lead qualificado (todos os produtos)    → Consultor Comercial (Mariana / George)
+Lead qualificado (todos os produtos)    → Consultor Comercial (Mariana / Renato)
 Dúvida logística / contrato / pagamento → Ana Dias
 Dúvida técnica (IA, plataforma, tech)   → Cléber Donato
 Lead Cat-A quente, mentoria iminente    → Luiz Portal (via consultor, não direto)
