@@ -481,11 +481,17 @@ Perfeito. Me conta rapidamente: qual é o principal travamento que você sente h
 |---|---|---|
 | **CEO Toolkit** | R$ 449,00 (À vista) | [Acessar Checkout](https://www.asaas.com/c/pnx2uiddj16esn86) |
 | **Diagnóstico Empresarial (Formulário)** | R$ 248,00 (Até 12x) | [Acessar Checkout](https://www.asaas.com/c/o3hl8tdx9daxer6g) |
+| **Ingresso Antecipado Cúpula** | R$ 1.497,00 (1x Pix/Boleto) | [Acessar Checkout](https://www.asaas.com/c/zfqfid1k7ju5asjy) |
+| **Ingresso Standard (1x Pix/Boleto)** | R$ 1.497,00 (1x Pix/Boleto) | [Acessar Checkout](https://www.asaas.com/c/x0n4sq1bth1oz839) |
 | **Ingresso Standard Cúpula** | R$ 1.497,00 (Até 12x) | [Acessar Checkout](https://www.asaas.com/c/mg3q40yhc4cuq1qe) |
+| **VIP Pass (1x Pix/Boleto)** | R$ 1.998,00 (1x Pix/Boleto) | [Acessar Checkout](https://www.asaas.com/c/v9ldtuhyswt3psz4) |
 | **VIP Pass (Upsell)** | R$ 1.998,00 (Até 12x) | [Acessar Checkout](https://www.asaas.com/c/xnb02rk8vyhtx4te) |
+| **Ingresso Sócio (1x Pix/Boleto)** | R$ 2.246,00 (1x Pix/Boleto) | [Acessar Checkout](https://www.asaas.com/c/rdyt5el45th5dyn6) |
 | **Ingresso Standard + Pacote Sócio** | R$ 2.246,00 (Até 12x) | [Acessar Checkout](https://www.asaas.com/c/pggmigsis406oews) |
+| **Pacote Sócio (por sócio adicional)** | R$ 748,50 (Até 10x) | [Acessar Checkout](https://www.asaas.com/c/l2pkuh41xf4h9tdc) |
 | **Formação Liderança Antifrágil** | R$ 3.989,00 (Até 12x) | [Acessar Checkout](https://www.asaas.com/c/d3o5hfjatby9dmxd) |
-| **Cúpula Dinner (Upsell)** | R$ 8.998,00 (Até 12x) | [Acessar Checkout](https://www.asaas.com/c/zxslknkefwwuefs6) |
+| **Cúpula Dinner (1x Pix/Boleto)** | R$ 8.998,00 (1x Pix/Boleto) | [Acessar Checkout](https://www.asaas.com/c/g83ecy31xag7mroh) |
+| **Cúpula Dinner (Upsell)** | R$ 8.998,00 (Até 10x) | [Acessar Checkout](https://www.asaas.com/c/zxslknkefwwuefs6) |
 | **Formação CEO (Ibrahim - online)** | (Online / Direct Checkout) | [Acessar Checkout](https://www.asaas.com/c/vmdh94jp0d2hsc2n) |
 | **Mentoria Individual (Luiz)** | R$ 39.900,00 | [Acessar Checkout](https://www.asaas.com/c/ae3n4d0u232vbapz) |
 | **Mentoria para CEOs (Ibrahim)** | R$ 59.980,00 (Até 12x) | [Acessar Checkout](https://www.asaas.com/c/4oc9nn2pdxemy2w0) |

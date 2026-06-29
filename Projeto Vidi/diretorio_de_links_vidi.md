@@ -24,6 +24,8 @@ Este arquivo visa reunir e centralizar todos os links importantes do projeto que
 *   **Planejamento de Tráfego (Planilha):** [Acessar Planilha](https://docs.google.com/spreadsheets/d/1QF7M67ysJDuTuhk4S-cIaPpOxj9hNGsR/edit?gid=580949647#gid=580949647)
 *   **Planilha de Respostas - Formulário de Captura:** [Acessar Planilha](https://docs.google.com/spreadsheets/d/18nceYwBXhOwuek2oOGqKN68ZGdM9gUVVC-_7_OrQ-AU/edit?usp=sharing) — *Onde são salvas as informações de diagnóstico e captação do repositório form_captura.*
 *   **Estratégia de Tráfego Pago - Blueprint (Palu):** [Acessar Blueprint](https://cheery-brioche-1f13a8.netlify.app/)
+*   **Almoço com o CEO em Brasília (30/06) - Página de Confirmação:** [Acessar Página](https://vidiceo.com.br/pages/convite-almoco/almoco-ceo-30jun-master/)
+*   **Almoço com o CEO em Brasília (30/06) - Planilha de Confirmação:** [Acessar Planilha](https://docs.google.com/spreadsheets/d/1j53G73mfZV6xbCXp7jrWMyVzNIwbE1Ux5d8U6Suh3FU/edit?gid=843711308#gid=843711308)
 
 ---
 
@@ -44,10 +46,16 @@ Este arquivo visa reunir e centralizar todos os links importantes do projeto que
 | Diagnóstico Empresarial | R$ 248,00 | Até 12x | [Acessar link](https://www.asaas.com/c/o3hl8tdx9daxer6g) |
 | Formação Liderança Antifrágil | R$ 3.898,00 | Até 12x | [Acessar link](https://www.asaas.com/c/d3o5hfjatby9dmxd) |
 | Formação Liderança Antifrágil (online) | R$ 698,00 | — | *(link a confirmar)* |
+| Ingresso Antecipado — Cúpula CEO | R$ 1.497,00 | 1x (Pix/Boleto) | [Acessar link](https://www.asaas.com/c/zfqfid1k7ju5asjy) |
+| Ingresso Standard (Pix/Boleto) — Cúpula CEO | R$ 1.497,00 | 1x (Pix/Boleto) | [Acessar link](https://www.asaas.com/c/x0n4sq1bth1oz839) |
 | Ingresso Standard — Cúpula CEO | R$ 1.497,00 | Até 12x | [Acessar link](https://www.asaas.com/c/mg3q40yhc4cuq1qe) |
+| Ingresso Sócio | R$ 2.246,00 | 1x (Pix/Boleto) | [Acessar link](https://www.asaas.com/c/rdyt5el45th5dyn6) |
 | Ingresso Standard + Pacote Sócio | R$ 2.246,00 | Até 12x | [Acessar link](https://www.asaas.com/c/pggmigsis406oews) |
+| Pacote Sócio (por sócio adicional) | R$ 748,50 | Até 10x | [Acessar link](https://www.asaas.com/c/l2pkuh41xf4h9tdc) |
+| VIP Pass (Pix/Boleto) | R$ 1.998,00 | 1x (Pix/Boleto) | [Acessar link](https://www.asaas.com/c/v9ldtuhyswt3psz4) |
 | VIP Pass | R$ 1.998,00 | Até 12x | [Acessar link](https://www.asaas.com/c/xnb02rk8vyhtx4te) |
-| Cúpula Dinner | R$ 8.998,00 | Até 12x | [Acessar link](https://www.asaas.com/c/zxslknkefwwuefs6) |
+| Cúpula Dinner (Pix/Boleto) | R$ 8.998,00 | 1x (Pix/Boleto) | [Acessar link](https://www.asaas.com/c/g83ecy31xag7mroh) |
+| Cúpula Dinner | R$ 8.998,00 | Até 10x | [Acessar link](https://www.asaas.com/c/zxslknkefwwuefs6) |
 | Formação CEO — Ibrahim (online) | *(a confirmar)* | — | [Acessar link](https://www.asaas.com/c/vmdh94jp0d2hsc2n) |
 | Mentoria Individual — Luiz Portal | R$ 39.900,00 | — | [Acessar link](https://www.asaas.com/c/ae3n4d0u232vbapz) |
 | Mentoria para CEOs — Ibrahim | R$ 59.980,00 | Até 12x | [Acessar link](https://www.asaas.com/c/4oc9nn2pdxemy2w0) |
