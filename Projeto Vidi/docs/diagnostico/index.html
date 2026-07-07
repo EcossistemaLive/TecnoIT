@@ -127,95 +127,49 @@
 
   <script>
     // Configuração do Webhook (Google Apps Script, Make, Zapier, etc)
-    const WEBHOOK_URL = "SUA_URL_DO_GOOGLE_APPS_SCRIPT_AQUI"; 
+    const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwu4-nzX4Y8b9kVeg2WD-FWD_PFqmKhoxHuXlkX0XiclnPGPLmWtErNBUlMI8u2fnBA/exec"; 
 
     const questions = [
       {
-        id: "papel", type: "choice", title: "Qual é o seu papel hoje na empresa?",
-        options: ["CEO / Sócio principal", "Diretor(a) / C-level", "Gerente / Coordenador(a)", "Outro"]
-      },
-      {
-        id: "decisoes", type: "choice", title: "Você participa diretamente das decisões estratégicas de médio e longo prazo?",
-        options: ["Sim, sou um dos principais responsáveis", "Participo, mas não sou a palavra final", "Quase não participo"]
-      },
-      {
-        id: "foco_busca", type: "choice", title: "Você está buscando algo para:",
-        options: ["Você, como líder", "Seu time de liderança", "A empresa como um todo"]
-      },
-      {
-        id: "faturamento", type: "choice", title: "Qual foi o faturamento anual aproximado da empresa no último ano?",
-        options: ["Até R$ 5 milhões", "Entre R$ 5M e R$ 10M", "Entre R$ 10M e R$ 50M", "Acima de R$ 50M", "Prefiro não dizer"]
-      },
-      {
-        id: "liderados", type: "choice", title: "Quantas pessoas estão sob sua liderança direta ou indireta?",
-        options: ["Até 5", "De 6 a 20", "De 21 a 100", "Mais de 100"]
-      },
-      {
-        id: "gargalo", type: "choice", title: "Se você tivesse que nomear o principal gargalo hoje, qual alternativa está mais perto da verdade?",
-        options: [
-          "A empresa depende demais de mim em quase tudo",
-          "Meu time não sustenta pressão/crise sem mim",
-          "Falta método para decidir o que fazer nos próximos 12-24 meses",
-          "Processos e operação não acompanham o crescimento",
-          "Conflitos societários / desalinhamento no topo",
-          "Outro"
-        ]
-      },
-      {
-        id: "situacao_atual", type: "choice", title: "Qual dessas frases te descreve melhor neste momento?",
-        options: [
-          "Sei que preciso sair da operação, mas não sei por onde começar",
-          "Preciso que meus líderes cresçam para a empresa escalar",
-          "Quero revisitar a estratégia para o próximo ciclo (expansão, exit...)",
-          "Preciso colocar ordem na casa: processos, metas, times",
-          "Ainda não tenho clareza suficiente nem para responder isso"
-        ]
-      },
-      {
-        id: "marco", type: "choice", title: "Existe algum marco concreto à frente que aumenta a pressão sobre essas decisões?",
-        options: [
-          "Possível venda da empresa / entrada de investidor",
-          "Entrada de novo sócio / sucessão familiar",
-          "Expansão para novas unidades / regiões / países",
-          "Reestruturação (cortes, fusão, reorganização interna)",
-          "Não há marco específico, mas a estagnação incomoda"
-        ]
-      },
-      {
-        id: "reconhecimento", type: "choice", title: "Em qual dessas situações você mais se reconhece hoje?",
-        options: [
-          "Tenho clareza do problema, mas não consigo executar sozinho",
-          "Não enxergo com nitidez qual é o problema central",
-          "Enxergo o problema, mas o time não acompanha"
-        ]
-      },
-      {
-        id: "tempo", type: "choice", title: "Quanto tempo você está disposto(a) a tirar da rotina nas próximas 8 semanas para lidar com isso com seriedade?",
-        options: [
-          "1 dia inteiro, presencial, fora da rotina",
-          "Encontros periódicos, online ou híbridos",
-          "Algumas horas por semana, contanto que seja direto ao ponto",
-          "Ainda não sei, preciso entender melhor o que faz sentido"
-        ]
-      },
-      {
-        id: "ambiente", type: "choice", title: "Que tipo de ambiente tende a gerar mais resultado para você?",
-        options: [
-          "Uma sala com pares (outros CEOs/Diretores em nível semelhante)",
-          "Trabalho direto, 1:1, com quem já resolveu o que eu vivo hoje",
-          "Uma formação estruturada para eu desenvolver meu time de liderança"
-        ]
-      },
-      {
-        id: "foco_90_dias", type: "text_long", title: "Se você pudesse resolver apenas uma coisa nos próximos 90 dias, que mudaria o jogo para os próximos 3 anos, o que seria?",
-        placeholder: "Ex: Tirar minha operação do caos logístico..."
-      },
-      {
-        id: "contato", type: "contact", title: "Para finalizar, onde podemos enviar o resultado do seu diagnóstico?",
+        id: "contato", type: "contact", title: "Para começar, onde podemos enviar o resultado do seu diagnóstico?",
         inputs: [
           { name: "nome", type: "text", placeholder: "Seu nome completo" },
           { name: "email", type: "email", placeholder: "Seu melhor e-mail" },
           { name: "whatsapp", type: "tel", placeholder: "Seu WhatsApp" }
+        ]
+      },
+      {
+        id: "papel", type: "choice", title: "Qual é o seu papel hoje na empresa?",
+        options: ["CEO / Diretor", "Gerente", "Outro"]
+      },
+      {
+        id: "objetivo", type: "choice", title: "Você está buscando algo para você, para o seu time ou para a empresa como um todo?",
+        options: ["Para mim, como líder", "Para o meu time de liderança", "Para a empresa como um todo"]
+      },
+      {
+        id: "faturamento", type: "choice", title: "Qual o faturamento mensal aproximado da sua empresa?",
+        options: ["100 a 500 mil", "500 mil a 1 milhão", "1 a 2,5 milhões", "2,5 a 5 milhões", "Acima de 5 milhões"]
+      },
+      {
+        id: "colaboradores", type: "choice", title: "Quantos colaboradores a empresa tem no total?",
+        options: ["Até 10", "De 11 a 50", "De 51 a 200", "Mais de 200"]
+      },
+      {
+        id: "momento_atual", type: "choice", title: "Qual dessas frases descreve melhor o seu momento atual na empresa?",
+        options: [
+          "Sei que preciso sair da operação, mas não sei por onde começar",
+          "Preciso que meus líderes cresçam para a empresa escalar",
+          "Preciso colocar ordem na casa: processos, metas e times",
+          "Quero revisitar a estratégia para um próximo ciclo (expansão, exit, etc.)"
+        ]
+      },
+      {
+        id: "disponibilidade_presencial", type: "choice", title: "O evento acontecerá presencialmente em Brasília. Como é a sua disponibilidade para estar conosco?",
+        options: [
+          "Moro em Brasília ou região e tenho total disponibilidade",
+          "Sou de fora, mas me organizo para estar presente com antecedência",
+          "Gostaria de ir, mas a logística até Brasília hoje é um impedimento",
+          "Prefiro eventos ou mentorias 100% online"
         ]
       }
     ];
