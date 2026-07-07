@@ -19,16 +19,24 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       background-color: var(--dark); color: var(--text);
+      background-image: linear-gradient(rgba(10,10,10,0.8), rgba(10,10,10,0.9)), url('cavaleiro.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-attachment: fixed;
       font-family: 'Inter', sans-serif; height: 100vh; overflow: hidden;
       display: flex; flex-direction: column;
     }
     
-    /* ── HEADER ── */
+    /* â”€â”€ HEADER â”€â”€ */
     header {
       padding: 1.5rem 2rem; display: flex; justify-content: space-between; align-items: center;
       border-bottom: 1px solid rgba(255,255,255,0.05); z-index: 10;
     }
-    .logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--gold); letter-spacing: 0.1em; }
+    .logo { 
+      font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; 
+      color: var(--gold); letter-spacing: 0.1em; display: flex; align-items: center; gap: 12px;
+    }
     .progress-wrap { display: flex; align-items: center; gap: 1rem; }
     .progress-text { font-size: 0.8rem; color: var(--text-muted); font-weight: 600; }
     .progress-bar { width: 150px; height: 4px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden; }
@@ -39,7 +47,7 @@
       flex: 1; display: flex; flex-direction: column; align-items: center; position: relative; overflow-y: auto; padding: 2rem 1rem;
     }
 
-    /* ── STEPS ── */
+    /* â”€â”€ STEPS â”€â”€ */
     .step-container {
       width: 100%; max-width: 650px; opacity: 0; transform: translateY(20px); transition: all 0.5s ease;
       position: absolute; pointer-events: none; visibility: hidden; display: flex; flex-direction: column; gap: 2rem;
@@ -55,7 +63,7 @@
       color: var(--gold); font-weight: 700; margin-right: 0.5rem; font-size: 1rem; vertical-align: middle;
     }
 
-    /* ── OPTIONS ── */
+    /* â”€â”€ OPTIONS â”€â”€ */
     .options-grid { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1rem; }
     .option-btn {
       background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px;
@@ -70,7 +78,7 @@
     }
     .option-btn.selected .option-letter { background: var(--gold); color: var(--dark); }
 
-    /* ── INPUTS ── */
+    /* â”€â”€ INPUTS â”€â”€ */
     .input-wrap { display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem; }
     input[type="text"], input[type="email"], input[type="tel"], textarea {
       background: transparent; border: none; border-bottom: 2px solid rgba(255,255,255,0.2);
@@ -81,7 +89,7 @@
     input:focus, textarea:focus { border-color: var(--gold); }
     input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.15); }
 
-    /* ── NAV BUTTONS ── */
+    /* â”€â”€ NAV BUTTONS â”€â”€ */
     .nav-buttons { display: flex; gap: 1rem; margin-top: 2rem; align-items: center; }
     .btn-next, .btn-submit {
       background: var(--gold); color: var(--dark); border: none; padding: 1rem 2rem; border-radius: 6px;
@@ -97,7 +105,7 @@
     }
     .btn-prev:hover { color: var(--text); }
     
-    /* ── THANK YOU ── */
+    /* â”€â”€ THANK YOU â”€â”€ */
     .thank-you { text-align: center; }
     .thank-you h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--gold); margin-bottom: 1rem; }
     .thank-you p { font-size: 1.1rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 2rem; }
@@ -110,11 +118,32 @@
       input[type="text"], input[type="email"], input[type="tel"] { font-size: 1.2rem; }
     }
   </style>
+  <!-- Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1510243003879994');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1510243003879994&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+  <script src="https://track.vidiceo.com.br/tp.js" data-client="e44eec96-7a4a-4711-a059-c87374c160f7" async></script>
 </head>
 <body>
 
   <header>
-    <div class="logo">ViDi</div>
+    <div class="logo">
+      <img src="vidi_logo.png" alt="Logo" style="height: 60px; object-fit: contain;">
+      ViDi
+    </div>
     <div class="progress-wrap">
       <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
       <div class="progress-text" id="progressText">0%</div>
@@ -126,7 +155,6 @@
   </div>
 
   <script>
-    // Configuração do Webhook (Google Apps Script, Make, Zapier, etc)
     const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwu4-nzX4Y8b9kVeg2WD-FWD_PFqmKhoxHuXlkX0XiclnPGPLmWtErNBUlMI8u2fnBA/exec"; 
 
     const questions = [
@@ -178,6 +206,26 @@
     const answers = {};
     const app = document.getElementById('app');
 
+    // Inicializa identificador único de submissão
+    answers['submission_id'] = 'sub_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+
+    // Captura automática de parâmetros UTM da URL (trata iframe caso o form esteja embarcado)
+    let searchParams = window.location.search;
+    if (window.self !== window.top && document.referrer) {
+      try {
+        const referrerUrl = new URL(document.referrer);
+        if (referrerUrl.search) {
+          searchParams = referrerUrl.search;
+        }
+      } catch (e) {
+        console.error("Erro ao extrair parâmetros do referrer:", e);
+      }
+    }
+    const urlParams = new URLSearchParams(searchParams);
+    ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'].forEach(utm => {
+      answers[utm] = urlParams.get(utm) || '';
+    });
+
     function renderSteps() {
       app.innerHTML = '';
       
@@ -186,7 +234,7 @@
         stepDiv.className = `step-container ${index === 0 ? 'active' : ''}`;
         stepDiv.id = `step-${index}`;
 
-        let contentHTML = `<div class="question-block"><span class="q-num">${index + 1} &rarr;</span> ${q.title}</div>`;
+        let contentHTML = `<div class="question-block">${q.title}</div>`;
 
         if (q.type === 'choice') {
           contentHTML += `<div class="options-grid">`;
@@ -235,7 +283,7 @@
         <div class="thank-you">
           <h2>Tudo pronto!</h2>
           <p>Seus dados foram recebidos. Nossa equipe estratégica vai analisar o seu perfil e entraremos em contato em breve com o diagnóstico.</p>
-          <a href="../" class="btn-next" style="text-decoration:none;">Voltar para Início</a>
+          <a href="#" onclick="location.reload(); return false;" class="btn-next" style="text-decoration:none;">Voltar para o início</a>
         </div>
       `;
       app.appendChild(tyDiv);
@@ -244,18 +292,15 @@
     }
 
     function selectOption(stepIndex, value) {
-      // Remove selected class from all buttons in this step
       const stepDiv = document.getElementById(`step-${stepIndex}`);
       const buttons = stepDiv.querySelectorAll('.option-btn');
       buttons.forEach(b => b.classList.remove('selected'));
       
-      // Find the clicked button and add class
       event.currentTarget.classList.add('selected');
       
       answers[questions[stepIndex].id] = value;
       document.getElementById(`next-${stepIndex}`).disabled = false;
       
-      // Auto-advance after 400ms for choice questions
       setTimeout(() => nextStep(), 400);
     }
 
@@ -271,21 +316,73 @@
         q.inputs.forEach(inp => {
           const val = document.getElementById(`input-${stepIndex}-${inp.name}`).value;
           if (!val.trim()) valid = false;
-          else answers[inp.name] = val; // save name, email, whatsapp directly
+          else answers[inp.name] = val; 
         });
       }
 
       document.getElementById(`next-${stepIndex}`).disabled = !valid;
     }
 
+    let partialSubmitted = false;
+    let createdLeadId = null;
+
+    async function enviarDadosParciais() {
+      if (partialSubmitted) return;
+      partialSubmitted = true;
+      console.log("Iniciando envio parcial dos dados...");
+      
+      // 1. Enviar para o Webhook do Google Sheets
+      try {
+        if (WEBHOOK_URL !== "SUA_URL_DO_GOOGLE_APPS_SCRIPT_AQUI") {
+          fetch(WEBHOOK_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'text/plain' },
+            body: JSON.stringify({
+              submission_id: answers.submission_id,
+              nome: answers.nome,
+              email: answers.email,
+              whatsapp: answers.whatsapp,
+              utm_source: answers.utm_source,
+              utm_medium: answers.utm_medium,
+              utm_campaign: answers.utm_campaign,
+              utm_term: answers.utm_term,
+              utm_content: answers.utm_content,
+              data_envio: new Date().toISOString(),
+              parcial: true
+            })
+          });
+        }
+      } catch (error) {
+        console.error("Erro no envio parcial Sheets:", error);
+      }
+
+      // 2. Enviar para o DataCrazy CRM
+      try {
+        if (DC_CONFIG.API_KEY !== 'SUA_CHAVE_DATACRAZY_AQUI' && DC_CONFIG.STAGE_ID !== 'UUID-DO-ESTAGIO-DO-FUNIL') {
+          createdLeadId = await criarLeadDataCrazy(answers);
+          await criarNegocioDataCrazy(createdLeadId);
+          console.log("Lead e Negócio criados parcialmente no DataCrazy CRM:", createdLeadId);
+        }
+      } catch (error) {
+        console.error("Erro no envio parcial CRM:", error);
+        partialSubmitted = false; // Permite tentar novamente se falhar
+      }
+    }
+
     function nextStep() {
       if (currentStep >= questions.length - 1) return;
+      
+      // Se estamos saindo da primeira etapa (contato), faz o envio parcial
+      if (currentStep === 0) {
+        enviarDadosParciais();
+      }
+
       document.getElementById(`step-${currentStep}`).classList.remove('active');
       currentStep++;
       document.getElementById(`step-${currentStep}`).classList.add('active');
       updateProgress();
       
-      // Focus first input if it's an input step
       const firstInput = document.querySelector(`#step-${currentStep} input, #step-${currentStep} textarea`);
       if(firstInput) firstInput.focus();
     }
@@ -304,45 +401,163 @@
       document.getElementById('progressText').innerText = pct + '%';
     }
 
+    // ============================================================
+    // CONFIGURAí‡íƒO DATACRAZY CRM
+    // ============================================================
+    const DC_CONFIG = {
+      API_KEY: 'dc_eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMjQzOWYxOTJkZmZhY2I5NmM2Y2Q0NiIsInRlbmFudElkIjoiMTMyODUzNWItM2E0Yi00ZDY0LTllYzUtYzc3ZjYyOTZmMmE1IiwibmFtZSI6IkNhcHRhw6fDo28gLSBUcsOhZmVnbyIsInJvbGVzIjpbImFkbWluIl0sImlzQWRtaW4iOnRydWUsImlhdCI6MTc4MDc1OTAyNiwiZXhwIjoxNzg4MTQ1MTk5fQ.zCrCLjo8WqauOTvoPKdoZIVrWo2GvfXcRBK3fjflGkg',
+      STAGE_ID: '87af0c61-d406-4751-bb43-a3ca4a6abf68',
+      SOURCE_LABEL: 'LP - Diagnóstico Estratégico',
+      TAG_IDS: []
+    };
+    const DC_BASE_URL = 'https://api.g1.datacrazy.io/api/v1';
+
+    async function dcRequest(endpoint, method, body) {
+      const response = await fetch(`${DC_BASE_URL}${endpoint}`, {
+        method,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${DC_CONFIG.API_KEY}`
+        },
+        body: body ? JSON.stringify(body) : undefined
+      });
+
+      if (response.status === 429) {
+        const retryAfter = response.headers.get('Retry-After') || 60;
+        throw new Error(`RATE_LIMIT:${retryAfter}`);
+      }
+
+      if (!response.ok) {
+        const err = await response.json().catch(() => ({}));
+        throw new Error(err.message || `Erro ${response.status}`);
+      }
+
+      const text = await response.text();
+      return text ? JSON.parse(text) : {};
+    }
+
+    async function criarLeadDataCrazy(answers) {
+      const sourceUrl = (window.self !== window.top && document.referrer) ? document.referrer : window.location.href;
+      const body = {
+        name: answers.nome,
+        email: answers.email || undefined,
+        phone: answers.whatsapp || undefined,
+        source: DC_CONFIG.SOURCE_LABEL,
+        sourceReferral: {
+          sourceUrl: sourceUrl
+        }
+      };
+
+      if (DC_CONFIG.TAG_IDS && DC_CONFIG.TAG_IDS.length > 0) {
+        body.tags = DC_CONFIG.TAG_IDS.map(id => ({ id: [id] }));
+      }
+
+      const result = await dcRequest('/leads', 'POST', body);
+      return result.id;
+    }
+
+    async function criarNegocioDataCrazy(leadId) {
+      const body = {
+        leadId,
+        stageId: DC_CONFIG.STAGE_ID
+      };
+      return await dcRequest('/businesses', 'POST', body);
+    }
+
+    async function criarNotaDataCrazy(leadId, answers) {
+      let noteText = "📋 RESPOSTAS DO DIAGNí“STICO:\n\n";
+      
+      // Adiciona informações de UTM se estiverem presentes
+      let utmText = "";
+      ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'].forEach(utm => {
+        if (answers[utm]) {
+          utmText += `🔸 ${utm}: ${answers[utm]}\n`;
+        }
+      });
+      if (utmText) {
+        noteText += `ðŸ“ ORIGEM DO LEAD (UTMs):\n${utmText}\n`;
+      }
+
+      questions.forEach(q => {
+        if (q.type === 'contact') {
+          noteText += `👤 Nome: ${answers.nome || 'Não preenchido'}\n`;
+          noteText += `📧 E-mail: ${answers.email || 'Não preenchido'}\n`;
+          noteText += `📞 WhatsApp: ${answers.whatsapp || 'Não preenchido'}\n\n`;
+        } else {
+          const answerVal = answers[q.id];
+          if (answerVal) {
+            noteText += `â“ ${q.title}\n🔹 ${answerVal}\n\n`;
+          }
+        }
+      });
+
+      const body = {
+        note: noteText.trim()
+      };
+
+      return await dcRequest(`/leads/${leadId}/notes`, 'POST', body);
+    }
+
     async function submitForm() {
       document.getElementById(`next-${currentStep}`).innerText = "Enviando...";
       document.getElementById(`next-${currentStep}`).disabled = true;
 
-      // Adiciona data e hora
       answers['data_envio'] = new Date().toISOString();
 
+      // 1. Envio para o Webhook do Google Sheets (Fluxo Atual)
       try {
+        console.log("Enviando dados do diagnóstico para o webhook:", answers);
+
         if (WEBHOOK_URL !== "SUA_URL_DO_GOOGLE_APPS_SCRIPT_AQUI") {
           await fetch(WEBHOOK_URL, {
             method: 'POST',
             mode: 'no-cors',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'text/plain' },
             body: JSON.stringify(answers)
           });
         } else {
           console.log("Modo Sandbox - Respostas:", answers);
-          // Apenas simula o delay
           await new Promise(r => setTimeout(r, 1000));
         }
-
-        // Avança para tela de agradecimento
-        document.getElementById(`step-${currentStep}`).classList.remove('active');
-        document.getElementById('step-thankyou').classList.add('active');
-        document.getElementById('progressFill').style.width = '100%';
-        document.getElementById('progressText').innerText = '100%';
-
       } catch (error) {
-        console.error("Erro ao enviar:", error);
-        alert("Ocorreu um erro ao enviar. Tente novamente.");
-        document.getElementById(`next-${currentStep}`).innerText = "Finalizar Diagnóstico ✓";
-        document.getElementById(`next-${currentStep}`).disabled = false;
+        console.error("Erro ao enviar para o Google Sheets:", error);
       }
+
+      // 2. Envio para o DataCrazy CRM
+      try {
+        if (DC_CONFIG.API_KEY !== 'SUA_CHAVE_DATACRAZY_AQUI' && DC_CONFIG.STAGE_ID !== 'UUID-DO-ESTAGIO-DO-FUNIL') {
+          console.log("Enviando dados para o DataCrazy CRM...");
+          let leadId = createdLeadId;
+          if (!leadId) {
+            leadId = await criarLeadDataCrazy(answers);
+            await criarNegocioDataCrazy(leadId);
+          }
+          await criarNotaDataCrazy(leadId, answers);
+          console.log("Lead, Negócio e Nota criados com sucesso no DataCrazy!");
+        } else {
+          console.log("DataCrazy em modo Sandbox (sem credenciais configuradas).");
+        }
+      } catch (error) {
+        console.error("Erro ao enviar para o DataCrazy:", error);
+      }
+
+      // 3. Pixel da Meta e finalização da tela
+      try {
+        if (typeof fbq === 'function') {
+          fbq('track', 'Lead');
+        }
+      } catch (error) {
+        console.error("Erro ao disparar Pixel da Meta:", error);
+      }
+
+      document.getElementById(`step-${currentStep}`).classList.remove('active');
+      document.getElementById('step-thankyou').classList.add('active');
+      document.getElementById('progressFill').style.width = '100%';
+      document.getElementById('progressText').innerText = '100%';
     }
 
-    // Keyboard navigation (Enter to next step)
     document.addEventListener('keypress', function (e) {
       if (e.key === 'Enter') {
-        // Only trigger if focus is not on a textarea
         if (document.activeElement.tagName === 'TEXTAREA') return;
         const nextBtn = document.getElementById(`next-${currentStep}`);
         if (nextBtn && !nextBtn.disabled) {
@@ -356,3 +571,4 @@
   </script>
 </body>
 </html>
+
